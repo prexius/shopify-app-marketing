@@ -1,0 +1,27 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "5df8a748ab7c2b1373f097f42249c4f0"
+name = "marketing"
+application_url = "https://diego-scoop-vhs-female.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "prexshoppy.myshopify.com"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://diego-scoop-vhs-female.trycloudflare.com/auth/callback",
+  "https://diego-scoop-vhs-female.trycloudflare.com/auth/shopify/callback",
+  "https://diego-scoop-vhs-female.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-01"
+
+[pos]
+embedded = false
