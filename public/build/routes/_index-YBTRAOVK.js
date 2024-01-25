@@ -14,11 +14,11 @@ import {
   createHotContext,
   init_remix_hmr
 } from "/build/_shared/chunk-YQ4DAV2Z.js";
+import "/build/_shared/chunk-UWV35TSL.js";
 import {
   require_jsx_dev_runtime
 } from "/build/_shared/chunk-XU7DNSPJ.js";
 import "/build/_shared/chunk-BOXFZXVX.js";
-import "/build/_shared/chunk-UWV35TSL.js";
 import {
   __toESM
 } from "/build/_shared/chunk-PNG5AS42.js";
@@ -169,4 +169,4 @@ export {
   App as default,
   links
 };
-//# sourceMappingURL=/build/routes/_index-NDPQQRRB.js.map
+//# sourceMappingURL=/build/routes/_index-YBTRAOVK.js.map

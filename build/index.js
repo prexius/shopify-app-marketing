@@ -183,14 +183,188 @@ function App() {
   }, this);
 }
 
+// app/routes/app.createcampaingform.tsx
+var app_createcampaingform_exports = {};
+__export(app_createcampaingform_exports, {
+  action: () => action,
+  default: () => app_createcampaingform_default
+});
+var import_react3 = require("@remix-run/react"), import_polaris = require("@shopify/polaris"), import_react4 = require("react"), import_jsx_dev_runtime3 = require("react/jsx-dev-runtime"), action = async ({ request }) => {
+}, CreateCampaingForm = ({ activate, setActivate }) => {
+  let handleChange = (0, import_react4.useCallback)(() => setActivate(!activate), [activate, setActivate]), activator = /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Button, { onClick: handleChange, children: "Create new" }, void 0, !1, {
+    fileName: "app/routes/app.createcampaingform.tsx",
+    lineNumber: 21,
+    columnNumber: 23
+  }, this), [value, setValue] = (0, import_react4.useState)("default"), handleChangeText = (0, import_react4.useCallback)((newValue) => setValue(newValue), []), submit = (0, import_react3.useSubmit)(), actionData = (0, import_react3.useActionData)();
+  return console.log(actionData, "CreateCampaingForm"), /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Page, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Frame, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+    import_polaris.Modal,
+    {
+      activator,
+      open: activate,
+      onClose: handleChange,
+      title: "Create a new email campaigns",
+      primaryAction: {
+        content: "Send",
+        onAction: () => submit({}, { replace: !0, method: "POST" })
+      },
+      secondaryActions: [{
+        content: "Finish Later",
+        onAction: () => {
+        }
+      }],
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Modal.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_react3.Form, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Layout, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Layout.Section, { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "Campaing Name",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 53,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "To",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 59,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "Corporation",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 65,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "From",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 71,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "Email Subject",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 77,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(
+          import_polaris.TextField,
+          {
+            label: "Content",
+            value,
+            onChange: handleChangeText,
+            autoComplete: "off"
+          },
+          void 0,
+          !1,
+          {
+            fileName: "app/routes/app.createcampaingform.tsx",
+            lineNumber: 83,
+            columnNumber: 37
+          },
+          this
+        ),
+        /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)(import_polaris.Button, { submit: !0, children: "send" }, void 0, !1, {
+          fileName: "app/routes/app.createcampaingform.tsx",
+          lineNumber: 89,
+          columnNumber: 37
+        }, this)
+      ] }, void 0, !0, {
+        fileName: "app/routes/app.createcampaingform.tsx",
+        lineNumber: 52,
+        columnNumber: 33
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/app.createcampaingform.tsx",
+        lineNumber: 51,
+        columnNumber: 29
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/app.createcampaingform.tsx",
+        lineNumber: 50,
+        columnNumber: 25
+      }, this) }, void 0, !1, {
+        fileName: "app/routes/app.createcampaingform.tsx",
+        lineNumber: 49,
+        columnNumber: 21
+      }, this)
+    },
+    void 0,
+    !1,
+    {
+      fileName: "app/routes/app.createcampaingform.tsx",
+      lineNumber: 35,
+      columnNumber: 17
+    },
+    this
+  ) }, void 0, !1, {
+    fileName: "app/routes/app.createcampaingform.tsx",
+    lineNumber: 34,
+    columnNumber: 13
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/app.createcampaingform.tsx",
+    lineNumber: 33,
+    columnNumber: 9
+  }, this);
+}, app_createcampaingform_default = CreateCampaingForm;
+
 // app/routes/app.automations.tsx
 var app_automations_exports = {};
 __export(app_automations_exports, {
   default: () => app_automations_default
 });
-var import_jsx_dev_runtime3 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
 function AutomationsPage({}) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime3.jsxDEV)("div", { children: "AutomationsPage" }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("div", { children: "AutomationsPage" }, void 0, !1, {
     fileName: "app/routes/app.automations.tsx",
     lineNumber: 7,
     columnNumber: 5
@@ -203,21 +377,21 @@ var app_additional_exports = {};
 __export(app_additional_exports, {
   default: () => AdditionalPage
 });
-var import_polaris = require("@shopify/polaris"), import_jsx_dev_runtime4 = require("react/jsx-dev-runtime");
+var import_polaris2 = require("@shopify/polaris"), import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
 function AdditionalPage() {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Page, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("ui-title-bar", { title: "Additional page" }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Page, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("ui-title-bar", { title: "Additional page" }, void 0, !1, {
       fileName: "app/routes/app.additional.tsx",
       lineNumber: 15,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Layout, { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.BlockStack, { gap: "300", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Text, { as: "p", variant: "bodyMd", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Layout, { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.BlockStack, { gap: "300", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Text, { as: "p", variant: "bodyMd", children: [
           "The app template comes with an additional page which demonstrates how to create multiple pages within app navigation using",
           " ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
-            import_polaris.Link,
+          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+            import_polaris2.Link,
             {
               url: "https://shopify.dev/docs/apps/tools/app-bridge",
               target: "_blank",
@@ -239,21 +413,21 @@ function AdditionalPage() {
           lineNumber: 20,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Text, { as: "p", variant: "bodyMd", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Text, { as: "p", variant: "bodyMd", children: [
           "To create your own page and have it show up in the app navigation, add a page inside ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Code, { children: "app/routes" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Code, { children: "app/routes" }, void 0, !1, {
             fileName: "app/routes/app.additional.tsx",
             lineNumber: 35,
             columnNumber: 47
           }, this),
           ", and a link to it in the ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Code, { children: "<ui-nav-menu>" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Code, { children: "<ui-nav-menu>" }, void 0, !1, {
             fileName: "app/routes/app.additional.tsx",
             lineNumber: 36,
             columnNumber: 35
           }, this),
           " component found in ",
-          /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(Code, { children: "app/routes/app.jsx" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(Code, { children: "app/routes/app.jsx" }, void 0, !1, {
             fileName: "app/routes/app.additional.tsx",
             lineNumber: 37,
             columnNumber: 26
@@ -277,14 +451,14 @@ function AdditionalPage() {
         lineNumber: 17,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Layout.Section, { variant: "oneThird", children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.BlockStack, { gap: "200", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.Text, { as: "h2", variant: "headingMd", children: "Resources" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Layout.Section, { variant: "oneThird", children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.Text, { as: "h2", variant: "headingMd", children: "Resources" }, void 0, !1, {
           fileName: "app/routes/app.additional.tsx",
           lineNumber: 45,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.List, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(import_polaris.List.Item, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
-          import_polaris.Link,
+        /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.List, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(import_polaris2.List.Item, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+          import_polaris2.Link,
           {
             url: "https://shopify.dev/docs/apps/design-guidelines/navigation#app-nav",
             target: "_blank",
@@ -333,8 +507,8 @@ function AdditionalPage() {
   }, this);
 }
 function Code({ children }) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)(
-    import_polaris.Box,
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)(
+    import_polaris2.Box,
     {
       as: "span",
       padding: "025",
@@ -344,7 +518,7 @@ function Code({ children }) {
       borderWidth: "025",
       borderColor: "border",
       borderRadius: "100",
-      children: /* @__PURE__ */ (0, import_jsx_dev_runtime4.jsxDEV)("code", { children }, void 0, !1, {
+      children: /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("code", { children }, void 0, !1, {
         fileName: "app/routes/app.additional.tsx",
         lineNumber: 79,
         columnNumber: 7
@@ -366,12 +540,101 @@ var app_campaigns_exports = {};
 __export(app_campaigns_exports, {
   default: () => app_campaigns_default
 });
-var import_jsx_dev_runtime5 = require("react/jsx-dev-runtime");
+var import_polaris3 = require("@shopify/polaris"), import_react5 = require("react");
+
+// app/components/Test.tsx
+var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime"), TestComponent = (props) => /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { children: "TestComponent" }, void 0, !1, {
+  fileName: "app/components/Test.tsx",
+  lineNumber: 7,
+  columnNumber: 5
+}, this), Test_default = TestComponent;
+
+// app/utils/tabs.tsx
+var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), tabs = [
+  {
+    id: "all-customers",
+    content: "All",
+    panelID: "all-customers-content-one",
+    component: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(Test_default, {}, void 0, !1, {
+      fileName: "app/utils/tabs.tsx",
+      lineNumber: 8,
+      columnNumber: 20
+    }, this)
+  },
+  {
+    id: "accepts-marketing-1",
+    content: "Ongoing",
+    panelID: "accepts-marketing-content-1"
+  },
+  {
+    id: "repeat-customers-1",
+    content: "Draft",
+    panelID: "repeat-customers-content-1"
+  },
+  {
+    id: "prospects-1",
+    content: "Completed",
+    panelID: "prospects-content-1"
+  }
+];
+
+// app/routes/app.campaigns.tsx
+var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime");
 function CampaignsPage({}) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime5.jsxDEV)("div", { children: "CampaignsPage" }, void 0, !1, {
+  let [selected, setSelected] = (0, import_react5.useState)(0), handleTabChange = (0, import_react5.useCallback)((selectedTabIndex) => setSelected(selectedTabIndex), []), [activate, setActivate] = (0, import_react5.useState)(!1);
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Page, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Layout, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.InlineGrid, { columns: 2, children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Text, { variant: "heading3xl", as: "h2", children: "Campaings" }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 20,
+      columnNumber: 25
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 19,
+      columnNumber: 21
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 18,
+      columnNumber: 17
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)("br", {}, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 24,
+      columnNumber: 17
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.LegacyCard, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Tabs, { tabs, selected, onSelect: handleTabChange, children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.LegacyCard.Section, { title: tabs[selected].content, children: tabs[selected].component }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 28,
+      columnNumber: 29
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 27,
+      columnNumber: 25
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 26,
+      columnNumber: 21
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 25,
+      columnNumber: 17
+    }, this),
+    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(app_createcampaingform_default, { activate, setActivate }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 35,
+      columnNumber: 21
+    }, this) }, void 0, !1, {
+      fileName: "app/routes/app.campaigns.tsx",
+      lineNumber: 34,
+      columnNumber: 17
+    }, this)
+  ] }, void 0, !0, {
     fileName: "app/routes/app.campaigns.tsx",
-    lineNumber: 7,
-    columnNumber: 5
+    lineNumber: 17,
+    columnNumber: 13
+  }, this) }, void 0, !1, {
+    fileName: "app/routes/app.campaigns.tsx",
+    lineNumber: 16,
+    columnNumber: 9
   }, this);
 }
 var app_campaigns_default = CampaignsPage;
@@ -381,9 +644,9 @@ var app_billings_exports = {};
 __export(app_billings_exports, {
   default: () => app_billings_default
 });
-var import_jsx_dev_runtime6 = require("react/jsx-dev-runtime");
+var import_jsx_dev_runtime9 = require("react/jsx-dev-runtime");
 function BillingsPage({}) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime6.jsxDEV)("div", { children: "BillingsPage" }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { children: "BillingsPage" }, void 0, !1, {
     fileName: "app/routes/app.billings.tsx",
     lineNumber: 7,
     columnNumber: 5
@@ -394,12 +657,12 @@ var app_billings_default = BillingsPage;
 // app/routes/app._index.tsx
 var app_index_exports = {};
 __export(app_index_exports, {
-  action: () => action,
+  action: () => action2,
   default: () => Index,
   loader: () => loader
 });
-var import_react3 = require("react"), import_node3 = require("@remix-run/node"), import_react4 = require("@remix-run/react"), import_polaris2 = require("@shopify/polaris");
-var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), loader = async ({ request }) => (await authenticate.admin(request), null), action = async ({ request }) => {
+var import_react6 = require("react"), import_node3 = require("@remix-run/node"), import_react7 = require("@remix-run/react"), import_polaris4 = require("@shopify/polaris");
+var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime"), loader = async ({ request }) => (await authenticate.admin(request), null), action2 = async ({ request }) => {
   let { admin } = await authenticate.admin(request), color = ["Red", "Orange", "Yellow", "Green"][Math.floor(Math.random() * 4)], responseJson = await (await admin.graphql(
     `#graphql
       mutation populateProduct($input: ProductInput!) {
@@ -436,16 +699,16 @@ var import_jsx_dev_runtime7 = require("react/jsx-dev-runtime"), loader = async (
   });
 };
 function Index() {
-  let nav = (0, import_react4.useNavigation)(), actionData = (0, import_react4.useActionData)(), submit = (0, import_react4.useSubmit)(), isLoading = ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST", productId = actionData?.product?.id.replace(
+  let nav = (0, import_react7.useNavigation)(), actionData = (0, import_react7.useActionData)(), submit = (0, import_react7.useSubmit)(), isLoading = ["loading", "submitting"].includes(nav.state) && nav.formMethod === "POST", productId = actionData?.product?.id.replace(
     "gid://shopify/Product/",
     ""
   );
-  (0, import_react3.useEffect)(() => {
+  (0, import_react6.useEffect)(() => {
     productId && shopify.toast.show("Product created");
   }, [productId]);
   let generateProduct = () => submit({}, { replace: !0, method: "POST" });
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Page, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("ui-title-bar", { title: "Remix app template", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("button", { variant: "primary", onClick: generateProduct, children: "Generate a product" }, void 0, !1, {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Page, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("ui-title-bar", { title: "Remix app template", children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("button", { variant: "primary", onClick: generateProduct, children: "Generate a product" }, void 0, !1, {
       fileName: "app/routes/app._index.tsx",
       lineNumber: 89,
       columnNumber: 9
@@ -454,19 +717,19 @@ function Index() {
       lineNumber: 88,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "500", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Layout, { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "500", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "h2", variant: "headingMd", children: "Congrats on creating a new Shopify app \u{1F389}" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "500", children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Layout, { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Layout.Section, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "200", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "h2", variant: "headingMd", children: "Congrats on creating a new Shopify app \u{1F389}" }, void 0, !1, {
             fileName: "app/routes/app._index.tsx",
             lineNumber: 99,
             columnNumber: 19
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { variant: "bodyMd", as: "p", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { variant: "bodyMd", as: "p", children: [
             "This embedded app template uses",
             " ",
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-              import_polaris2.Link,
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+              import_polaris4.Link,
               {
                 url: "https://shopify.dev/docs/apps/tools/app-bridge",
                 target: "_blank",
@@ -485,15 +748,15 @@ function Index() {
             " ",
             "interface examples like an",
             " ",
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Link, { url: "/app/additional", removeUnderline: !0, children: "additional page in the app nav" }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Link, { url: "/app/additional", removeUnderline: !0, children: "additional page in the app nav" }, void 0, !1, {
               fileName: "app/routes/app._index.tsx",
               lineNumber: 112,
               columnNumber: 21
             }, this),
             ", as well as an",
             " ",
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-              import_polaris2.Link,
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+              import_polaris4.Link,
               {
                 url: "https://shopify.dev/docs/api/admin-graphql",
                 target: "_blank",
@@ -521,17 +784,17 @@ function Index() {
           lineNumber: 98,
           columnNumber: 17
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "h3", variant: "headingMd", children: "Get started with products" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "200", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "h3", variant: "headingMd", children: "Get started with products" }, void 0, !1, {
             fileName: "app/routes/app._index.tsx",
             lineNumber: 128,
             columnNumber: 19
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "p", variant: "bodyMd", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "p", variant: "bodyMd", children: [
             "Generate a product with GraphQL and get the JSON output for that product. Learn more about the",
             " ",
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-              import_polaris2.Link,
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+              import_polaris4.Link,
               {
                 url: "https://shopify.dev/docs/api/admin-graphql/latest/mutations/productCreate",
                 target: "_blank",
@@ -559,14 +822,14 @@ function Index() {
           lineNumber: 127,
           columnNumber: 17
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.InlineStack, { gap: "300", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Button, { loading: isLoading, onClick: generateProduct, children: "Generate a product" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.InlineStack, { gap: "300", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Button, { loading: isLoading, onClick: generateProduct, children: "Generate a product" }, void 0, !1, {
             fileName: "app/routes/app._index.tsx",
             lineNumber: 145,
             columnNumber: 19
           }, this),
-          actionData?.product && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-            import_polaris2.Button,
+          actionData?.product && /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+            import_polaris4.Button,
             {
               url: `shopify:admin/products/${productId}`,
               target: "_blank",
@@ -587,8 +850,8 @@ function Index() {
           lineNumber: 144,
           columnNumber: 17
         }, this),
-        actionData?.product && /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-          import_polaris2.Box,
+        actionData?.product && /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+          import_polaris4.Box,
           {
             padding: "400",
             background: "bg-surface-active",
@@ -596,7 +859,7 @@ function Index() {
             borderRadius: "200",
             borderColor: "border",
             overflowX: "scroll",
-            children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("pre", { style: { margin: 0 }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("code", { children: JSON.stringify(actionData.product, null, 2) }, void 0, !1, {
+            children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("pre", { style: { margin: 0 }, children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("code", { children: JSON.stringify(actionData.product, null, 2) }, void 0, !1, {
               fileName: "app/routes/app._index.tsx",
               lineNumber: 168,
               columnNumber: 23
@@ -628,22 +891,22 @@ function Index() {
         lineNumber: 95,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Layout.Section, { variant: "oneThird", children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "500", children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "h2", variant: "headingMd", children: "App template specs" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Layout.Section, { variant: "oneThird", children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "500", children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "200", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "h2", variant: "headingMd", children: "App template specs" }, void 0, !1, {
             fileName: "app/routes/app._index.tsx",
             lineNumber: 179,
             columnNumber: 19
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.InlineStack, { align: "space-between", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "span", variant: "bodyMd", children: "Framework" }, void 0, !1, {
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "200", children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.InlineStack, { align: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "span", variant: "bodyMd", children: "Framework" }, void 0, !1, {
                 fileName: "app/routes/app._index.tsx",
                 lineNumber: 184,
                 columnNumber: 23
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                import_polaris4.Link,
                 {
                   url: "https://remix.run",
                   target: "_blank",
@@ -664,14 +927,14 @@ function Index() {
               lineNumber: 183,
               columnNumber: 21
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.InlineStack, { align: "space-between", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "span", variant: "bodyMd", children: "Database" }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.InlineStack, { align: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "span", variant: "bodyMd", children: "Database" }, void 0, !1, {
                 fileName: "app/routes/app._index.tsx",
                 lineNumber: 196,
                 columnNumber: 23
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                import_polaris4.Link,
                 {
                   url: "https://www.prisma.io/",
                   target: "_blank",
@@ -692,15 +955,15 @@ function Index() {
               lineNumber: 195,
               columnNumber: 21
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.InlineStack, { align: "space-between", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "span", variant: "bodyMd", children: "Interface" }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.InlineStack, { align: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "span", variant: "bodyMd", children: "Interface" }, void 0, !1, {
                 fileName: "app/routes/app._index.tsx",
                 lineNumber: 208,
                 columnNumber: 23
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)("span", { children: [
-                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                  import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("span", { children: [
+                /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                  import_polaris4.Link,
                   {
                     url: "https://polaris.shopify.com",
                     target: "_blank",
@@ -717,8 +980,8 @@ function Index() {
                   this
                 ),
                 ", ",
-                /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                  import_polaris2.Link,
+                /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                  import_polaris4.Link,
                   {
                     url: "https://shopify.dev/docs/apps/tools/app-bridge",
                     target: "_blank",
@@ -744,14 +1007,14 @@ function Index() {
               lineNumber: 207,
               columnNumber: 21
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.InlineStack, { align: "space-between", children: [
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "span", variant: "bodyMd", children: "API" }, void 0, !1, {
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.InlineStack, { align: "space-between", children: [
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "span", variant: "bodyMd", children: "API" }, void 0, !1, {
                 fileName: "app/routes/app._index.tsx",
                 lineNumber: 230,
                 columnNumber: 23
               }, this),
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                import_polaris4.Link,
                 {
                   url: "https://shopify.dev/docs/api/admin-graphql",
                   target: "_blank",
@@ -786,18 +1049,18 @@ function Index() {
           lineNumber: 177,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.BlockStack, { gap: "200", children: [
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.Text, { as: "h2", variant: "headingMd", children: "Next steps" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.BlockStack, { gap: "200", children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.Text, { as: "h2", variant: "headingMd", children: "Next steps" }, void 0, !1, {
             fileName: "app/routes/app._index.tsx",
             lineNumber: 246,
             columnNumber: 19
           }, this),
-          /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.List, { children: [
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.List.Item, { children: [
+          /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.List, { children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.List.Item, { children: [
               "Build an",
               " ",
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                import_polaris4.Link,
                 {
                   url: "https://shopify.dev/docs/apps/getting-started/build-app-example",
                   target: "_blank",
@@ -823,11 +1086,11 @@ function Index() {
               lineNumber: 250,
               columnNumber: 21
             }, this),
-            /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(import_polaris2.List.Item, { children: [
+            /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_polaris4.List.Item, { children: [
               "Explore Shopify\u2019s API with",
               " ",
-              /* @__PURE__ */ (0, import_jsx_dev_runtime7.jsxDEV)(
-                import_polaris2.Link,
+              /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(
+                import_polaris4.Link,
                 {
                   url: "https://shopify.dev/docs/apps/tools/graphiql-admin-api",
                   target: "_blank",
@@ -890,12 +1153,12 @@ function Index() {
 // app/routes/auth.login/route.tsx
 var route_exports = {};
 __export(route_exports, {
-  action: () => action2,
+  action: () => action3,
   default: () => Auth,
   links: () => links,
   loader: () => loader2
 });
-var import_react5 = require("react"), import_node4 = require("@remix-run/node"), import_polaris3 = require("@shopify/polaris"), import_react6 = require("@remix-run/react");
+var import_react8 = require("react"), import_node4 = require("@remix-run/node"), import_polaris5 = require("@shopify/polaris"), import_react9 = require("@remix-run/react");
 
 // node_modules/@shopify/polaris/build/esm/styles.css
 var styles_default = "/build/_assets/styles-4X5AOF2B.css";
@@ -907,28 +1170,28 @@ function loginErrorMessage(loginErrors) {
 }
 
 // app/routes/auth.login/route.tsx
-var import_jsx_dev_runtime8 = require("react/jsx-dev-runtime"), links = () => [{ rel: "stylesheet", href: styles_default }], loader2 = async ({ request }) => {
+var import_jsx_dev_runtime11 = require("react/jsx-dev-runtime"), links = () => [{ rel: "stylesheet", href: styles_default }], loader2 = async ({ request }) => {
   let errors = loginErrorMessage(await login(request));
   return (0, import_node4.json)({
     errors,
     polarisTranslations: require("@shopify/polaris/locales/en.json")
   });
-}, action2 = async ({ request }) => {
+}, action3 = async ({ request }) => {
   let errors = loginErrorMessage(await login(request));
   return (0, import_node4.json)({
     errors
   });
 };
 function Auth() {
-  let loaderData = (0, import_react6.useLoaderData)(), actionData = (0, import_react6.useActionData)(), [shop, setShop] = (0, import_react5.useState)(""), { errors } = actionData || loaderData;
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.AppProvider, { i18n: loaderData.polarisTranslations, children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Page, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_react6.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.FormLayout, { children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Text, { variant: "headingMd", as: "h2", children: "Log in" }, void 0, !1, {
+  let loaderData = (0, import_react9.useLoaderData)(), actionData = (0, import_react9.useActionData)(), [shop, setShop] = (0, import_react8.useState)(""), { errors } = actionData || loaderData;
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.AppProvider, { i18n: loaderData.polarisTranslations, children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.Page, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.Card, { children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_react9.Form, { method: "post", children: /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.FormLayout, { children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.Text, { variant: "headingMd", as: "h2", children: "Log in" }, void 0, !1, {
       fileName: "app/routes/auth.login/route.tsx",
       lineNumber: 49,
       columnNumber: 15
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(
-      import_polaris3.TextField,
+    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(
+      import_polaris5.TextField,
       {
         type: "text",
         name: "shop",
@@ -948,7 +1211,7 @@ function Auth() {
       },
       this
     ),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime8.jsxDEV)(import_polaris3.Button, { submit: !0, children: "Log in" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime11.jsxDEV)(import_polaris5.Button, { submit: !0, children: "Log in" }, void 0, !1, {
       fileName: "app/routes/auth.login/route.tsx",
       lineNumber: 62,
       columnNumber: 15
@@ -979,9 +1242,9 @@ function Auth() {
 // app/routes/webhooks.tsx
 var webhooks_exports = {};
 __export(webhooks_exports, {
-  action: () => action3
+  action: () => action4
 });
-var action3 = async ({ request }) => {
+var action4 = async ({ request }) => {
   let { topic, shop, session, admin, payload } = await authenticate.webhook(
     request
   );
@@ -1014,44 +1277,44 @@ __export(route_exports2, {
   links: () => links2,
   loader: () => loader4
 });
-var import_node5 = require("@remix-run/node"), import_react7 = require("@remix-run/react");
+var import_node5 = require("@remix-run/node"), import_react10 = require("@remix-run/react");
 
 // app/routes/_index/style.css
 var style_default = "/build/_assets/style-M2E3MJNO.css";
 
 // app/routes/_index/route.tsx
-var import_jsx_dev_runtime9 = require("react/jsx-dev-runtime"), links2 = () => [{ rel: "stylesheet", href: style_default }], loader4 = async ({ request }) => {
+var import_jsx_dev_runtime12 = require("react/jsx-dev-runtime"), links2 = () => [{ rel: "stylesheet", href: style_default }], loader4 = async ({ request }) => {
   let url = new URL(request.url);
   if (url.searchParams.get("shop"))
     throw (0, import_node5.redirect)(`/app?${url.searchParams.toString()}`);
   return (0, import_node5.json)({ showForm: Boolean(login) });
 };
 function App2() {
-  let { showForm } = (0, import_react7.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "index", children: /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("div", { className: "content", children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("h1", { children: "A short heading about [your app]" }, void 0, !1, {
+  let { showForm } = (0, import_react10.useLoaderData)();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "index", children: /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("div", { className: "content", children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("h1", { children: "A short heading about [your app]" }, void 0, !1, {
       fileName: "app/routes/_index/route.tsx",
       lineNumber: 25,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("p", { children: "A tagline about [your app] that describes your value proposition." }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("p", { children: "A tagline about [your app] that describes your value proposition." }, void 0, !1, {
       fileName: "app/routes/_index/route.tsx",
       lineNumber: 26,
       columnNumber: 9
     }, this),
-    showForm && /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)(import_react7.Form, { method: "post", action: "/auth/login", children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { children: "Shop domain" }, void 0, !1, {
+    showForm && /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)(import_react10.Form, { method: "post", action: "/auth/login", children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("label", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { children: "Shop domain" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 30,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("input", { type: "text", name: "shop" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("input", { type: "text", name: "shop" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 31,
           columnNumber: 15
         }, this),
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("span", { children: "e.g: my-shop-domain.myshopify.com" }, void 0, !1, {
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("span", { children: "e.g: my-shop-domain.myshopify.com" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 32,
           columnNumber: 15
@@ -1061,7 +1324,7 @@ function App2() {
         lineNumber: 29,
         columnNumber: 13
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("button", { type: "submit", children: "Log in" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("button", { type: "submit", children: "Log in" }, void 0, !1, {
         fileName: "app/routes/_index/route.tsx",
         lineNumber: 34,
         columnNumber: 13
@@ -1071,9 +1334,9 @@ function App2() {
       lineNumber: 28,
       columnNumber: 9
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("ul", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("li", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("ul", { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("li", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 39,
           columnNumber: 13
@@ -1084,8 +1347,8 @@ function App2() {
         lineNumber: 38,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("li", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("li", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 43,
           columnNumber: 13
@@ -1096,8 +1359,8 @@ function App2() {
         lineNumber: 42,
         columnNumber: 11
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("li", { children: [
-        /* @__PURE__ */ (0, import_jsx_dev_runtime9.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("li", { children: [
+        /* @__PURE__ */ (0, import_jsx_dev_runtime12.jsxDEV)("strong", { children: "Product feature" }, void 0, !1, {
           fileName: "app/routes/_index/route.tsx",
           lineNumber: 47,
           columnNumber: 13
@@ -1133,29 +1396,29 @@ __export(app_exports, {
   links: () => links3,
   loader: () => loader5
 });
-var import_node6 = require("@remix-run/node"), import_react8 = require("@remix-run/react");
-var import_server4 = require("@shopify/shopify-app-remix/server"), import_react9 = require("@shopify/shopify-app-remix/react");
-var import_jsx_dev_runtime10 = require("react/jsx-dev-runtime"), links3 = () => [{ rel: "stylesheet", href: styles_default }], loader5 = async ({ request }) => (await authenticate.admin(request), (0, import_node6.json)({ apiKey: process.env.SHOPIFY_API_KEY || "" }));
+var import_node6 = require("@remix-run/node"), import_react11 = require("@remix-run/react");
+var import_server4 = require("@shopify/shopify-app-remix/server"), import_react12 = require("@shopify/shopify-app-remix/react");
+var import_jsx_dev_runtime13 = require("react/jsx-dev-runtime"), links3 = () => [{ rel: "stylesheet", href: styles_default }], loader5 = async ({ request }) => (await authenticate.admin(request), (0, import_node6.json)({ apiKey: process.env.SHOPIFY_API_KEY || "" }));
 function App3() {
-  let { apiKey } = (0, import_react8.useLoaderData)();
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react9.AppProvider, { isEmbeddedApp: !0, apiKey, children: [
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)("ui-nav-menu", { children: [
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react8.Link, { to: "/app", rel: "home", children: "Home" }, void 0, !1, {
+  let { apiKey } = (0, import_react11.useLoaderData)();
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react12.AppProvider, { isEmbeddedApp: !0, apiKey, children: [
+    /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)("ui-nav-menu", { children: [
+      /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react11.Link, { to: "/app", rel: "home", children: "Home" }, void 0, !1, {
         fileName: "app/routes/app.tsx",
         lineNumber: 23,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react8.Link, { to: "/app/campaigns", children: "Campaigns" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react11.Link, { to: "/app/campaigns", children: "Campaigns" }, void 0, !1, {
         fileName: "app/routes/app.tsx",
         lineNumber: 26,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react8.Link, { to: "/app/automations", children: "Automations" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react11.Link, { to: "/app/automations", children: "Automations" }, void 0, !1, {
         fileName: "app/routes/app.tsx",
         lineNumber: 27,
         columnNumber: 9
       }, this),
-      /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react8.Link, { to: "/app/billings", children: "Billings" }, void 0, !1, {
+      /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react11.Link, { to: "/app/billings", children: "Billings" }, void 0, !1, {
         fileName: "app/routes/app.tsx",
         lineNumber: 28,
         columnNumber: 9
@@ -1165,7 +1428,7 @@ function App3() {
       lineNumber: 22,
       columnNumber: 7
     }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime10.jsxDEV)(import_react8.Outlet, {}, void 0, !1, {
+    /* @__PURE__ */ (0, import_jsx_dev_runtime13.jsxDEV)(import_react11.Outlet, {}, void 0, !1, {
       fileName: "app/routes/app.tsx",
       lineNumber: 30,
       columnNumber: 7
@@ -1177,12 +1440,12 @@ function App3() {
   }, this);
 }
 function ErrorBoundary() {
-  return import_server4.boundary.error((0, import_react8.useRouteError)());
+  return import_server4.boundary.error((0, import_react11.useRouteError)());
 }
 var headers = (headersArgs) => import_server4.boundary.headers(headersArgs);
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { entry: { module: "/build/entry.client-ZT2JAKDB.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-VXFL7UG5.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-YQ4DAV2Z.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-ZJZ7EVZH.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-NDPQQRRB.js", imports: ["/build/_shared/chunk-3GJP5LZF.js", "/build/_shared/chunk-G7CHZRZX.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app": { id: "routes/app", parentId: "root", path: "app", index: void 0, caseSensitive: void 0, module: "/build/routes/app-LJVKVOQD.js", imports: ["/build/_shared/chunk-NMZL6IDN.js", "/build/_shared/chunk-SU66BP3D.js", "/build/_shared/chunk-3BPQY6NO.js", "/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-K5V56T6F.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/app._index": { id: "routes/app._index", parentId: "routes/app", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/app._index-ZVUYCLCD.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.additional": { id: "routes/app.additional", parentId: "routes/app", path: "additional", index: void 0, caseSensitive: void 0, module: "/build/routes/app.additional-U4PPOUZK.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.automations": { id: "routes/app.automations", parentId: "routes/app", path: "automations", index: void 0, caseSensitive: void 0, module: "/build/routes/app.automations-PBQTRIPC.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.billings": { id: "routes/app.billings", parentId: "routes/app", path: "billings", index: void 0, caseSensitive: void 0, module: "/build/routes/app.billings-GHPXTQSJ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.campaigns": { id: "routes/app.campaigns", parentId: "routes/app", path: "campaigns", index: void 0, caseSensitive: void 0, module: "/build/routes/app.campaigns-EMUH25LJ.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.$": { id: "routes/auth.$", parentId: "root", path: "auth/*", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.$-Z6LPBAD4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.login": { id: "routes/auth.login", parentId: "root", path: "auth/login", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.login-5EMIU6OM.js", imports: ["/build/_shared/chunk-3GJP5LZF.js", "/build/_shared/chunk-3BPQY6NO.js", "/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-K5V56T6F.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/webhooks": { id: "routes/webhooks", parentId: "root", path: "webhooks", index: void 0, caseSensitive: void 0, module: "/build/routes/webhooks-YCEDH7MD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "3a1b9e18", hmr: { runtime: "/build/_shared\\chunk-YQ4DAV2Z.js", timestamp: 1706218181254 }, url: "/build/manifest-3A1B9E18.js" };
+var assets_manifest_default = { entry: { module: "/build/entry.client-4HQW2NVH.js", imports: ["/build/_shared/chunk-ZWGWGGVF.js", "/build/_shared/chunk-VXFL7UG5.js", "/build/_shared/chunk-GIAAE3CH.js", "/build/_shared/chunk-YQ4DAV2Z.js", "/build/_shared/chunk-UWV35TSL.js", "/build/_shared/chunk-XU7DNSPJ.js", "/build/_shared/chunk-BOXFZXVX.js", "/build/_shared/chunk-PNG5AS42.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-UN66TZOO.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/_index": { id: "routes/_index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/_index-YBTRAOVK.js", imports: ["/build/_shared/chunk-3GJP5LZF.js", "/build/_shared/chunk-G7CHZRZX.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app": { id: "routes/app", parentId: "root", path: "app", index: void 0, caseSensitive: void 0, module: "/build/routes/app-ZUV5SEJI.js", imports: ["/build/_shared/chunk-NMZL6IDN.js", "/build/_shared/chunk-3BPQY6NO.js", "/build/_shared/chunk-SU66BP3D.js", "/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-7SM5YFS4.js"], hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !0 }, "routes/app._index": { id: "routes/app._index", parentId: "routes/app", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/app._index-LHV3DPKF.js", imports: void 0, hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.additional": { id: "routes/app.additional", parentId: "routes/app", path: "additional", index: void 0, caseSensitive: void 0, module: "/build/routes/app.additional-MULG2RY7.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.automations": { id: "routes/app.automations", parentId: "routes/app", path: "automations", index: void 0, caseSensitive: void 0, module: "/build/routes/app.automations-LGMW7PHN.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.billings": { id: "routes/app.billings", parentId: "routes/app", path: "billings", index: void 0, caseSensitive: void 0, module: "/build/routes/app.billings-4GCN6VQY.js", imports: void 0, hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.campaigns": { id: "routes/app.campaigns", parentId: "routes/app", path: "campaigns", index: void 0, caseSensitive: void 0, module: "/build/routes/app.campaigns-E6ZUJYMJ.js", imports: ["/build/_shared/chunk-U3J4JOQS.js"], hasAction: !1, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/app.createcampaingform": { id: "routes/app.createcampaingform", parentId: "routes/app", path: "createcampaingform", index: void 0, caseSensitive: void 0, module: "/build/routes/app.createcampaingform-FIOLDSGA.js", imports: ["/build/_shared/chunk-U3J4JOQS.js"], hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.$": { id: "routes/auth.$", parentId: "root", path: "auth/*", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.$-Z6LPBAD4.js", imports: void 0, hasAction: !1, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/auth.login": { id: "routes/auth.login", parentId: "root", path: "auth/login", index: void 0, caseSensitive: void 0, module: "/build/routes/auth.login-JWDFU6HY.js", imports: ["/build/_shared/chunk-3GJP5LZF.js", "/build/_shared/chunk-3BPQY6NO.js", "/build/_shared/chunk-G7CHZRZX.js", "/build/_shared/chunk-7SM5YFS4.js"], hasAction: !0, hasLoader: !0, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 }, "routes/webhooks": { id: "routes/webhooks", parentId: "root", path: "webhooks", index: void 0, caseSensitive: void 0, module: "/build/routes/webhooks-YCEDH7MD.js", imports: void 0, hasAction: !0, hasLoader: !1, hasClientAction: !1, hasClientLoader: !1, hasErrorBoundary: !1 } }, version: "6a0f9aea", hmr: { runtime: "/build/_shared\\chunk-YQ4DAV2Z.js", timestamp: 1706224668813 }, url: "/build/manifest-6A0F9AEA.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_fetcherPersist: !1, v3_relativeSplatPath: !1 }, publicPath = "/build/", entry = { module: entry_server_exports }, routes = {
@@ -1193,6 +1456,14 @@ var mode = "development", assetsBuildDirectory = "public\\build", future = { v3_
     index: void 0,
     caseSensitive: void 0,
     module: root_exports
+  },
+  "routes/app.createcampaingform": {
+    id: "routes/app.createcampaingform",
+    parentId: "routes/app",
+    path: "createcampaingform",
+    index: void 0,
+    caseSensitive: void 0,
+    module: app_createcampaingform_exports
   },
   "routes/app.automations": {
     id: "routes/app.automations",

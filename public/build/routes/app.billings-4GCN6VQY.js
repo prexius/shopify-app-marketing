@@ -2,16 +2,16 @@ import {
   createHotContext,
   init_remix_hmr
 } from "/build/_shared/chunk-YQ4DAV2Z.js";
+import "/build/_shared/chunk-UWV35TSL.js";
 import {
   require_jsx_dev_runtime
 } from "/build/_shared/chunk-XU7DNSPJ.js";
 import "/build/_shared/chunk-BOXFZXVX.js";
-import "/build/_shared/chunk-UWV35TSL.js";
 import {
   __toESM
 } from "/build/_shared/chunk-PNG5AS42.js";
 
-// app/routes/app.automations.tsx
+// app/routes/app.billings.tsx
 init_remix_hmr();
 var import_jsx_dev_runtime = __toESM(require_jsx_dev_runtime());
 if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
@@ -20,7 +20,7 @@ if (!window.$RefreshReg$ || !window.$RefreshSig$ || !window.$RefreshRuntime$) {
   prevRefreshReg = window.$RefreshReg$;
   prevRefreshSig = window.$RefreshSig$;
   window.$RefreshReg$ = (type, id) => {
-    window.$RefreshRuntime$.register(type, '"app\\\\routes\\\\app.automations.tsx"' + id);
+    window.$RefreshRuntime$.register(type, '"app\\\\routes\\\\app.billings.tsx"' + id);
   };
   window.$RefreshSig$ = window.$RefreshRuntime$.createSignatureFunctionForTransform;
 }
@@ -29,24 +29,24 @@ var prevRefreshSig;
 if (import.meta) {
   import.meta.hot = createHotContext(
     //@ts-expect-error
-    "app\\routes\\app.automations.tsx"
+    "app\\routes\\app.billings.tsx"
   );
-  import.meta.hot.lastModified = "1706218169509.4255";
+  import.meta.hot.lastModified = "1706218180622.7737";
 }
-function AutomationsPage({}) {
-  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: "AutomationsPage" }, void 0, false, {
-    fileName: "app/routes/app.automations.tsx",
+function BillingsPage({}) {
+  return /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)("div", { children: "BillingsPage" }, void 0, false, {
+    fileName: "app/routes/app.billings.tsx",
     lineNumber: 23,
     columnNumber: 10
   }, this);
 }
-_c = AutomationsPage;
-var app_automations_default = AutomationsPage;
+_c = BillingsPage;
+var app_billings_default = BillingsPage;
 var _c;
-$RefreshReg$(_c, "AutomationsPage");
+$RefreshReg$(_c, "BillingsPage");
 window.$RefreshReg$ = prevRefreshReg;
 window.$RefreshSig$ = prevRefreshSig;
 export {
-  app_automations_default as default
+  app_billings_default as default
 };
-//# sourceMappingURL=/build/routes/app.automations-PBQTRIPC.js.map
+//# sourceMappingURL=/build/routes/app.billings-4GCN6VQY.js.map

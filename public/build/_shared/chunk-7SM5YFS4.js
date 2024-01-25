@@ -7194,6 +7194,30 @@ var init_TextField = __esm({
   }
 });
 
+// node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.scss.js
+var styles14;
+var init_LegacyCard_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.scss.js"() {
+    styles14 = {
+      "LegacyCard": "Polaris-LegacyCard",
+      "Section": "Polaris-LegacyCard__Section",
+      "subdued": "Polaris-LegacyCard--subdued",
+      "Section-hideOnPrint": "Polaris-LegacyCard__Section--hideOnPrint",
+      "hideOnPrint": "Polaris-LegacyCard--hideOnPrint",
+      "Header": "Polaris-LegacyCard__Header",
+      "Section-fullWidth": "Polaris-LegacyCard__Section--fullWidth",
+      "Section-flush": "Polaris-LegacyCard__Section--flush",
+      "Section-subdued": "Polaris-LegacyCard__Section--subdued",
+      "SectionHeader": "Polaris-LegacyCard__SectionHeader",
+      "Subsection": "Polaris-LegacyCard__Subsection",
+      "Footer": "Polaris-LegacyCard__Footer",
+      "LeftJustified": "Polaris-LegacyCard__LeftJustified",
+      "FirstSectionPadding": "Polaris-LegacyCard__FirstSectionPadding",
+      "LastSectionPadding": "Polaris-LegacyCard__LastSectionPadding"
+    };
+  }
+});
+
 // node_modules/@shopify/polaris/build/esm/utilities/components.js
 function wrapWithComponent(element, Component7, props) {
   if (element == null) {
@@ -7242,582 +7266,261 @@ var init_components = __esm({
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.scss.js
-var styles14;
-var init_FormLayout_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.scss.js"() {
-    styles14 = {
-      "Item": "Polaris-FormLayout__Item",
-      "grouped": "Polaris-FormLayout--grouped",
-      "condensed": "Polaris-FormLayout--condensed"
+// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.scss.js
+var styles15;
+var init_ButtonGroup_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.scss.js"() {
+    styles15 = {
+      "ButtonGroup": "Polaris-ButtonGroup",
+      "Item": "Polaris-ButtonGroup__Item",
+      "Item-plain": "Polaris-ButtonGroup__Item--plain",
+      "variantSegmented": "Polaris-ButtonGroup--variantSegmented",
+      "Item-focused": "Polaris-ButtonGroup__Item--focused",
+      "fullWidth": "Polaris-ButtonGroup--fullWidth",
+      "extraTight": "Polaris-ButtonGroup--extraTight",
+      "tight": "Polaris-ButtonGroup--tight",
+      "loose": "Polaris-ButtonGroup--loose",
+      "noWrap": "Polaris-ButtonGroup--noWrap"
     };
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Item/Item.js
+// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/components/Item/Item.js
 function Item2({
-  children,
-  condensed = false
+  button
 }) {
-  const className = classNames(styles14.Item, condensed ? styles14.condensed : styles14.grouped);
-  return children ? /* @__PURE__ */ import_react83.default.createElement("div", {
-    className
-  }, children) : null;
+  const {
+    value: focused,
+    setTrue: forceTrueFocused,
+    setFalse: forceFalseFocused
+  } = useToggle(false);
+  const className = classNames(styles15.Item, focused && styles15["Item-focused"], button.props.variant === "plain" && styles15["Item-plain"]);
+  return /* @__PURE__ */ import_react83.default.createElement("div", {
+    className,
+    onFocus: forceTrueFocused,
+    onBlur: forceFalseFocused
+  }, button);
 }
 var import_react83;
 var init_Item2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Item/Item.js"() {
+  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/components/Item/Item.js"() {
     import_react83 = __toESM(require_react());
+    init_use_toggle();
     init_css();
-    init_FormLayout_scss();
+    init_ButtonGroup_scss();
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Group/Group.js
-function Group({
+// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.js
+function ButtonGroup({
   children,
-  condensed,
-  title,
-  helpText
+  gap,
+  variant,
+  fullWidth,
+  connectedTop,
+  noWrap
 }) {
-  const id = (0, import_react84.useId)();
-  let helpTextElement = null;
-  let helpTextId;
-  let titleElement = null;
-  let titleId;
-  if (helpText) {
-    helpTextId = `${id}HelpText`;
-    helpTextElement = /* @__PURE__ */ import_react84.default.createElement(Box, {
-      id: helpTextId,
-      color: "text-secondary"
-    }, helpText);
-  }
-  if (title) {
-    titleId = `${id}Title`;
-    titleElement = /* @__PURE__ */ import_react84.default.createElement(Text, {
-      id: titleId,
-      as: "p"
-    }, title);
-  }
-  const itemsMarkup = import_react84.Children.map(children, (child) => wrapWithComponent(child, Item2, {
-    condensed
+  const className = classNames(styles15.ButtonGroup, gap && styles15[gap], variant && styles15[variationName("variant", variant)], fullWidth && styles15.fullWidth, noWrap && styles15.noWrap);
+  const contents = elementChildren(children).map((child, index) => /* @__PURE__ */ import_react84.default.createElement(Item2, {
+    button: child,
+    key: index
   }));
-  return /* @__PURE__ */ import_react84.default.createElement(BlockStack, {
-    role: "group",
-    gap: "200",
-    "aria-labelledby": titleId,
-    "aria-describedby": helpTextId
-  }, titleElement, /* @__PURE__ */ import_react84.default.createElement(InlineStack, {
-    gap: "300"
-  }, itemsMarkup), helpTextElement);
+  return /* @__PURE__ */ import_react84.default.createElement("div", {
+    className,
+    "data-buttongroup-variant": variant,
+    "data-buttongroup-connected-top": connectedTop,
+    "data-buttongroup-full-width": fullWidth,
+    "data-buttongroup-no-wrap": noWrap
+  }, contents);
 }
 var import_react84;
-var init_Group = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Group/Group.js"() {
+var init_ButtonGroup = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.js"() {
     import_react84 = __toESM(require_react());
+    init_css();
     init_components();
+    init_ButtonGroup_scss();
     init_Item2();
-    init_BlockStack();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Header/Header.js
+function Header({
+  children,
+  title,
+  actions
+}) {
+  const actionMarkup = actions ? /* @__PURE__ */ import_react85.default.createElement(ButtonGroup, null, buttonsFrom(actions, {
+    variant: "plain"
+  })) : null;
+  const titleMarkup = /* @__PURE__ */ (0, import_react85.isValidElement)(title) ? title : /* @__PURE__ */ import_react85.default.createElement(Text, {
+    variant: "headingSm",
+    as: "h2"
+  }, title);
+  const headingMarkup = actionMarkup || children ? /* @__PURE__ */ import_react85.default.createElement(InlineStack, {
+    wrap: false,
+    gap: "200",
+    align: "space-between",
+    blockAlign: "center"
+  }, titleMarkup, /* @__PURE__ */ import_react85.default.createElement(InlineStack, {
+    wrap: false,
+    gap: "400",
+    blockAlign: "center"
+  }, actionMarkup, children)) : titleMarkup;
+  return /* @__PURE__ */ import_react85.default.createElement("div", {
+    className: styles14.Header
+  }, headingMarkup);
+}
+var import_react85;
+var init_Header = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Header/Header.js"() {
+    import_react85 = __toESM(require_react());
+    init_LegacyCard_scss();
+    init_utils3();
+    init_ButtonGroup();
     init_InlineStack();
-    init_Box();
     init_Text();
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.js
-function wrapChildren(child, index) {
-  if (isElementOfType(child, Group)) {
-    return child;
-  }
-  const props = {
-    key: index
-  };
-  return wrapWithComponent(child, Item2, props);
-}
-var import_react85, FormLayout;
-var init_FormLayout = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.js"() {
-    import_react85 = __toESM(require_react());
-    init_components();
-    init_Group();
-    init_BlockStack();
-    init_Item2();
-    FormLayout = /* @__PURE__ */ (0, import_react85.memo)(function FormLayout2({
-      children
-    }) {
-      return /* @__PURE__ */ import_react85.default.createElement(BlockStack, {
-        gap: "400"
-      }, import_react85.Children.map(children, wrapChildren));
-    });
-    FormLayout.Group = Group;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Layout/Layout.scss.js
-var styles15;
-var init_Layout_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Layout/Layout.scss.js"() {
-    styles15 = {
-      "Layout": "Polaris-Layout",
-      "Section": "Polaris-Layout__Section",
-      "Section-fullWidth": "Polaris-Layout__Section--fullWidth",
-      "Section-oneHalf": "Polaris-Layout__Section--oneHalf",
-      "Section-oneThird": "Polaris-Layout__Section--oneThird",
-      "AnnotatedSection": "Polaris-Layout__AnnotatedSection",
-      "AnnotationWrapper": "Polaris-Layout__AnnotationWrapper",
-      "AnnotationContent": "Polaris-Layout__AnnotationContent",
-      "Annotation": "Polaris-Layout__Annotation"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.scss.js
+// node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.scss.js
 var styles16;
-var init_TextContainer_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.scss.js"() {
+var init_LegacyStack_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.scss.js"() {
     styles16 = {
-      "TextContainer": "Polaris-TextContainer",
-      "spacingTight": "Polaris-TextContainer--spacingTight",
-      "spacingLoose": "Polaris-TextContainer--spacingLoose"
+      "LegacyStack": "Polaris-LegacyStack",
+      "Item": "Polaris-LegacyStack__Item",
+      "noWrap": "Polaris-LegacyStack--noWrap",
+      "spacingNone": "Polaris-LegacyStack--spacingNone",
+      "spacingExtraTight": "Polaris-LegacyStack--spacingExtraTight",
+      "spacingTight": "Polaris-LegacyStack--spacingTight",
+      "spacingBaseTight": "Polaris-LegacyStack--spacingBaseTight",
+      "spacingLoose": "Polaris-LegacyStack--spacingLoose",
+      "spacingExtraLoose": "Polaris-LegacyStack--spacingExtraLoose",
+      "distributionLeading": "Polaris-LegacyStack--distributionLeading",
+      "distributionTrailing": "Polaris-LegacyStack--distributionTrailing",
+      "distributionCenter": "Polaris-LegacyStack--distributionCenter",
+      "distributionEqualSpacing": "Polaris-LegacyStack--distributionEqualSpacing",
+      "distributionFill": "Polaris-LegacyStack--distributionFill",
+      "distributionFillEvenly": "Polaris-LegacyStack--distributionFillEvenly",
+      "alignmentLeading": "Polaris-LegacyStack--alignmentLeading",
+      "alignmentTrailing": "Polaris-LegacyStack--alignmentTrailing",
+      "alignmentCenter": "Polaris-LegacyStack--alignmentCenter",
+      "alignmentFill": "Polaris-LegacyStack--alignmentFill",
+      "alignmentBaseline": "Polaris-LegacyStack--alignmentBaseline",
+      "vertical": "Polaris-LegacyStack--vertical",
+      "Item-fill": "Polaris-LegacyStack__Item--fill"
     };
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.js
-function TextContainer({
-  spacing,
-  children
+// node_modules/@shopify/polaris/build/esm/components/LegacyStack/components/Item/Item.js
+function Item3({
+  children,
+  fill
 }) {
-  const className = classNames(styles16.TextContainer, spacing && styles16[variationName("spacing", spacing)]);
+  const className = classNames(styles16.Item, fill && styles16["Item-fill"]);
   return /* @__PURE__ */ import_react86.default.createElement("div", {
     className
   }, children);
 }
 var import_react86;
-var init_TextContainer = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.js"() {
+var init_Item3 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/components/Item/Item.js"() {
     import_react86 = __toESM(require_react());
     init_css();
-    init_TextContainer_scss();
+    init_LegacyStack_scss();
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Layout/components/AnnotatedSection/AnnotatedSection.js
-function AnnotatedSection({
-  children,
-  title,
-  description,
-  id
-}) {
-  const descriptionMarkup = typeof description === "string" ? /* @__PURE__ */ import_react87.default.createElement(Text, {
-    as: "p",
-    variant: "bodyMd"
-  }, description) : description;
-  return /* @__PURE__ */ import_react87.default.createElement("div", {
-    className: styles15.AnnotatedSection
-  }, /* @__PURE__ */ import_react87.default.createElement("div", {
-    className: styles15.AnnotationWrapper
-  }, /* @__PURE__ */ import_react87.default.createElement("div", {
-    className: styles15.Annotation
-  }, /* @__PURE__ */ import_react87.default.createElement(TextContainer, {
-    spacing: "tight"
-  }, /* @__PURE__ */ import_react87.default.createElement(Text, {
-    id,
-    variant: "headingMd",
-    as: "h2"
-  }, title), descriptionMarkup && /* @__PURE__ */ import_react87.default.createElement(Box, {
-    color: "text-secondary"
-  }, descriptionMarkup))), /* @__PURE__ */ import_react87.default.createElement("div", {
-    className: styles15.AnnotationContent
-  }, children)));
-}
-var import_react87;
-var init_AnnotatedSection = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Layout/components/AnnotatedSection/AnnotatedSection.js"() {
+// node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.js
+var import_react87, LegacyStack;
+var init_LegacyStack = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.js"() {
     import_react87 = __toESM(require_react());
-    init_Layout_scss();
-    init_TextContainer();
-    init_Text();
-    init_Box();
+    init_css();
+    init_components();
+    init_LegacyStack_scss();
+    init_Item3();
+    LegacyStack = /* @__PURE__ */ (0, import_react87.memo)(function Stack({
+      children,
+      vertical,
+      spacing,
+      distribution,
+      alignment,
+      wrap
+    }) {
+      const className = classNames(styles16.LegacyStack, vertical && styles16.vertical, spacing && styles16[variationName("spacing", spacing)], distribution && styles16[variationName("distribution", distribution)], alignment && styles16[variationName("alignment", alignment)], wrap === false && styles16.noWrap);
+      const itemMarkup = elementChildren(children).map((child, index) => {
+        const props = {
+          key: index
+        };
+        return wrapWithComponent(child, Item3, props);
+      });
+      return /* @__PURE__ */ import_react87.default.createElement("div", {
+        className
+      }, itemMarkup);
+    });
+    LegacyStack.Item = Item3;
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Layout/components/Section/Section.js
+// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Section/Section.js
 function Section({
   children,
-  variant
+  title,
+  subdued,
+  flush,
+  fullWidth,
+  actions,
+  hideOnPrint
 }) {
-  const className = classNames(styles15.Section, styles15[`Section-${variant}`]);
+  const className = classNames(styles14.Section, flush && styles14["Section-flush"], subdued && styles14["Section-subdued"], fullWidth && styles14["Section-fullWidth"], hideOnPrint && styles14["Section-hideOnPrint"]);
+  const actionMarkup = actions ? /* @__PURE__ */ import_react88.default.createElement(ButtonGroup, null, buttonsFrom(actions, {
+    variant: "plain"
+  })) : null;
+  const titleMarkup = typeof title === "string" ? /* @__PURE__ */ import_react88.default.createElement(Text, {
+    variant: "headingSm",
+    as: "h3",
+    fontWeight: "medium"
+  }, title) : title;
+  const titleAreaMarkup = titleMarkup || actionMarkup ? /* @__PURE__ */ import_react88.default.createElement("div", {
+    className: styles14.SectionHeader
+  }, actionMarkup ? /* @__PURE__ */ import_react88.default.createElement(LegacyStack, {
+    alignment: "baseline"
+  }, /* @__PURE__ */ import_react88.default.createElement(LegacyStack.Item, {
+    fill: true
+  }, titleMarkup), actionMarkup) : titleMarkup) : null;
   return /* @__PURE__ */ import_react88.default.createElement("div", {
     className
-  }, children);
+  }, titleAreaMarkup, children);
 }
 var import_react88;
 var init_Section = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Layout/components/Section/Section.js"() {
+  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Section/Section.js"() {
     import_react88 = __toESM(require_react());
     init_css();
-    init_Layout_scss();
+    init_LegacyCard_scss();
+    init_LegacyStack();
+    init_ButtonGroup();
+    init_utils3();
+    init_Text();
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Layout/Layout.js
-var import_react89, Layout;
-var init_Layout = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Layout/Layout.js"() {
-    import_react89 = __toESM(require_react());
-    init_Layout_scss();
-    init_AnnotatedSection();
-    init_Section();
-    Layout = function Layout2({
-      sectioned,
-      children
-    }) {
-      const content = sectioned ? /* @__PURE__ */ import_react89.default.createElement(Section, null, children) : children;
-      return /* @__PURE__ */ import_react89.default.createElement("div", {
-        className: styles15.Layout
-      }, content);
-    };
-    Layout.AnnotatedSection = AnnotatedSection;
-    Layout.Section = Section;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/banner-context.js
-var import_react90, BannerContext;
-var init_banner_context = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/banner-context.js"() {
-    import_react90 = __toESM(require_react());
-    BannerContext = /* @__PURE__ */ (0, import_react90.createContext)(false);
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Link/Link.scss.js
-var styles17;
-var init_Link_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Link/Link.scss.js"() {
-    styles17 = {
-      "Link": "Polaris-Link",
-      "monochrome": "Polaris-Link--monochrome",
-      "removeUnderline": "Polaris-Link--removeUnderline"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Link/Link.js
-function Link({
-  url,
-  children,
-  onClick,
-  external,
-  target,
-  id,
-  monochrome,
-  removeUnderline,
-  accessibilityLabel,
-  dataPrimaryLink
-}) {
-  return /* @__PURE__ */ import_react91.default.createElement(BannerContext.Consumer, null, (BannerContext2) => {
-    const shouldBeMonochrome = monochrome || BannerContext2;
-    const className = classNames(styles17.Link, shouldBeMonochrome && styles17.monochrome, removeUnderline && styles17.removeUnderline);
-    return url ? /* @__PURE__ */ import_react91.default.createElement(UnstyledLink, {
-      onClick,
-      className,
-      url,
-      external,
-      target,
-      id,
-      "aria-label": accessibilityLabel,
-      "data-primary-link": dataPrimaryLink
-    }, children) : /* @__PURE__ */ import_react91.default.createElement("button", {
-      type: "button",
-      onClick,
-      className,
-      id,
-      "aria-label": accessibilityLabel,
-      "data-primary-link": dataPrimaryLink
-    }, children);
-  });
-}
-var import_react91;
-var init_Link = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Link/Link.js"() {
-    import_react91 = __toESM(require_react());
-    init_banner_context();
-    init_css();
-    init_Link_scss();
-    init_UnstyledLink();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/List/List.scss.js
-var styles18;
-var init_List_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/List/List.scss.js"() {
-    styles18 = {
-      "List": "Polaris-List",
-      "typeNumber": "Polaris-List--typeNumber",
-      "Item": "Polaris-List__Item",
-      "spacingLoose": "Polaris-List--spacingLoose"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/List/components/Item/Item.js
-function Item3({
+// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Subsection/Subsection.js
+function Subsection({
   children
 }) {
-  return /* @__PURE__ */ import_react92.default.createElement("li", {
-    className: styles18.Item
+  return /* @__PURE__ */ import_react89.default.createElement("div", {
+    className: styles14.Subsection
   }, children);
 }
-var import_react92;
-var init_Item3 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/List/components/Item/Item.js"() {
-    import_react92 = __toESM(require_react());
-    init_List_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/List/List.js
-var import_react93, List;
-var init_List = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/List/List.js"() {
-    import_react93 = __toESM(require_react());
-    init_css();
-    init_List_scss();
-    init_Item3();
-    List = function List2({
-      children,
-      gap = "loose",
-      type = "bullet"
-    }) {
-      const className = classNames(styles18.List, gap && styles18[variationName("spacing", gap)], type && styles18[variationName("type", type)]);
-      const ListElement = type === "bullet" ? "ul" : "ol";
-      return /* @__PURE__ */ import_react93.default.createElement(ListElement, {
-        className
-      }, children);
-    };
-    List.Item = Item3;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/is-interface.js
-function isInterface(x) {
-  return !/* @__PURE__ */ (0, import_react94.isValidElement)(x) && x !== void 0;
-}
-var import_react94;
-var init_is_interface = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/is-interface.js"() {
-    import_react94 = __toESM(require_react());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/is-react-element.js
-function isReactElement(x) {
-  return /* @__PURE__ */ (0, import_react95.isValidElement)(x) && x !== void 0;
-}
-var import_react95;
-var init_is_react_element = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/is-react-element.js"() {
-    import_react95 = __toESM(require_react());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/Page.scss.js
-var styles19;
-var init_Page_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/Page.scss.js"() {
-    styles19 = {
-      "Page": "Polaris-Page",
-      "fullWidth": "Polaris-Page--fullWidth",
-      "narrowWidth": "Polaris-Page--narrowWidth",
-      "Content": "Polaris-Page__Content"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.scss.js
-var styles20;
-var init_Header_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.scss.js"() {
-    styles20 = {
-      "TitleWrapper": "Polaris-Page-Header__TitleWrapper",
-      "BreadcrumbWrapper": "Polaris-Page-Header__BreadcrumbWrapper",
-      "PaginationWrapper": "Polaris-Page-Header__PaginationWrapper",
-      "PrimaryActionWrapper": "Polaris-Page-Header__PrimaryActionWrapper",
-      "Row": "Polaris-Page-Header__Row",
-      "mobileView": "Polaris-Page-Header--mobileView",
-      "RightAlign": "Polaris-Page-Header__RightAlign",
-      "noBreadcrumbs": "Polaris-Page-Header--noBreadcrumbs",
-      "AdditionalMetaData": "Polaris-Page-Header__AdditionalMetaData",
-      "Actions": "Polaris-Page-Header__Actions",
-      "longTitle": "Polaris-Page-Header--longTitle",
-      "mediumTitle": "Polaris-Page-Header--mediumTitle",
-      "isSingleRow": "Polaris-Page-Header--isSingleRow"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Breadcrumbs/Breadcrumbs.js
-function Breadcrumbs({
-  backAction
-}) {
-  const {
-    content
-  } = backAction;
-  const breadcrumbMarkup = /* @__PURE__ */ import_react96.default.createElement(Button, {
-    key: content,
-    url: "url" in backAction ? backAction.url : void 0,
-    onClick: "onAction" in backAction ? backAction.onAction : void 0,
-    onPointerDown: handleMouseUpByBlurring,
-    icon: SvgArrowLeftIcon,
-    accessibilityLabel: backAction.accessibilityLabel ?? content
-  });
-  return /* @__PURE__ */ import_react96.default.createElement("nav", {
-    role: "navigation"
-  }, breadcrumbMarkup);
-}
-var import_react96;
-var init_Breadcrumbs = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Breadcrumbs/Breadcrumbs.js"() {
-    import_react96 = __toESM(require_react());
-    init_dist();
-    init_focus();
-    init_Button();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.scss.js
-var styles21;
-var init_Title_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.scss.js"() {
-    styles21 = {
-      "Title": "Polaris-Header-Title",
-      "TitleWithSubtitle": "Polaris-Header-Title__TitleWithSubtitle",
-      "TitleWrapper": "Polaris-Header-Title__TitleWrapper",
-      "SubTitle": "Polaris-Header-Title__SubTitle",
-      "SubtitleCompact": "Polaris-Header-Title__SubtitleCompact"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.scss.js
-var styles22;
-var init_Bleed_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.scss.js"() {
-    styles22 = {
-      "Bleed": "Polaris-Bleed"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.js
-var import_react97, Bleed;
-var init_Bleed = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.js"() {
-    import_react97 = __toESM(require_react());
-    init_css();
-    init_Bleed_scss();
-    Bleed = ({
-      marginInline,
-      marginBlock,
-      marginBlockStart,
-      marginBlockEnd,
-      marginInlineStart,
-      marginInlineEnd,
-      children
-    }) => {
-      const getNegativeMargins = (direction) => {
-        const xAxis = ["marginInlineStart", "marginInlineEnd"];
-        const yAxis = ["marginBlockStart", "marginBlockEnd"];
-        const directionValues = {
-          marginBlockStart,
-          marginBlockEnd,
-          marginInlineStart,
-          marginInlineEnd,
-          marginInline,
-          marginBlock
-        };
-        if (directionValues[direction]) {
-          return directionValues[direction];
-        } else if (xAxis.includes(direction) && marginInline) {
-          return directionValues.marginInline;
-        } else if (yAxis.includes(direction) && marginBlock) {
-          return directionValues.marginBlock;
-        }
-      };
-      const negativeMarginBlockStart = getNegativeMargins("marginBlockStart");
-      const negativeMarginBlockEnd = getNegativeMargins("marginBlockEnd");
-      const negativeMarginInlineStart = getNegativeMargins("marginInlineStart");
-      const negativeMarginInlineEnd = getNegativeMargins("marginInlineEnd");
-      const style = {
-        ...getResponsiveProps("bleed", "margin-block-start", "space", negativeMarginBlockStart),
-        ...getResponsiveProps("bleed", "margin-block-end", "space", negativeMarginBlockEnd),
-        ...getResponsiveProps("bleed", "margin-inline-start", "space", negativeMarginInlineStart),
-        ...getResponsiveProps("bleed", "margin-inline-end", "space", negativeMarginInlineEnd)
-      };
-      return /* @__PURE__ */ import_react97.default.createElement("div", {
-        className: styles22.Bleed,
-        style: sanitizeCustomProperties(style)
-      }, children);
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.js
-function Title({
-  title,
-  subtitle,
-  titleMetadata,
-  compactTitle
-}) {
-  const className = classNames(styles21.Title, subtitle && styles21.TitleWithSubtitle);
-  const titleMarkup = title ? /* @__PURE__ */ import_react98.default.createElement("h1", {
-    className
-  }, title) : null;
-  const titleMetadataMarkup = titleMetadata ? /* @__PURE__ */ import_react98.default.createElement(Bleed, {
-    marginBlock: "100"
-  }, titleMetadata) : null;
-  const wrappedTitleMarkup = /* @__PURE__ */ import_react98.default.createElement("div", {
-    className: styles21.TitleWrapper
-  }, titleMarkup, titleMetadataMarkup);
-  const subtitleMarkup = subtitle ? /* @__PURE__ */ import_react98.default.createElement("div", {
-    className: classNames(styles21.SubTitle, compactTitle && styles21.SubtitleCompact)
-  }, /* @__PURE__ */ import_react98.default.createElement(Text, {
-    as: "p",
-    variant: "bodySm"
-  }, subtitle)) : null;
-  return /* @__PURE__ */ import_react98.default.createElement(import_react98.default.Fragment, null, wrappedTitleMarkup, subtitleMarkup);
-}
-var import_react98;
-var init_Title = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.js"() {
-    import_react98 = __toESM(require_react());
-    init_css();
-    init_Title_scss();
-    init_Text();
-    init_Bleed();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.scss.js
-var styles23;
-var init_ActionMenu_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.scss.js"() {
-    styles23 = {
-      "ActionMenu": "Polaris-ActionMenu"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js
-var styles24;
-var init_RollupActions_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js"() {
-    styles24 = {
-      "RollupActivator": "Polaris-ActionMenu-RollupActions__RollupActivator"
-    };
+var import_react89;
+var init_Subsection = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Subsection/Subsection.js"() {
+    import_react89 = __toESM(require_react());
+    init_LegacyCard_scss();
   }
 });
 
@@ -7845,10 +7548,10 @@ var init_set_activator_attributes = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Popover/Popover.scss.js
-var styles25;
+var styles17;
 var init_Popover_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Popover/Popover.scss.js"() {
-    styles25 = {
+    styles17 = {
       "Popover": "Polaris-Popover",
       "PopoverOverlay": "Polaris-Popover__PopoverOverlay",
       "PopoverOverlay-entering": "Polaris-Popover__PopoverOverlay--entering",
@@ -7876,19 +7579,19 @@ var init_Popover_scss = __esm({
 function Section2({
   children
 }) {
-  return /* @__PURE__ */ import_react99.default.createElement("div", {
-    className: styles25.Section
-  }, /* @__PURE__ */ import_react99.default.createElement(Box, {
+  return /* @__PURE__ */ import_react90.default.createElement("div", {
+    className: styles17.Section
+  }, /* @__PURE__ */ import_react90.default.createElement(Box, {
     paddingInlineStart: "300",
     paddingInlineEnd: "300",
     paddingBlockStart: "200",
     paddingBlockEnd: "150"
   }, children));
 }
-var import_react99;
+var import_react90;
 var init_Section2 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Popover/components/Section/Section.js"() {
-    import_react99 = __toESM(require_react());
+    import_react90 = __toESM(require_react());
     init_Popover_scss();
     init_Box();
   }
@@ -7896,16 +7599,16 @@ var init_Section2 = __esm({
 
 // node_modules/@shopify/polaris/build/esm/utilities/use-lazy-ref.js
 function useLazyRef(initialValue) {
-  const lazyRef = (0, import_react100.useRef)(UNIQUE_IDENTIFIER);
+  const lazyRef = (0, import_react91.useRef)(UNIQUE_IDENTIFIER);
   if (lazyRef.current === UNIQUE_IDENTIFIER) {
     lazyRef.current = initialValue();
   }
   return lazyRef;
 }
-var import_react100, UNIQUE_IDENTIFIER;
+var import_react91, UNIQUE_IDENTIFIER;
 var init_use_lazy_ref = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/use-lazy-ref.js"() {
-    import_react100 = __toESM(require_react());
+    import_react91 = __toESM(require_react());
     UNIQUE_IDENTIFIER = Symbol("unique_identifier");
   }
 });
@@ -7913,34 +7616,34 @@ var init_use_lazy_ref = __esm({
 // node_modules/@shopify/polaris/build/esm/utilities/use-component-did-mount.js
 function useComponentDidMount(callback) {
   const isAfterInitialMount = useIsAfterInitialMount();
-  const hasInvokedLifeCycle = (0, import_react101.useRef)(false);
+  const hasInvokedLifeCycle = (0, import_react92.useRef)(false);
   if (isAfterInitialMount && !hasInvokedLifeCycle.current) {
     hasInvokedLifeCycle.current = true;
     return callback();
   }
 }
-var import_react101;
+var import_react92;
 var init_use_component_did_mount = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/use-component-did-mount.js"() {
-    import_react101 = __toESM(require_react());
+    import_react92 = __toESM(require_react());
     init_use_is_after_initial_mount();
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Scrollable/context.js
-var import_react102, ScrollableContext;
+var import_react93, ScrollableContext;
 var init_context10 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Scrollable/context.js"() {
-    import_react102 = __toESM(require_react());
-    ScrollableContext = /* @__PURE__ */ (0, import_react102.createContext)(void 0);
+    import_react93 = __toESM(require_react());
+    ScrollableContext = /* @__PURE__ */ (0, import_react93.createContext)(void 0);
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Scrollable/Scrollable.scss.js
-var styles26;
+var styles18;
 var init_Scrollable_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Scrollable/Scrollable.scss.js"() {
-    styles26 = {
+    styles18 = {
       "Scrollable": "Polaris-Scrollable",
       "hasTopShadow": "Polaris-Scrollable--hasTopShadow",
       "hasBottomShadow": "Polaris-Scrollable--hasBottomShadow",
@@ -7952,24 +7655,24 @@ var init_Scrollable_scss = __esm({
 
 // node_modules/@shopify/polaris/build/esm/components/Scrollable/components/ScrollTo/ScrollTo.js
 function ScrollTo() {
-  const anchorNode = (0, import_react103.useRef)(null);
-  const scrollToPosition = (0, import_react103.useContext)(ScrollableContext);
-  (0, import_react103.useEffect)(() => {
+  const anchorNode = (0, import_react94.useRef)(null);
+  const scrollToPosition = (0, import_react94.useContext)(ScrollableContext);
+  (0, import_react94.useEffect)(() => {
     if (!scrollToPosition || !anchorNode.current) {
       return;
     }
     scrollToPosition(anchorNode.current.offsetTop);
   }, [scrollToPosition]);
-  const id = (0, import_react103.useId)();
-  return /* @__PURE__ */ import_react103.default.createElement("a", {
+  const id = (0, import_react94.useId)();
+  return /* @__PURE__ */ import_react94.default.createElement("a", {
     id,
     ref: anchorNode
   });
 }
-var import_react103;
+var import_react94;
 var init_ScrollTo = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Scrollable/components/ScrollTo/ScrollTo.js"() {
-    import_react103 = __toESM(require_react());
+    import_react94 = __toESM(require_react());
     init_context10();
   }
 });
@@ -8005,10 +7708,10 @@ function performScrollHint(elem) {
     behavior: "smooth"
   });
 }
-var import_react104, MAX_SCROLL_HINT_DISTANCE, LOW_RES_BUFFER, ScrollableComponent, forNode, Scrollable;
+var import_react95, MAX_SCROLL_HINT_DISTANCE, LOW_RES_BUFFER, ScrollableComponent, forNode, Scrollable;
 var init_Scrollable = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Scrollable/Scrollable.js"() {
-    import_react104 = __toESM(require_react());
+    import_react95 = __toESM(require_react());
     init_debounce();
     init_css();
     init_shared();
@@ -8021,7 +7724,7 @@ var init_Scrollable = __esm({
     init_context4();
     MAX_SCROLL_HINT_DISTANCE = 100;
     LOW_RES_BUFFER = 2;
-    ScrollableComponent = /* @__PURE__ */ (0, import_react104.forwardRef)(({
+    ScrollableComponent = /* @__PURE__ */ (0, import_react95.forwardRef)(({
       children,
       className,
       horizontal = true,
@@ -8032,11 +7735,11 @@ var init_Scrollable = __esm({
       onScrolledToBottom,
       ...rest
     }, forwardedRef) => {
-      const [topShadow, setTopShadow] = (0, import_react104.useState)(false);
-      const [bottomShadow, setBottomShadow] = (0, import_react104.useState)(false);
+      const [topShadow, setTopShadow] = (0, import_react95.useState)(false);
+      const [bottomShadow, setBottomShadow] = (0, import_react95.useState)(false);
       const stickyManager = useLazyRef(() => new StickyManager());
-      const scrollArea = (0, import_react104.useRef)(null);
-      const scrollTo = (0, import_react104.useCallback)((scrollY, options = {}) => {
+      const scrollArea = (0, import_react95.useRef)(null);
+      const scrollTo = (0, import_react95.useCallback)((scrollY, options = {}) => {
         const optionsBehavior = options.behavior || "smooth";
         const behavior = prefersReducedMotion() ? "auto" : optionsBehavior;
         scrollArea.current?.scrollTo({
@@ -8044,11 +7747,11 @@ var init_Scrollable = __esm({
           behavior
         });
       }, []);
-      const defaultRef = (0, import_react104.useRef)();
-      (0, import_react104.useImperativeHandle)(forwardedRef || defaultRef, () => ({
+      const defaultRef = (0, import_react95.useRef)();
+      (0, import_react95.useImperativeHandle)(forwardedRef || defaultRef, () => ({
         scrollTo
       }));
-      const handleScroll = (0, import_react104.useCallback)(() => {
+      const handleScroll = (0, import_react95.useCallback)(() => {
         const currentScrollArea = scrollArea.current;
         if (!currentScrollArea) {
           return;
@@ -8075,7 +7778,7 @@ var init_Scrollable = __esm({
           requestAnimationFrame(() => performScrollHint(scrollArea.current));
         }
       });
-      (0, import_react104.useEffect)(() => {
+      (0, import_react95.useEffect)(() => {
         const currentScrollArea = scrollArea.current;
         if (!currentScrollArea) {
           return;
@@ -8091,12 +7794,12 @@ var init_Scrollable = __esm({
           globalThis.removeEventListener("resize", handleResize);
         };
       }, [stickyManager, handleScroll]);
-      const finalClassName = classNames(className, styles26.Scrollable, vertical && styles26.vertical, horizontal && styles26.horizontal, shadow2 && topShadow && styles26.hasTopShadow, shadow2 && bottomShadow && styles26.hasBottomShadow);
-      return /* @__PURE__ */ import_react104.default.createElement(ScrollableContext.Provider, {
+      const finalClassName = classNames(className, styles18.Scrollable, vertical && styles18.vertical, horizontal && styles18.horizontal, shadow2 && topShadow && styles18.hasTopShadow, shadow2 && bottomShadow && styles18.hasBottomShadow);
+      return /* @__PURE__ */ import_react95.default.createElement(ScrollableContext.Provider, {
         value: scrollTo
-      }, /* @__PURE__ */ import_react104.default.createElement(StickyManagerContext.Provider, {
+      }, /* @__PURE__ */ import_react95.default.createElement(StickyManagerContext.Provider, {
         value: stickyManager.current
-      }, /* @__PURE__ */ import_react104.default.createElement("div", Object.assign({
+      }, /* @__PURE__ */ import_react95.default.createElement("div", Object.assign({
         className: finalClassName
       }, scrollable.props, rest, {
         ref: scrollArea,
@@ -8124,27 +7827,27 @@ function Pane({
   subdued,
   onScrolledToBottom
 }) {
-  const className = classNames(styles25.Pane, fixed && styles25["Pane-fixed"], subdued && styles25["Pane-subdued"], captureOverscroll && styles25["Pane-captureOverscroll"]);
+  const className = classNames(styles17.Pane, fixed && styles17["Pane-fixed"], subdued && styles17["Pane-subdued"], captureOverscroll && styles17["Pane-captureOverscroll"]);
   const content = sectioned ? wrapWithComponent(children, Section2, {}) : children;
   const style = height2 ? {
     height: height2,
     maxHeight: height2,
     minHeight: height2
   } : void 0;
-  return fixed ? /* @__PURE__ */ import_react105.default.createElement("div", {
+  return fixed ? /* @__PURE__ */ import_react96.default.createElement("div", {
     style,
     className
-  }, content) : /* @__PURE__ */ import_react105.default.createElement(Scrollable, {
+  }, content) : /* @__PURE__ */ import_react96.default.createElement(Scrollable, {
     shadow: true,
     className,
     style,
     onScrolledToBottom
   }, content);
 }
-var import_react105;
+var import_react96;
 var init_Pane = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Popover/components/Pane/Pane.js"() {
-    import_react105 = __toESM(require_react());
+    import_react96 = __toESM(require_react());
     init_css();
     init_components();
     init_Popover_scss();
@@ -8161,7 +7864,7 @@ function KeypressListener({
   options,
   useCapture
 }) {
-  const tracked = (0, import_react106.useRef)({
+  const tracked = (0, import_react97.useRef)({
     handler,
     keyCode
   });
@@ -8171,7 +7874,7 @@ function KeypressListener({
       keyCode
     };
   }, [handler, keyCode]);
-  const handleKeyEvent = (0, import_react106.useCallback)((event) => {
+  const handleKeyEvent = (0, import_react97.useCallback)((event) => {
     const {
       handler: handler2,
       keyCode: keyCode2
@@ -8180,7 +7883,7 @@ function KeypressListener({
       handler2(event);
     }
   }, []);
-  (0, import_react106.useEffect)(() => {
+  (0, import_react97.useEffect)(() => {
     document.addEventListener(keyEvent, handleKeyEvent, useCapture || options);
     return () => {
       document.removeEventListener(keyEvent, handleKeyEvent, useCapture || options);
@@ -8188,10 +7891,10 @@ function KeypressListener({
   }, [keyEvent, handleKeyEvent, useCapture, options]);
   return null;
 }
-var import_react106;
+var import_react97;
 var init_KeypressListener = __esm({
   "node_modules/@shopify/polaris/build/esm/components/KeypressListener/KeypressListener.js"() {
-    import_react106 = __toESM(require_react());
+    import_react97 = __toESM(require_react());
     init_use_isomorphic_layout_effect();
   }
 });
@@ -8276,10 +7979,10 @@ var init_math = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/PositionedOverlay/PositionedOverlay.scss.js
-var styles27;
+var styles19;
 var init_PositionedOverlay_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/PositionedOverlay/PositionedOverlay.scss.js"() {
-    styles27 = {
+    styles19 = {
       "PositionedOverlay": "Polaris-PositionedOverlay",
       "fixed": "Polaris-PositionedOverlay--fixed",
       "calculating": "Polaris-PositionedOverlay--calculating",
@@ -8305,10 +8008,10 @@ function getZIndexForLayerFromNode(node) {
 function isDocument2(node) {
   return node === document;
 }
-var import_react107, OBSERVER_CONFIG, PositionedOverlay;
+var import_react98, OBSERVER_CONFIG, PositionedOverlay;
 var init_PositionedOverlay = __esm({
   "node_modules/@shopify/polaris/build/esm/components/PositionedOverlay/PositionedOverlay.js"() {
-    import_react107 = __toESM(require_react());
+    import_react98 = __toESM(require_react());
     init_css();
     init_geometry();
     init_shared();
@@ -8322,7 +8025,7 @@ var init_PositionedOverlay = __esm({
       characterData: true,
       attributeFilter: ["style"]
     };
-    PositionedOverlay = class extends import_react107.PureComponent {
+    PositionedOverlay = class extends import_react98.PureComponent {
       constructor(props) {
         super(props);
         this.state = {
@@ -8515,12 +8218,12 @@ var init_PositionedOverlay = __esm({
           width: width2 == null || isNaN(width2) ? void 0 : width2,
           zIndex: zIndexOverride || zIndex2 || void 0
         };
-        const className = classNames(styles27.PositionedOverlay, fixed && styles27.fixed, preventInteraction && styles27.preventInteraction, propClassNames);
-        return /* @__PURE__ */ import_react107.default.createElement("div", {
+        const className = classNames(styles19.PositionedOverlay, fixed && styles19.fixed, preventInteraction && styles19.preventInteraction, propClassNames);
+        return /* @__PURE__ */ import_react98.default.createElement("div", {
           className,
           style,
           ref: this.setOverlay
-        }, /* @__PURE__ */ import_react107.default.createElement(EventListener, {
+        }, /* @__PURE__ */ import_react98.default.createElement(EventListener, {
           event: "resize",
           handler: this.handleMeasurement
         }), render(this.overlayDetails()));
@@ -8537,7 +8240,7 @@ var init_PositionedOverlay = __esm({
 
 // node_modules/@shopify/polaris/build/esm/components/Popover/components/PopoverOverlay/PopoverOverlay.js
 function renderPopoverContent(children, props) {
-  const childrenArray = import_react108.Children.toArray(children);
+  const childrenArray = import_react99.Children.toArray(children);
   if (isElementOfType(childrenArray[0], Pane)) {
     return childrenArray;
   }
@@ -8562,10 +8265,10 @@ function wasContentNodeDescendant(composedPath, contentNode) {
 function wasPolarisPortalDescendant(composedPath, portalsContainerElement) {
   return composedPath.some((eventTarget) => eventTarget instanceof Node && portalsContainerElement?.contains(eventTarget));
 }
-var import_react108, PopoverCloseSource, TransitionStatus, PopoverOverlay;
+var import_react99, PopoverCloseSource, TransitionStatus, PopoverOverlay;
 var init_PopoverOverlay = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Popover/components/PopoverOverlay/PopoverOverlay.js"() {
-    import_react108 = __toESM(require_react());
+    import_react99 = __toESM(require_react());
     init_build();
     init_focus();
     init_css();
@@ -8590,13 +8293,13 @@ var init_PopoverOverlay = __esm({
       TransitionStatus3["Exiting"] = "exiting";
       TransitionStatus3["Exited"] = "exited";
     })(TransitionStatus || (TransitionStatus = {}));
-    PopoverOverlay = class extends import_react108.PureComponent {
+    PopoverOverlay = class extends import_react99.PureComponent {
       constructor(props) {
         super(props);
         this.state = {
           transitionStatus: this.props.active ? TransitionStatus.Entering : TransitionStatus.Exited
         };
-        this.contentNode = /* @__PURE__ */ (0, import_react108.createRef)();
+        this.contentNode = /* @__PURE__ */ (0, import_react99.createRef)();
         this.renderPopover = (overlayDetails) => {
           const {
             measuring,
@@ -8614,29 +8317,29 @@ var init_PopoverOverlay = __esm({
             autofocusTarget,
             captureOverscroll
           } = this.props;
-          const className = classNames(styles25.Popover, positioning === "above" && styles25.positionedAbove, fullWidth && styles25.fullWidth, measuring && styles25.measuring, hideOnPrint && styles25["PopoverOverlay-hideOnPrint"]);
+          const className = classNames(styles17.Popover, positioning === "above" && styles17.positionedAbove, fullWidth && styles17.fullWidth, measuring && styles17.measuring, hideOnPrint && styles17["PopoverOverlay-hideOnPrint"]);
           const contentStyles = measuring ? void 0 : {
             height: desiredHeight
           };
-          const contentClassNames = classNames(styles25.Content, fullHeight && styles25["Content-fullHeight"], fluidContent && styles25["Content-fluidContent"]);
-          return /* @__PURE__ */ import_react108.default.createElement("div", Object.assign({
+          const contentClassNames = classNames(styles17.Content, fullHeight && styles17["Content-fullHeight"], fluidContent && styles17["Content-fluidContent"]);
+          return /* @__PURE__ */ import_react99.default.createElement("div", Object.assign({
             className
-          }, overlay.props), /* @__PURE__ */ import_react108.default.createElement(EventListener, {
+          }, overlay.props), /* @__PURE__ */ import_react99.default.createElement(EventListener, {
             event: "click",
             handler: this.handleClick
-          }), /* @__PURE__ */ import_react108.default.createElement(EventListener, {
+          }), /* @__PURE__ */ import_react99.default.createElement(EventListener, {
             event: "touchstart",
             handler: this.handleClick
-          }), /* @__PURE__ */ import_react108.default.createElement(KeypressListener, {
+          }), /* @__PURE__ */ import_react99.default.createElement(KeypressListener, {
             keyCode: Key.Escape,
             handler: this.handleEscape
-          }), /* @__PURE__ */ import_react108.default.createElement("div", {
-            className: styles25.FocusTracker,
+          }), /* @__PURE__ */ import_react99.default.createElement("div", {
+            className: styles17.FocusTracker,
             tabIndex: 0,
             onFocus: this.handleFocusFirstItem
-          }), /* @__PURE__ */ import_react108.default.createElement("div", {
-            className: styles25.ContentContainer
-          }, /* @__PURE__ */ import_react108.default.createElement("div", {
+          }), /* @__PURE__ */ import_react99.default.createElement("div", {
+            className: styles17.ContentContainer
+          }, /* @__PURE__ */ import_react99.default.createElement("div", {
             id,
             tabIndex: autofocusTarget === "none" ? void 0 : -1,
             className: contentClassNames,
@@ -8645,8 +8348,8 @@ var init_PopoverOverlay = __esm({
           }, renderPopoverContent(children, {
             captureOverscroll,
             sectioned
-          }))), /* @__PURE__ */ import_react108.default.createElement("div", {
-            className: styles25.FocusTracker,
+          }))), /* @__PURE__ */ import_react99.default.createElement("div", {
+            className: styles17.FocusTracker,
             tabIndex: 0,
             onFocus: this.handleFocusLastItem
           }));
@@ -8693,7 +8396,7 @@ var init_PopoverOverlay = __esm({
         this.handleFocusLastItem = () => {
           this.props.onClose(PopoverCloseSource.FocusOut);
         };
-        this.overlayRef = /* @__PURE__ */ (0, import_react108.createRef)();
+        this.overlayRef = /* @__PURE__ */ (0, import_react99.createRef)();
       }
       forceUpdatePosition() {
         this.overlayRef.current?.forceUpdatePosition();
@@ -8748,8 +8451,8 @@ var init_PopoverOverlay = __esm({
         } = this.state;
         if (transitionStatus === TransitionStatus.Exited && !active)
           return null;
-        const className = classNames(styles25.PopoverOverlay, transitionStatus === TransitionStatus.Entering && styles25["PopoverOverlay-entering"], transitionStatus === TransitionStatus.Entered && styles25["PopoverOverlay-open"], transitionStatus === TransitionStatus.Exiting && styles25["PopoverOverlay-exiting"]);
-        return /* @__PURE__ */ import_react108.default.createElement(PositionedOverlay, {
+        const className = classNames(styles17.PopoverOverlay, transitionStatus === TransitionStatus.Entering && styles17["PopoverOverlay-entering"], transitionStatus === TransitionStatus.Entered && styles17["PopoverOverlay-open"], transitionStatus === TransitionStatus.Exiting && styles17["PopoverOverlay-exiting"]);
+        return /* @__PURE__ */ import_react99.default.createElement(PositionedOverlay, {
           ref: this.overlayRef,
           fullWidth,
           active,
@@ -8800,16 +8503,16 @@ var init_PopoverOverlay = __esm({
 
 // node_modules/@shopify/polaris/build/esm/utilities/portals/hooks.js
 function usePortalsManager() {
-  const portalsManager = (0, import_react109.useContext)(PortalsManagerContext);
+  const portalsManager = (0, import_react100.useContext)(PortalsManagerContext);
   if (!portalsManager) {
     throw new Error("No portals manager was provided. Your application must be wrapped in an <AppProvider> component. See https://polaris.shopify.com/components/app-provider for implementation instructions.");
   }
   return portalsManager;
 }
-var import_react109;
+var import_react100;
 var init_hooks3 = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/portals/hooks.js"() {
-    import_react109 = __toESM(require_react());
+    import_react100 = __toESM(require_react());
     init_context7();
   }
 });
@@ -8823,21 +8526,21 @@ function Portal({
   const {
     container
   } = usePortalsManager();
-  const uniqueId = (0, import_react110.useId)();
+  const uniqueId = (0, import_react101.useId)();
   const portalId = idPrefix !== "" ? `${idPrefix}-${uniqueId}` : uniqueId;
-  (0, import_react110.useEffect)(() => {
+  (0, import_react101.useEffect)(() => {
     onPortalCreated();
   }, [onPortalCreated]);
-  return container ? /* @__PURE__ */ (0, import_react_dom.createPortal)(/* @__PURE__ */ import_react110.default.createElement("div", {
+  return container ? /* @__PURE__ */ (0, import_react_dom.createPortal)(/* @__PURE__ */ import_react101.default.createElement("div", {
     "data-portal-id": portalId
   }, children), container) : null;
 }
 function noop2() {
 }
-var import_react110, import_react_dom;
+var import_react101, import_react_dom;
 var init_Portal = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Portal/Portal.js"() {
-    import_react110 = __toESM(require_react());
+    import_react101 = __toESM(require_react());
     import_react_dom = __toESM(require_react_dom());
     init_hooks3();
   }
@@ -8853,10 +8556,10 @@ function isInPortal(element) {
   }
   return true;
 }
-var import_react111, PopoverComponent, Popover2;
+var import_react102, PopoverComponent, Popover2;
 var init_Popover = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Popover/Popover.js"() {
-    import_react111 = __toESM(require_react());
+    import_react102 = __toESM(require_react());
     init_focus();
     init_shared();
     init_set_activator_attributes();
@@ -8864,7 +8567,7 @@ var init_Popover = __esm({
     init_Pane();
     init_Section2();
     init_Portal();
-    PopoverComponent = /* @__PURE__ */ (0, import_react111.forwardRef)(function Popover({
+    PopoverComponent = /* @__PURE__ */ (0, import_react102.forwardRef)(function Popover({
       activatorWrapper = "div",
       children,
       onClose,
@@ -8877,20 +8580,20 @@ var init_Popover = __esm({
       zIndexOverride,
       ...rest
     }, ref) {
-      const [activatorNode, setActivatorNode] = (0, import_react111.useState)();
-      const overlayRef = (0, import_react111.useRef)(null);
-      const activatorContainer = (0, import_react111.useRef)(null);
+      const [activatorNode, setActivatorNode] = (0, import_react102.useState)();
+      const overlayRef = (0, import_react102.useRef)(null);
+      const activatorContainer = (0, import_react102.useRef)(null);
       const WrapperComponent = activatorWrapper;
-      const id = (0, import_react111.useId)();
+      const id = (0, import_react102.useId)();
       function forceUpdatePosition() {
         overlayRef.current?.forceUpdatePosition();
       }
-      (0, import_react111.useImperativeHandle)(ref, () => {
+      (0, import_react102.useImperativeHandle)(ref, () => {
         return {
           forceUpdatePosition
         };
       });
-      const setAccessibilityAttributes = (0, import_react111.useCallback)(() => {
+      const setAccessibilityAttributes = (0, import_react102.useCallback)(() => {
         if (activatorContainer.current == null) {
           return;
         }
@@ -8923,7 +8626,7 @@ var init_Popover = __esm({
           }
         }
       };
-      (0, import_react111.useEffect)(() => {
+      (0, import_react102.useEffect)(() => {
         if (!activatorNode && activatorContainer.current) {
           setActivatorNode(activatorContainer.current.firstElementChild);
         } else if (activatorNode && activatorContainer.current && !activatorContainer.current.contains(activatorNode)) {
@@ -8931,15 +8634,15 @@ var init_Popover = __esm({
         }
         setAccessibilityAttributes();
       }, [activatorNode, setAccessibilityAttributes]);
-      (0, import_react111.useEffect)(() => {
+      (0, import_react102.useEffect)(() => {
         if (activatorNode && activatorContainer.current) {
           setActivatorNode(activatorContainer.current.firstElementChild);
         }
         setAccessibilityAttributes();
       }, [activatorNode, setAccessibilityAttributes]);
-      const portal2 = activatorNode ? /* @__PURE__ */ import_react111.default.createElement(Portal, {
+      const portal2 = activatorNode ? /* @__PURE__ */ import_react102.default.createElement(Portal, {
         idPrefix: "popover"
-      }, /* @__PURE__ */ import_react111.default.createElement(PopoverOverlay, Object.assign({
+      }, /* @__PURE__ */ import_react102.default.createElement(PopoverOverlay, Object.assign({
         ref: overlayRef,
         id,
         activator: activatorNode,
@@ -8949,9 +8652,9 @@ var init_Popover = __esm({
         fixed,
         zIndexOverride
       }, rest), children)) : null;
-      return /* @__PURE__ */ import_react111.default.createElement(WrapperComponent, {
+      return /* @__PURE__ */ import_react102.default.createElement(WrapperComponent, {
         ref: activatorContainer
-      }, import_react111.Children.only(activator), portal2);
+      }, import_react102.Children.only(activator), portal2);
     });
     Popover2 = Object.assign(PopoverComponent, {
       Pane,
@@ -8965,23 +8668,23 @@ function FilterActionsProvider({
   children,
   filterActions
 }) {
-  return /* @__PURE__ */ import_react112.default.createElement(FilterActionsContext.Provider, {
+  return /* @__PURE__ */ import_react103.default.createElement(FilterActionsContext.Provider, {
     value: filterActions
   }, children);
 }
-var import_react112, FilterActionsContext;
+var import_react103, FilterActionsContext;
 var init_FilterActionsProvider = __esm({
   "node_modules/@shopify/polaris/build/esm/components/FilterActionsProvider/FilterActionsProvider.js"() {
-    import_react112 = __toESM(require_react());
-    FilterActionsContext = /* @__PURE__ */ (0, import_react112.createContext)(false);
+    import_react103 = __toESM(require_react());
+    FilterActionsContext = /* @__PURE__ */ (0, import_react103.createContext)(false);
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ActionList/ActionList.scss.js
-var styles28;
+var styles20;
 var init_ActionList_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ActionList/ActionList.scss.js"() {
-    styles28 = {
+    styles20 = {
       "Item": "Polaris-ActionList__Item",
       "default": "Polaris-ActionList--default",
       "active": "Polaris-ActionList--active",
@@ -8997,19 +8700,19 @@ var init_ActionList_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/utilities/within-filter-context.js
-var import_react113, WithinFilterContext;
+var import_react104, WithinFilterContext;
 var init_within_filter_context = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/within-filter-context.js"() {
-    import_react113 = __toESM(require_react());
-    WithinFilterContext = /* @__PURE__ */ (0, import_react113.createContext)(false);
+    import_react104 = __toESM(require_react());
+    WithinFilterContext = /* @__PURE__ */ (0, import_react104.createContext)(false);
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Badge/Badge.scss.js
-var styles29;
+var styles21;
 var init_Badge_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Badge/Badge.scss.js"() {
-    styles29 = {
+    styles21 = {
       "Badge": "Polaris-Badge",
       "toneSuccess": "Polaris-Badge--toneSuccess",
       "toneSuccess-strong": "Polaris-Badge__toneSuccess--strong",
@@ -9128,10 +8831,10 @@ var init_utils4 = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Badge/components/Pip/Pip.scss.js
-var styles30;
+var styles22;
 var init_Pip_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Badge/components/Pip/Pip.scss.js"() {
-    styles30 = {
+    styles22 = {
       "Pip": "Polaris-Badge-Pip",
       "toneInfo": "Polaris-Badge-Pip--toneInfo",
       "toneSuccess": "Polaris-Badge-Pip--toneSuccess",
@@ -9153,19 +8856,19 @@ function Pip({
   accessibilityLabelOverride
 }) {
   const i18n = useI18n();
-  const className = classNames(styles30.Pip, tone && styles30[variationName("tone", tone)], progress && styles30[variationName("progress", progress)]);
+  const className = classNames(styles22.Pip, tone && styles22[variationName("tone", tone)], progress && styles22[variationName("progress", progress)]);
   const accessibilityLabel = accessibilityLabelOverride ? accessibilityLabelOverride : getDefaultAccessibilityLabel(i18n, progress, tone);
-  return /* @__PURE__ */ import_react114.default.createElement("span", {
+  return /* @__PURE__ */ import_react105.default.createElement("span", {
     className
-  }, /* @__PURE__ */ import_react114.default.createElement(Text, {
+  }, /* @__PURE__ */ import_react105.default.createElement(Text, {
     as: "span",
     visuallyHidden: true
   }, accessibilityLabel));
 }
-var import_react114;
+var import_react105;
 var init_Pip = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Badge/components/Pip/Pip.js"() {
-    import_react114 = __toESM(require_react());
+    import_react105 = __toESM(require_react());
     init_css();
     init_utils4();
     init_Pip_scss();
@@ -9184,37 +8887,37 @@ function Badge({
   toneAndProgressLabelOverride
 }) {
   const i18n = useI18n();
-  const withinFilter = (0, import_react115.useContext)(WithinFilterContext);
-  const className = classNames(styles29.Badge, tone && styles29[variationName("tone", tone)], size2 && size2 !== DEFAULT_SIZE && styles29[variationName("size", size2)], withinFilter && styles29.withinFilter);
+  const withinFilter = (0, import_react106.useContext)(WithinFilterContext);
+  const className = classNames(styles21.Badge, tone && styles21[variationName("tone", tone)], size2 && size2 !== DEFAULT_SIZE && styles21[variationName("size", size2)], withinFilter && styles21.withinFilter);
   const accessibilityLabel = toneAndProgressLabelOverride ? toneAndProgressLabelOverride : getDefaultAccessibilityLabel(i18n, progress, tone);
-  let accessibilityMarkup = Boolean(accessibilityLabel) && /* @__PURE__ */ import_react115.default.createElement(Text, {
+  let accessibilityMarkup = Boolean(accessibilityLabel) && /* @__PURE__ */ import_react106.default.createElement(Text, {
     as: "span",
     visuallyHidden: true
   }, accessibilityLabel);
   if (progress && !icon) {
-    accessibilityMarkup = /* @__PURE__ */ import_react115.default.createElement("span", {
-      className: styles29.Icon
-    }, /* @__PURE__ */ import_react115.default.createElement(Icon, {
+    accessibilityMarkup = /* @__PURE__ */ import_react106.default.createElement("span", {
+      className: styles21.Icon
+    }, /* @__PURE__ */ import_react106.default.createElement(Icon, {
       accessibilityLabel,
       source: progressIconMap[progress]
     }));
   }
-  return /* @__PURE__ */ import_react115.default.createElement("span", {
+  return /* @__PURE__ */ import_react106.default.createElement("span", {
     className
-  }, accessibilityMarkup, icon && /* @__PURE__ */ import_react115.default.createElement("span", {
-    className: styles29.Icon
-  }, /* @__PURE__ */ import_react115.default.createElement(Icon, {
+  }, accessibilityMarkup, icon && /* @__PURE__ */ import_react106.default.createElement("span", {
+    className: styles21.Icon
+  }, /* @__PURE__ */ import_react106.default.createElement(Icon, {
     source: icon
-  })), children && /* @__PURE__ */ import_react115.default.createElement(Text, {
+  })), children && /* @__PURE__ */ import_react106.default.createElement(Text, {
     as: "span",
     variant: "bodySm",
     fontWeight: tone === "new" ? "medium" : void 0
   }, children));
 }
-var import_react115, DEFAULT_SIZE, progressIconMap;
+var import_react106, DEFAULT_SIZE, progressIconMap;
 var init_Badge = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Badge/Badge.js"() {
-    import_react115 = __toESM(require_react());
+    import_react106 = __toESM(require_react());
     init_css();
     init_within_filter_context();
     init_Badge_scss();
@@ -9225,20 +8928,20 @@ var init_Badge = __esm({
     init_Text();
     DEFAULT_SIZE = "medium";
     progressIconMap = {
-      complete: () => /* @__PURE__ */ import_react115.default.createElement("svg", {
+      complete: () => /* @__PURE__ */ import_react106.default.createElement("svg", {
         viewBox: "0 0 20 20"
-      }, /* @__PURE__ */ import_react115.default.createElement("path", {
+      }, /* @__PURE__ */ import_react106.default.createElement("path", {
         d: "M6 10c0-.93 0-1.395.102-1.776a3 3 0 0 1 2.121-2.122C8.605 6 9.07 6 10 6c.93 0 1.395 0 1.776.102a3 3 0 0 1 2.122 2.122C14 8.605 14 9.07 14 10s0 1.395-.102 1.777a3 3 0 0 1-2.122 2.12C11.395 14 10.93 14 10 14s-1.395 0-1.777-.102a3 3 0 0 1-2.12-2.121C6 11.395 6 10.93 6 10Z"
       })),
-      partiallyComplete: () => /* @__PURE__ */ import_react115.default.createElement("svg", {
+      partiallyComplete: () => /* @__PURE__ */ import_react106.default.createElement("svg", {
         viewBox: "0 0 20 20"
-      }, /* @__PURE__ */ import_react115.default.createElement("path", {
+      }, /* @__PURE__ */ import_react106.default.createElement("path", {
         fillRule: "evenodd",
         d: "m8.888 6.014-.017-.018-.02.02c-.253.013-.45.038-.628.086a3 3 0 0 0-2.12 2.122C6 8.605 6 9.07 6 10s0 1.395.102 1.777a3 3 0 0 0 2.121 2.12C8.605 14 9.07 14 10 14c.93 0 1.395 0 1.776-.102a3 3 0 0 0 2.122-2.121C14 11.395 14 10.93 14 10c0-.93 0-1.395-.102-1.776a3 3 0 0 0-2.122-2.122C11.395 6 10.93 6 10 6c-.475 0-.829 0-1.112.014ZM8.446 7.34a1.75 1.75 0 0 0-1.041.94l4.314 4.315c.443-.2.786-.576.941-1.042L8.446 7.34Zm4.304 2.536L10.124 7.25c.908.001 1.154.013 1.329.06a1.75 1.75 0 0 1 1.237 1.237c.047.175.059.42.06 1.329ZM8.547 12.69c.182.05.442.06 1.453.06h.106L7.25 9.894V10c0 1.01.01 1.27.06 1.453a1.75 1.75 0 0 0 1.237 1.237Z"
       })),
-      incomplete: () => /* @__PURE__ */ import_react115.default.createElement("svg", {
+      incomplete: () => /* @__PURE__ */ import_react106.default.createElement("svg", {
         viewBox: "0 0 20 20"
-      }, /* @__PURE__ */ import_react115.default.createElement("path", {
+      }, /* @__PURE__ */ import_react106.default.createElement("path", {
         fillRule: "evenodd",
         d: "M8.547 12.69c.183.05.443.06 1.453.06s1.27-.01 1.453-.06a1.75 1.75 0 0 0 1.237-1.237c.05-.182.06-.443.06-1.453s-.01-1.27-.06-1.453a1.75 1.75 0 0 0-1.237-1.237c-.182-.05-.443-.06-1.453-.06s-1.27.01-1.453.06A1.75 1.75 0 0 0 7.31 8.547c-.05.183-.06.443-.06 1.453s.01 1.27.06 1.453a1.75 1.75 0 0 0 1.237 1.237ZM6.102 8.224C6 8.605 6 9.07 6 10s0 1.395.102 1.777a3 3 0 0 0 2.122 2.12C8.605 14 9.07 14 10 14s1.395 0 1.777-.102a3 3 0 0 0 2.12-2.121C14 11.395 14 10.93 14 10c0-.93 0-1.395-.102-1.776a3 3 0 0 0-2.121-2.122C11.395 6 10.93 6 10 6c-.93 0-1.395 0-1.776.102a3 3 0 0 0-2.122 2.122Z"
       }))
@@ -9248,10 +8951,10 @@ var init_Badge = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Tooltip/Tooltip.scss.js
-var styles31;
+var styles23;
 var init_Tooltip_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Tooltip/Tooltip.scss.js"() {
-    styles31 = {
+    styles23 = {
       "TooltipContainer": "Polaris-Tooltip__TooltipContainer",
       "HasUnderline": "Polaris-Tooltip__HasUnderline"
     };
@@ -9260,7 +8963,7 @@ var init_Tooltip_scss = __esm({
 
 // node_modules/@shopify/polaris/build/esm/utilities/ephemeral-presence-manager/hooks.js
 function useEphemeralPresenceManager() {
-  const ephemeralPresenceManager = (0, import_react116.useContext)(EphemeralPresenceManagerContext);
+  const ephemeralPresenceManager = (0, import_react107.useContext)(EphemeralPresenceManagerContext);
   if (!ephemeralPresenceManager) {
     throw new Error("No ephemeral presence manager was provided. Your application must be wrapped in an <AppProvider> component. See https://polaris.shopify.com/components/app-provider for implementation instructions.");
   }
@@ -9276,19 +8979,19 @@ function useReadOnlyEphemeralPresenceManager() {
     presenceCounter
   };
 }
-var import_react116;
+var import_react107;
 var init_hooks4 = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/ephemeral-presence-manager/hooks.js"() {
-    import_react116 = __toESM(require_react());
+    import_react107 = __toESM(require_react());
     init_context9();
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Tooltip/components/TooltipOverlay/TooltipOverlay.scss.js
-var styles32;
+var styles24;
 var init_TooltipOverlay_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Tooltip/components/TooltipOverlay/TooltipOverlay.scss.js"() {
-    styles32 = {
+    styles24 = {
       "TooltipOverlay": "Polaris-Tooltip-TooltipOverlay",
       "Tail": "Polaris-Tooltip-TooltipOverlay__Tail",
       "positionedAbove": "Polaris-Tooltip-TooltipOverlay--positionedAbove",
@@ -9318,7 +9021,7 @@ function TooltipOverlay({
   instant
 }) {
   const i18n = useI18n();
-  const markup = active ? /* @__PURE__ */ import_react117.default.createElement(PositionedOverlay, {
+  const markup = active ? /* @__PURE__ */ import_react108.default.createElement(PositionedOverlay, {
     active,
     activator,
     preferredPosition,
@@ -9334,8 +9037,8 @@ function TooltipOverlay({
       positioning,
       chevronOffset
     } = overlayDetails;
-    const containerClassName = classNames(styles32.TooltipOverlay, measuring && styles32.measuring, !measuring && styles32.measured, instant && styles32.instant, positioning === "above" && styles32.positionedAbove);
-    const contentClassName = classNames(styles32.Content, width2 && styles32[width2]);
+    const containerClassName = classNames(styles24.TooltipOverlay, measuring && styles24.measuring, !measuring && styles24.measured, instant && styles24.instant, positioning === "above" && styles24.positionedAbove);
+    const contentClassName = classNames(styles24.Content, width2 && styles24[width2]);
     const contentStyles = measuring ? void 0 : {
       minHeight: desiredHeight
     };
@@ -9344,15 +9047,15 @@ function TooltipOverlay({
       "--pc-tooltip-border-radius": borderRadius ? `var(--p-border-radius-${borderRadius})` : void 0,
       "--pc-tooltip-padding": padding && padding === "default" ? "var(--p-space-100) var(--p-space-200)" : `var(--p-space-${padding})`
     };
-    return /* @__PURE__ */ import_react117.default.createElement("div", Object.assign({
+    return /* @__PURE__ */ import_react108.default.createElement("div", Object.assign({
       style,
       className: containerClassName
-    }, layer.props), /* @__PURE__ */ import_react117.default.createElement("svg", {
-      className: styles32.Tail,
+    }, layer.props), /* @__PURE__ */ import_react108.default.createElement("svg", {
+      className: styles24.Tail,
       width: "19",
       height: "11",
       fill: "none"
-    }, positioning === "above" ? tailDownPaths : tailUpPaths), /* @__PURE__ */ import_react117.default.createElement("div", {
+    }, positioning === "above" ? tailDownPaths : tailUpPaths), /* @__PURE__ */ import_react108.default.createElement("div", {
       id,
       role: "tooltip",
       className: contentClassName,
@@ -9366,26 +9069,26 @@ function TooltipOverlay({
     }, children));
   }
 }
-var import_react117, tailUpPaths, tailDownPaths;
+var import_react108, tailUpPaths, tailDownPaths;
 var init_TooltipOverlay = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Tooltip/components/TooltipOverlay/TooltipOverlay.js"() {
-    import_react117 = __toESM(require_react());
+    import_react108 = __toESM(require_react());
     init_css();
     init_shared();
     init_TooltipOverlay_scss();
     init_PositionedOverlay();
     init_hooks2();
-    tailUpPaths = /* @__PURE__ */ import_react117.default.createElement(import_react117.default.Fragment, null, /* @__PURE__ */ import_react117.default.createElement("path", {
+    tailUpPaths = /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("path", {
       d: "M18.829 8.171 11.862.921A3 3 0 0 0 7.619.838L0 8.171h1.442l6.87-6.612a2 2 0 0 1 2.83.055l6.3 6.557h1.387Z",
       fill: "#E3E3E3"
-    }), /* @__PURE__ */ import_react117.default.createElement("path", {
+    }), /* @__PURE__ */ import_react108.default.createElement("path", {
       d: "M17.442 10.171h-16v-2l6.87-6.612a2 2 0 0 1 2.83.055l6.3 6.557v2Z",
       fill: "var(--p-color-bg-surface)"
     }));
-    tailDownPaths = /* @__PURE__ */ import_react117.default.createElement(import_react117.default.Fragment, null, /* @__PURE__ */ import_react117.default.createElement("path", {
+    tailDownPaths = /* @__PURE__ */ import_react108.default.createElement(import_react108.default.Fragment, null, /* @__PURE__ */ import_react108.default.createElement("path", {
       d: "m0 2 6.967 7.25a3 3 0 0 0 4.243.083L18.829 2h-1.442l-6.87 6.612a2 2 0 0 1-2.83-.055L1.387 2H0Z",
       fill: "#D4D4D4"
-    }), /* @__PURE__ */ import_react117.default.createElement("path", {
+    }), /* @__PURE__ */ import_react108.default.createElement("path", {
       d: "M1.387 0h16v2l-6.87 6.612a2 2 0 0 1-2.83-.055L1.387 2V0Z",
       fill: "var(--p-color-bg-surface)"
     }));
@@ -9422,24 +9125,24 @@ function Tooltip({
     value: persist,
     toggle: togglePersisting
   } = useToggle(Boolean(originalActive) && Boolean(persistOnClick));
-  const [activatorNode, setActivatorNode] = (0, import_react118.useState)(null);
+  const [activatorNode, setActivatorNode] = (0, import_react109.useState)(null);
   const {
     presenceList,
     addPresence,
     removePresence
   } = useEphemeralPresenceManager();
-  const id = (0, import_react118.useId)();
-  const activatorContainer = (0, import_react118.useRef)(null);
-  const mouseEntered = (0, import_react118.useRef)(false);
-  const [shouldAnimate, setShouldAnimate] = (0, import_react118.useState)(Boolean(!originalActive));
-  const hoverDelayTimeout = (0, import_react118.useRef)(null);
-  const hoverOutTimeout = (0, import_react118.useRef)(null);
-  const handleFocus = (0, import_react118.useCallback)(() => {
+  const id = (0, import_react109.useId)();
+  const activatorContainer = (0, import_react109.useRef)(null);
+  const mouseEntered = (0, import_react109.useRef)(false);
+  const [shouldAnimate, setShouldAnimate] = (0, import_react109.useState)(Boolean(!originalActive));
+  const hoverDelayTimeout = (0, import_react109.useRef)(null);
+  const hoverOutTimeout = (0, import_react109.useRef)(null);
+  const handleFocus = (0, import_react109.useCallback)(() => {
     if (originalActive !== false) {
       setActiveTrue();
     }
   }, [originalActive, setActiveTrue]);
-  (0, import_react118.useEffect)(() => {
+  (0, import_react109.useEffect)(() => {
     const firstFocusable = activatorContainer.current ? findFirstFocusableNode(activatorContainer.current) : null;
     const accessibilityNode = firstFocusable || activatorContainer.current;
     if (!accessibilityNode)
@@ -9448,7 +9151,7 @@ function Tooltip({
     accessibilityNode.setAttribute("aria-describedby", id);
     accessibilityNode.setAttribute("data-polaris-tooltip-activator", "true");
   }, [id, children]);
-  (0, import_react118.useEffect)(() => {
+  (0, import_react109.useEffect)(() => {
     return () => {
       if (hoverDelayTimeout.current) {
         clearTimeout(hoverDelayTimeout.current);
@@ -9458,34 +9161,34 @@ function Tooltip({
       }
     };
   }, []);
-  const handleOpen = (0, import_react118.useCallback)(() => {
+  const handleOpen = (0, import_react109.useCallback)(() => {
     setShouldAnimate(!presenceList.tooltip && !active);
     onOpen?.();
     addPresence("tooltip");
   }, [addPresence, presenceList.tooltip, onOpen, active]);
-  const handleClose = (0, import_react118.useCallback)(() => {
+  const handleClose = (0, import_react109.useCallback)(() => {
     onClose?.();
     setShouldAnimate(false);
     hoverOutTimeout.current = setTimeout(() => {
       removePresence("tooltip");
     }, HOVER_OUT_TIMEOUT);
   }, [removePresence, onClose]);
-  const handleKeyUp = (0, import_react118.useCallback)((event) => {
+  const handleKeyUp = (0, import_react109.useCallback)((event) => {
     if (event.key !== "Escape")
       return;
     handleClose?.();
     handleBlur();
     persistOnClick && togglePersisting();
   }, [handleBlur, handleClose, persistOnClick, togglePersisting]);
-  (0, import_react118.useEffect)(() => {
+  (0, import_react109.useEffect)(() => {
     if (originalActive === false && active) {
       handleClose();
       handleBlur();
     }
   }, [originalActive, active, handleClose, handleBlur]);
-  const portal2 = activatorNode ? /* @__PURE__ */ import_react118.default.createElement(Portal, {
+  const portal2 = activatorNode ? /* @__PURE__ */ import_react109.default.createElement(Portal, {
     idPrefix: "tooltip"
-  }, /* @__PURE__ */ import_react118.default.createElement(TooltipOverlay, {
+  }, /* @__PURE__ */ import_react109.default.createElement(TooltipOverlay, {
     id,
     preferredPosition,
     activator: activatorNode,
@@ -9499,8 +9202,8 @@ function Tooltip({
     zIndexOverride,
     instant: !shouldAnimate
   }, content)) : null;
-  const wrapperClassNames = classNames(activatorWrapper === "div" && styles31.TooltipContainer, hasUnderline && styles31.HasUnderline);
-  return /* @__PURE__ */ import_react118.default.createElement(WrapperComponent, {
+  const wrapperClassNames = classNames(activatorWrapper === "div" && styles23.TooltipContainer, hasUnderline && styles23.HasUnderline);
+  return /* @__PURE__ */ import_react109.default.createElement(WrapperComponent, {
     onFocus: () => {
       handleOpen();
       handleFocus();
@@ -9558,10 +9261,10 @@ function Tooltip({
 }
 function noop3() {
 }
-var import_react118, HOVER_OUT_TIMEOUT;
+var import_react109, HOVER_OUT_TIMEOUT;
 var init_Tooltip = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Tooltip/Tooltip.js"() {
-    import_react118 = __toESM(require_react());
+    import_react109 = __toESM(require_react());
     init_focus();
     init_use_toggle();
     init_css();
@@ -9596,22 +9299,22 @@ function Item4({
   role,
   variant = "default"
 }) {
-  const className = classNames(styles28.Item, disabled && styles28.disabled, destructive && styles28.destructive, active && styles28.active, variant === "default" && styles28.default, variant === "indented" && styles28.indented, variant === "menu" && styles28.menu);
+  const className = classNames(styles20.Item, disabled && styles20.disabled, destructive && styles20.destructive, active && styles20.active, variant === "default" && styles20.default, variant === "indented" && styles20.indented, variant === "menu" && styles20.menu);
   let prefixMarkup = null;
   if (prefix) {
-    prefixMarkup = /* @__PURE__ */ import_react119.default.createElement("span", {
-      className: styles28.Prefix
+    prefixMarkup = /* @__PURE__ */ import_react110.default.createElement("span", {
+      className: styles20.Prefix
     }, prefix);
   } else if (icon) {
-    prefixMarkup = /* @__PURE__ */ import_react119.default.createElement("span", {
-      className: styles28.Prefix
-    }, /* @__PURE__ */ import_react119.default.createElement(Icon, {
+    prefixMarkup = /* @__PURE__ */ import_react110.default.createElement("span", {
+      className: styles20.Prefix
+    }, /* @__PURE__ */ import_react110.default.createElement(Icon, {
       source: icon
     }));
   } else if (image) {
-    prefixMarkup = /* @__PURE__ */ import_react119.default.createElement("span", {
+    prefixMarkup = /* @__PURE__ */ import_react110.default.createElement("span", {
       role: "presentation",
-      className: styles28.Prefix,
+      className: styles20.Prefix,
       style: {
         backgroundImage: `url(${image}`
       }
@@ -9619,36 +9322,36 @@ function Item4({
   }
   let contentText = content || "";
   if (truncate && content) {
-    contentText = /* @__PURE__ */ import_react119.default.createElement(TruncateText, null, content);
+    contentText = /* @__PURE__ */ import_react110.default.createElement(TruncateText, null, content);
   } else if (ellipsis) {
     contentText = `${content}\u2026`;
   }
-  const contentMarkup = helpText ? /* @__PURE__ */ import_react119.default.createElement(import_react119.default.Fragment, null, /* @__PURE__ */ import_react119.default.createElement(Box, null, contentText), /* @__PURE__ */ import_react119.default.createElement(Text, {
+  const contentMarkup = helpText ? /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, /* @__PURE__ */ import_react110.default.createElement(Box, null, contentText), /* @__PURE__ */ import_react110.default.createElement(Text, {
     as: "span",
     variant: "bodySm",
     tone: active || disabled ? void 0 : "subdued"
   }, helpText)) : contentText;
-  const badgeMarkup = badge && /* @__PURE__ */ import_react119.default.createElement("span", {
-    className: styles28.Suffix
-  }, /* @__PURE__ */ import_react119.default.createElement(Badge, {
+  const badgeMarkup = badge && /* @__PURE__ */ import_react110.default.createElement("span", {
+    className: styles20.Suffix
+  }, /* @__PURE__ */ import_react110.default.createElement(Badge, {
     tone: badge.tone
   }, badge.content));
-  const suffixMarkup = suffix && /* @__PURE__ */ import_react119.default.createElement(Box, null, /* @__PURE__ */ import_react119.default.createElement("span", {
-    className: styles28.Suffix
+  const suffixMarkup = suffix && /* @__PURE__ */ import_react110.default.createElement(Box, null, /* @__PURE__ */ import_react110.default.createElement("span", {
+    className: styles20.Suffix
   }, suffix));
-  const textMarkup = /* @__PURE__ */ import_react119.default.createElement("span", {
-    className: styles28.Text
+  const textMarkup = /* @__PURE__ */ import_react110.default.createElement("span", {
+    className: styles20.Text
   }, contentMarkup);
-  const contentElement = /* @__PURE__ */ import_react119.default.createElement(InlineStack, {
+  const contentElement = /* @__PURE__ */ import_react110.default.createElement(InlineStack, {
     blockAlign: "center",
     gap: "150",
     wrap: !truncate
   }, prefixMarkup, textMarkup, badgeMarkup, suffixMarkup);
-  const contentWrapper = /* @__PURE__ */ import_react119.default.createElement(Box, {
+  const contentWrapper = /* @__PURE__ */ import_react110.default.createElement(Box, {
     width: "100%"
   }, contentElement);
-  const scrollMarkup = active ? /* @__PURE__ */ import_react119.default.createElement(Scrollable.ScrollTo, null) : null;
-  const control = url ? /* @__PURE__ */ import_react119.default.createElement(UnstyledLink, {
+  const scrollMarkup = active ? /* @__PURE__ */ import_react110.default.createElement(Scrollable.ScrollTo, null) : null;
+  const control = url ? /* @__PURE__ */ import_react110.default.createElement(UnstyledLink, {
     id,
     url: disabled ? null : url,
     className,
@@ -9656,7 +9359,7 @@ function Item4({
     "aria-label": accessibilityLabel,
     onClick: disabled ? null : onAction,
     role
-  }, contentWrapper) : /* @__PURE__ */ import_react119.default.createElement("button", {
+  }, contentWrapper) : /* @__PURE__ */ import_react110.default.createElement("button", {
     id,
     type: "button",
     className,
@@ -9667,12 +9370,12 @@ function Item4({
     role,
     onMouseEnter
   }, contentWrapper);
-  return /* @__PURE__ */ import_react119.default.createElement(import_react119.default.Fragment, null, scrollMarkup, control);
+  return /* @__PURE__ */ import_react110.default.createElement(import_react110.default.Fragment, null, scrollMarkup, control);
 }
-var import_react119, TruncateText;
+var import_react110, TruncateText;
 var init_Item4 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ActionList/components/Item/Item.js"() {
-    import_react119 = __toESM(require_react());
+    import_react110 = __toESM(require_react());
     init_css();
     init_ActionList_scss();
     init_focus();
@@ -9690,27 +9393,27 @@ var init_Item4 = __esm({
       children
     }) => {
       const theme = useTheme();
-      const textRef = (0, import_react119.useRef)(null);
-      const [isOverflowing, setIsOverflowing] = (0, import_react119.useState)(false);
+      const textRef = (0, import_react110.useRef)(null);
+      const [isOverflowing, setIsOverflowing] = (0, import_react110.useState)(false);
       useIsomorphicLayoutEffect(() => {
         if (textRef.current) {
           setIsOverflowing(textRef.current.scrollWidth > textRef.current.offsetWidth);
         }
       }, [children]);
-      const text2 = /* @__PURE__ */ import_react119.default.createElement(Text, {
+      const text2 = /* @__PURE__ */ import_react110.default.createElement(Text, {
         as: "span",
         truncate: true
-      }, /* @__PURE__ */ import_react119.default.createElement(Box, {
+      }, /* @__PURE__ */ import_react110.default.createElement(Box, {
         width: "100%",
         ref: textRef
       }, children));
-      return isOverflowing ? /* @__PURE__ */ import_react119.default.createElement(Tooltip, {
+      return isOverflowing ? /* @__PURE__ */ import_react110.default.createElement(Tooltip, {
         zIndexOverride: Number(theme.zIndex["z-index-11"]),
         preferredPosition: "above",
         hoverDelay: 1e3,
         content: children,
         dismissOnMouseOut: true
-      }, /* @__PURE__ */ import_react119.default.createElement(Text, {
+      }, /* @__PURE__ */ import_react110.default.createElement(Text, {
         as: "span",
         truncate: true
       }, children)) : text2;
@@ -9742,31 +9445,31 @@ function Section3({
     onAction,
     ...item
   }, index) => {
-    const itemMarkup = /* @__PURE__ */ import_react120.default.createElement(Item4, Object.assign({
+    const itemMarkup = /* @__PURE__ */ import_react111.default.createElement(Item4, Object.assign({
       content,
       helpText,
       role: actionRole,
       onAction: handleAction(onAction)
     }, item));
-    return /* @__PURE__ */ import_react120.default.createElement(Box, {
+    return /* @__PURE__ */ import_react111.default.createElement(Box, {
       as: "li",
       key: `${content}-${index}`,
       role: actionRole === "menuitem" ? "presentation" : void 0
-    }, /* @__PURE__ */ import_react120.default.createElement(InlineStack, {
+    }, /* @__PURE__ */ import_react111.default.createElement(InlineStack, {
       wrap: false
     }, itemMarkup));
   });
   let titleMarkup = null;
   if (section.title) {
-    titleMarkup = typeof section.title === "string" ? /* @__PURE__ */ import_react120.default.createElement(Box, {
+    titleMarkup = typeof section.title === "string" ? /* @__PURE__ */ import_react111.default.createElement(Box, {
       paddingBlockStart: "300",
       paddingBlockEnd: "100",
       paddingInlineStart: "300",
       paddingInlineEnd: "300"
-    }, /* @__PURE__ */ import_react120.default.createElement(Text, {
+    }, /* @__PURE__ */ import_react111.default.createElement(Text, {
       as: "p",
       variant: "headingSm"
-    }, section.title)) : /* @__PURE__ */ import_react120.default.createElement(Box, {
+    }, section.title)) : /* @__PURE__ */ import_react111.default.createElement(Box, {
       padding: "200",
       paddingInlineEnd: "150"
     }, section.title);
@@ -9783,20 +9486,20 @@ function Section3({
       sectionRole = void 0;
       break;
   }
-  const sectionMarkup = /* @__PURE__ */ import_react120.default.createElement(import_react120.default.Fragment, null, titleMarkup, /* @__PURE__ */ import_react120.default.createElement(Box, Object.assign({
+  const sectionMarkup = /* @__PURE__ */ import_react111.default.createElement(import_react111.default.Fragment, null, titleMarkup, /* @__PURE__ */ import_react111.default.createElement(Box, Object.assign({
     as: "div",
     padding: "150"
   }, hasMultipleSections && {
     paddingBlockStart: "0"
   }, {
     tabIndex: !hasMultipleSections ? -1 : void 0
-  }), /* @__PURE__ */ import_react120.default.createElement(BlockStack, Object.assign({
+  }), /* @__PURE__ */ import_react111.default.createElement(BlockStack, Object.assign({
     gap: "100",
     as: "ul"
   }, sectionRole && {
     role: sectionRole
   }), actionMarkup)));
-  return hasMultipleSections ? /* @__PURE__ */ import_react120.default.createElement(Box, Object.assign({
+  return hasMultipleSections ? /* @__PURE__ */ import_react111.default.createElement(Box, Object.assign({
     as: "li",
     role: "presentation",
     borderColor: "border-secondary"
@@ -9806,10 +9509,10 @@ function Section3({
     paddingBlockStart: "150"
   }), sectionMarkup) : sectionMarkup;
 }
-var import_react120;
+var import_react111;
 var init_Section3 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ActionList/components/Section/Section.js"() {
-    import_react120 = __toESM(require_react());
+    import_react111 = __toESM(require_react());
     init_Item4();
     init_Box();
     init_InlineStack();
@@ -9827,10 +9530,10 @@ function ActionList({
   onActionAnyItem
 }) {
   const i18n = useI18n();
-  const filterActions = (0, import_react121.useContext)(FilterActionsContext);
+  const filterActions = (0, import_react112.useContext)(FilterActionsContext);
   let finalSections = [];
-  const actionListRef = (0, import_react121.useRef)(null);
-  const [searchText, setSeachText] = (0, import_react121.useState)("");
+  const actionListRef = (0, import_react112.useRef)(null);
+  const [searchText, setSeachText] = (0, import_react112.useState)("");
   if (items) {
     finalSections = [{
       items
@@ -9849,7 +9552,7 @@ function ActionList({
     }) => typeof content === "string" ? content?.toLowerCase().includes(searchText.toLowerCase()) : content)
   }));
   const sectionMarkup = filteredSections.map((section, index) => {
-    return section.items.length > 0 ? /* @__PURE__ */ import_react121.default.createElement(Section3, {
+    return section.items.length > 0 ? /* @__PURE__ */ import_react112.default.createElement(Section3, {
       key: typeof section.title === "string" ? section.title : index,
       section,
       hasMultipleSections,
@@ -9874,25 +9577,25 @@ function ActionList({
       }
     }
   };
-  const listeners = actionRole === "menuitem" ? /* @__PURE__ */ import_react121.default.createElement(import_react121.default.Fragment, null, /* @__PURE__ */ import_react121.default.createElement(KeypressListener, {
+  const listeners = actionRole === "menuitem" ? /* @__PURE__ */ import_react112.default.createElement(import_react112.default.Fragment, null, /* @__PURE__ */ import_react112.default.createElement(KeypressListener, {
     keyEvent: "keydown",
     keyCode: Key.DownArrow,
     handler: handleFocusNextItem
-  }), /* @__PURE__ */ import_react121.default.createElement(KeypressListener, {
+  }), /* @__PURE__ */ import_react112.default.createElement(KeypressListener, {
     keyEvent: "keydown",
     keyCode: Key.UpArrow,
     handler: handleFocusPreviousItem
   })) : null;
-  const totalFilteredActions = (0, import_react121.useMemo)(() => {
+  const totalFilteredActions = (0, import_react112.useMemo)(() => {
     const totalSectionItems = filteredSections?.reduce((acc, section) => acc + section.items.length, 0) || 0;
     return totalSectionItems;
   }, [filteredSections]);
   const totalActions = finalSections?.reduce((acc, section) => acc + section.items.length, 0) || 0;
   const hasManyActions = totalActions >= FILTER_ACTIONS_THRESHOLD;
-  return /* @__PURE__ */ import_react121.default.createElement(import_react121.default.Fragment, null, (allowFiltering || filterActions) && hasManyActions && isFilterable && /* @__PURE__ */ import_react121.default.createElement(Box, {
+  return /* @__PURE__ */ import_react112.default.createElement(import_react112.default.Fragment, null, (allowFiltering || filterActions) && hasManyActions && isFilterable && /* @__PURE__ */ import_react112.default.createElement(Box, {
     padding: "200",
     paddingBlockEnd: totalFilteredActions > 0 ? "0" : "200"
-  }, /* @__PURE__ */ import_react121.default.createElement(TextField, {
+  }, /* @__PURE__ */ import_react112.default.createElement(TextField, {
     clearButton: true,
     labelHidden: true,
     label: i18n.translate("Polaris.ActionList.SearchField.placeholder"),
@@ -9900,21 +9603,21 @@ function ActionList({
     autoComplete: "off",
     value: searchText,
     onChange: (value) => setSeachText(value),
-    prefix: /* @__PURE__ */ import_react121.default.createElement(Icon, {
+    prefix: /* @__PURE__ */ import_react112.default.createElement(Icon, {
       source: SvgSearchIcon
     }),
     onClearButtonClick: () => setSeachText("")
-  })), /* @__PURE__ */ import_react121.default.createElement(Box, {
+  })), /* @__PURE__ */ import_react112.default.createElement(Box, {
     as: hasMultipleSections ? "ul" : "div",
     ref: actionListRef,
     role: elementRole,
     tabIndex: elementTabIndex
   }, listeners, sectionMarkup));
 }
-var import_react121, FILTER_ACTIONS_THRESHOLD;
+var import_react112, FILTER_ACTIONS_THRESHOLD;
 var init_ActionList = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ActionList/ActionList.js"() {
-    import_react121 = __toESM(require_react());
+    import_react112 = __toESM(require_react());
     init_dist();
     init_types();
     init_focus();
@@ -9931,3680 +9634,312 @@ var init_ActionList = __esm({
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.js
-function RollupActions({
-  accessibilityLabel,
-  items = [],
-  sections = []
-}) {
-  const i18n = useI18n();
-  const {
-    value: rollupOpen,
-    toggle: toggleRollupOpen
-  } = useToggle(false);
-  if (items.length === 0 && sections.length === 0) {
-    return null;
-  }
-  const activatorMarkup = /* @__PURE__ */ import_react122.default.createElement("div", {
-    className: styles24.RollupActivator
-  }, /* @__PURE__ */ import_react122.default.createElement(Button, {
-    icon: SvgMenuHorizontalIcon,
-    accessibilityLabel: accessibilityLabel || i18n.translate("Polaris.ActionMenu.RollupActions.rollupButton"),
-    onClick: toggleRollupOpen
-  }));
-  return /* @__PURE__ */ import_react122.default.createElement(Popover2, {
-    active: rollupOpen,
-    activator: activatorMarkup,
-    preferredAlignment: "right",
-    onClose: toggleRollupOpen,
-    hideOnPrint: true
-  }, /* @__PURE__ */ import_react122.default.createElement(ActionList, {
-    items,
-    sections,
-    onActionAnyItem: toggleRollupOpen
-  }));
-}
-var import_react122;
-var init_RollupActions = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.js"() {
-    import_react122 = __toESM(require_react());
-    init_dist();
-    init_use_toggle();
-    init_RollupActions_scss();
-    init_hooks2();
-    init_Button();
-    init_Popover();
-    init_ActionList();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.scss.js
-var styles33;
-var init_Actions_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.scss.js"() {
-    styles33 = {
-      "ActionsLayout": "Polaris-ActionMenu-Actions__ActionsLayout"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.scss.js
-var styles34;
-var init_MenuGroup_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.scss.js"() {
-    styles34 = {
-      "Details": "Polaris-ActionMenu-MenuGroup__Details"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.scss.js
-var styles35;
-var init_SecondaryAction_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.scss.js"() {
-    styles35 = {
-      "SecondaryAction": "Polaris-ActionMenu-SecondaryAction",
-      "critical": "Polaris-ActionMenu-SecondaryAction--critical"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.js
-function SecondaryAction({
-  children,
-  tone,
-  helpText,
-  onAction,
-  getOffsetWidth,
-  destructive,
-  ...rest
-}) {
-  const secondaryActionsRef = (0, import_react123.useRef)(null);
-  (0, import_react123.useEffect)(() => {
-    if (!getOffsetWidth || !secondaryActionsRef.current)
-      return;
-    getOffsetWidth(secondaryActionsRef.current?.offsetWidth);
-  }, [getOffsetWidth]);
-  const buttonMarkup = /* @__PURE__ */ import_react123.default.createElement(Button, Object.assign({
-    onClick: onAction,
-    tone: destructive ? "critical" : void 0
-  }, rest), children);
-  const actionMarkup = helpText ? /* @__PURE__ */ import_react123.default.createElement(Tooltip, {
-    preferredPosition: "below",
-    content: helpText
-  }, buttonMarkup) : buttonMarkup;
-  return /* @__PURE__ */ import_react123.default.createElement("div", {
-    className: classNames(styles35.SecondaryAction, tone === "critical" && styles35.critical),
-    ref: secondaryActionsRef
-  }, actionMarkup);
-}
-var import_react123;
-var init_SecondaryAction = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.js"() {
-    import_react123 = __toESM(require_react());
-    init_css();
-    init_SecondaryAction_scss();
-    init_Button();
-    init_Tooltip();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js
-function MenuGroup({
-  accessibilityLabel,
-  active,
-  actions,
-  details,
-  title,
-  icon,
-  disabled,
-  onClick,
-  onClose,
-  onOpen,
-  getOffsetWidth,
-  sections
-}) {
-  const handleClose = (0, import_react124.useCallback)(() => {
-    onClose(title);
-  }, [onClose, title]);
-  const handleOpen = (0, import_react124.useCallback)(() => {
-    onOpen(title);
-  }, [onOpen, title]);
-  const handleClick = (0, import_react124.useCallback)(() => {
-    if (onClick) {
-      onClick(handleOpen);
-    } else {
-      handleOpen();
-    }
-  }, [onClick, handleOpen]);
-  const handleOffsetWidth = (0, import_react124.useCallback)((width2) => {
-    if (!getOffsetWidth)
-      return;
-    getOffsetWidth(width2);
-  }, [getOffsetWidth]);
-  const popoverActivator = /* @__PURE__ */ import_react124.default.createElement(SecondaryAction, {
-    disclosure: true,
-    disabled,
-    icon,
-    accessibilityLabel,
-    onClick: handleClick,
-    getOffsetWidth: handleOffsetWidth
-  }, title);
-  return /* @__PURE__ */ import_react124.default.createElement(Popover2, {
-    active: Boolean(active),
-    activator: popoverActivator,
-    preferredAlignment: "left",
-    onClose: handleClose,
-    hideOnPrint: true
-  }, /* @__PURE__ */ import_react124.default.createElement(ActionList, {
-    items: actions,
-    sections,
-    onActionAnyItem: handleClose
-  }), details && /* @__PURE__ */ import_react124.default.createElement("div", {
-    className: styles34.Details
-  }, details));
-}
-var import_react124;
-var init_MenuGroup = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js"() {
-    import_react124 = __toESM(require_react());
-    init_MenuGroup_scss();
-    init_Popover();
-    init_ActionList();
-    init_SecondaryAction();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.scss.js
-var styles36;
-var init_ButtonGroup_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.scss.js"() {
-    styles36 = {
-      "ButtonGroup": "Polaris-ButtonGroup",
-      "Item": "Polaris-ButtonGroup__Item",
-      "Item-plain": "Polaris-ButtonGroup__Item--plain",
-      "variantSegmented": "Polaris-ButtonGroup--variantSegmented",
-      "Item-focused": "Polaris-ButtonGroup__Item--focused",
-      "fullWidth": "Polaris-ButtonGroup--fullWidth",
-      "extraTight": "Polaris-ButtonGroup--extraTight",
-      "tight": "Polaris-ButtonGroup--tight",
-      "loose": "Polaris-ButtonGroup--loose",
-      "noWrap": "Polaris-ButtonGroup--noWrap"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/components/Item/Item.js
-function Item5({
-  button
-}) {
-  const {
-    value: focused,
-    setTrue: forceTrueFocused,
-    setFalse: forceFalseFocused
-  } = useToggle(false);
-  const className = classNames(styles36.Item, focused && styles36["Item-focused"], button.props.variant === "plain" && styles36["Item-plain"]);
-  return /* @__PURE__ */ import_react125.default.createElement("div", {
-    className,
-    onFocus: forceTrueFocused,
-    onBlur: forceFalseFocused
-  }, button);
-}
-var import_react125;
-var init_Item5 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/components/Item/Item.js"() {
-    import_react125 = __toESM(require_react());
-    init_use_toggle();
-    init_css();
-    init_ButtonGroup_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.js
-function ButtonGroup({
-  children,
-  gap,
-  variant,
-  fullWidth,
-  connectedTop,
-  noWrap
-}) {
-  const className = classNames(styles36.ButtonGroup, gap && styles36[gap], variant && styles36[variationName("variant", variant)], fullWidth && styles36.fullWidth, noWrap && styles36.noWrap);
-  const contents = elementChildren(children).map((child, index) => /* @__PURE__ */ import_react126.default.createElement(Item5, {
-    button: child,
-    key: index
-  }));
-  return /* @__PURE__ */ import_react126.default.createElement("div", {
-    className,
-    "data-buttongroup-variant": variant,
-    "data-buttongroup-connected-top": connectedTop,
-    "data-buttongroup-full-width": fullWidth,
-    "data-buttongroup-no-wrap": noWrap
-  }, contents);
-}
-var import_react126;
-var init_ButtonGroup = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ButtonGroup/ButtonGroup.js"() {
-    import_react126 = __toESM(require_react());
-    init_css();
-    init_components();
-    init_ButtonGroup_scss();
-    init_Item5();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.js
-function Actions({
-  actions = [],
-  groups = [],
-  onActionRollup
-}) {
-  const i18n = useI18n();
-  const actionsLayoutRef = (0, import_react127.useRef)(null);
-  const menuGroupWidthRef = (0, import_react127.useRef)(0);
-  const availableWidthRef = (0, import_react127.useRef)(0);
-  const actionsAndGroupsLengthRef = (0, import_react127.useRef)(0);
-  const timesMeasured = (0, import_react127.useRef)(0);
-  const actionWidthsRef = (0, import_react127.useRef)([]);
-  const rollupActiveRef = (0, import_react127.useRef)(null);
-  const [activeMenuGroup, setActiveMenuGroup] = (0, import_react127.useState)(void 0);
-  const [measuredActions, setMeasuredActions] = (0, import_react127.useState)({
-    showable: [],
-    rolledUp: []
-  });
-  const defaultRollupGroup = {
-    title: i18n.translate("Polaris.ActionMenu.Actions.moreActions"),
-    actions: []
-  };
-  const lastMenuGroup = [...groups].pop();
-  const lastMenuGroupWidth = [...actionWidthsRef.current].pop() || 0;
-  const handleActionsOffsetWidth = (0, import_react127.useCallback)((width2) => {
-    actionWidthsRef.current = [...actionWidthsRef.current, width2];
-  }, []);
-  const handleMenuGroupToggle = (0, import_react127.useCallback)((group) => setActiveMenuGroup(activeMenuGroup ? void 0 : group), [activeMenuGroup]);
-  const handleMenuGroupClose = (0, import_react127.useCallback)(() => setActiveMenuGroup(void 0), []);
-  const updateActions = (0, import_react127.useCallback)(() => {
-    let actionsAndGroups = [...actions, ...groups];
-    if (groups.length > 0) {
-      actionsAndGroups = [...actionsAndGroups].slice(0, actionsAndGroups.length - 1);
-    }
-    setMeasuredActions((currentMeasuredActions) => {
-      const showable = actionsAndGroups.slice(0, currentMeasuredActions.showable.length);
-      const rolledUp = actionsAndGroups.slice(currentMeasuredActions.showable.length, actionsAndGroups.length);
-      return {
-        showable,
-        rolledUp
-      };
-    });
-  }, [actions, groups]);
-  const measureActions = (0, import_react127.useCallback)(() => {
-    if (actionWidthsRef.current.length === 0 || availableWidthRef.current === 0) {
-      return;
-    }
-    const actionsAndGroups = [...actions, ...groups];
-    if (actionsAndGroups.length === 1) {
-      setMeasuredActions({
-        showable: actionsAndGroups,
-        rolledUp: []
-      });
-      return;
-    }
-    let currentAvailableWidth = availableWidthRef.current;
-    let newShowableActions = [];
-    let newRolledUpActions = [];
-    actionsAndGroups.forEach((action, index) => {
-      const canFitAction = actionWidthsRef.current[index] + menuGroupWidthRef.current + ACTION_SPACING + lastMenuGroupWidth <= currentAvailableWidth;
-      if (canFitAction) {
-        currentAvailableWidth -= actionWidthsRef.current[index] + ACTION_SPACING * 2;
-        newShowableActions = [...newShowableActions, action];
-      } else {
-        currentAvailableWidth = 0;
-        if (action === lastMenuGroup)
+// node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.js
+function useLegacyCardPaddingObserverRef() {
+  const legacyCard = (0, import_react113.useRef)(null);
+  (0, import_react113.useEffect)(() => {
+    const legacyCardNode = legacyCard.current;
+    let firstSection;
+    let lastSection;
+    if (legacyCardNode) {
+      const updateFirstAndLastSectionPadding = () => {
+        updatePadding(firstSection, "top", false);
+        updatePadding(lastSection, "bottom", false);
+        const currentElements = legacyCardNode.querySelectorAll(`.${styles14.Section}, .${styles14.Header}, .${styles14.Footer}`);
+        if (!currentElements?.length)
           return;
-        newRolledUpActions = [...newRolledUpActions, action];
-      }
-    });
-    if (onActionRollup) {
-      const isRollupActive = newShowableActions.length < actionsAndGroups.length - 1;
-      if (rollupActiveRef.current !== isRollupActive) {
-        onActionRollup(isRollupActive);
-        rollupActiveRef.current = isRollupActive;
-      }
+        const firstElement = currentElements[0];
+        const lastElement = getMostSeniorLastElement(currentElements);
+        if (legacyCardNode.firstChild?.contains(firstElement)) {
+          firstSection = firstElement;
+          updatePadding(firstSection, "top", true);
+        }
+        if (legacyCardNode.lastChild?.contains(lastElement)) {
+          lastSection = lastElement;
+          updatePadding(lastSection, "bottom", true);
+        }
+      };
+      updateFirstAndLastSectionPadding();
+      const observer = new MutationObserver(updateFirstAndLastSectionPadding);
+      observer.observe(legacyCardNode, {
+        childList: true,
+        subtree: true
+      });
+      return () => {
+        updatePadding(firstSection, "top", false);
+        updatePadding(lastSection, "bottom", false);
+        observer.disconnect();
+      };
     }
-    setMeasuredActions({
-      showable: newShowableActions,
-      rolledUp: newRolledUpActions
-    });
-    timesMeasured.current += 1;
-    actionsAndGroupsLengthRef.current = actionsAndGroups.length;
-  }, [actions, groups, lastMenuGroup, lastMenuGroupWidth, onActionRollup]);
-  const handleResize = (0, import_react127.useMemo)(() => debounce(() => {
-    if (!actionsLayoutRef.current)
-      return;
-    availableWidthRef.current = actionsLayoutRef.current.offsetWidth;
-    timesMeasured.current = 0;
-    measureActions();
-  }, 50, {
-    leading: false,
-    trailing: true
-  }), [measureActions]);
-  useEventListener("resize", handleResize);
-  useIsomorphicLayoutEffect(() => {
-    if (!actionsLayoutRef.current)
-      return;
-    availableWidthRef.current = actionsLayoutRef.current.offsetWidth;
-    if (
-      // Allow measuring twice
-      // This accounts for the initial paint and re-flow
-      timesMeasured.current >= 2 && [...actions, ...groups].length === actionsAndGroupsLengthRef.current
-    ) {
-      updateActions();
-      return;
-    }
-    measureActions();
-  }, [actions, groups, measureActions, updateActions]);
-  const actionsMarkup = actions.map((action) => {
-    if (measuredActions.showable.length > 0 || measuredActions.rolledUp.includes(action))
-      return null;
-    const {
-      content,
-      onAction,
-      ...rest
-    } = action;
-    return /* @__PURE__ */ import_react127.default.createElement(SecondaryAction, Object.assign({
-      key: content,
-      onClick: onAction
-    }, rest, {
-      getOffsetWidth: handleActionsOffsetWidth
-    }), content);
-  });
-  const rollUppableActionsMarkup = measuredActions.showable.length > 0 ? measuredActions.showable.map((action) => action.content && /* @__PURE__ */ import_react127.default.createElement(SecondaryAction, Object.assign({
-    key: action.content
-  }, action, {
-    getOffsetWidth: handleActionsOffsetWidth
-  }), action.content)) : null;
-  const filteredGroups = [...groups, defaultRollupGroup].filter((group) => {
-    return groups.length === 0 ? group : group === lastMenuGroup || !measuredActions.rolledUp.some((rolledUpGroup) => isMenuGroup(rolledUpGroup) && rolledUpGroup.title === group.title);
-  });
-  const groupsMarkup = filteredGroups.map((group) => {
-    const {
-      title,
-      actions: groupActions,
-      ...rest
-    } = group;
-    const isDefaultGroup = group === defaultRollupGroup;
-    const isLastMenuGroup = group === lastMenuGroup;
-    const [finalRolledUpActions, finalRolledUpSectionGroups] = measuredActions.rolledUp.reduce(([actions2, sections], action) => {
-      if (isMenuGroup(action)) {
-        sections.push({
-          title: action.title,
-          items: action.actions.map((sectionAction) => ({
-            ...sectionAction,
-            disabled: action.disabled || sectionAction.disabled
-          }))
-        });
-      } else {
-        actions2.push(action);
-      }
-      return [actions2, sections];
-    }, [[], []]);
-    if (!isDefaultGroup && !isLastMenuGroup) {
-      return /* @__PURE__ */ import_react127.default.createElement(MenuGroup, Object.assign({
-        key: title,
-        title,
-        active: title === activeMenuGroup,
-        actions: groupActions
-      }, rest, {
-        onOpen: handleMenuGroupToggle,
-        onClose: handleMenuGroupClose,
-        getOffsetWidth: handleActionsOffsetWidth
-      }));
-    } else if (!isDefaultGroup && isLastMenuGroup) {
-      return /* @__PURE__ */ import_react127.default.createElement(MenuGroup, Object.assign({
-        key: title,
-        title,
-        active: title === activeMenuGroup,
-        actions: [...finalRolledUpActions, ...groupActions],
-        sections: finalRolledUpSectionGroups
-      }, rest, {
-        onOpen: handleMenuGroupToggle,
-        onClose: handleMenuGroupClose,
-        getOffsetWidth: handleActionsOffsetWidth
-      }));
-    } else if (isDefaultGroup && groups.length === 0 && finalRolledUpActions.length) {
-      return /* @__PURE__ */ import_react127.default.createElement(MenuGroup, Object.assign({
-        key: title,
-        title,
-        active: title === activeMenuGroup,
-        actions: finalRolledUpActions,
-        sections: finalRolledUpSectionGroups
-      }, rest, {
-        onOpen: handleMenuGroupToggle,
-        onClose: handleMenuGroupClose,
-        getOffsetWidth: handleActionsOffsetWidth
-      }));
-    }
-  });
-  const groupedActionsMarkup = /* @__PURE__ */ import_react127.default.createElement(ButtonGroup, {
-    gap: "tight"
-  }, rollUppableActionsMarkup, actionsMarkup, groupsMarkup);
-  return /* @__PURE__ */ import_react127.default.createElement("div", {
-    className: styles33.ActionsLayout,
-    ref: actionsLayoutRef
-  }, groupedActionsMarkup);
+  }, []);
+  return legacyCard;
 }
-function isMenuGroup(actionOrMenuGroup) {
-  return "title" in actionOrMenuGroup;
-}
-var import_react127, ACTION_SPACING;
-var init_Actions = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.js"() {
-    import_react127 = __toESM(require_react());
-    init_debounce();
-    init_use_event_listener();
-    init_use_isomorphic_layout_effect();
-    init_Actions_scss();
-    init_MenuGroup();
-    init_ButtonGroup();
-    init_hooks2();
-    init_SecondaryAction();
-    ACTION_SPACING = 8;
+function updatePadding(element, area, add) {
+  if (!element || element.className.includes(styles14["Section-flush"]))
+    return;
+  switch (area) {
+    case "top":
+      element.classList.toggle(styles14.FirstSectionPadding, add);
+      return;
+    case "bottom":
+      element.classList.toggle(styles14.LastSectionPadding, add);
   }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.js
-function ActionMenu({
-  actions = [],
-  groups = [],
-  rollup,
-  rollupActionsLabel,
-  onActionRollup
-}) {
-  if (actions.length === 0 && groups.length === 0) {
-    return null;
-  }
-  const actionMenuClassNames = classNames(styles23.ActionMenu, rollup && styles23.rollup);
-  const rollupSections = groups.map((group) => convertGroupToSection(group));
-  return /* @__PURE__ */ import_react128.default.createElement("div", {
-    className: actionMenuClassNames
-  }, rollup ? /* @__PURE__ */ import_react128.default.createElement(RollupActions, {
-    accessibilityLabel: rollupActionsLabel,
-    items: actions,
-    sections: rollupSections
-  }) : /* @__PURE__ */ import_react128.default.createElement(Actions, {
-    actions,
-    groups,
-    onActionRollup
-  }));
 }
-function hasGroupsWithActions(groups = []) {
-  return groups.length === 0 ? false : groups.some((group) => group.actions.length > 0);
+function getMostSeniorLastElement(elements) {
+  let lastElement = elements[0];
+  elements.forEach((element) => {
+    if (!lastElement.contains(element)) {
+      lastElement = element;
+    }
+  });
+  return lastElement;
 }
-function convertGroupToSection({
-  title,
-  actions,
-  disabled
-}) {
-  return {
-    title,
-    items: actions.map((action) => ({
-      ...action,
-      disabled: disabled || action.disabled
-    }))
-  };
-}
-var import_react128;
-var init_ActionMenu = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.js"() {
-    import_react128 = __toESM(require_react());
+var import_react113, LegacyCard;
+var init_LegacyCard = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.js"() {
+    import_react113 = __toESM(require_react());
     init_css();
-    init_ActionMenu_scss();
-    init_RollupActions();
-    init_Actions();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/media-query/hooks.js
-function useMediaQuery() {
-  const mediaQuery = (0, import_react129.useContext)(MediaQueryContext);
-  if (!mediaQuery) {
-    throw new Error("No mediaQuery was provided. Your application must be wrapped in an <AppProvider> component. See https://polaris.shopify.com/components/app-provider for implementation instructions.");
-  }
-  return mediaQuery;
-}
-var import_react129;
-var init_hooks5 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/media-query/hooks.js"() {
-    import_react129 = __toESM(require_react());
-    init_context6();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/is-input-focused.js
-function isInputFocused() {
-  if (document == null || document.activeElement == null) {
-    return false;
-  }
-  const {
-    tagName
-  } = document.activeElement;
-  return tagName === EditableTarget.Input || tagName === EditableTarget.Textarea || tagName === EditableTarget.Select || document.activeElement.hasAttribute(EditableTarget.ContentEditable);
-}
-var EditableTarget;
-var init_is_input_focused = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/is-input-focused.js"() {
-    (function(EditableTarget2) {
-      EditableTarget2["Input"] = "INPUT";
-      EditableTarget2["Textarea"] = "TEXTAREA";
-      EditableTarget2["Select"] = "SELECT";
-      EditableTarget2["ContentEditable"] = "contenteditable";
-    })(EditableTarget || (EditableTarget = {}));
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.scss.js
-var styles37;
-var init_Pagination_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.scss.js"() {
-    styles37 = {
-      "Pagination": "Polaris-Pagination",
-      "table": "Polaris-Pagination--table"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.js
-function Pagination({
-  hasNext,
-  hasPrevious,
-  nextURL,
-  previousURL,
-  onNext,
-  onPrevious,
-  nextTooltip,
-  previousTooltip,
-  nextKeys,
-  previousKeys,
-  accessibilityLabel,
-  accessibilityLabels,
-  label,
-  type = "page"
-}) {
-  const i18n = useI18n();
-  const node = /* @__PURE__ */ (0, import_react130.createRef)();
-  const navLabel = accessibilityLabel || i18n.translate("Polaris.Pagination.pagination");
-  const previousLabel = accessibilityLabels?.previous || i18n.translate("Polaris.Pagination.previous");
-  const nextLabel = accessibilityLabels?.next || i18n.translate("Polaris.Pagination.next");
-  const prev = /* @__PURE__ */ import_react130.default.createElement(Button, {
-    icon: SvgChevronLeftIcon,
-    accessibilityLabel: previousLabel,
-    url: previousURL,
-    onClick: onPrevious,
-    disabled: !hasPrevious,
-    id: "previousURL"
-  });
-  const constructedPrevious = previousTooltip && hasPrevious ? /* @__PURE__ */ import_react130.default.createElement(Tooltip, {
-    activatorWrapper: "span",
-    content: previousTooltip,
-    preferredPosition: "below"
-  }, prev) : prev;
-  const next = /* @__PURE__ */ import_react130.default.createElement(Button, {
-    icon: SvgChevronRightIcon,
-    accessibilityLabel: nextLabel,
-    url: nextURL,
-    onClick: onNext,
-    disabled: !hasNext,
-    id: "nextURL"
-  });
-  const constructedNext = nextTooltip && hasNext ? /* @__PURE__ */ import_react130.default.createElement(Tooltip, {
-    activatorWrapper: "span",
-    content: nextTooltip,
-    preferredPosition: "below"
-  }, next) : next;
-  const previousHandler = onPrevious || noop4;
-  const previousButtonEvents = previousKeys && (previousURL || onPrevious) && hasPrevious && previousKeys.map((key) => /* @__PURE__ */ import_react130.default.createElement(KeypressListener, {
-    key,
-    keyCode: key,
-    handler: previousURL ? handleCallback(clickPaginationLink("previousURL", node)) : handleCallback(previousHandler)
-  }));
-  const nextHandler = onNext || noop4;
-  const nextButtonEvents = nextKeys && (nextURL || onNext) && hasNext && nextKeys.map((key) => /* @__PURE__ */ import_react130.default.createElement(KeypressListener, {
-    key,
-    keyCode: key,
-    handler: nextURL ? handleCallback(clickPaginationLink("nextURL", node)) : handleCallback(nextHandler)
-  }));
-  if (type === "table") {
-    const labelMarkup2 = label ? /* @__PURE__ */ import_react130.default.createElement(Text, {
-      as: "span",
-      variant: "bodySm",
-      fontWeight: "medium"
-    }, label) : null;
-    return /* @__PURE__ */ import_react130.default.createElement("nav", {
-      "aria-label": navLabel,
-      ref: node,
-      className: classNames(styles37.Pagination, styles37.table)
-    }, previousButtonEvents, nextButtonEvents, /* @__PURE__ */ import_react130.default.createElement(Box, {
-      background: "bg-surface-secondary",
-      paddingBlockStart: "150",
-      paddingBlockEnd: "150",
-      paddingInlineStart: "300",
-      paddingInlineEnd: "200"
-    }, /* @__PURE__ */ import_react130.default.createElement(InlineStack, {
-      align: labelMarkup2 ? "space-between" : "end",
-      blockAlign: "center"
-    }, labelMarkup2, /* @__PURE__ */ import_react130.default.createElement(ButtonGroup, {
-      variant: "segmented"
-    }, constructedPrevious, constructedNext))));
-  }
-  const labelTextMarkup = hasNext && hasPrevious ? /* @__PURE__ */ import_react130.default.createElement("span", null, label) : /* @__PURE__ */ import_react130.default.createElement(Text, {
-    tone: "subdued",
-    as: "span"
-  }, label);
-  const labelMarkup = label ? /* @__PURE__ */ import_react130.default.createElement(Box, {
-    padding: "300",
-    paddingBlockStart: "0",
-    paddingBlockEnd: "0"
-  }, /* @__PURE__ */ import_react130.default.createElement("div", {
-    "aria-live": "polite"
-  }, labelTextMarkup)) : null;
-  return /* @__PURE__ */ import_react130.default.createElement("nav", {
-    "aria-label": navLabel,
-    ref: node,
-    className: styles37.Pagination
-  }, previousButtonEvents, nextButtonEvents, /* @__PURE__ */ import_react130.default.createElement(ButtonGroup, {
-    variant: "segmented"
-  }, constructedPrevious, labelMarkup, constructedNext));
-}
-function clickPaginationLink(id, node) {
-  return () => {
-    if (node.current == null) {
-      return;
-    }
-    const link = node.current.querySelector(`#${id}`);
-    if (link) {
-      link.click();
-    }
-  };
-}
-function handleCallback(fn) {
-  return () => {
-    if (isInputFocused()) {
-      return;
-    }
-    fn();
-  };
-}
-function noop4() {
-}
-var import_react130;
-var init_Pagination = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.js"() {
-    init_dist();
-    import_react130 = __toESM(require_react());
-    init_is_input_focused();
-    init_css();
-    init_Pagination_scss();
-    init_hooks2();
-    init_KeypressListener();
-    init_Box();
-    init_InlineStack();
-    init_ButtonGroup();
-    init_Tooltip();
-    init_Text();
-    init_Button();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.js
-function Header({
-  title,
-  subtitle,
-  pageReadyAccessibilityLabel,
-  titleMetadata,
-  additionalMetadata,
-  titleHidden = false,
-  primaryAction,
-  pagination,
-  filterActions,
-  backAction,
-  secondaryActions = [],
-  actionGroups = [],
-  compactTitle = false,
-  onActionRollup
-}) {
-  const i18n = useI18n();
-  const {
-    isNavigationCollapsed
-  } = useMediaQuery();
-  const isSingleRow = !primaryAction && !pagination && (isInterface(secondaryActions) && !secondaryActions.length || isReactElement(secondaryActions)) && !actionGroups.length;
-  const breadcrumbMarkup = backAction ? /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.BreadcrumbWrapper
-  }, /* @__PURE__ */ import_react131.default.createElement(Box, {
-    maxWidth: "100%",
-    paddingInlineEnd: "100",
-    printHidden: true
-  }, /* @__PURE__ */ import_react131.default.createElement(Breadcrumbs, {
-    backAction
-  }))) : null;
-  const paginationMarkup = pagination && !isNavigationCollapsed ? /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.PaginationWrapper
-  }, /* @__PURE__ */ import_react131.default.createElement(Box, {
-    printHidden: true
-  }, /* @__PURE__ */ import_react131.default.createElement(Pagination, Object.assign({}, pagination, {
-    hasPrevious: pagination.hasPrevious,
-    hasNext: pagination.hasNext
-  })))) : null;
-  const pageTitleMarkup = /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.TitleWrapper
-  }, /* @__PURE__ */ import_react131.default.createElement(Title, {
-    title,
-    subtitle,
-    titleMetadata,
-    compactTitle
-  }));
-  const labelForPageReadyAccessibilityLabel = pageReadyAccessibilityLabel || title;
-  const pageReadyAccessibilityLabelMarkup = labelForPageReadyAccessibilityLabel ? /* @__PURE__ */ import_react131.default.createElement("div", {
-    role: "status"
-  }, /* @__PURE__ */ import_react131.default.createElement(Text, {
-    visuallyHidden: true,
-    as: "p"
-  }, i18n.translate("Polaris.Page.Header.pageReadyAccessibilityLabel", {
-    title: labelForPageReadyAccessibilityLabel
-  }))) : void 0;
-  const primaryActionMarkup = primaryAction ? /* @__PURE__ */ import_react131.default.createElement(PrimaryActionMarkup, {
-    primaryAction
-  }) : null;
-  let actionMenuMarkup = null;
-  if (isInterface(secondaryActions) && (secondaryActions.length > 0 || hasGroupsWithActions(actionGroups))) {
-    actionMenuMarkup = /* @__PURE__ */ import_react131.default.createElement(ActionMenu, {
-      actions: secondaryActions,
-      groups: actionGroups,
-      rollup: isNavigationCollapsed,
-      rollupActionsLabel: title ? i18n.translate("Polaris.Page.Header.rollupActionsLabel", {
-        title
-      }) : void 0,
-      onActionRollup
-    });
-  } else if (isReactElement(secondaryActions)) {
-    actionMenuMarkup = /* @__PURE__ */ import_react131.default.createElement(import_react131.default.Fragment, null, secondaryActions);
-  }
-  const navigationMarkup = breadcrumbMarkup || paginationMarkup ? /* @__PURE__ */ import_react131.default.createElement(Box, {
-    printHidden: true,
-    paddingBlockEnd: "100",
-    paddingInlineEnd: actionMenuMarkup && isNavigationCollapsed ? "1000" : void 0
-  }, /* @__PURE__ */ import_react131.default.createElement(InlineStack, {
-    gap: "400",
-    align: "space-between",
-    blockAlign: "center"
-  }, breadcrumbMarkup, paginationMarkup)) : null;
-  const additionalMetadataMarkup = additionalMetadata ? /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.AdditionalMetaData
-  }, /* @__PURE__ */ import_react131.default.createElement(Text, {
-    tone: "subdued",
-    as: "span",
-    variant: "bodySm"
-  }, additionalMetadata)) : null;
-  const headerClassNames = classNames(isSingleRow && styles20.isSingleRow, navigationMarkup && styles20.hasNavigation, actionMenuMarkup && styles20.hasActionMenu, isNavigationCollapsed && styles20.mobileView, !backAction && styles20.noBreadcrumbs, title && title.length < LONG_TITLE && styles20.mediumTitle, title && title.length > LONG_TITLE && styles20.longTitle);
-  const {
-    slot1,
-    slot2,
-    slot3,
-    slot4,
-    slot5
-  } = determineLayout({
-    actionMenuMarkup,
-    additionalMetadataMarkup,
-    breadcrumbMarkup,
-    isNavigationCollapsed,
-    pageTitleMarkup,
-    paginationMarkup,
-    primaryActionMarkup,
-    title
-  });
-  return /* @__PURE__ */ import_react131.default.createElement(Box, {
-    position: "relative",
-    paddingBlockStart: {
-      xs: "400",
-      md: "600"
-    },
-    paddingBlockEnd: {
-      xs: "400",
-      md: "600"
-    },
-    paddingInlineStart: {
-      xs: "400",
-      sm: "0"
-    },
-    paddingInlineEnd: {
-      xs: "400",
-      sm: "0"
-    },
-    visuallyHidden: titleHidden
-  }, pageReadyAccessibilityLabelMarkup, /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: headerClassNames
-  }, /* @__PURE__ */ import_react131.default.createElement(FilterActionsProvider, {
-    filterActions: Boolean(filterActions)
-  }, /* @__PURE__ */ import_react131.default.createElement(ConditionalRender, {
-    condition: [slot1, slot2, slot3, slot4].some(notNull)
-  }, /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.Row
-  }, slot1, slot2, /* @__PURE__ */ import_react131.default.createElement(ConditionalRender, {
-    condition: [slot3, slot4].some(notNull)
-  }, /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.RightAlign
-  }, /* @__PURE__ */ import_react131.default.createElement(ConditionalWrapper, {
-    condition: [slot3, slot4].every(notNull),
-    wrapper: (children) => /* @__PURE__ */ import_react131.default.createElement("div", {
-      className: styles20.Actions
-    }, children)
-  }, slot3, slot4))))), /* @__PURE__ */ import_react131.default.createElement(ConditionalRender, {
-    condition: [slot5].some(notNull)
-  }, /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.Row
-  }, /* @__PURE__ */ import_react131.default.createElement(InlineStack, {
-    gap: "400"
-  }, slot5))))));
-}
-function PrimaryActionMarkup({
-  primaryAction
-}) {
-  const {
-    isNavigationCollapsed
-  } = useMediaQuery();
-  let actionMarkup;
-  if (isInterface(primaryAction)) {
-    const {
-      primary: isPrimary,
-      helpText
-    } = primaryAction;
-    const primary = isPrimary === void 0 ? true : isPrimary;
-    const content = buttonFrom(shouldShowIconOnly(isNavigationCollapsed, primaryAction), {
-      variant: primary ? "primary" : void 0
-    });
-    actionMarkup = helpText ? /* @__PURE__ */ import_react131.default.createElement(Tooltip, {
-      content: helpText
-    }, content) : content;
-  } else {
-    actionMarkup = primaryAction;
-  }
-  return /* @__PURE__ */ import_react131.default.createElement("div", {
-    className: styles20.PrimaryActionWrapper
-  }, /* @__PURE__ */ import_react131.default.createElement(Box, {
-    printHidden: true
-  }, actionMarkup));
-}
-function shouldShowIconOnly(isMobile, action) {
-  let {
-    content,
-    accessibilityLabel,
-    icon
-  } = action;
-  if (icon == null)
-    return {
-      ...action,
-      icon: void 0
-    };
-  if (isMobile) {
-    accessibilityLabel = accessibilityLabel || content;
-    content = void 0;
-  } else {
-    icon = void 0;
-  }
-  return {
-    ...action,
-    content,
-    accessibilityLabel,
-    icon
-  };
-}
-function notNull(value) {
-  return value != null;
-}
-function determineLayout({
-  actionMenuMarkup,
-  additionalMetadataMarkup,
-  breadcrumbMarkup,
-  isNavigationCollapsed,
-  pageTitleMarkup,
-  paginationMarkup,
-  primaryActionMarkup,
-  title
-}) {
-  const layouts = {
-    mobileCompact: {
-      slots: {
-        slot1: null,
-        slot2: pageTitleMarkup,
-        slot3: actionMenuMarkup,
-        slot4: primaryActionMarkup,
-        slot5: additionalMetadataMarkup
-      },
-      condition: isNavigationCollapsed && breadcrumbMarkup == null && title != null && title.length <= REALLY_SHORT_TITLE
-    },
-    mobileDefault: {
-      slots: {
-        slot1: breadcrumbMarkup,
-        slot2: pageTitleMarkup,
-        slot3: actionMenuMarkup,
-        slot4: primaryActionMarkup,
-        slot5: additionalMetadataMarkup
-      },
-      condition: isNavigationCollapsed
-    },
-    desktopCompact: {
-      slots: {
-        slot1: breadcrumbMarkup,
-        slot2: pageTitleMarkup,
-        slot3: actionMenuMarkup,
-        slot4: primaryActionMarkup,
-        slot5: additionalMetadataMarkup
-      },
-      condition: !isNavigationCollapsed && paginationMarkup == null && actionMenuMarkup == null && title != null && title.length <= SHORT_TITLE
-    },
-    desktopDefault: {
-      slots: {
-        slot1: breadcrumbMarkup,
-        slot2: pageTitleMarkup,
-        slot3: /* @__PURE__ */ import_react131.default.createElement(import_react131.default.Fragment, null, actionMenuMarkup, primaryActionMarkup),
-        slot4: paginationMarkup,
-        slot5: additionalMetadataMarkup
-      },
-      condition: !isNavigationCollapsed
-    }
-  };
-  const layout = Object.values(layouts).find((layout2) => layout2.condition) || layouts.desktopDefault;
-  return layout.slots;
-}
-var import_react131, SHORT_TITLE, REALLY_SHORT_TITLE, LONG_TITLE;
-var init_Header = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.js"() {
-    import_react131 = __toESM(require_react());
-    init_css();
-    init_components();
-    init_is_interface();
-    init_is_react_element();
-    init_Header_scss();
-    init_Breadcrumbs();
-    init_Title();
-    init_ActionMenu();
-    init_FilterActionsProvider();
-    init_hooks2();
-    init_hooks5();
-    init_Box();
-    init_Pagination();
-    init_Text();
-    init_InlineStack();
-    init_utils3();
-    init_Tooltip();
-    SHORT_TITLE = 20;
-    REALLY_SHORT_TITLE = 8;
-    LONG_TITLE = 34;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Page/Page.js
-function Page({
-  children,
-  fullWidth,
-  narrowWidth,
-  ...rest
-}) {
-  const pageClassName = classNames(styles19.Page, fullWidth && styles19.fullWidth, narrowWidth && styles19.narrowWidth);
-  const hasHeaderContent = rest.title != null && rest.title !== "" || rest.subtitle != null && rest.subtitle !== "" || rest.primaryAction != null || rest.secondaryActions != null && (isInterface(rest.secondaryActions) && rest.secondaryActions.length > 0 || isReactElement(rest.secondaryActions)) || rest.actionGroups != null && rest.actionGroups.length > 0 || rest.backAction != null;
-  const contentClassName = classNames(!hasHeaderContent && styles19.Content);
-  const headerMarkup = hasHeaderContent ? /* @__PURE__ */ import_react132.default.createElement(Header, Object.assign({
-    filterActions: true
-  }, rest)) : null;
-  return /* @__PURE__ */ import_react132.default.createElement("div", {
-    className: pageClassName
-  }, headerMarkup, /* @__PURE__ */ import_react132.default.createElement("div", {
-    className: contentClassName
-  }, children));
-}
-var import_react132;
-var init_Page = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Page/Page.js"() {
-    import_react132 = __toESM(require_react());
-    init_css();
-    init_is_interface();
-    init_is_react_element();
-    init_Page_scss();
+    init_use_toggle();
+    init_within_content_context();
+    init_LegacyCard_scss();
     init_Header();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/configure.js
-var DEFAULT_LOCALE, SUPPORTED_LOCALES;
-var init_configure = __esm({
-  "node_modules/@shopify/polaris/build/esm/configure.js"() {
-    DEFAULT_LOCALE = "en";
-    SUPPORTED_LOCALES = ["cs", "da", "de", "en", "es", "fi", "fr", "it", "ja", "ko", "nb", "nl", "pl", "pt-BR", "pt-PT", "sv", "th", "tr", "vi", "zh-CN", "zh-TW"];
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/clamp.js
-function clamp(number, min, max) {
-  if (number < min)
-    return min;
-  if (number > max)
-    return max;
-  return number;
-}
-var init_clamp = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/clamp.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/roundNumberToDecimalPlaces.js
-function roundNumberToDecimalPlaces(value, decimals) {
-  const exponent = Number(`${value}e${decimals}`);
-  const roundedExponent = Math.round(exponent);
-  const numberWithDecimalPlaces = Number(`${roundedExponent}e-${decimals}`);
-  return numberWithDecimalPlaces;
-}
-var init_roundNumberToDecimalPlaces = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/roundNumberToDecimalPlaces.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/color-transformers.js
-function rgbString(color2) {
-  const {
-    red: red2,
-    green: green2,
-    blue: blue2
-  } = color2;
-  if ("alpha" in color2) {
-    return `rgba(${red2}, ${green2}, ${blue2}, ${color2.alpha})`;
-  } else {
-    return `rgb(${red2}, ${green2}, ${blue2})`;
-  }
-}
-function rgbToHex({
-  red: red2,
-  green: green2,
-  blue: blue2
-}) {
-  return `#${componentToHex(red2)}${componentToHex(green2)}${componentToHex(blue2)}`;
-}
-function componentToHex(component) {
-  const hex = component.toString(16);
-  return hex.length === 1 ? `0${hex}` : hex;
-}
-function hsbToHex(color2) {
-  return rgbToHex(hsbToRgb(color2));
-}
-function rgbFromHueAndChroma(hue, chroma) {
-  const huePrime = hue / 60;
-  const hueDelta = 1 - Math.abs(huePrime % 2 - 1);
-  const intermediateValue = chroma * hueDelta;
-  let red2 = 0;
-  let green2 = 0;
-  let blue2 = 0;
-  if (huePrime >= 0 && huePrime <= 1) {
-    red2 = chroma;
-    green2 = intermediateValue;
-    blue2 = 0;
-  }
-  if (huePrime >= 1 && huePrime <= 2) {
-    red2 = intermediateValue;
-    green2 = chroma;
-    blue2 = 0;
-  }
-  if (huePrime >= 2 && huePrime <= 3) {
-    red2 = 0;
-    green2 = chroma;
-    blue2 = intermediateValue;
-  }
-  if (huePrime >= 3 && huePrime <= 4) {
-    red2 = 0;
-    green2 = intermediateValue;
-    blue2 = chroma;
-  }
-  if (huePrime >= 4 && huePrime <= 5) {
-    red2 = intermediateValue;
-    green2 = 0;
-    blue2 = chroma;
-  }
-  if (huePrime >= 5 && huePrime <= 6) {
-    red2 = chroma;
-    green2 = 0;
-    blue2 = intermediateValue;
-  }
-  return {
-    red: red2,
-    green: green2,
-    blue: blue2
-  };
-}
-function hsbToRgb(color2) {
-  const {
-    hue,
-    saturation,
-    brightness,
-    alpha = 1
-  } = color2;
-  const chroma = brightness * saturation;
-  let {
-    red: red2,
-    green: green2,
-    blue: blue2
-  } = rgbFromHueAndChroma(hue, chroma);
-  const chromaBrightnessDelta = brightness - chroma;
-  red2 += chromaBrightnessDelta;
-  green2 += chromaBrightnessDelta;
-  blue2 += chromaBrightnessDelta;
-  return {
-    red: Math.round(red2 * 255),
-    green: Math.round(green2 * 255),
-    blue: Math.round(blue2 * 255),
-    alpha
-  };
-}
-function hslToRgb(color2) {
-  const {
-    hue,
-    saturation,
-    lightness,
-    alpha = 1
-  } = color2;
-  const chroma = (1 - Math.abs(2 * (lightness / 100) - 1)) * (saturation / 100);
-  let {
-    red: red2,
-    green: green2,
-    blue: blue2
-  } = rgbFromHueAndChroma(hue, chroma);
-  const lightnessVal = lightness / 100 - chroma / 2;
-  red2 += lightnessVal;
-  green2 += lightnessVal;
-  blue2 += lightnessVal;
-  return {
-    red: Math.round(red2 * 255),
-    green: Math.round(green2 * 255),
-    blue: Math.round(blue2 * 255),
-    alpha
-  };
-}
-function rgbToHsbl(color2, type = "b") {
-  const {
-    alpha = 1
-  } = color2;
-  const red2 = color2.red / 255;
-  const green2 = color2.green / 255;
-  const blue2 = color2.blue / 255;
-  const largestComponent = Math.max(red2, green2, blue2);
-  const smallestComponent = Math.min(red2, green2, blue2);
-  const delta = largestComponent - smallestComponent;
-  const lightness = (largestComponent + smallestComponent) / 2;
-  let saturation = 0;
-  if (largestComponent === 0) {
-    saturation = 0;
-  } else if (type === "b") {
-    saturation = delta / largestComponent;
-  } else if (type === "l") {
-    const baseSaturation = lightness > 0.5 ? delta / (2 - largestComponent - smallestComponent) : delta / (largestComponent + smallestComponent);
-    saturation = isNaN(baseSaturation) ? 0 : baseSaturation;
-  }
-  let huePercentage = 0;
-  switch (largestComponent) {
-    case red2:
-      huePercentage = (green2 - blue2) / delta + (green2 < blue2 ? 6 : 0);
-      break;
-    case green2:
-      huePercentage = (blue2 - red2) / delta + 2;
-      break;
-    case blue2:
-      huePercentage = (red2 - green2) / delta + 4;
-  }
-  const hue = huePercentage / 6 * 360;
-  const clampedHue = clamp(hue, 0, 360);
-  return {
-    hue: clampedHue ? roundNumberToDecimalPlaces(clampedHue, 2) : 0,
-    saturation: roundNumberToDecimalPlaces(clamp(saturation, 0, 1), 4),
-    brightness: roundNumberToDecimalPlaces(clamp(largestComponent, 0, 1), 4),
-    lightness: roundNumberToDecimalPlaces(lightness, 4),
-    alpha: roundNumberToDecimalPlaces(alpha, 4)
-  };
-}
-function rgbToHsb(color2) {
-  const {
-    hue,
-    saturation,
-    brightness,
-    alpha = 1
-  } = rgbToHsbl(color2, "b");
-  return {
-    hue,
-    saturation,
-    brightness,
-    alpha
-  };
-}
-function rgbToHsl(color2) {
-  const {
-    hue,
-    saturation: rawSaturation,
-    lightness: rawLightness,
-    alpha = 1
-  } = rgbToHsbl(color2, "l");
-  const saturation = roundNumberToDecimalPlaces(rawSaturation * 100, 2);
-  const lightness = roundNumberToDecimalPlaces(rawLightness * 100, 2);
-  return {
-    hue,
-    saturation,
-    lightness,
-    alpha
-  };
-}
-function hexToRgb(color2) {
-  if (color2.length === 4) {
-    const repeatHex = (hex1, hex2) => color2.slice(hex1, hex2).repeat(2);
-    const red3 = parseInt(repeatHex(1, 2), 16);
-    const green3 = parseInt(repeatHex(2, 3), 16);
-    const blue3 = parseInt(repeatHex(3, 4), 16);
-    return {
-      red: red3,
-      green: green3,
-      blue: blue3
-    };
-  }
-  const red2 = parseInt(color2.slice(1, 3), 16);
-  const green2 = parseInt(color2.slice(3, 5), 16);
-  const blue2 = parseInt(color2.slice(5, 7), 16);
-  return {
-    red: red2,
-    green: green2,
-    blue: blue2
-  };
-}
-var rgbaString;
-var init_color_transformers = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/color-transformers.js"() {
-    init_clamp();
-    init_roundNumberToDecimalPlaces();
-    rgbaString = rgbString;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-index-resource-state.js
-function defaultResourceIDResolver(resource) {
-  if ("id" in resource) {
-    return resource.id;
-  }
-  throw new Error("Your resource does not directly contain an `id`. Pass a `resourceIDResolver` to `useIndexResourceState`");
-}
-function useIndexResourceState(resources, {
-  selectedResources: initSelectedResources = [],
-  allResourcesSelected: initAllResourcesSelected = false,
-  resourceIDResolver = defaultResourceIDResolver,
-  resourceFilter = void 0
-} = {
-  selectedResources: [],
-  allResourcesSelected: false,
-  resourceIDResolver: defaultResourceIDResolver,
-  resourceFilter: void 0
-}) {
-  const [selectedResources, setSelectedResources] = (0, import_react133.useState)(initSelectedResources);
-  const [allResourcesSelected, setAllResourcesSelected] = (0, import_react133.useState)(initAllResourcesSelected);
-  const handleSelectionChange = (0, import_react133.useCallback)((selectionType, isSelecting, selection, _position) => {
-    if (selectionType === SelectionType.All) {
-      setAllResourcesSelected(isSelecting);
-    } else if (allResourcesSelected) {
-      setAllResourcesSelected(false);
-    }
-    switch (selectionType) {
-      case SelectionType.Single:
-        setSelectedResources((newSelectedResources) => isSelecting ? [...newSelectedResources, selection] : newSelectedResources.filter((id) => id !== selection));
-        break;
-      case SelectionType.All:
-      case SelectionType.Page:
-        if (resourceFilter) {
-          const filteredResources = resources.filter(resourceFilter);
-          setSelectedResources(isSelecting && selectedResources.length < filteredResources.length ? filteredResources.map(resourceIDResolver) : []);
-        } else {
-          setSelectedResources(isSelecting ? resources.map(resourceIDResolver) : []);
-        }
-        break;
-      case SelectionType.Multi:
-        if (!selection)
-          break;
-        setSelectedResources((currentSelectedResources) => {
-          const ids = [];
-          const filteredResources = resourceFilter ? resources.filter(resourceFilter) : resources;
-          for (let i = selection[0]; i <= selection[1]; i++) {
-            if (filteredResources.includes(resources[i])) {
-              const id = resourceIDResolver(resources[i]);
-              if (isSelecting && !currentSelectedResources.includes(id) || !isSelecting && currentSelectedResources.includes(id)) {
-                ids.push(id);
-              }
-            }
-          }
-          return isSelecting ? [...currentSelectedResources, ...ids] : currentSelectedResources.filter((id) => !ids.includes(id));
-        });
-        break;
-      case SelectionType.Range:
-        if (!selection)
-          break;
-        setSelectedResources((currentSelectedResources) => {
-          const filteredResources = resourceFilter ? resources.filter(resourceFilter) : resources;
-          const resourceIds = filteredResources.map(resourceIDResolver);
-          const selectedIds = resourceIds.slice(Number(selection[0]), Number(selection[1]) + 1);
-          const isIndeterminate = selectedIds.some((id) => {
-            return selectedResources.includes(id);
-          });
-          const isChecked = selectedIds.every((id) => {
-            return selectedResources.includes(id);
-          });
-          const isSelectingAllInRange = !isChecked && (isSelecting || isIndeterminate);
-          const nextSelectedResources = isSelectingAllInRange ? [...(/* @__PURE__ */ new Set([...currentSelectedResources, ...selectedIds])).values()] : currentSelectedResources.filter((id) => !selectedIds.includes(id));
-          return nextSelectedResources;
-        });
-        break;
-    }
-  }, [allResourcesSelected, resourceFilter, selectedResources, resources, resourceIDResolver]);
-  const clearSelection = (0, import_react133.useCallback)(() => {
-    setSelectedResources([]);
-    setAllResourcesSelected(false);
-  }, []);
-  const removeSelectedResources = (0, import_react133.useCallback)((removeResources) => {
-    const selectedResourcesCopy = [...selectedResources];
-    const newSelectedResources = selectedResourcesCopy.filter((resource) => !removeResources.includes(resource));
-    setSelectedResources(newSelectedResources);
-    if (newSelectedResources.length === 0) {
-      setAllResourcesSelected(false);
-    }
-  }, [selectedResources]);
-  return {
-    selectedResources,
-    allResourcesSelected,
-    handleSelectionChange,
-    clearSelection,
-    removeSelectedResources
-  };
-}
-var import_react133, SelectionType;
-var init_use_index_resource_state = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-index-resource-state.js"() {
-    import_react133 = __toESM(require_react());
-    (function(SelectionType3) {
-      SelectionType3["All"] = "all";
-      SelectionType3["Page"] = "page";
-      SelectionType3["Multi"] = "multi";
-      SelectionType3["Single"] = "single";
-      SelectionType3["Range"] = "range";
-    })(SelectionType || (SelectionType = {}));
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.scss.js
-var styles38;
-var init_SettingAction_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.scss.js"() {
-    styles38 = {
-      "SettingAction": "Polaris-SettingAction",
-      "Setting": "Polaris-SettingAction__Setting",
-      "Action": "Polaris-SettingAction__Action"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.js
-function SettingAction({
-  action,
-  children
-}) {
-  return /* @__PURE__ */ import_react134.default.createElement("div", {
-    className: styles38.SettingAction
-  }, /* @__PURE__ */ import_react134.default.createElement("div", {
-    className: styles38.Setting
-  }, children), /* @__PURE__ */ import_react134.default.createElement("div", {
-    className: styles38.Action
-  }, action));
-}
-var import_react134;
-var init_SettingAction = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.js"() {
-    import_react134 = __toESM(require_react());
-    init_SettingAction_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.scss.js
-var styles39;
-var init_Avatar_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.scss.js"() {
-    styles39 = {
-      "Avatar": "Polaris-Avatar",
-      "imageHasLoaded": "Polaris-Avatar--imageHasLoaded",
-      "Text": "Polaris-Avatar__Text",
-      "long": "Polaris-Avatar--long",
-      "hidden": "Polaris-Avatar--hidden",
-      "sizeXs": "Polaris-Avatar--sizeXs",
-      "sizeSm": "Polaris-Avatar--sizeSm",
-      "sizeMd": "Polaris-Avatar--sizeMd",
-      "sizeLg": "Polaris-Avatar--sizeLg",
-      "sizeXl": "Polaris-Avatar--sizeXl",
-      "styleOne": "Polaris-Avatar--styleOne",
-      "styleTwo": "Polaris-Avatar--styleTwo",
-      "styleThree": "Polaris-Avatar--styleThree",
-      "styleFour": "Polaris-Avatar--styleFour",
-      "styleFive": "Polaris-Avatar--styleFive",
-      "styleSix": "Polaris-Avatar--styleSix",
-      "styleSeven": "Polaris-Avatar--styleSeven",
-      "Image": "Polaris-Avatar__Image",
-      "Initials": "Polaris-Avatar__Initials",
-      "Svg": "Polaris-Avatar__Svg"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Image/Image.js
-function Image({
-  alt,
-  sourceSet,
-  source,
-  crossOrigin,
-  onLoad,
-  className,
-  ...rest
-}) {
-  const finalSourceSet = sourceSet ? sourceSet.map(({
-    source: subSource,
-    descriptor
-  }) => `${subSource} ${descriptor}`).join(",") : null;
-  const handleLoad = (0, import_react135.useCallback)(() => {
-    if (onLoad)
-      onLoad();
-  }, [onLoad]);
-  return /* @__PURE__ */ import_react135.default.createElement("img", Object.assign({
-    alt,
-    src: source,
-    crossOrigin,
-    className,
-    onLoad: handleLoad
-  }, finalSourceSet ? {
-    srcSet: finalSourceSet
-  } : {}, rest));
-}
-var import_react135;
-var init_Image = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Image/Image.js"() {
-    import_react135 = __toESM(require_react());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.js
-function xorHash(str) {
-  let hash = 0;
-  for (const char of str) {
-    hash ^= char.charCodeAt(0);
-  }
-  return hash;
-}
-function styleClass(name) {
-  return name ? STYLE_CLASSES[xorHash(name) % STYLE_CLASSES.length] : STYLE_CLASSES[0];
-}
-function Avatar({
-  name,
-  source,
-  onError,
-  initials,
-  customer,
-  size: size2 = "md",
-  accessibilityLabel
-}) {
-  const i18n = useI18n();
-  const isAfterInitialMount = useIsAfterInitialMount();
-  const [status, setStatus] = (0, import_react136.useState)(Status.Pending);
-  (0, import_react136.useEffect)(() => {
-    setStatus(Status.Pending);
-  }, [source]);
-  const handleError = (0, import_react136.useCallback)(() => {
-    setStatus(Status.Errored);
-    if (onError) {
-      onError();
-    }
-  }, [onError]);
-  const handleLoad = (0, import_react136.useCallback)(() => {
-    setStatus(Status.Loaded);
-  }, []);
-  const hasImage = source && status !== Status.Errored;
-  const nameString = name || initials;
-  let label;
-  if (accessibilityLabel) {
-    label = accessibilityLabel;
-  } else if (name) {
-    label = name;
-  } else if (initials) {
-    const splitInitials = initials.split("").join(" ");
-    label = i18n.translate("Polaris.Avatar.labelWithInitials", {
-      initials: splitInitials
-    });
-  }
-  const className = classNames(styles39.Avatar, size2 && styles39[variationName("size", size2)], hasImage && status === Status.Loaded && styles39.imageHasLoaded, !customer && !hasImage && styles39[variationName("style", styleClass(nameString))]);
-  const textClassName = classNames(styles39.Text, (initials?.length || 0) > 2 && styles39.long);
-  const imageClassName = classNames(styles39.Image, status !== Status.Loaded && styles39.hidden);
-  const imageMarkUp = source && isAfterInitialMount && status !== Status.Errored ? /* @__PURE__ */ import_react136.default.createElement(Image, {
-    className: imageClassName,
-    source,
-    alt: "",
-    role: "presentation",
-    onLoad: handleLoad,
-    onError: handleError
-  }) : null;
-  const verticalOffset = "0.35em";
-  const avatarPath = /* @__PURE__ */ import_react136.default.createElement(import_react136.default.Fragment, null, /* @__PURE__ */ import_react136.default.createElement("path", {
-    fill: "none",
-    d: "M25.5 13.5C25.5 16.5376 23.0376 19 20 19C16.9624 19 14.5 16.5376 14.5 13.5C14.5 10.4624 16.9624 8 20 8C23.0376 8 25.5 10.4624 25.5 13.5Z",
-    stroke: "currentColor",
-    strokeWidth: avatarStrokeWidth[size2]
-  }), /* @__PURE__ */ import_react136.default.createElement("path", {
-    fill: "none",
-    d: "M10.3433 29.682L9.47 31.254C9.03481 32.0373 9.60125 33 10.4974 33H29.5026C30.3988 33 30.9652 32.0373 30.53 31.254L29.6567 29.682C27.7084 26.175 24.0119 24 20 24C15.9882 24 12.2916 26.175 10.3433 29.682Z",
-    stroke: "currentColor",
-    strokeWidth: avatarStrokeWidth[size2],
-    strokeLinecap: "round",
-    strokeLinejoin: "round"
-  }));
-  const avatarBody = customer || !initials ? avatarPath : /* @__PURE__ */ import_react136.default.createElement("text", {
-    className: textClassName,
-    x: "50%",
-    y: "50%",
-    dy: verticalOffset,
-    fill: "currentColor",
-    textAnchor: "middle"
-  }, initials);
-  const svgMarkup = hasImage ? null : /* @__PURE__ */ import_react136.default.createElement("span", {
-    className: styles39.Initials
-  }, /* @__PURE__ */ import_react136.default.createElement("svg", {
-    className: styles39.Svg,
-    viewBox: "0 0 40 40"
-  }, avatarBody));
-  return /* @__PURE__ */ import_react136.default.createElement("span", {
-    "aria-label": label,
-    role: label ? "img" : "presentation",
-    className
-  }, svgMarkup, imageMarkUp);
-}
-var import_react136, Status, STYLE_CLASSES, avatarStrokeWidth;
-var init_Avatar = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.js"() {
-    import_react136 = __toESM(require_react());
-    init_css();
-    init_use_is_after_initial_mount();
-    init_Avatar_scss();
+    init_Section();
+    init_Subsection();
     init_hooks2();
-    init_Image();
-    (function(Status2) {
-      Status2["Pending"] = "PENDING";
-      Status2["Loaded"] = "LOADED";
-      Status2["Errored"] = "ERRORED";
-    })(Status || (Status = {}));
-    STYLE_CLASSES = ["one", "two", "three", "four", "five", "six", "seven"];
-    avatarStrokeWidth = {
-      xs: "3",
-      sm: "2.5",
-      md: "2.5",
-      lg: "2.5",
-      xl: "2"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/AccountConnection/AccountConnection.js
-function AccountConnection({
-  connected = false,
-  action,
-  avatarUrl,
-  accountName = "",
-  title,
-  details,
-  termsOfService
-}) {
-  const breakpoints2 = useBreakpoints();
-  const initials = accountName ? accountName.split(/\s+/).map((name) => name[0]).join("") : void 0;
-  const avatarMarkup = connected ? /* @__PURE__ */ import_react137.default.createElement("span", null, /* @__PURE__ */ import_react137.default.createElement(Avatar, {
-    accessibilityLabel: "",
-    name: accountName,
-    initials,
-    source: avatarUrl
-  })) : null;
-  const titleContent = title ? title : accountName;
-  const titleMarkup = /* @__PURE__ */ import_react137.default.createElement(Text, {
-    as: "h2",
-    variant: "headingSm"
-  }, titleContent);
-  const detailsMarkup = details ? /* @__PURE__ */ import_react137.default.createElement(Text, {
-    as: "span",
-    tone: "subdued"
-  }, details) : null;
-  const termsOfServiceMarkup = termsOfService ? /* @__PURE__ */ import_react137.default.createElement(Box, {
-    paddingBlockStart: breakpoints2.mdUp ? "400" : "500"
-  }, termsOfService) : null;
-  const actionElement = action ? buttonFrom(action, {
-    variant: connected ? void 0 : "primary"
-  }) : null;
-  return /* @__PURE__ */ import_react137.default.createElement(Card, null, /* @__PURE__ */ import_react137.default.createElement(SettingAction, {
-    action: actionElement
-  }, /* @__PURE__ */ import_react137.default.createElement(InlineStack, {
-    gap: "400"
-  }, avatarMarkup, /* @__PURE__ */ import_react137.default.createElement(BlockStack, {
-    gap: "100"
-  }, titleMarkup, detailsMarkup))), termsOfServiceMarkup);
-}
-var import_react137;
-var init_AccountConnection = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/AccountConnection/AccountConnection.js"() {
-    import_react137 = __toESM(require_react());
-    init_breakpoints2();
     init_utils3();
-    init_Card();
-    init_SettingAction();
-    init_InlineStack();
-    init_BlockStack();
-    init_Avatar();
-    init_Box();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/options.js
-function isSection(arr) {
-  return typeof arr[0] === "object" && Object.prototype.hasOwnProperty.call(arr[0], "options");
-}
-var init_options = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/options.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.scss.js
-var styles40;
-var init_Autocomplete_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.scss.js"() {
-    styles40 = {
-      "Loading": "Polaris-Autocomplete__Loading",
-      "SectionWrapper": "Polaris-Autocomplete__SectionWrapper"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.scss.js
-var styles41;
-var init_MappedOption_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.scss.js"() {
-    styles41 = {
-      "Content": "Polaris-Autocomplete-MappedOption__Content",
-      "Media": "Polaris-Autocomplete-MappedOption__Media",
-      "singleSelectionMedia": "Polaris-Autocomplete-MappedOption--singleSelectionMedia",
-      "disabledMedia": "Polaris-Autocomplete-MappedOption--disabledMedia"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.scss.js
-var styles42;
-var init_Listbox_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.scss.js"() {
-    styles42 = {
-      "Listbox": "Polaris-Listbox"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/combobox/context.js
-var import_react138, ComboboxTextFieldContext, ComboboxListboxContext, ComboboxListboxOptionContext;
-var init_context11 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/combobox/context.js"() {
-    import_react138 = __toESM(require_react());
-    ComboboxTextFieldContext = /* @__PURE__ */ (0, import_react138.createContext)(void 0);
-    ComboboxListboxContext = /* @__PURE__ */ (0, import_react138.createContext)({});
-    ComboboxListboxOptionContext = /* @__PURE__ */ (0, import_react138.createContext)({});
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/combobox/hooks.js
-function useComboboxTextField() {
-  const context = (0, import_react139.useContext)(ComboboxTextFieldContext);
-  if (!context) {
-    throw new Error("No Combobox was provided. Your component must be wrapped in a <Combobox> component.");
-  }
-  return context;
-}
-function useComboboxListbox() {
-  const context = (0, import_react139.useContext)(ComboboxListboxContext);
-  return context;
-}
-var import_react139;
-var init_hooks6 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/combobox/hooks.js"() {
-    import_react139 = __toESM(require_react());
-    init_context11();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/listbox/utilities.js
-function scrollOptionIntoView(option, scrollable2) {
-  const listTop = scrollable2.scrollTop;
-  const listBottom = listTop + scrollable2.clientHeight;
-  const {
-    offsetHeight: optionHeight
-  } = option;
-  const {
-    offsetTop: optionTop
-  } = option;
-  const optionBottom = optionTop + optionHeight;
-  const isVisible = optionTop > listTop && optionBottom < listBottom;
-  if (!isVisible) {
-    let top = 0;
-    if (optionBottom > listBottom) {
-      top = optionBottom + optionHeight * 0.85 - listBottom;
-    } else if (optionTop < listTop) {
-      top = optionTop - optionHeight * 0.15 - listTop;
-    }
-    requestAnimationFrame(() => {
-      scrollable2.scrollBy({
-        top,
-        behavior: "auto"
-      });
-    });
-  }
-}
-var init_utilities = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/listbox/utilities.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/listbox/context.js
-var import_react140, ListboxContext, WithinListboxContext, ActionContext;
-var init_context12 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/listbox/context.js"() {
-    import_react140 = __toESM(require_react());
-    ListboxContext = /* @__PURE__ */ (0, import_react140.createContext)(void 0);
-    WithinListboxContext = /* @__PURE__ */ (0, import_react140.createContext)(false);
-    ActionContext = /* @__PURE__ */ (0, import_react140.createContext)(false);
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.scss.js
-var styles43;
-var init_TextOption_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.scss.js"() {
-    styles43 = {
-      "TextOption": "Polaris-Listbox-TextOption",
-      "allowMultiple": "Polaris-Listbox-TextOption--allowMultiple",
-      "isAction": "Polaris-Listbox-TextOption--isAction",
-      "disabled": "Polaris-Listbox-TextOption--disabled",
-      "selected": "Polaris-Listbox-TextOption--selected",
-      "Content": "Polaris-Listbox-TextOption__Content",
-      "Checkbox": "Polaris-Listbox-TextOption__Checkbox"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.scss.js
-var styles44;
-var init_Checkbox_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.scss.js"() {
-    styles44 = {
-      "Checkbox": "Polaris-Checkbox",
-      "ChoiceLabel": "Polaris-Checkbox__ChoiceLabel",
-      "Backdrop": "Polaris-Checkbox__Backdrop",
-      "Input": "Polaris-Checkbox__Input",
-      "Input-indeterminate": "Polaris-Checkbox__Input--indeterminate",
-      "Icon": "Polaris-Checkbox__Icon",
-      "animated": "Polaris-Checkbox--animated",
-      "toneMagic": "Polaris-Checkbox--toneMagic",
-      "hover": "Polaris-Checkbox--hover",
-      "error": "Polaris-Checkbox--error",
-      "checked": "Polaris-Checkbox--checked",
-      "pathAnimation": "Polaris-Checkbox--pathAnimation"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Choice/Choice.scss.js
-var styles45;
-var init_Choice_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Choice/Choice.scss.js"() {
-    styles45 = {
-      "Choice": "Polaris-Choice",
-      "labelHidden": "Polaris-Choice--labelHidden",
-      "Label": "Polaris-Choice__Label",
-      "Control": "Polaris-Choice__Control",
-      "disabled": "Polaris-Choice--disabled",
-      "toneMagic": "Polaris-Choice--toneMagic",
-      "Descriptions": "Polaris-Choice__Descriptions",
-      "HelpText": "Polaris-Choice__HelpText"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Choice/Choice.js
-function Choice({
-  id,
-  label,
-  disabled,
-  error,
-  children,
-  labelHidden,
-  helpText,
-  onClick,
-  labelClassName,
-  fill,
-  bleed,
-  bleedBlockStart,
-  bleedBlockEnd,
-  bleedInlineStart,
-  bleedInlineEnd,
-  tone
-}) {
-  const className = classNames(styles45.Choice, labelHidden && styles45.labelHidden, disabled && styles45.disabled, tone && styles45[variationName("tone", tone)], labelClassName);
-  const labelStyle = {
-    // Pass through overrides for bleed values if they're set by the prop
-    ...getResponsiveProps("choice", "bleed-block-end", "space", bleedBlockEnd || bleed),
-    ...getResponsiveProps("choice", "bleed-block-start", "space", bleedBlockStart || bleed),
-    ...getResponsiveProps("choice", "bleed-inline-start", "space", bleedInlineStart || bleed),
-    ...getResponsiveProps("choice", "bleed-inline-end", "space", bleedInlineEnd || bleed),
-    ...Object.fromEntries(Object.entries(getResponsiveValue("choice", "fill", fill)).map(
-      // Map "true" => "100%" and "false" => "auto" for use in
-      // inline/block-size calc()
-      ([key, value]) => [key, value ? "100%" : "auto"]
-    ))
-  };
-  const labelMarkup = (
-    // NOTE: Can't use a Box here for a few reasons:
-    // - as="label" fails `Element` typecheck (even though the JS works)
-    // - Can't pass hard coded values to padding (forced to tokens)
-    // - Can't pass negative values to padding
-    // - Can't pass margins at all
-    /* @__PURE__ */ import_react141.default.createElement("label", {
-      className,
-      htmlFor: id,
-      onClick,
-      style: sanitizeCustomProperties(labelStyle)
-    }, /* @__PURE__ */ import_react141.default.createElement("span", {
-      className: styles45.Control
-    }, children), /* @__PURE__ */ import_react141.default.createElement("span", {
-      className: styles45.Label
-    }, /* @__PURE__ */ import_react141.default.createElement("span", null, label)))
-  );
-  const helpTextMarkup = helpText ? /* @__PURE__ */ import_react141.default.createElement("div", {
-    className: styles45.HelpText,
-    id: helpTextID2(id)
-  }, /* @__PURE__ */ import_react141.default.createElement(Text, {
-    as: "span",
-    tone: disabled ? void 0 : "subdued"
-  }, helpText)) : null;
-  const errorMarkup = error && typeof error !== "boolean" && /* @__PURE__ */ import_react141.default.createElement("div", {
-    className: styles45.Error
-  }, /* @__PURE__ */ import_react141.default.createElement(InlineError, {
-    message: error,
-    fieldID: id
-  }));
-  const descriptionMarkup = helpTextMarkup || errorMarkup ? /* @__PURE__ */ import_react141.default.createElement("div", {
-    className: styles45.Descriptions
-  }, errorMarkup, helpTextMarkup) : null;
-  return descriptionMarkup ? /* @__PURE__ */ import_react141.default.createElement("div", null, labelMarkup, descriptionMarkup) : labelMarkup;
-}
-function helpTextID2(id) {
-  return `${id}HelpText`;
-}
-var import_react141;
-var init_Choice = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Choice/Choice.js"() {
-    import_react141 = __toESM(require_react());
-    init_css();
-    init_Choice_scss();
-    init_Text();
-    init_InlineError();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.js
-function noop5() {
-}
-function stopPropagation(event) {
-  event.stopPropagation();
-}
-var import_react142, Checkbox;
-var init_Checkbox = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.js"() {
-    import_react142 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_context12();
-    init_Checkbox_scss();
-    init_Choice();
-    init_InlineError();
-    init_Icon();
-    Checkbox = /* @__PURE__ */ (0, import_react142.forwardRef)(function Checkbox2({
-      ariaControls,
-      ariaDescribedBy: ariaDescribedByProp,
-      label,
-      labelHidden,
-      checked = false,
-      helpText,
-      disabled,
-      id: idProp,
-      name,
-      value,
-      error,
-      onChange,
-      onFocus,
-      onBlur,
-      labelClassName,
-      fill,
-      bleed,
-      bleedBlockStart,
-      bleedBlockEnd,
-      bleedInlineStart,
-      bleedInlineEnd,
-      tone
-    }, ref) {
-      const inputNode = (0, import_react142.useRef)(null);
-      const uniqId = (0, import_react142.useId)();
-      const id = idProp ?? uniqId;
-      const isWithinListbox = (0, import_react142.useContext)(WithinListboxContext);
-      (0, import_react142.useImperativeHandle)(ref, () => ({
-        focus: () => {
-          if (inputNode.current) {
-            inputNode.current.focus();
-          }
-        }
-      }));
-      const handleBlur = () => {
-        onBlur && onBlur();
-      };
-      const handleOnClick = () => {
-        if (onChange == null || inputNode.current == null || disabled) {
-          return;
-        }
-        onChange(inputNode.current.checked, id);
-        inputNode.current.focus();
-      };
-      const describedBy = [];
-      if (error && typeof error !== "boolean") {
-        describedBy.push(errorTextID(id));
-      }
-      if (helpText) {
-        describedBy.push(helpTextID2(id));
-      }
-      if (ariaDescribedByProp) {
-        describedBy.push(ariaDescribedByProp);
-      }
-      const ariaDescribedBy = describedBy.length ? describedBy.join(" ") : void 0;
-      const wrapperClassName = classNames(styles44.Checkbox, error && styles44.error);
-      const isIndeterminate = checked === "indeterminate";
-      const isChecked = !isIndeterminate && Boolean(checked);
-      const indeterminateAttributes = isIndeterminate ? {
-        indeterminate: "true",
-        "aria-checked": "mixed"
-      } : {
-        "aria-checked": isChecked
-      };
-      const iconSource = /* @__PURE__ */ import_react142.default.createElement("svg", {
-        viewBox: "0 0 16 16",
-        shapeRendering: "geometricPrecision",
-        textRendering: "geometricPrecision"
-      }, /* @__PURE__ */ import_react142.default.createElement("path", {
-        className: classNames(checked && styles44.checked),
-        d: "M1.5,5.5L3.44655,8.22517C3.72862,8.62007,4.30578,8.64717,4.62362,8.28044L10.5,1.5",
-        transform: "translate(2 2.980376)",
-        opacity: "0",
-        fill: "none",
-        stroke: "currentColor",
-        strokeWidth: "2",
-        strokeLinecap: "round",
-        strokeLinejoin: "round",
-        pathLength: "1"
-      }));
-      const inputClassName = classNames(styles44.Input, isIndeterminate && styles44["Input-indeterminate"], tone && styles44[variationName("tone", tone)]);
-      const extraChoiceProps = {
-        helpText,
-        error,
-        bleed,
-        bleedBlockStart,
-        bleedBlockEnd,
-        bleedInlineStart,
-        bleedInlineEnd
-      };
-      return /* @__PURE__ */ import_react142.default.createElement(Choice, Object.assign({
-        id,
-        label,
-        labelHidden,
-        disabled,
-        labelClassName: classNames(styles44.ChoiceLabel, labelClassName),
-        fill,
-        tone
-      }, extraChoiceProps), /* @__PURE__ */ import_react142.default.createElement("span", {
-        className: wrapperClassName
-      }, /* @__PURE__ */ import_react142.default.createElement("input", Object.assign({
-        ref: inputNode,
-        id,
-        name,
-        value,
-        type: "checkbox",
-        checked: isChecked,
-        disabled,
-        className: inputClassName,
-        onBlur: handleBlur,
-        onChange: noop5,
-        onClick: handleOnClick,
-        onFocus,
-        "aria-invalid": error != null,
-        "aria-controls": ariaControls,
-        "aria-describedby": ariaDescribedBy,
-        role: isWithinListbox ? "presentation" : "checkbox"
-      }, indeterminateAttributes)), /* @__PURE__ */ import_react142.default.createElement("span", {
-        className: styles44.Backdrop,
-        onClick: stopPropagation,
-        onKeyUp: stopPropagation
-      }), /* @__PURE__ */ import_react142.default.createElement("span", {
-        className: classNames(styles44.Icon, !isIndeterminate && styles44.animated)
-      }, isIndeterminate ? /* @__PURE__ */ import_react142.default.createElement(Icon, {
-        source: SvgMinusIcon
-      }) : iconSource)));
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.js
-var import_react143, TextOption;
-var init_TextOption = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.js"() {
-    import_react143 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_context11();
-    init_context12();
-    init_TextOption_scss();
-    init_Checkbox();
-    init_Box();
-    init_InlineStack();
-    init_Icon();
-    TextOption = /* @__PURE__ */ (0, import_react143.memo)(function TextOption2({
-      children,
-      selected,
-      disabled
-    }) {
-      const {
-        allowMultiple
-      } = (0, import_react143.useContext)(ComboboxListboxOptionContext);
-      const isAction = (0, import_react143.useContext)(ActionContext);
-      const textOptionClassName = classNames(styles43.TextOption, selected && !allowMultiple && styles43.selected, disabled && styles43.disabled, allowMultiple && styles43.allowMultiple, isAction && styles43.isAction);
-      const optionMarkup = selected ? /* @__PURE__ */ import_react143.default.createElement(Box, {
-        width: "100%"
-      }, /* @__PURE__ */ import_react143.default.createElement(InlineStack, {
-        wrap: false,
-        align: "space-between",
-        gap: "200"
-      }, children, /* @__PURE__ */ import_react143.default.createElement(InlineStack, {
-        align: "end"
-      }, /* @__PURE__ */ import_react143.default.createElement(Icon, {
-        source: SvgCheckIcon
-      })))) : /* @__PURE__ */ import_react143.default.createElement(import_react143.default.Fragment, null, children);
-      return /* @__PURE__ */ import_react143.default.createElement("div", {
-        className: textOptionClassName
-      }, /* @__PURE__ */ import_react143.default.createElement("div", {
-        className: styles43.Content
-      }, allowMultiple && !isAction ? /* @__PURE__ */ import_react143.default.createElement("div", {
-        className: styles43.Checkbox
-      }, /* @__PURE__ */ import_react143.default.createElement(Checkbox, {
-        disabled,
-        checked: selected,
-        label: children
-      })) : optionMarkup));
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.scss.js
-var styles46;
-var init_Loading_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.scss.js"() {
-    styles46 = {
-      "ListItem": "Polaris-Listbox-Loading__ListItem",
-      "Loading": "Polaris-Listbox-Loading"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/listbox/hooks.js
-function useListbox() {
-  const listbox = (0, import_react144.useContext)(ListboxContext);
-  if (!listbox) {
-    throw new Error("No Listbox was provided. Listbox components must be wrapped in a Listbox");
-  }
-  return listbox;
-}
-var import_react144;
-var init_hooks7 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/listbox/hooks.js"() {
-    import_react144 = __toESM(require_react());
-    init_context12();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.js
-var import_react145, Loading;
-var init_Loading = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.js"() {
-    import_react145 = __toESM(require_react());
-    init_Loading_scss();
-    init_hooks7();
-    init_Spinner();
-    Loading = /* @__PURE__ */ (0, import_react145.memo)(function LoadingOption({
-      children,
-      accessibilityLabel: label
-    }) {
-      const {
-        setLoading
-      } = useListbox();
-      (0, import_react145.useEffect)(() => {
-        setLoading(label);
-        return () => {
-          setLoading(void 0);
-        };
-      }, [label, setLoading]);
-      return /* @__PURE__ */ import_react145.default.createElement("li", {
-        className: styles46.ListItem,
-        role: "presentation"
-      }, children ? children : /* @__PURE__ */ import_react145.default.createElement("div", {
-        className: styles46.Loading
-      }, /* @__PURE__ */ import_react145.default.createElement(Spinner, {
-        size: "small",
-        accessibilityLabel: label
-      })));
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/selectors.js
-var listboxSectionDataSelector, listboxWithinSectionDataSelector;
-var init_selectors = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/selectors.js"() {
-    listboxSectionDataSelector = {
-      props: {
-        "data-polaris-listbox-section-item": true
-      },
-      selector: "[data-polaris-listbox-section-item]"
-    };
-    listboxWithinSectionDataSelector = {
-      attribute: "data-polaris-listbox-within-section-item"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/context.js
-var import_react146, SectionContext;
-var init_context13 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/context.js"() {
-    import_react146 = __toESM(require_react());
-    SectionContext = /* @__PURE__ */ (0, import_react146.createContext)(null);
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.scss.js
-var styles47;
-var init_Section_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.scss.js"() {
-    styles47 = {
-      "SectionGroup": "Polaris-Listbox-Section__SectionGroup",
-      "noDivider": "Polaris-Listbox-Section--noDivider"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.js
-function Section4({
-  children,
-  divider = true,
-  title
-}) {
-  const id = (0, import_react147.useId)();
-  return /* @__PURE__ */ import_react147.default.createElement(SectionContext.Provider, {
-    value: id
-  }, /* @__PURE__ */ import_react147.default.createElement("li", Object.assign({
-    role: "presentation"
-  }, listboxSectionDataSelector.props), title, /* @__PURE__ */ import_react147.default.createElement("ul", {
-    role: "group",
-    "aria-labelledby": id,
-    className: classNames(styles47.SectionGroup, !divider && styles47.noDivider)
-  }, children)));
-}
-var import_react147;
-var init_Section4 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.js"() {
-    import_react147 = __toESM(require_react());
-    init_css();
-    init_selectors();
-    init_context13();
-    init_Section_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/hooks.js
-function useSection() {
-  const context = (0, import_react148.useContext)(SectionContext);
-  return context;
-}
-var import_react148;
-var init_hooks8 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/hooks.js"() {
-    import_react148 = __toESM(require_react());
-    init_context13();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Header/Header.js
-function Header2({
-  children
-}) {
-  const sectionId = useSection() || "";
-  const content = typeof children === "string" ? /* @__PURE__ */ import_react149.default.createElement(Box, {
-    paddingBlockStart: "200",
-    paddingInlineStart: "400",
-    paddingBlockEnd: "200",
-    paddingInlineEnd: "400"
-  }, /* @__PURE__ */ import_react149.default.createElement(Text, {
-    as: "span",
-    variant: "headingSm",
-    tone: "subdued"
-  }, children)) : children;
-  return /* @__PURE__ */ import_react149.default.createElement("div", {
-    "aria-hidden": true,
-    id: sectionId
-  }, content);
-}
-var import_react149;
-var init_Header2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Header/Header.js"() {
-    import_react149 = __toESM(require_react());
-    init_hooks8();
-    init_Box();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.scss.js
-var styles48;
-var init_Action_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.scss.js"() {
-    styles48 = {
-      "Action": "Polaris-Listbox-Action",
-      "ActionDivider": "Polaris-Listbox-Action__ActionDivider",
-      "Icon": "Polaris-Listbox-Action__Icon"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.scss.js
-var styles49;
-var init_Option_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.scss.js"() {
-    styles49 = {
-      "Option": "Polaris-Listbox-Option",
-      "divider": "Polaris-Listbox-Option--divider"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/autocomplete/context.js
-var import_react150, MappedActionContext;
-var init_context14 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/autocomplete/context.js"() {
-    import_react150 = __toESM(require_react());
-    MappedActionContext = /* @__PURE__ */ (0, import_react150.createContext)({});
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.js
-var import_react151, Option;
-var init_Option = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.js"() {
-    import_react151 = __toESM(require_react());
-    init_css();
-    init_context12();
-    init_Option_scss();
-    init_hooks7();
-    init_context14();
-    init_hooks8();
-    init_selectors();
-    init_TextOption();
-    init_UnstyledLink();
-    Option = /* @__PURE__ */ (0, import_react151.memo)(function Option2({
-      value,
-      children,
-      selected,
-      disabled = false,
-      accessibilityLabel,
-      divider
-    }) {
-      const {
-        onOptionSelect
-      } = useListbox();
-      const isAction = (0, import_react151.useContext)(ActionContext);
-      const {
-        role,
-        url,
-        external,
-        onAction,
-        destructive
-      } = (0, import_react151.useContext)(MappedActionContext);
-      const listItemRef = (0, import_react151.useRef)(null);
-      const domId = (0, import_react151.useId)();
-      const sectionId = useSection();
-      const isWithinSection = Boolean(sectionId);
-      const handleOptionSelect = (0, import_react151.useCallback)((event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        onAction && onAction();
-        if (listItemRef.current && !onAction) {
-          onOptionSelect({
-            domId,
-            value,
-            element: listItemRef.current,
-            disabled
-          });
-        }
-      }, [domId, onOptionSelect, value, disabled, onAction]);
-      const handleMouseDown = (event) => {
-        event.preventDefault();
-      };
-      const content = typeof children === "string" ? /* @__PURE__ */ import_react151.default.createElement(TextOption, {
-        selected,
-        disabled
-      }, children) : children;
-      const sectionAttributes = {
-        [listboxWithinSectionDataSelector.attribute]: isWithinSection
-      };
-      const legacyRoleSupport = role || "option";
-      const contentMarkup = url ? /* @__PURE__ */ import_react151.default.createElement(UnstyledLink, {
-        url,
-        external
-      }, content) : content;
-      return /* @__PURE__ */ import_react151.default.createElement("li", Object.assign({}, sectionAttributes, {
-        "data-listbox-option": true,
-        "data-listbox-option-action": isAction,
-        "data-listbox-option-value": value,
-        "data-listbox-option-destructive": destructive,
-        "data-within-section": isWithinSection,
-        className: classNames(styles49.Option, divider && styles49.divider),
-        id: domId,
-        ref: listItemRef,
-        tabIndex: -1,
-        role: legacyRoleSupport,
-        "aria-label": accessibilityLabel,
-        "aria-selected": selected,
-        "aria-disabled": disabled,
-        onClick: disabled ? void 0 : handleOptionSelect,
-        onKeyDown: disabled ? void 0 : handleOptionSelect,
-        onMouseDown: handleMouseDown
-      }), contentMarkup);
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.js
-function Action(props) {
-  const {
-    selected,
-    disabled,
-    children,
-    icon,
-    divider
-  } = props;
-  const iconMarkup = icon && /* @__PURE__ */ import_react152.default.createElement("div", {
-    className: styles48.Icon
-  }, /* @__PURE__ */ import_react152.default.createElement(Icon, {
-    tone: "subdued",
-    source: icon
-  }));
-  const className = classNames(styles48.Action, divider && styles48.ActionDivider);
-  return /* @__PURE__ */ import_react152.default.createElement(ActionContext.Provider, {
-    value: true
-  }, /* @__PURE__ */ import_react152.default.createElement(Option, props, /* @__PURE__ */ import_react152.default.createElement("div", {
-    className
-  }, /* @__PURE__ */ import_react152.default.createElement(TextOption, {
-    selected,
-    disabled
-  }, iconMarkup, children))));
-}
-var import_react152;
-var init_Action = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.js"() {
-    import_react152 = __toESM(require_react());
-    init_css();
-    init_context12();
-    init_Action_scss();
-    init_Option();
-    init_TextOption();
-    init_Icon();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.js
-function Listbox({
-  children,
-  autoSelection = AutoSelection.FirstSelected,
-  enableKeyboardControl,
-  accessibilityLabel,
-  customListId,
-  onSelect,
-  onActiveOptionChange
-}) {
-  const [loading, setLoading] = (0, import_react153.useState)();
-  const [activeOption, setActiveOption] = (0, import_react153.useState)();
-  const [lazyLoading, setLazyLoading] = (0, import_react153.useState)(false);
-  const [currentOptions, setCurrentOptions] = (0, import_react153.useState)([]);
-  const {
-    value: keyboardEventsEnabled,
-    setTrue: enableKeyboardEvents,
-    setFalse: disableKeyboardEvents
-  } = useToggle(Boolean(enableKeyboardControl));
-  const uniqueId = (0, import_react153.useId)();
-  const listId = customListId || uniqueId;
-  const scrollableRef = (0, import_react153.useRef)(null);
-  const listboxRef = (0, import_react153.useRef)(null);
-  const {
-    listboxId,
-    textFieldLabelId,
-    textFieldFocused,
-    willLoadMoreOptions,
-    setActiveOptionId,
-    setListboxId,
-    onOptionSelected,
-    onKeyToBottom
-  } = useComboboxListbox();
-  const inCombobox = Boolean(setActiveOptionId);
-  (0, import_react153.useEffect)(() => {
-    if (setListboxId && !listboxId) {
-      setListboxId(listId);
-    }
-  }, [setListboxId, listboxId, listId]);
-  const getNavigableOptions = (0, import_react153.useCallback)(() => {
-    if (!listboxRef.current) {
-      return [];
-    }
-    return [...new Set(listboxRef.current.querySelectorAll(OPTION_SELECTOR))];
-  }, []);
-  const getFirstNavigableOption = (0, import_react153.useCallback)((currentOptions2) => {
-    const hasSelectedOptions = currentOptions2.some((option) => option.getAttribute("aria-selected") === "true");
-    let elementIndex = 0;
-    const element = currentOptions2.find((option, index) => {
-      const isInteractable = option.getAttribute("aria-disabled") !== "true";
-      let isFirstNavigableOption;
-      if (hasSelectedOptions && autoSelection === AutoSelection.FirstSelected) {
-        const isSelected2 = option.getAttribute("aria-selected") === "true";
-        isFirstNavigableOption = isSelected2 && isInteractable;
-      } else {
-        isFirstNavigableOption = isInteractable;
-      }
-      if (isFirstNavigableOption)
-        elementIndex = index;
-      return isFirstNavigableOption;
-    });
-    if (!element)
-      return;
-    return {
-      element,
-      index: elementIndex
-    };
-  }, [autoSelection]);
-  const handleScrollIntoView = (0, import_react153.useCallback)((option) => {
-    const {
-      current: scrollable2
-    } = scrollableRef;
-    if (scrollable2) {
-      scrollOptionIntoView(option.element, scrollable2);
-    }
-  }, []);
-  const handleScrollIntoViewDebounced = debounce(handleScrollIntoView, 50);
-  const handleKeyToBottom = (0, import_react153.useCallback)(() => {
-    if (onKeyToBottom) {
-      setLazyLoading(true);
-      return Promise.resolve(onKeyToBottom());
-    }
-  }, [onKeyToBottom]);
-  const handleChangeActiveOption = (0, import_react153.useCallback)((nextOption) => {
-    if (!nextOption)
-      return setActiveOption(void 0);
-    activeOption?.element.removeAttribute(OPTION_FOCUS_ATTRIBUTE);
-    nextOption.element.setAttribute(OPTION_FOCUS_ATTRIBUTE, "true");
-    handleScrollIntoViewDebounced(nextOption);
-    setActiveOption(nextOption);
-    setActiveOptionId?.(nextOption.domId);
-    onActiveOptionChange?.(nextOption.value, nextOption.domId);
-  }, [activeOption, setActiveOptionId, onActiveOptionChange, handleScrollIntoViewDebounced]);
-  const getFormattedOption = (0, import_react153.useCallback)((element, index) => {
-    return {
-      element,
-      index,
-      domId: element.id,
-      value: element.getAttribute(OPTION_VALUE_ATTRIBUTE) || "",
-      disabled: element.getAttribute("aria-disabled") === "true",
-      isAction: element.getAttribute(OPTION_ACTION_ATTRIBUTE) === "true"
-    };
-  }, []);
-  const resetActiveOption = (0, import_react153.useCallback)(() => {
-    let nextOption;
-    const nextOptions = getNavigableOptions();
-    const nextActiveOption = getFirstNavigableOption(nextOptions);
-    if (nextOptions.length === 0 && currentOptions.length > 0) {
-      setCurrentOptions(nextOptions);
-      handleChangeActiveOption();
-      return;
-    }
-    if (nextActiveOption) {
-      const {
-        element,
-        index
-      } = nextActiveOption;
-      nextOption = getFormattedOption(element, index);
-    }
-    const optionIsAlreadyActive = activeOption !== void 0 && nextOption?.domId === activeOption?.domId;
-    const actionContentHasUpdated = activeOption?.isAction && nextOption?.isAction && nextOption?.value !== activeOption?.value;
-    const currentValues = currentOptions.map((option) => option.getAttribute(OPTION_VALUE_ATTRIBUTE));
-    const nextValues = nextOptions.map((option) => option.getAttribute(OPTION_VALUE_ATTRIBUTE));
-    const listIsUnchanged = nextValues.length === currentValues.length && nextValues.every((value, index) => {
-      return currentValues[index] === value;
-    });
-    const listIsAppended = currentValues.length !== 0 && nextValues.length > currentValues.length && currentValues.every((value, index) => {
-      return nextValues[index] === value;
-    });
-    if (listIsUnchanged) {
-      if (optionIsAlreadyActive && actionContentHasUpdated) {
-        setCurrentOptions(nextOptions);
-        handleChangeActiveOption(nextOption);
-      }
-      return;
-    }
-    if (listIsAppended) {
-      setCurrentOptions(nextOptions);
-      return;
-    }
-    setCurrentOptions(nextOptions);
-    if (lazyLoading) {
-      setLazyLoading(false);
-      return;
-    }
-    handleChangeActiveOption(nextOption);
-  }, [lazyLoading, currentOptions, activeOption, getFirstNavigableOption, getNavigableOptions, getFormattedOption, handleChangeActiveOption]);
-  (0, import_react153.useEffect)(() => {
-    if (autoSelection !== AutoSelection.None && !loading && children && import_react153.Children.count(children) > 0) {
-      resetActiveOption();
-    }
-  }, [children, autoSelection, activeOption, loading, resetActiveOption]);
-  (0, import_react153.useEffect)(() => {
-    if (listboxRef.current) {
-      scrollableRef.current = listboxRef.current.closest(scrollable.selector);
-    }
-  }, []);
-  (0, import_react153.useEffect)(() => {
-    if (enableKeyboardControl && !keyboardEventsEnabled) {
-      enableKeyboardEvents();
-    }
-  }, [enableKeyboardControl, keyboardEventsEnabled, enableKeyboardEvents]);
-  const onOptionSelect = (0, import_react153.useCallback)((option) => {
-    handleChangeActiveOption(option);
-    if (onOptionSelected)
-      onOptionSelected();
-    if (onSelect)
-      onSelect(option.value);
-  }, [handleChangeActiveOption, onSelect, onOptionSelected]);
-  const getNextIndex = (0, import_react153.useCallback)((currentIndex, lastIndex, direction) => {
-    let nextIndex;
-    if (direction === "down") {
-      if (currentIndex === lastIndex) {
-        nextIndex = willLoadMoreOptions ? currentIndex + 1 : 0;
-      } else {
-        nextIndex = currentIndex + 1;
-      }
-    } else {
-      nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
-    }
-    return nextIndex;
-  }, [willLoadMoreOptions]);
-  const getNextValidOption = (0, import_react153.useCallback)(async (key) => {
-    const lastIndex = currentOptions.length - 1;
-    let currentIndex = activeOption?.index || 0;
-    let nextIndex = 0;
-    let element = activeOption?.element;
-    let totalOptions = -1;
-    if (!activeOption && autoSelection === AutoSelection.None) {
-      const nextOptions = getNavigableOptions();
-      const nextActiveOption = getFirstNavigableOption(nextOptions);
-      setCurrentOptions(nextOptions);
-      return {
-        element: nextActiveOption?.element,
-        nextIndex: nextActiveOption?.index || 0
-      };
-    }
-    while (totalOptions++ < lastIndex) {
-      nextIndex = getNextIndex(currentIndex, lastIndex, key);
-      element = currentOptions[nextIndex];
-      const triggerLazyLoad = nextIndex >= lastIndex;
-      const isDisabled = element?.getAttribute("aria-disabled") === "true";
-      if (triggerLazyLoad && willLoadMoreOptions) {
-        await handleKeyToBottom();
-      }
-      if (isDisabled) {
-        currentIndex = nextIndex;
-        element = void 0;
-        continue;
-      }
-      break;
-    }
-    return {
-      element,
-      nextIndex
-    };
-  }, [autoSelection, currentOptions, activeOption, willLoadMoreOptions, getNextIndex, handleKeyToBottom, getFirstNavigableOption, getNavigableOptions]);
-  const handleArrow = (0, import_react153.useCallback)(async (type, event) => {
-    event.preventDefault();
-    const {
-      element,
-      nextIndex
-    } = await getNextValidOption(type);
-    if (!element)
-      return;
-    const nextOption = getFormattedOption(element, nextIndex);
-    handleChangeActiveOption(nextOption);
-  }, [getFormattedOption, getNextValidOption, handleChangeActiveOption]);
-  const handleDownArrow = (0, import_react153.useCallback)((event) => {
-    handleArrow("down", event);
-  }, [handleArrow]);
-  const handleUpArrow = (0, import_react153.useCallback)((event) => {
-    handleArrow("up", event);
-  }, [handleArrow]);
-  const handleEnter = (0, import_react153.useCallback)((event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (activeOption) {
-      onOptionSelect(activeOption);
-    }
-  }, [activeOption, onOptionSelect]);
-  const handleFocus = (0, import_react153.useCallback)(() => {
-    if (enableKeyboardControl)
-      return;
-    enableKeyboardEvents();
-  }, [enableKeyboardControl, enableKeyboardEvents]);
-  const handleBlur = (0, import_react153.useCallback)((event) => {
-    event.stopPropagation();
-    if (keyboardEventsEnabled) {
-      const nextActiveOption = getFirstNavigableOption(currentOptions);
-      if (nextActiveOption) {
-        const {
-          element,
-          index
-        } = nextActiveOption;
-        const nextOption = getFormattedOption(element, index);
-        handleChangeActiveOption(nextOption);
-      }
-    }
-    if (enableKeyboardControl)
-      return;
-    disableKeyboardEvents();
-  }, [enableKeyboardControl, currentOptions, keyboardEventsEnabled, disableKeyboardEvents, getFirstNavigableOption, getFormattedOption, handleChangeActiveOption]);
-  const listeners = keyboardEventsEnabled || textFieldFocused ? /* @__PURE__ */ import_react153.default.createElement(import_react153.default.Fragment, null, /* @__PURE__ */ import_react153.default.createElement(KeypressListener, {
-    keyEvent: "keydown",
-    keyCode: Key.DownArrow,
-    handler: handleDownArrow
-  }), /* @__PURE__ */ import_react153.default.createElement(KeypressListener, {
-    keyEvent: "keydown",
-    keyCode: Key.UpArrow,
-    handler: handleUpArrow
-  }), /* @__PURE__ */ import_react153.default.createElement(KeypressListener, {
-    keyEvent: "keydown",
-    keyCode: Key.Enter,
-    handler: handleEnter
-  })) : null;
-  const listboxContext = (0, import_react153.useMemo)(() => ({
-    onOptionSelect,
-    setLoading
-  }), [onOptionSelect]);
-  return /* @__PURE__ */ import_react153.default.createElement(import_react153.default.Fragment, null, listeners, /* @__PURE__ */ import_react153.default.createElement(Text, {
-    as: "span",
-    visuallyHidden: true
-  }, /* @__PURE__ */ import_react153.default.createElement("div", {
-    "aria-live": "polite"
-  }, loading ? loading : null)), /* @__PURE__ */ import_react153.default.createElement(ListboxContext.Provider, {
-    value: listboxContext
-  }, /* @__PURE__ */ import_react153.default.createElement(WithinListboxContext.Provider, {
-    value: true
-  }, children ? /* @__PURE__ */ import_react153.default.createElement("ul", {
-    tabIndex: 0,
-    role: "listbox",
-    className: styles42.Listbox,
-    "aria-label": inCombobox ? void 0 : accessibilityLabel,
-    "aria-labelledby": textFieldLabelId,
-    "aria-busy": Boolean(loading),
-    "aria-activedescendant": activeOption && activeOption.domId,
-    id: listId,
-    onFocus: inCombobox ? void 0 : handleFocus,
-    onBlur: inCombobox ? void 0 : handleBlur,
-    ref: listboxRef
-  }, children) : null)));
-}
-var import_react153, AutoSelection, OPTION_SELECTOR, OPTION_VALUE_ATTRIBUTE, OPTION_ACTION_ATTRIBUTE, OPTION_FOCUS_ATTRIBUTE;
-var init_Listbox = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.js"() {
-    import_react153 = __toESM(require_react());
-    init_debounce();
-    init_use_toggle();
-    init_types();
-    init_shared();
-    init_Listbox_scss();
-    init_hooks6();
-    init_utilities();
-    init_context12();
-    init_TextOption();
-    init_Loading();
-    init_Section4();
-    init_Header2();
-    init_Action();
-    init_KeypressListener();
-    init_Text();
-    init_Option();
-    (function(AutoSelection2) {
-      AutoSelection2["FirstSelected"] = "FIRST_SELECTED";
-      AutoSelection2["First"] = "FIRST";
-      AutoSelection2["None"] = "NONE";
-    })(AutoSelection || (AutoSelection = {}));
-    OPTION_SELECTOR = "[data-listbox-option]";
-    OPTION_VALUE_ATTRIBUTE = "data-listbox-option-value";
-    OPTION_ACTION_ATTRIBUTE = "data-listbox-option-action";
-    OPTION_FOCUS_ATTRIBUTE = "data-focused";
-    Listbox.Option = Option;
-    Listbox.TextOption = TextOption;
-    Listbox.Loading = Loading;
-    Listbox.Section = Section4;
-    Listbox.Header = Header2;
-    Listbox.Action = Action;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.js
-var import_react154, MappedOption;
-var init_MappedOption = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.js"() {
-    import_react154 = __toESM(require_react());
-    init_css();
-    init_MappedOption_scss();
-    init_Listbox();
-    MappedOption = /* @__PURE__ */ (0, import_react154.memo)(function MappedOption2({
-      label,
-      value,
-      disabled,
-      media,
-      selected,
-      singleSelection
-    }) {
-      const mediaClassNames = classNames(styles41.Media, disabled && styles41.disabledMedia, singleSelection && styles41.singleSelectionMedia);
-      const mediaMarkup = media ? /* @__PURE__ */ import_react154.default.createElement("div", {
-        className: mediaClassNames
-      }, media) : null;
-      const accessibilityLabel = typeof label === "string" ? label : void 0;
-      return /* @__PURE__ */ import_react154.default.createElement(Listbox.Option, {
-        accessibilityLabel,
-        key: value,
-        selected,
-        value,
-        disabled
-      }, /* @__PURE__ */ import_react154.default.createElement(Listbox.TextOption, {
-        selected,
-        disabled
-      }, /* @__PURE__ */ import_react154.default.createElement("div", {
-        className: styles41.Content
-      }, mediaMarkup, label)));
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.scss.js
-var styles50;
-var init_Combobox_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.scss.js"() {
-    styles50 = {
-      "Listbox": "Polaris-Combobox__Listbox"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Combobox/components/TextField/TextField.js
-function TextField2({
-  value,
-  id: idProp,
-  type = "text",
-  ariaAutocomplete = "list",
-  onFocus,
-  onBlur,
-  onChange,
-  ...rest
-}) {
-  const comboboxTextFieldContext = useComboboxTextField();
-  const {
-    activeOptionId,
-    listboxId,
-    expanded,
-    setTextFieldFocused,
-    setTextFieldLabelId,
-    onTextFieldFocus,
-    onTextFieldChange,
-    onTextFieldBlur
-  } = comboboxTextFieldContext;
-  const uniqueId = (0, import_react155.useId)();
-  const textFieldId = (0, import_react155.useMemo)(() => idProp || uniqueId, [uniqueId, idProp]);
-  const labelId = (0, import_react155.useMemo)(() => labelID(idProp || uniqueId), [uniqueId, idProp]);
-  (0, import_react155.useEffect)(() => {
-    if (setTextFieldLabelId)
-      setTextFieldLabelId(labelId);
-  }, [labelId, setTextFieldLabelId]);
-  const handleFocus = (0, import_react155.useCallback)((event) => {
-    if (onFocus)
-      onFocus(event);
-    if (onTextFieldFocus)
-      onTextFieldFocus();
-    if (setTextFieldFocused)
-      setTextFieldFocused(true);
-  }, [onFocus, onTextFieldFocus, setTextFieldFocused]);
-  const handleBlur = (0, import_react155.useCallback)((event) => {
-    if (onBlur)
-      onBlur(event);
-    if (onTextFieldBlur)
-      onTextFieldBlur();
-    if (setTextFieldFocused)
-      setTextFieldFocused(false);
-  }, [onBlur, onTextFieldBlur, setTextFieldFocused]);
-  const handleChange = (0, import_react155.useCallback)((value2, id) => {
-    if (onChange)
-      onChange(value2, id);
-    if (onTextFieldChange)
-      onTextFieldChange(value2);
-  }, [onChange, onTextFieldChange]);
-  return /* @__PURE__ */ import_react155.default.createElement(TextField, Object.assign({}, rest, {
-    value,
-    id: textFieldId,
-    type,
-    ariaAutocomplete,
-    "aria-haspopup": "listbox",
-    ariaActiveDescendant: activeOptionId,
-    ariaControls: listboxId,
-    role: "combobox",
-    ariaExpanded: expanded,
-    onFocus: handleFocus,
-    onBlur: handleBlur,
-    onChange: handleChange
-  }));
-}
-var import_react155;
-var init_TextField2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Combobox/components/TextField/TextField.js"() {
-    import_react155 = __toESM(require_react());
-    init_hooks6();
-    init_Label();
-    init_TextField();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.js
-function Combobox({
-  activator,
-  allowMultiple,
-  children,
-  preferredPosition = "below",
-  willLoadMoreOptions,
-  height: height2,
-  onScrolledToBottom,
-  onClose
-}) {
-  const [popoverActive, setPopoverActive] = (0, import_react156.useState)(false);
-  const [activeOptionId, setActiveOptionId] = (0, import_react156.useState)();
-  const [textFieldLabelId, setTextFieldLabelId] = (0, import_react156.useState)();
-  const [listboxId, setListboxId] = (0, import_react156.useState)();
-  const [textFieldFocused, setTextFieldFocused] = (0, import_react156.useState)(false);
-  const shouldOpen = Boolean(!popoverActive && import_react156.Children.count(children) > 0);
-  const ref = (0, import_react156.useRef)(null);
-  const handleClose = (0, import_react156.useCallback)(() => {
-    setPopoverActive(false);
-    onClose?.();
-    setActiveOptionId(void 0);
-  }, [onClose]);
-  const handleOpen = (0, import_react156.useCallback)(() => {
-    setPopoverActive(true);
-    setActiveOptionId(void 0);
-  }, []);
-  const onOptionSelected = (0, import_react156.useCallback)(() => {
-    if (!allowMultiple) {
-      handleClose();
-      setActiveOptionId(void 0);
-      return;
-    }
-    ref.current?.forceUpdatePosition();
-  }, [allowMultiple, handleClose]);
-  const handleFocus = (0, import_react156.useCallback)(() => {
-    if (shouldOpen) {
-      handleOpen();
-    }
-  }, [shouldOpen, handleOpen]);
-  const handleChange = (0, import_react156.useCallback)(() => {
-    if (shouldOpen) {
-      handleOpen();
-    }
-  }, [shouldOpen, handleOpen]);
-  const handleBlur = (0, import_react156.useCallback)(() => {
-    if (popoverActive) {
-      handleClose();
-    }
-  }, [popoverActive, handleClose]);
-  const textFieldContextValue = (0, import_react156.useMemo)(() => ({
-    activeOptionId,
-    expanded: popoverActive,
-    listboxId,
-    setTextFieldFocused,
-    setTextFieldLabelId,
-    onTextFieldFocus: handleFocus,
-    onTextFieldChange: handleChange,
-    onTextFieldBlur: handleBlur
-  }), [activeOptionId, popoverActive, listboxId, setTextFieldFocused, setTextFieldLabelId, handleFocus, handleChange, handleBlur]);
-  const listboxOptionContextValue = (0, import_react156.useMemo)(() => ({
-    allowMultiple
-  }), [allowMultiple]);
-  const listboxContextValue = (0, import_react156.useMemo)(() => ({
-    listboxId,
-    textFieldLabelId,
-    textFieldFocused,
-    willLoadMoreOptions,
-    onOptionSelected,
-    setActiveOptionId,
-    setListboxId,
-    onKeyToBottom: onScrolledToBottom
-  }), [listboxId, textFieldLabelId, textFieldFocused, willLoadMoreOptions, onOptionSelected, setActiveOptionId, setListboxId, onScrolledToBottom]);
-  return /* @__PURE__ */ import_react156.default.createElement(Popover2, {
-    ref,
-    active: popoverActive,
-    activator: /* @__PURE__ */ import_react156.default.createElement(ComboboxTextFieldContext.Provider, {
-      value: textFieldContextValue
-    }, activator),
-    autofocusTarget: "none",
-    preventFocusOnClose: true,
-    fullWidth: true,
-    preferInputActivator: false,
-    preferredPosition,
-    onClose: handleClose
-  }, import_react156.Children.count(children) > 0 ? /* @__PURE__ */ import_react156.default.createElement(Popover2.Pane, {
-    onScrolledToBottom,
-    height: height2
-  }, /* @__PURE__ */ import_react156.default.createElement(ComboboxListboxContext.Provider, {
-    value: listboxContextValue
-  }, /* @__PURE__ */ import_react156.default.createElement(ComboboxListboxOptionContext.Provider, {
-    value: listboxOptionContextValue
-  }, /* @__PURE__ */ import_react156.default.createElement("div", {
-    className: styles50.Listbox
-  }, children)))) : null);
-}
-var import_react156;
-var init_Combobox = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.js"() {
-    import_react156 = __toESM(require_react());
-    init_Combobox_scss();
-    init_context11();
-    init_TextField2();
     init_Popover();
-    Combobox.TextField = TextField2;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.scss.js
-var styles51;
-var init_MappedAction_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.scss.js"() {
-    styles51 = {
-      "ActionContainer": "Polaris-Autocomplete-MappedAction__ActionContainer",
-      "Action": "Polaris-Autocomplete-MappedAction__Action",
-      "destructive": "Polaris-Autocomplete-MappedAction--destructive",
-      "selected": "Polaris-Autocomplete-MappedAction--selected",
-      "disabled": "Polaris-Autocomplete-MappedAction--disabled",
-      "Prefix": "Polaris-Autocomplete-MappedAction__Prefix",
-      "Suffix": "Polaris-Autocomplete-MappedAction__Suffix",
-      "Content": "Polaris-Autocomplete-MappedAction__Content",
-      "Text": "Polaris-Autocomplete-MappedAction__Text",
-      "ContentWrap": "Polaris-Autocomplete-MappedAction__ContentWrap"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.js
-function MappedAction({
-  active,
-  content,
-  disabled,
-  icon,
-  image,
-  prefix,
-  suffix,
-  ellipsis,
-  role,
-  url,
-  external,
-  onAction,
-  destructive,
-  badge,
-  helpText,
-  wrapOverflow = false
-}) {
-  const i18n = useI18n();
-  let prefixMarkup = null;
-  const contentOverflowStyle = wrapOverflow ? styles51.ContentWrap : void 0;
-  if (prefix) {
-    prefixMarkup = /* @__PURE__ */ import_react157.default.createElement("div", {
-      className: styles51.Prefix
-    }, prefix);
-  } else if (icon) {
-    prefixMarkup = /* @__PURE__ */ import_react157.default.createElement("div", {
-      className: styles51.Prefix
-    }, /* @__PURE__ */ import_react157.default.createElement(Icon, {
-      source: icon
-    }));
-  } else if (image) {
-    prefixMarkup = /* @__PURE__ */ import_react157.default.createElement("div", {
-      role: "presentation",
-      className: styles51.Prefix,
-      style: {
-        backgroundImage: `url(${image}`
-      }
-    });
-  }
-  const badgeMarkup = badge && /* @__PURE__ */ import_react157.default.createElement("span", {
-    className: styles51.Suffix
-  }, /* @__PURE__ */ import_react157.default.createElement(Badge, {
-    tone: badge.tone
-  }, badge.content));
-  const suffixMarkup = suffix && /* @__PURE__ */ import_react157.default.createElement("span", {
-    className: styles51.Suffix
-  }, suffix);
-  const contentText = ellipsis && content ? i18n.translate("Polaris.Autocomplete.ellipsis", {
-    content
-  }) : content;
-  const contentMarkup = /* @__PURE__ */ import_react157.default.createElement("div", {
-    className: styles51.Text
-  }, /* @__PURE__ */ import_react157.default.createElement("div", {
-    className: contentOverflowStyle
-  }, contentText), helpText ? /* @__PURE__ */ import_react157.default.createElement(Text, {
-    tone: "subdued",
-    as: "span"
-  }, helpText) : null);
-  const context = (0, import_react157.useMemo)(() => ({
-    role,
-    url,
-    external,
-    onAction,
-    destructive
-  }), [role, url, external, onAction, destructive]);
-  const actionClassNames = classNames(styles51.Action, disabled && styles51.disabled, destructive && styles51.destructive, active && styles51.selected);
-  return /* @__PURE__ */ import_react157.default.createElement(MappedActionContext.Provider, {
-    value: context
-  }, /* @__PURE__ */ import_react157.default.createElement("div", {
-    className: styles51.ActionContainer
-  }, /* @__PURE__ */ import_react157.default.createElement(Listbox.Action, {
-    selected: active,
-    disabled,
-    value: content || ""
-  }, /* @__PURE__ */ import_react157.default.createElement("div", {
-    className: actionClassNames
-  }, /* @__PURE__ */ import_react157.default.createElement("div", {
-    className: styles51.Content
-  }, prefixMarkup, contentMarkup, badgeMarkup, suffixMarkup)))));
-}
-var import_react157;
-var init_MappedAction = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.js"() {
-    import_react157 = __toESM(require_react());
-    init_css();
-    init_MappedAction_scss();
-    init_hooks2();
-    init_Icon();
-    init_Badge();
-    init_Text();
-    init_context14();
-    init_Listbox();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.js
-var import_react158, Autocomplete;
-var init_Autocomplete = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.js"() {
-    import_react158 = __toESM(require_react());
-    init_options();
-    init_Autocomplete_scss();
-    init_MappedOption();
-    init_Listbox();
-    init_Combobox();
-    init_MappedAction();
-    init_hooks2();
-    Autocomplete = function Autocomplete2({
-      options,
-      selected,
-      textField,
-      preferredPosition,
-      listTitle,
-      allowMultiple,
-      loading,
-      actionBefore,
-      willLoadMoreResults,
-      emptyState,
-      onSelect,
-      onLoadMoreResults
+    init_Button();
+    init_ActionList();
+    init_ButtonGroup();
+    LegacyCard = function LegacyCard2({
+      children,
+      hideOnPrint,
+      title,
+      subdued,
+      sectioned,
+      actions,
+      primaryFooterAction,
+      secondaryFooterActions,
+      secondaryFooterActionsDisclosureText,
+      footerActionAlignment = "right"
     }) {
       const i18n = useI18n();
-      const buildMappedOptionFromOption = (0, import_react158.useCallback)((options2) => {
-        return options2.map((option) => /* @__PURE__ */ import_react158.default.createElement(MappedOption, Object.assign({
-          key: option.id || option.value
-        }, option, {
-          selected: selected.includes(option.value),
-          singleSelection: !allowMultiple
-        })));
-      }, [selected, allowMultiple]);
-      const optionsMarkup = (0, import_react158.useMemo)(() => {
-        const conditionalOptions = loading && !willLoadMoreResults ? [] : options;
-        if (isSection(conditionalOptions)) {
-          const noOptionsAvailable = conditionalOptions.every(({
-            options: options2
-          }) => options2.length === 0);
-          if (noOptionsAvailable) {
-            return null;
-          }
-          const optionsMarkup2 = conditionalOptions.map(({
-            options: options2,
-            title
-          }) => {
-            if (options2.length === 0) {
-              return null;
-            }
-            const optionMarkup = buildMappedOptionFromOption(options2);
-            return /* @__PURE__ */ import_react158.default.createElement(Listbox.Section, {
-              divider: false,
-              title: /* @__PURE__ */ import_react158.default.createElement(Listbox.Header, null, title),
-              key: title
-            }, optionMarkup);
-          });
-          return /* @__PURE__ */ import_react158.default.createElement("div", {
-            className: styles40.SectionWrapper
-          }, optionsMarkup2);
-        }
-        const optionList = conditionalOptions.length > 0 ? buildMappedOptionFromOption(conditionalOptions) : null;
-        if (listTitle) {
-          return /* @__PURE__ */ import_react158.default.createElement(Listbox.Section, {
-            divider: false,
-            title: /* @__PURE__ */ import_react158.default.createElement(Listbox.Header, null, listTitle)
-          }, optionList);
-        }
-        return optionList;
-      }, [listTitle, loading, options, willLoadMoreResults, buildMappedOptionFromOption]);
-      const loadingMarkup = loading ? /* @__PURE__ */ import_react158.default.createElement(Listbox.Loading, {
-        accessibilityLabel: i18n.translate("Polaris.Autocomplete.spinnerAccessibilityLabel")
+      const {
+        value: secondaryActionsPopoverOpen,
+        toggle: toggleSecondaryActionsPopoverOpen
+      } = useToggle(false);
+      const legacyCard = useLegacyCardPaddingObserverRef();
+      const className = classNames(styles14.LegacyCard, subdued && styles14.subdued, hideOnPrint && styles14.hideOnPrint);
+      const headerMarkup = title || actions ? /* @__PURE__ */ import_react113.default.createElement(Header, {
+        actions,
+        title
       }) : null;
-      const updateSelection = (0, import_react158.useCallback)((newSelection) => {
-        if (actionBefore && newSelection === actionBefore.content) {
-          actionBefore.onAction && actionBefore.onAction();
-          return;
-        }
-        if (allowMultiple) {
-          if (selected.includes(newSelection)) {
-            onSelect(selected.filter((option) => option !== newSelection));
-          } else {
-            onSelect([...selected, newSelection]);
-          }
+      const content = sectioned ? /* @__PURE__ */ import_react113.default.createElement(Section, null, children) : children;
+      const primaryFooterActionMarkup = primaryFooterAction ? buttonFrom(primaryFooterAction, {
+        variant: "primary"
+      }) : null;
+      let secondaryFooterActionsMarkup = null;
+      if (secondaryFooterActions && secondaryFooterActions.length) {
+        if (secondaryFooterActions.length === 1) {
+          secondaryFooterActionsMarkup = buttonFrom(secondaryFooterActions[0]);
         } else {
-          onSelect([newSelection]);
+          secondaryFooterActionsMarkup = /* @__PURE__ */ import_react113.default.createElement(import_react113.default.Fragment, null, /* @__PURE__ */ import_react113.default.createElement(Popover2, {
+            active: secondaryActionsPopoverOpen,
+            activator: /* @__PURE__ */ import_react113.default.createElement(Button, {
+              disclosure: true,
+              onClick: toggleSecondaryActionsPopoverOpen
+            }, secondaryFooterActionsDisclosureText || i18n.translate("Polaris.Common.more")),
+            onClose: toggleSecondaryActionsPopoverOpen
+          }, /* @__PURE__ */ import_react113.default.createElement(ActionList, {
+            items: secondaryFooterActions
+          })));
         }
-      }, [allowMultiple, onSelect, selected, actionBefore]);
-      const actionMarkup = actionBefore && /* @__PURE__ */ import_react158.default.createElement(MappedAction, actionBefore);
-      const emptyStateMarkup = emptyState && options.length < 1 && !loading && /* @__PURE__ */ import_react158.default.createElement("div", {
-        role: "status"
-      }, emptyState);
-      const autoSelection = actionBefore ? AutoSelection.First : void 0;
-      return /* @__PURE__ */ import_react158.default.createElement(Combobox, {
-        activator: textField,
-        allowMultiple,
-        onScrolledToBottom: onLoadMoreResults,
-        preferredPosition,
-        willLoadMoreOptions: willLoadMoreResults
-      }, actionMarkup || optionsMarkup || loadingMarkup || emptyStateMarkup ? /* @__PURE__ */ import_react158.default.createElement(Listbox, {
-        autoSelection,
-        onSelect: updateSelection
-      }, actionMarkup, optionsMarkup && (!loading || willLoadMoreResults) ? optionsMarkup : null, loadingMarkup, emptyStateMarkup) : null);
-    };
-    Autocomplete.TextField = Combobox.TextField;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.scss.js
-var styles52;
-var init_Backdrop_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.scss.js"() {
-    styles52 = {
-      "Backdrop": "Polaris-Backdrop",
-      "transparent": "Polaris-Backdrop--transparent",
-      "belowNavigation": "Polaris-Backdrop--belowNavigation"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/scroll-lock-manager/hooks.js
-function useScrollLockManager() {
-  const scrollLockManager = (0, import_react159.useContext)(ScrollLockManagerContext);
-  if (!scrollLockManager) {
-    throw new MissingAppProviderError("No ScrollLockManager was provided.");
-  }
-  return scrollLockManager;
-}
-var import_react159;
-var init_hooks9 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/scroll-lock-manager/hooks.js"() {
-    import_react159 = __toESM(require_react());
-    init_errors();
-    init_context3();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/ScrollLock/ScrollLock.js
-function ScrollLock(_) {
-  const scrollLockManager = useScrollLockManager();
-  (0, import_react160.useEffect)(() => {
-    scrollLockManager.registerScrollLock();
-    return () => {
-      scrollLockManager.unregisterScrollLock();
-    };
-  }, [scrollLockManager]);
-  return null;
-}
-var import_react160;
-var init_ScrollLock = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/ScrollLock/ScrollLock.js"() {
-    import_react160 = __toESM(require_react());
-    init_hooks9();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.js
-function Backdrop(props) {
-  const {
-    onClick,
-    onTouchStart,
-    belowNavigation,
-    transparent,
-    setClosing
-  } = props;
-  const className = classNames(styles52.Backdrop, belowNavigation && styles52.belowNavigation, transparent && styles52.transparent);
-  const handleMouseDown = () => {
-    if (setClosing) {
-      setClosing(true);
-    }
-  };
-  const handleClick = () => {
-    if (setClosing) {
-      setClosing(false);
-    }
-    if (onClick) {
-      onClick();
-    }
-  };
-  return /* @__PURE__ */ import_react161.default.createElement(import_react161.default.Fragment, null, /* @__PURE__ */ import_react161.default.createElement(ScrollLock, null), /* @__PURE__ */ import_react161.default.createElement("div", {
-    className,
-    onClick: handleClick,
-    onTouchStart,
-    onMouseDown: handleMouseDown
-  }));
-}
-var import_react161;
-var init_Backdrop = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.js"() {
-    import_react161 = __toESM(require_react());
-    init_css();
-    init_Backdrop_scss();
-    init_ScrollLock();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Banner/Banner.scss.js
-var styles53;
-var init_Banner_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Banner/Banner.scss.js"() {
-    styles53 = {
-      "Banner": "Polaris-Banner",
-      "keyFocused": "Polaris-Banner--keyFocused",
-      "withinContentContainer": "Polaris-Banner--withinContentContainer",
-      "withinPage": "Polaris-Banner--withinPage",
-      "DismissIcon": "Polaris-Banner__DismissIcon",
-      "text-success-on-bg-fill": "Polaris-Banner--textSuccessOnBgFill",
-      "text-success": "Polaris-Banner__text--success",
-      "text-warning-on-bg-fill": "Polaris-Banner--textWarningOnBgFill",
-      "text-warning": "Polaris-Banner__text--warning",
-      "text-critical-on-bg-fill": "Polaris-Banner--textCriticalOnBgFill",
-      "text-critical": "Polaris-Banner__text--critical",
-      "text-info-on-bg-fill": "Polaris-Banner--textInfoOnBgFill",
-      "text-info": "Polaris-Banner__text--info",
-      "icon-secondary": "Polaris-Banner__icon--secondary"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Banner/utilities.js
-function useBannerFocus(bannerRef) {
-  const wrapperRef = (0, import_react162.useRef)(null);
-  const [shouldShowFocus, setShouldShowFocus] = (0, import_react162.useState)(false);
-  (0, import_react162.useImperativeHandle)(bannerRef, () => ({
-    focus: () => {
-      wrapperRef.current?.focus();
-      setShouldShowFocus(true);
-    }
-  }), []);
-  const handleKeyUp = (event) => {
-    if (event.target === wrapperRef.current) {
-      setShouldShowFocus(true);
-    }
-  };
-  const handleBlur = () => setShouldShowFocus(false);
-  const handleMouseUp = (event) => {
-    event.currentTarget.blur();
-    setShouldShowFocus(false);
-  };
-  return {
-    wrapperRef,
-    handleKeyUp,
-    handleBlur,
-    handleMouseUp,
-    shouldShowFocus
-  };
-}
-var import_react162, bannerAttributes;
-var init_utilities2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Banner/utilities.js"() {
-    init_dist();
-    import_react162 = __toESM(require_react());
-    bannerAttributes = {
-      success: {
-        withinPage: {
-          background: "bg-fill-success",
-          text: "text-success-on-bg-fill",
-          icon: "text-success-on-bg-fill"
-        },
-        withinContentContainer: {
-          background: "bg-surface-success",
-          text: "text-success",
-          icon: "text-success"
-        },
-        icon: SvgCheckIcon
-      },
-      warning: {
-        withinPage: {
-          background: "bg-fill-warning",
-          text: "text-warning-on-bg-fill",
-          icon: "text-warning-on-bg-fill"
-        },
-        withinContentContainer: {
-          background: "bg-surface-warning",
-          text: "text-warning",
-          icon: "text-warning"
-        },
-        icon: SvgAlertTriangleIcon
-      },
-      critical: {
-        withinPage: {
-          background: "bg-fill-critical",
-          text: "text-critical-on-bg-fill",
-          icon: "text-critical-on-bg-fill"
-        },
-        withinContentContainer: {
-          background: "bg-surface-critical",
-          text: "text-critical",
-          icon: "text-critical"
-        },
-        icon: SvgAlertDiamondIcon
-      },
-      info: {
-        withinPage: {
-          background: "bg-fill-info",
-          text: "text-info-on-bg-fill",
-          icon: "text-info-on-bg-fill"
-        },
-        withinContentContainer: {
-          background: "bg-surface-info",
-          text: "text-info",
-          icon: "text-info"
-        },
-        icon: SvgInfoIcon
       }
+      const footerMarkup = primaryFooterActionMarkup || secondaryFooterActionsMarkup ? /* @__PURE__ */ import_react113.default.createElement("div", {
+        className: classNames(styles14.Footer, footerActionAlignment === "left" && styles14.LeftJustified)
+      }, footerActionAlignment === "right" ? /* @__PURE__ */ import_react113.default.createElement(ButtonGroup, null, secondaryFooterActionsMarkup, primaryFooterActionMarkup) : /* @__PURE__ */ import_react113.default.createElement(ButtonGroup, null, primaryFooterActionMarkup, secondaryFooterActionsMarkup)) : null;
+      return /* @__PURE__ */ import_react113.default.createElement(WithinContentContext.Provider, {
+        value: true
+      }, /* @__PURE__ */ import_react113.default.createElement("div", {
+        className,
+        ref: legacyCard
+      }, headerMarkup, content, footerMarkup));
+    };
+    LegacyCard.Header = Header;
+    LegacyCard.Section = Section;
+    LegacyCard.Subsection = Subsection;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.scss.js
+var styles25;
+var init_InlineGrid_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.scss.js"() {
+    styles25 = {
+      "InlineGrid": "Polaris-InlineGrid"
     };
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Banner/Banner.js
-function BannerLayout({
-  tone = "info",
-  icon,
-  hideIcon,
-  onDismiss,
-  action,
-  secondaryAction,
-  title,
-  children
+// node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.js
+function InlineGrid({
+  children,
+  columns,
+  gap,
+  alignItems
 }) {
-  const i18n = useI18n();
-  const withinContentContainer = (0, import_react163.useContext)(WithinContentContext);
-  const isInlineIconBanner = !title && !withinContentContainer;
-  const bannerTone = Object.keys(bannerAttributes).includes(tone) ? tone : "info";
-  const bannerColors = bannerAttributes[bannerTone][withinContentContainer ? "withinContentContainer" : "withinPage"];
-  const sharedBannerProps = {
-    backgroundColor: bannerColors.background,
-    textColor: bannerColors.text,
-    bannerTitle: title ? /* @__PURE__ */ import_react163.default.createElement(Text, {
-      as: "h2",
-      variant: "headingSm",
-      breakWord: true
-    }, title) : null,
-    bannerIcon: hideIcon ? null : /* @__PURE__ */ import_react163.default.createElement("span", {
-      className: styles53[bannerColors.icon]
-    }, /* @__PURE__ */ import_react163.default.createElement(Icon, {
-      source: icon ?? bannerAttributes[bannerTone].icon
-    })),
-    actionButtons: action || secondaryAction ? /* @__PURE__ */ import_react163.default.createElement(ButtonGroup, null, action && /* @__PURE__ */ import_react163.default.createElement(Button, Object.assign({
-      onClick: action.onAction
-    }, action), action.content), secondaryAction && /* @__PURE__ */ import_react163.default.createElement(Button, Object.assign({
-      onClick: secondaryAction.onAction
-    }, secondaryAction), secondaryAction.content)) : null,
-    dismissButton: onDismiss ? /* @__PURE__ */ import_react163.default.createElement(Button, {
-      variant: "tertiary",
-      icon: /* @__PURE__ */ import_react163.default.createElement("span", {
-        className: styles53[isInlineIconBanner ? "icon-secondary" : bannerColors.icon]
-      }, /* @__PURE__ */ import_react163.default.createElement(Icon, {
-        source: SvgXIcon
-      })),
-      onClick: onDismiss,
-      accessibilityLabel: i18n.translate("Polaris.Banner.dismissButton")
-    }) : null
+  const style = {
+    ...getResponsiveValue("inline-grid", "grid-template-columns", formatInlineGrid(columns)),
+    ...getResponsiveProps("inline-grid", "gap", "space", gap),
+    "--pc-inline-grid-align-items": alignItems
   };
-  if (withinContentContainer) {
-    return /* @__PURE__ */ import_react163.default.createElement(WithinContentContainerBanner, sharedBannerProps, children);
+  return /* @__PURE__ */ import_react114.default.createElement("div", {
+    className: styles25.InlineGrid,
+    style: sanitizeCustomProperties(style)
+  }, children);
+}
+function formatInlineGrid(columns) {
+  if (typeof columns === "object" && columns !== null && !Array.isArray(columns)) {
+    return Object.fromEntries(Object.entries(columns).map(([breakpointAlias, breakpointInlineGrid]) => [breakpointAlias, getColumnValue(breakpointInlineGrid)]));
   }
-  if (isInlineIconBanner) {
-    return /* @__PURE__ */ import_react163.default.createElement(InlineIconBanner, sharedBannerProps, children);
+  return getColumnValue(columns);
+}
+function getColumnValue(columns) {
+  if (!columns)
+    return void 0;
+  if (typeof columns === "number" || !isNaN(Number(columns))) {
+    return `repeat(${Number(columns)}, minmax(0, 1fr))`;
   }
-  return /* @__PURE__ */ import_react163.default.createElement(DefaultBanner, sharedBannerProps, children);
+  if (typeof columns === "string")
+    return columns;
+  return columns.map((column) => {
+    switch (column) {
+      case "oneThird":
+        return "minmax(0, 1fr)";
+      case "oneHalf":
+        return "minmax(0, 1fr)";
+      case "twoThirds":
+        return "minmax(0, 2fr)";
+    }
+  }).join(" ");
 }
-function DefaultBanner({
-  backgroundColor,
-  textColor,
-  bannerTitle,
-  bannerIcon,
-  actionButtons,
-  dismissButton,
-  children
-}) {
-  const {
-    smUp
-  } = useBreakpoints();
-  const hasContent = children || actionButtons;
-  return /* @__PURE__ */ import_react163.default.createElement(Box, {
-    width: "100%"
-  }, /* @__PURE__ */ import_react163.default.createElement(BlockStack, {
-    align: "space-between"
-  }, /* @__PURE__ */ import_react163.default.createElement(Box, {
-    background: backgroundColor,
-    color: textColor,
-    borderStartStartRadius: smUp ? "300" : void 0,
-    borderStartEndRadius: smUp ? "300" : void 0,
-    borderEndStartRadius: !hasContent && smUp ? "300" : void 0,
-    borderEndEndRadius: !hasContent && smUp ? "300" : void 0,
-    padding: "300"
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    align: "space-between",
-    blockAlign: "center",
-    gap: "200",
-    wrap: false
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    gap: "100",
-    wrap: false
-  }, bannerIcon, bannerTitle), dismissButton)), hasContent && /* @__PURE__ */ import_react163.default.createElement(Box, {
-    padding: {
-      xs: "300",
-      md: "400"
-    },
-    paddingBlockStart: "300"
-  }, /* @__PURE__ */ import_react163.default.createElement(BlockStack, {
-    gap: "200"
-  }, /* @__PURE__ */ import_react163.default.createElement("div", null, children), actionButtons))));
-}
-function InlineIconBanner({
-  backgroundColor,
-  bannerIcon,
-  actionButtons,
-  dismissButton,
-  children
-}) {
-  const [blockAlign, setBlockAlign] = (0, import_react163.useState)("center");
-  const contentNode = (0, import_react163.useRef)(null);
-  const iconNode = (0, import_react163.useRef)(null);
-  const dismissIconNode = (0, import_react163.useRef)(null);
-  const handleResize = (0, import_react163.useCallback)(() => {
-    const contentHeight = contentNode.current?.offsetHeight;
-    const iconBoxHeight = iconNode.current?.offsetHeight || dismissIconNode.current?.offsetHeight;
-    if (!contentHeight || !iconBoxHeight)
-      return;
-    contentHeight > iconBoxHeight ? setBlockAlign("start") : setBlockAlign("center");
-  }, []);
-  (0, import_react163.useEffect)(() => handleResize(), [handleResize]);
-  useEventListener("resize", handleResize);
-  return /* @__PURE__ */ import_react163.default.createElement(Box, {
-    width: "100%",
-    padding: "300",
-    borderRadius: "300"
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    align: "space-between",
-    blockAlign,
-    wrap: false
-  }, /* @__PURE__ */ import_react163.default.createElement(Box, {
-    width: "100%"
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    gap: "200",
-    wrap: false,
-    blockAlign
-  }, bannerIcon ? /* @__PURE__ */ import_react163.default.createElement("div", {
-    ref: iconNode
-  }, /* @__PURE__ */ import_react163.default.createElement(Box, {
-    background: backgroundColor,
-    borderRadius: "200",
-    padding: "100"
-  }, bannerIcon)) : null, /* @__PURE__ */ import_react163.default.createElement(Box, {
-    ref: contentNode,
-    width: "100%"
-  }, /* @__PURE__ */ import_react163.default.createElement(BlockStack, {
-    gap: "200"
-  }, /* @__PURE__ */ import_react163.default.createElement("div", null, children), actionButtons)))), /* @__PURE__ */ import_react163.default.createElement("div", {
-    ref: dismissIconNode,
-    className: styles53.DismissIcon
-  }, dismissButton)));
-}
-function WithinContentContainerBanner({
-  backgroundColor,
-  textColor,
-  bannerTitle,
-  bannerIcon,
-  actionButtons,
-  dismissButton,
-  children
-}) {
-  return /* @__PURE__ */ import_react163.default.createElement(Box, {
-    width: "100%",
-    background: backgroundColor,
-    padding: "200",
-    borderRadius: "200",
-    color: textColor
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    align: "space-between",
-    blockAlign: "start",
-    wrap: false,
-    gap: "200"
-  }, /* @__PURE__ */ import_react163.default.createElement(InlineStack, {
-    gap: "150",
-    wrap: false
-  }, bannerIcon, /* @__PURE__ */ import_react163.default.createElement(Box, {
-    width: "100%"
-  }, /* @__PURE__ */ import_react163.default.createElement(BlockStack, {
-    gap: "200"
-  }, /* @__PURE__ */ import_react163.default.createElement(BlockStack, {
-    gap: "050"
-  }, bannerTitle, /* @__PURE__ */ import_react163.default.createElement("div", null, children)), actionButtons))), dismissButton));
-}
-var import_react163, Banner;
-var init_Banner = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Banner/Banner.js"() {
-    import_react163 = __toESM(require_react());
-    init_dist();
-    init_banner_context();
-    init_within_content_context();
+var import_react114;
+var init_InlineGrid = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.js"() {
+    import_react114 = __toESM(require_react());
     init_css();
-    init_breakpoints2();
-    init_use_event_listener();
-    init_Banner_scss();
-    init_utilities2();
-    init_hooks2();
-    init_Text();
-    init_Icon();
-    init_ButtonGroup();
-    init_Button();
-    init_Box();
+    init_InlineGrid_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.scss.js
+var styles26;
+var init_FormLayout_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.scss.js"() {
+    styles26 = {
+      "Item": "Polaris-FormLayout__Item",
+      "grouped": "Polaris-FormLayout--grouped",
+      "condensed": "Polaris-FormLayout--condensed"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Item/Item.js
+function Item5({
+  children,
+  condensed = false
+}) {
+  const className = classNames(styles26.Item, condensed ? styles26.condensed : styles26.grouped);
+  return children ? /* @__PURE__ */ import_react115.default.createElement("div", {
+    className
+  }, children) : null;
+}
+var import_react115;
+var init_Item5 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Item/Item.js"() {
+    import_react115 = __toESM(require_react());
+    init_css();
+    init_FormLayout_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Group/Group.js
+function Group({
+  children,
+  condensed,
+  title,
+  helpText
+}) {
+  const id = (0, import_react116.useId)();
+  let helpTextElement = null;
+  let helpTextId;
+  let titleElement = null;
+  let titleId;
+  if (helpText) {
+    helpTextId = `${id}HelpText`;
+    helpTextElement = /* @__PURE__ */ import_react116.default.createElement(Box, {
+      id: helpTextId,
+      color: "text-secondary"
+    }, helpText);
+  }
+  if (title) {
+    titleId = `${id}Title`;
+    titleElement = /* @__PURE__ */ import_react116.default.createElement(Text, {
+      id: titleId,
+      as: "p"
+    }, title);
+  }
+  const itemsMarkup = import_react116.Children.map(children, (child) => wrapWithComponent(child, Item5, {
+    condensed
+  }));
+  return /* @__PURE__ */ import_react116.default.createElement(BlockStack, {
+    role: "group",
+    gap: "200",
+    "aria-labelledby": titleId,
+    "aria-describedby": helpTextId
+  }, titleElement, /* @__PURE__ */ import_react116.default.createElement(InlineStack, {
+    gap: "300"
+  }, itemsMarkup), helpTextElement);
+}
+var import_react116;
+var init_Group = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/FormLayout/components/Group/Group.js"() {
+    import_react116 = __toESM(require_react());
+    init_components();
+    init_Item5();
     init_BlockStack();
     init_InlineStack();
-    Banner = /* @__PURE__ */ (0, import_react163.forwardRef)(function Banner2(props, bannerRef) {
-      const {
-        tone,
-        stopAnnouncements
-      } = props;
-      const withinContentContainer = (0, import_react163.useContext)(WithinContentContext);
-      const {
-        wrapperRef,
-        handleKeyUp,
-        handleBlur,
-        handleMouseUp,
-        shouldShowFocus
-      } = useBannerFocus(bannerRef);
-      const className = classNames(styles53.Banner, shouldShowFocus && styles53.keyFocused, withinContentContainer ? styles53.withinContentContainer : styles53.withinPage);
-      return /* @__PURE__ */ import_react163.default.createElement(BannerContext.Provider, {
-        value: true
-      }, /* @__PURE__ */ import_react163.default.createElement("div", {
-        className,
-        tabIndex: 0,
-        ref: wrapperRef,
-        role: tone === "warning" || tone === "critical" ? "alert" : "status",
-        "aria-live": stopAnnouncements ? "off" : "polite",
-        onMouseUp: handleMouseUp,
-        onKeyUp: handleKeyUp,
-        onBlur: handleBlur
-      }, /* @__PURE__ */ import_react163.default.createElement(BannerLayout, props)));
+    init_Box();
+    init_Text();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.js
+function wrapChildren(child, index) {
+  if (isElementOfType(child, Group)) {
+    return child;
+  }
+  const props = {
+    key: index
+  };
+  return wrapWithComponent(child, Item5, props);
+}
+var import_react117, FormLayout;
+var init_FormLayout = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/FormLayout/FormLayout.js"() {
+    import_react117 = __toESM(require_react());
+    init_components();
+    init_Group();
+    init_BlockStack();
+    init_Item5();
+    FormLayout = /* @__PURE__ */ (0, import_react117.memo)(function FormLayout2({
+      children
+    }) {
+      return /* @__PURE__ */ import_react117.default.createElement(BlockStack, {
+        gap: "400"
+      }, import_react117.Children.map(children, wrapChildren));
     });
+    FormLayout.Group = Group;
   }
 });
 
@@ -14531,11 +10866,11 @@ var init_PropTypes = __esm({
 });
 
 // node_modules/react-transition-group/esm/TransitionGroupContext.js
-var import_react164, TransitionGroupContext_default;
+var import_react118, TransitionGroupContext_default;
 var init_TransitionGroupContext = __esm({
   "node_modules/react-transition-group/esm/TransitionGroupContext.js"() {
-    import_react164 = __toESM(require_react());
-    TransitionGroupContext_default = import_react164.default.createContext(null);
+    import_react118 = __toESM(require_react());
+    TransitionGroupContext_default = import_react118.default.createContext(null);
   }
 });
 
@@ -14550,15 +10885,15 @@ var init_reflow = __esm({
 });
 
 // node_modules/react-transition-group/esm/Transition.js
-function noop6() {
+function noop4() {
 }
-var import_prop_types2, import_react165, import_react_dom2, UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING, Transition, Transition_default;
+var import_prop_types2, import_react119, import_react_dom2, UNMOUNTED, EXITED, ENTERING, ENTERED, EXITING, Transition, Transition_default;
 var init_Transition = __esm({
   "node_modules/react-transition-group/esm/Transition.js"() {
     init_objectWithoutPropertiesLoose();
     init_inheritsLoose();
     import_prop_types2 = __toESM(require_prop_types());
-    import_react165 = __toESM(require_react());
+    import_react119 = __toESM(require_react());
     import_react_dom2 = __toESM(require_react_dom());
     init_config();
     init_PropTypes();
@@ -14772,13 +11107,13 @@ var init_Transition = __esm({
         var _this$props = this.props, children = _this$props.children, _in = _this$props.in, _mountOnEnter = _this$props.mountOnEnter, _unmountOnExit = _this$props.unmountOnExit, _appear = _this$props.appear, _enter = _this$props.enter, _exit = _this$props.exit, _timeout = _this$props.timeout, _addEndListener = _this$props.addEndListener, _onEnter = _this$props.onEnter, _onEntering = _this$props.onEntering, _onEntered = _this$props.onEntered, _onExit = _this$props.onExit, _onExiting = _this$props.onExiting, _onExited = _this$props.onExited, _nodeRef = _this$props.nodeRef, childProps = _objectWithoutPropertiesLoose(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
         return (
           // allows for nested Transitions
-          /* @__PURE__ */ import_react165.default.createElement(TransitionGroupContext_default.Provider, {
+          /* @__PURE__ */ import_react119.default.createElement(TransitionGroupContext_default.Provider, {
             value: null
-          }, typeof children === "function" ? children(status, childProps) : import_react165.default.cloneElement(import_react165.default.Children.only(children), childProps))
+          }, typeof children === "function" ? children(status, childProps) : import_react119.default.cloneElement(import_react119.default.Children.only(children), childProps))
         );
       };
       return Transition2;
-    }(import_react165.default.Component);
+    }(import_react119.default.Component);
     Transition.contextType = TransitionGroupContext_default;
     Transition.propTypes = true ? {
       /**
@@ -14958,12 +11293,12 @@ var init_Transition = __esm({
       appear: false,
       enter: true,
       exit: true,
-      onEnter: noop6,
-      onEntering: noop6,
-      onEntered: noop6,
-      onExit: noop6,
-      onExiting: noop6,
-      onExited: noop6
+      onEnter: noop4,
+      onEntering: noop4,
+      onEntered: noop4,
+      onExit: noop4,
+      onExiting: noop4,
+      onExited: noop4
     };
     Transition.UNMOUNTED = UNMOUNTED;
     Transition.EXITED = EXITED;
@@ -14975,7 +11310,7 @@ var init_Transition = __esm({
 });
 
 // node_modules/react-transition-group/esm/CSSTransition.js
-var import_prop_types3, import_react166, _addClass, removeClass2, CSSTransition, CSSTransition_default;
+var import_prop_types3, import_react120, _addClass, removeClass2, CSSTransition, CSSTransition_default;
 var init_CSSTransition = __esm({
   "node_modules/react-transition-group/esm/CSSTransition.js"() {
     init_extends();
@@ -14984,7 +11319,7 @@ var init_CSSTransition = __esm({
     import_prop_types3 = __toESM(require_prop_types());
     init_addClass();
     init_removeClass();
-    import_react166 = __toESM(require_react());
+    import_react120 = __toESM(require_react());
     init_Transition();
     init_PropTypes();
     init_reflow();
@@ -15109,7 +11444,7 @@ var init_CSSTransition = __esm({
       };
       _proto.render = function render() {
         var _this$props = this.props, _ = _this$props.classNames, props = _objectWithoutPropertiesLoose(_this$props, ["classNames"]);
-        return /* @__PURE__ */ import_react166.default.createElement(Transition_default, _extends({}, props, {
+        return /* @__PURE__ */ import_react120.default.createElement(Transition_default, _extends({}, props, {
           onEnter: this.onEnter,
           onEntered: this.onEntered,
           onEntering: this.onEntering,
@@ -15119,7 +11454,7 @@ var init_CSSTransition = __esm({
         }));
       };
       return CSSTransition2;
-    }(import_react166.default.Component);
+    }(import_react120.default.Component);
     CSSTransition.defaultProps = {
       classNames: ""
     };
@@ -15266,11 +11601,11 @@ var init_assertThisInitialized = __esm({
 // node_modules/react-transition-group/esm/utils/ChildMapping.js
 function getChildMapping(children, mapFn) {
   var mapper = function mapper2(child) {
-    return mapFn && (0, import_react167.isValidElement)(child) ? mapFn(child) : child;
+    return mapFn && (0, import_react121.isValidElement)(child) ? mapFn(child) : child;
   };
   var result = /* @__PURE__ */ Object.create(null);
   if (children)
-    import_react167.Children.map(children, function(c) {
+    import_react121.Children.map(children, function(c) {
       return c;
     }).forEach(function(child) {
       result[child.key] = mapper(child);
@@ -15316,7 +11651,7 @@ function getProp(child, prop, props) {
 }
 function getInitialChildMapping(props, onExited) {
   return getChildMapping(props.children, function(child) {
-    return (0, import_react167.cloneElement)(child, {
+    return (0, import_react121.cloneElement)(child, {
       onExited: onExited.bind(null, child),
       in: true,
       appear: getProp(child, "appear", props),
@@ -15330,25 +11665,25 @@ function getNextChildMapping(nextProps, prevChildMapping, onExited) {
   var children = mergeChildMappings(prevChildMapping, nextChildMapping);
   Object.keys(children).forEach(function(key) {
     var child = children[key];
-    if (!(0, import_react167.isValidElement)(child))
+    if (!(0, import_react121.isValidElement)(child))
       return;
     var hasPrev = key in prevChildMapping;
     var hasNext = key in nextChildMapping;
     var prevChild = prevChildMapping[key];
-    var isLeaving = (0, import_react167.isValidElement)(prevChild) && !prevChild.props.in;
+    var isLeaving = (0, import_react121.isValidElement)(prevChild) && !prevChild.props.in;
     if (hasNext && (!hasPrev || isLeaving)) {
-      children[key] = (0, import_react167.cloneElement)(child, {
+      children[key] = (0, import_react121.cloneElement)(child, {
         onExited: onExited.bind(null, child),
         in: true,
         exit: getProp(child, "exit", nextProps),
         enter: getProp(child, "enter", nextProps)
       });
     } else if (!hasNext && hasPrev && !isLeaving) {
-      children[key] = (0, import_react167.cloneElement)(child, {
+      children[key] = (0, import_react121.cloneElement)(child, {
         in: false
       });
-    } else if (hasNext && hasPrev && (0, import_react167.isValidElement)(prevChild)) {
-      children[key] = (0, import_react167.cloneElement)(child, {
+    } else if (hasNext && hasPrev && (0, import_react121.isValidElement)(prevChild)) {
+      children[key] = (0, import_react121.cloneElement)(child, {
         onExited: onExited.bind(null, child),
         in: prevChild.props.in,
         exit: getProp(child, "exit", nextProps),
@@ -15358,15 +11693,15 @@ function getNextChildMapping(nextProps, prevChildMapping, onExited) {
   });
   return children;
 }
-var import_react167;
+var import_react121;
 var init_ChildMapping = __esm({
   "node_modules/react-transition-group/esm/utils/ChildMapping.js"() {
-    import_react167 = __toESM(require_react());
+    import_react121 = __toESM(require_react());
   }
 });
 
 // node_modules/react-transition-group/esm/TransitionGroup.js
-var import_prop_types4, import_react168, values, defaultProps, TransitionGroup, TransitionGroup_default;
+var import_prop_types4, import_react122, values, defaultProps, TransitionGroup, TransitionGroup_default;
 var init_TransitionGroup = __esm({
   "node_modules/react-transition-group/esm/TransitionGroup.js"() {
     init_objectWithoutPropertiesLoose();
@@ -15374,7 +11709,7 @@ var init_TransitionGroup = __esm({
     init_assertThisInitialized();
     init_inheritsLoose();
     import_prop_types4 = __toESM(require_prop_types());
-    import_react168 = __toESM(require_react());
+    import_react122 = __toESM(require_react());
     init_TransitionGroupContext();
     init_ChildMapping();
     values = Object.values || function(obj) {
@@ -15447,16 +11782,16 @@ var init_TransitionGroup = __esm({
         delete props.enter;
         delete props.exit;
         if (Component7 === null) {
-          return /* @__PURE__ */ import_react168.default.createElement(TransitionGroupContext_default.Provider, {
+          return /* @__PURE__ */ import_react122.default.createElement(TransitionGroupContext_default.Provider, {
             value: contextValue
           }, children);
         }
-        return /* @__PURE__ */ import_react168.default.createElement(TransitionGroupContext_default.Provider, {
+        return /* @__PURE__ */ import_react122.default.createElement(TransitionGroupContext_default.Provider, {
           value: contextValue
-        }, /* @__PURE__ */ import_react168.default.createElement(Component7, props, children));
+        }, /* @__PURE__ */ import_react122.default.createElement(Component7, props, children));
       };
       return TransitionGroup2;
-    }(import_react168.default.Component);
+    }(import_react122.default.Component);
     TransitionGroup.propTypes = true ? {
       /**
        * `<TransitionGroup>` renders a `<div>` by default. You can change this
@@ -15524,11 +11859,7050 @@ var init_esm = __esm({
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/BulkActions/BulkActions.scss.js
+// node_modules/@shopify/polaris/build/esm/components/Modal/Modal.scss.js
+var styles27;
+var init_Modal_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/Modal.scss.js"() {
+    styles27 = {
+      "Body": "Polaris-Modal__Body",
+      "IFrame": "Polaris-Modal__IFrame"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.scss.js
+var styles28;
+var init_Section_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.scss.js"() {
+    styles28 = {
+      "Section": "Polaris-Modal-Section",
+      "titleHidden": "Polaris-Modal-Section--titleHidden"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.js
+function Section4({
+  children,
+  flush = false,
+  subdued = false,
+  titleHidden = false
+}) {
+  const className = classNames(styles28.Section, titleHidden && styles28.titleHidden);
+  return /* @__PURE__ */ import_react123.default.createElement("div", {
+    className
+  }, /* @__PURE__ */ import_react123.default.createElement(Box, Object.assign({
+    as: "section",
+    padding: flush ? "0" : "400"
+  }, titleHidden && {
+    paddingInlineEnd: "0"
+  }, subdued && {
+    background: "bg-surface-tertiary"
+  }), children));
+}
+var import_react123;
+var init_Section4 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.js"() {
+    import_react123 = __toESM(require_react());
+    init_css();
+    init_Section_scss();
+    init_Box();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.scss.js
+var styles29;
+var init_Dialog_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.scss.js"() {
+    styles29 = {
+      "Container": "Polaris-Modal-Dialog__Container",
+      "Dialog": "Polaris-Modal-Dialog",
+      "Modal": "Polaris-Modal-Dialog__Modal",
+      "limitHeight": "Polaris-Modal-Dialog--limitHeight",
+      "sizeSmall": "Polaris-Modal-Dialog--sizeSmall",
+      "sizeLarge": "Polaris-Modal-Dialog--sizeLarge",
+      "sizeFullScreen": "Polaris-Modal-Dialog--sizeFullScreen",
+      "animateFadeUp": "Polaris-Modal-Dialog--animateFadeUp",
+      "entering": "Polaris-Modal-Dialog--entering",
+      "exiting": "Polaris-Modal-Dialog--exiting",
+      "exited": "Polaris-Modal-Dialog--exited",
+      "entered": "Polaris-Modal-Dialog--entered"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/frame/context.js
+var import_react124, FrameContext;
+var init_context11 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/frame/context.js"() {
+    import_react124 = __toESM(require_react());
+    FrameContext = /* @__PURE__ */ (0, import_react124.createContext)(void 0);
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/focus-manager/hooks.js
+function useFocusManager({
+  trapping
+}) {
+  const focusManager = (0, import_react125.useContext)(FocusManagerContext);
+  const id = (0, import_react125.useId)();
+  if (!focusManager) {
+    throw new MissingAppProviderError("No FocusManager was provided.");
+  }
+  const {
+    trapFocusList,
+    add: addFocusItem,
+    remove: removeFocusItem
+  } = focusManager;
+  const canSafelyFocus = trapFocusList[0] === id;
+  const value = (0, import_react125.useMemo)(() => ({
+    canSafelyFocus
+  }), [canSafelyFocus]);
+  (0, import_react125.useEffect)(() => {
+    if (!trapping)
+      return;
+    addFocusItem(id);
+    return () => {
+      removeFocusItem(id);
+    };
+  }, [addFocusItem, id, removeFocusItem, trapping]);
+  return value;
+}
+var import_react125;
+var init_hooks5 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/focus-manager/hooks.js"() {
+    import_react125 = __toESM(require_react());
+    init_errors();
+    init_context8();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Focus/Focus.js
+function isRef(ref) {
+  return ref.current !== void 0;
+}
+var import_react126, Focus;
+var init_Focus = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Focus/Focus.js"() {
+    import_react126 = __toESM(require_react());
+    init_focus();
+    Focus = /* @__PURE__ */ (0, import_react126.memo)(function Focus2({
+      children,
+      disabled,
+      root
+    }) {
+      (0, import_react126.useEffect)(() => {
+        if (disabled || !root) {
+          return;
+        }
+        const node = isRef(root) ? root.current : root;
+        if (!node || node.querySelector("[autofocus]")) {
+          return;
+        }
+        focusFirstFocusableNode(node, false);
+      }, [disabled, root]);
+      return /* @__PURE__ */ import_react126.default.createElement(import_react126.default.Fragment, null, children);
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/TrapFocus/TrapFocus.js
+function TrapFocus({
+  trapping = true,
+  children
+}) {
+  const {
+    canSafelyFocus
+  } = useFocusManager({
+    trapping
+  });
+  const focusTrapWrapper = (0, import_react127.useRef)(null);
+  const [disableFocus, setDisableFocus] = (0, import_react127.useState)(true);
+  (0, import_react127.useEffect)(() => {
+    const disable = canSafelyFocus && !(focusTrapWrapper.current && focusTrapWrapper.current.contains(document.activeElement)) ? !trapping : true;
+    setDisableFocus(disable);
+  }, [canSafelyFocus, trapping]);
+  const handleFocusIn = (event) => {
+    const containerContentsHaveFocus = focusTrapWrapper.current && focusTrapWrapper.current.contains(document.activeElement);
+    if (trapping === false || !focusTrapWrapper.current || containerContentsHaveFocus || event.target instanceof Element && event.target.matches(`${portal.selector} *`)) {
+      return;
+    }
+    if (canSafelyFocus && event.target instanceof HTMLElement && focusTrapWrapper.current !== event.target && !focusTrapWrapper.current.contains(event.target)) {
+      focusFirstFocusableNode(focusTrapWrapper.current);
+    }
+  };
+  const handleTab = (event) => {
+    if (trapping === false || !focusTrapWrapper.current) {
+      return;
+    }
+    const firstFocusableNode = findFirstKeyboardFocusableNode(focusTrapWrapper.current);
+    const lastFocusableNode = findLastKeyboardFocusableNode(focusTrapWrapper.current);
+    if (event.target === lastFocusableNode && !event.shiftKey) {
+      event.preventDefault();
+      focusFirstKeyboardFocusableNode(focusTrapWrapper.current);
+    }
+    if (event.target === firstFocusableNode && event.shiftKey) {
+      event.preventDefault();
+      focusLastKeyboardFocusableNode(focusTrapWrapper.current);
+    }
+  };
+  return /* @__PURE__ */ import_react127.default.createElement(Focus, {
+    disabled: disableFocus,
+    root: focusTrapWrapper.current
+  }, /* @__PURE__ */ import_react127.default.createElement("div", {
+    ref: focusTrapWrapper
+  }, /* @__PURE__ */ import_react127.default.createElement(EventListener, {
+    event: "focusin",
+    handler: handleFocusIn
+  }), /* @__PURE__ */ import_react127.default.createElement(KeypressListener, {
+    keyCode: Key.Tab,
+    keyEvent: "keydown",
+    handler: handleTab
+  }), children));
+}
+var import_react127;
+var init_TrapFocus = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/TrapFocus/TrapFocus.js"() {
+    import_react127 = __toESM(require_react());
+    init_types();
+    init_focus();
+    init_shared();
+    init_hooks5();
+    init_Focus();
+    init_EventListener();
+    init_KeypressListener();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.js
+function Dialog({
+  instant,
+  labelledBy,
+  children,
+  limitHeight,
+  size: size2,
+  onClose,
+  onExited,
+  onEntered,
+  setClosing,
+  hasToasts,
+  ...props
+}) {
+  const theme = useTheme();
+  const containerNode = (0, import_react128.useRef)(null);
+  const frameContext = (0, import_react128.useContext)(FrameContext);
+  let toastMessages;
+  if (frameContext) {
+    toastMessages = frameContext.toastMessages;
+  }
+  const classes = classNames(styles29.Modal, size2 && styles29[variationName("size", size2)], limitHeight && styles29.limitHeight);
+  const TransitionChild = instant ? Transition_default : FadeUp;
+  (0, import_react128.useEffect)(() => {
+    containerNode.current && !containerNode.current.contains(document.activeElement) && focusFirstFocusableNode(containerNode.current);
+  }, []);
+  const handleKeyDown5 = () => {
+    if (setClosing) {
+      setClosing(true);
+    }
+  };
+  const handleKeyUp = () => {
+    if (setClosing) {
+      setClosing(false);
+    }
+    onClose();
+  };
+  const ariaLiveAnnouncements = /* @__PURE__ */ import_react128.default.createElement("div", {
+    "aria-live": "assertive"
+  }, toastMessages ? toastMessages.map((toastMessage) => /* @__PURE__ */ import_react128.default.createElement(Text, {
+    visuallyHidden: true,
+    as: "p",
+    key: toastMessage.id
+  }, toastMessage.content)) : null);
+  return /* @__PURE__ */ import_react128.default.createElement(TransitionChild, Object.assign({}, props, {
+    nodeRef: containerNode,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    timeout: parseInt(theme.motion["motion-duration-200"], 10),
+    onEntered,
+    onExited
+  }), /* @__PURE__ */ import_react128.default.createElement("div", {
+    className: styles29.Container,
+    "data-polaris-layer": true,
+    "data-polaris-overlay": true,
+    ref: containerNode
+  }, /* @__PURE__ */ import_react128.default.createElement(TrapFocus, null, /* @__PURE__ */ import_react128.default.createElement("div", {
+    role: "dialog",
+    "aria-modal": true,
+    "aria-label": labelledBy,
+    "aria-labelledby": labelledBy,
+    tabIndex: -1,
+    className: styles29.Dialog
+  }, /* @__PURE__ */ import_react128.default.createElement("div", {
+    className: classes
+  }, /* @__PURE__ */ import_react128.default.createElement(KeypressListener, {
+    keyCode: Key.Escape,
+    keyEvent: "keydown",
+    handler: handleKeyDown5
+  }), /* @__PURE__ */ import_react128.default.createElement(KeypressListener, {
+    keyCode: Key.Escape,
+    handler: handleKeyUp
+  }), children), ariaLiveAnnouncements))));
+}
+function FadeUp({
+  children,
+  ...props
+}) {
+  return /* @__PURE__ */ import_react128.default.createElement(CSSTransition_default, Object.assign({}, props, {
+    classNames: fadeUpClasses
+  }), children);
+}
+var import_react128, fadeUpClasses;
+var init_Dialog = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.js"() {
+    import_react128 = __toESM(require_react());
+    init_esm();
+    init_css();
+    init_focus();
+    init_types();
+    init_use_theme();
+    init_Dialog_scss();
+    init_context11();
+    init_TrapFocus();
+    init_Text();
+    init_KeypressListener();
+    fadeUpClasses = {
+      appear: classNames(styles29.animateFadeUp, styles29.entering),
+      appearActive: classNames(styles29.animateFadeUp, styles29.entered),
+      enter: classNames(styles29.animateFadeUp, styles29.entering),
+      enterActive: classNames(styles29.animateFadeUp, styles29.entered),
+      exit: classNames(styles29.animateFadeUp, styles29.exiting),
+      exitActive: classNames(styles29.animateFadeUp, styles29.exited)
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/CloseButton/CloseButton.js
+function CloseButton({
+  pressed,
+  onClick
+}) {
+  const i18n = useI18n();
+  return /* @__PURE__ */ import_react129.default.createElement(Button, {
+    variant: "tertiary",
+    pressed,
+    icon: SvgXIcon,
+    onClick,
+    accessibilityLabel: i18n.translate("Polaris.Common.close")
+  });
+}
+var import_react129;
+var init_CloseButton = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/CloseButton/CloseButton.js"() {
+    import_react129 = __toESM(require_react());
+    init_dist();
+    init_hooks2();
+    init_Button();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Header/Header.js
+function Header2({
+  id,
+  children,
+  closing,
+  titleHidden,
+  onClose
+}) {
+  const headerPaddingInline = "400";
+  const headerPaddingBlock = "400";
+  if (titleHidden || !children) {
+    return /* @__PURE__ */ import_react130.default.createElement(Box, {
+      position: "absolute",
+      insetInlineEnd: headerPaddingInline,
+      insetBlockStart: headerPaddingBlock,
+      zIndex: "1"
+    }, /* @__PURE__ */ import_react130.default.createElement(CloseButton, {
+      onClick: onClose
+    }));
+  }
+  return /* @__PURE__ */ import_react130.default.createElement(Box, {
+    paddingBlockStart: "400",
+    paddingBlockEnd: "400",
+    paddingInlineStart: headerPaddingInline,
+    paddingInlineEnd: headerPaddingInline,
+    borderBlockEndWidth: "025",
+    borderColor: "border",
+    background: "bg-surface-tertiary"
+  }, /* @__PURE__ */ import_react130.default.createElement(InlineGrid, {
+    columns: {
+      xs: "1fr auto"
+    },
+    gap: "400"
+  }, /* @__PURE__ */ import_react130.default.createElement(InlineStack, {
+    gap: "400",
+    blockAlign: "center"
+  }, /* @__PURE__ */ import_react130.default.createElement(Text, {
+    id,
+    as: "h2",
+    variant: "headingMd",
+    breakWord: true
+  }, children)), /* @__PURE__ */ import_react130.default.createElement(CloseButton, {
+    pressed: closing,
+    onClick: onClose
+  })));
+}
+var import_react130;
+var init_Header2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Header/Header.js"() {
+    import_react130 = __toESM(require_react());
+    init_CloseButton();
+    init_InlineGrid();
+    init_Box();
+    init_InlineStack();
+    init_Text();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.scss.js
+var styles30;
+var init_Backdrop_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.scss.js"() {
+    styles30 = {
+      "Backdrop": "Polaris-Backdrop",
+      "transparent": "Polaris-Backdrop--transparent",
+      "belowNavigation": "Polaris-Backdrop--belowNavigation"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/scroll-lock-manager/hooks.js
+function useScrollLockManager() {
+  const scrollLockManager = (0, import_react131.useContext)(ScrollLockManagerContext);
+  if (!scrollLockManager) {
+    throw new MissingAppProviderError("No ScrollLockManager was provided.");
+  }
+  return scrollLockManager;
+}
+var import_react131;
+var init_hooks6 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/scroll-lock-manager/hooks.js"() {
+    import_react131 = __toESM(require_react());
+    init_errors();
+    init_context3();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ScrollLock/ScrollLock.js
+function ScrollLock(_) {
+  const scrollLockManager = useScrollLockManager();
+  (0, import_react132.useEffect)(() => {
+    scrollLockManager.registerScrollLock();
+    return () => {
+      scrollLockManager.unregisterScrollLock();
+    };
+  }, [scrollLockManager]);
+  return null;
+}
+var import_react132;
+var init_ScrollLock = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ScrollLock/ScrollLock.js"() {
+    import_react132 = __toESM(require_react());
+    init_hooks6();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.js
+function Backdrop(props) {
+  const {
+    onClick,
+    onTouchStart,
+    belowNavigation,
+    transparent,
+    setClosing
+  } = props;
+  const className = classNames(styles30.Backdrop, belowNavigation && styles30.belowNavigation, transparent && styles30.transparent);
+  const handleMouseDown = () => {
+    if (setClosing) {
+      setClosing(true);
+    }
+  };
+  const handleClick = () => {
+    if (setClosing) {
+      setClosing(false);
+    }
+    if (onClick) {
+      onClick();
+    }
+  };
+  return /* @__PURE__ */ import_react133.default.createElement(import_react133.default.Fragment, null, /* @__PURE__ */ import_react133.default.createElement(ScrollLock, null), /* @__PURE__ */ import_react133.default.createElement("div", {
+    className,
+    onClick: handleClick,
+    onTouchStart,
+    onMouseDown: handleMouseDown
+  }));
+}
+var import_react133;
+var init_Backdrop = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Backdrop/Backdrop.js"() {
+    import_react133 = __toESM(require_react());
+    init_css();
+    init_Backdrop_scss();
+    init_ScrollLock();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/components/Footer/Footer.js
+function Footer({
+  primaryAction,
+  secondaryActions,
+  children
+}) {
+  const primaryActionButton = primaryAction && buttonsFrom(primaryAction, {
+    variant: "primary"
+  }) || null;
+  const secondaryActionButtons = secondaryActions && buttonsFrom(secondaryActions) || null;
+  const actions = primaryActionButton || secondaryActionButtons ? /* @__PURE__ */ import_react134.default.createElement(InlineStack, {
+    gap: "200"
+  }, secondaryActionButtons, primaryActionButton) : null;
+  return /* @__PURE__ */ import_react134.default.createElement(InlineStack, {
+    gap: "400",
+    blockAlign: "center"
+  }, /* @__PURE__ */ import_react134.default.createElement(Box, {
+    borderColor: "border",
+    borderBlockStartWidth: "025",
+    padding: "400",
+    width: "100%"
+  }, /* @__PURE__ */ import_react134.default.createElement(InlineStack, {
+    gap: "400",
+    blockAlign: "center",
+    align: "space-between"
+  }, /* @__PURE__ */ import_react134.default.createElement(Box, null, children), actions)));
+}
+var import_react134;
+var init_Footer = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Footer/Footer.js"() {
+    import_react134 = __toESM(require_react());
+    init_utils3();
+    init_InlineStack();
+    init_Box();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Modal/Modal.js
+function isRef2(ref) {
+  return Object.prototype.hasOwnProperty.call(ref, "current");
+}
+var import_react135, IFRAME_LOADING_HEIGHT, DEFAULT_IFRAME_CONTENT_HEIGHT, Modal;
+var init_Modal = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Modal/Modal.js"() {
+    import_react135 = __toESM(require_react());
+    init_esm();
+    init_focus();
+    init_within_content_context();
+    init_components();
+    init_Modal_scss();
+    init_Section4();
+    init_Dialog();
+    init_Header2();
+    init_Backdrop();
+    init_Footer();
+    init_hooks2();
+    init_Box();
+    init_Scrollable();
+    init_Portal();
+    init_InlineStack();
+    init_Spinner();
+    IFRAME_LOADING_HEIGHT = 200;
+    DEFAULT_IFRAME_CONTENT_HEIGHT = 400;
+    Modal = function Modal2({
+      children,
+      title,
+      titleHidden = false,
+      src,
+      iFrameName,
+      open,
+      instant,
+      sectioned,
+      loading,
+      size: size2,
+      limitHeight,
+      footer,
+      primaryAction,
+      secondaryActions,
+      onScrolledToBottom,
+      activator,
+      activatorWrapper = "div",
+      onClose,
+      onIFrameLoad,
+      onTransitionEnd,
+      noScroll
+    }) {
+      const [iframeHeight, setIframeHeight] = (0, import_react135.useState)(IFRAME_LOADING_HEIGHT);
+      const [closing, setClosing] = (0, import_react135.useState)(false);
+      const headerId = (0, import_react135.useId)();
+      const activatorRef = (0, import_react135.useRef)(null);
+      const i18n = useI18n();
+      const iframeTitle = i18n.translate("Polaris.Modal.iFrameTitle");
+      let dialog;
+      let backdrop;
+      const handleEntered = (0, import_react135.useCallback)(() => {
+        if (onTransitionEnd) {
+          onTransitionEnd();
+        }
+      }, [onTransitionEnd]);
+      const handleExited = (0, import_react135.useCallback)(() => {
+        setIframeHeight(IFRAME_LOADING_HEIGHT);
+        const activatorElement = activator && isRef2(activator) ? activator && activator.current : activatorRef.current;
+        if (activatorElement) {
+          requestAnimationFrame(() => focusFirstFocusableNode(activatorElement));
+        }
+      }, [activator]);
+      const handleIFrameLoad = (0, import_react135.useCallback)((evt) => {
+        const iframe = evt.target;
+        if (iframe && iframe.contentWindow) {
+          try {
+            setIframeHeight(iframe.contentWindow.document.body.scrollHeight);
+          } catch (_error) {
+            setIframeHeight(DEFAULT_IFRAME_CONTENT_HEIGHT);
+          }
+        }
+        if (onIFrameLoad != null) {
+          onIFrameLoad(evt);
+        }
+      }, [onIFrameLoad]);
+      if (open) {
+        const footerMarkup = !footer && !primaryAction && !secondaryActions ? null : /* @__PURE__ */ import_react135.default.createElement(Footer, {
+          primaryAction,
+          secondaryActions
+        }, footer);
+        const content = sectioned ? wrapWithComponent(children, Section4, {
+          titleHidden
+        }) : children;
+        const body = loading ? /* @__PURE__ */ import_react135.default.createElement(Box, {
+          padding: "400"
+        }, /* @__PURE__ */ import_react135.default.createElement(InlineStack, {
+          gap: "400",
+          align: "center",
+          blockAlign: "center"
+        }, /* @__PURE__ */ import_react135.default.createElement(Spinner, null))) : content;
+        const scrollContainerMarkup = noScroll ? /* @__PURE__ */ import_react135.default.createElement(Box, {
+          width: "100%",
+          overflowX: "hidden",
+          overflowY: "hidden"
+        }, body) : /* @__PURE__ */ import_react135.default.createElement(Scrollable, {
+          shadow: true,
+          className: styles27.Body,
+          onScrolledToBottom
+        }, body);
+        const bodyMarkup = src ? /* @__PURE__ */ import_react135.default.createElement("iframe", {
+          name: iFrameName,
+          title: iframeTitle,
+          src,
+          className: styles27.IFrame,
+          onLoad: handleIFrameLoad,
+          style: {
+            height: `${iframeHeight}px`
+          }
+        }) : scrollContainerMarkup;
+        dialog = /* @__PURE__ */ import_react135.default.createElement(Dialog, {
+          instant,
+          labelledBy: headerId,
+          onClose,
+          onEntered: handleEntered,
+          onExited: handleExited,
+          size: size2,
+          limitHeight,
+          setClosing
+        }, /* @__PURE__ */ import_react135.default.createElement(Header2, {
+          titleHidden,
+          id: headerId,
+          closing,
+          onClose
+        }, title), bodyMarkup, footerMarkup);
+        backdrop = /* @__PURE__ */ import_react135.default.createElement(Backdrop, {
+          setClosing,
+          onClick: onClose
+        });
+      }
+      const animated = !instant;
+      const activatorMarkup = activator && !isRef2(activator) ? /* @__PURE__ */ import_react135.default.createElement(Box, {
+        ref: activatorRef,
+        as: activatorWrapper
+      }, activator) : null;
+      return /* @__PURE__ */ import_react135.default.createElement(WithinContentContext.Provider, {
+        value: true
+      }, activatorMarkup, /* @__PURE__ */ import_react135.default.createElement(Portal, {
+        idPrefix: "modal"
+      }, /* @__PURE__ */ import_react135.default.createElement(TransitionGroup_default, {
+        appear: animated,
+        enter: animated,
+        exit: animated
+      }, dialog), backdrop));
+    };
+    Modal.Section = Section4;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/set-root-property.js
+function setRootProperty(name, value, node) {
+  if (!document)
+    return;
+  const element = node || document.documentElement;
+  element.style.setProperty(name, value);
+}
+var init_set_root_property = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/set-root-property.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/Frame.scss.js
+var styles31;
+var init_Frame_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/Frame.scss.js"() {
+    styles31 = {
+      "Frame": "Polaris-Frame",
+      "Navigation": "Polaris-Frame__Navigation",
+      "hasTopBar": "Polaris-Frame--hasTopBar",
+      "Navigation-enter": "Polaris-Frame__Navigation--enter",
+      "Navigation-enterActive": "Polaris-Frame__Navigation--enterActive",
+      "Navigation-exit": "Polaris-Frame__Navigation--exit",
+      "Navigation-exitActive": "Polaris-Frame__Navigation--exitActive",
+      "NavigationDismiss": "Polaris-Frame__NavigationDismiss",
+      "Navigation-visible": "Polaris-Frame__Navigation--visible",
+      "TopBar": "Polaris-Frame__TopBar",
+      "ContextualSaveBar": "Polaris-Frame__ContextualSaveBar",
+      "Main": "Polaris-Frame__Main",
+      "hasNav": "Polaris-Frame--hasNav",
+      "Content": "Polaris-Frame__Content",
+      "hasSidebar": "Polaris-Frame--hasSidebar",
+      "GlobalRibbonContainer": "Polaris-Frame__GlobalRibbonContainer",
+      "LoadingBar": "Polaris-Frame__LoadingBar",
+      "Skip": "Polaris-Frame__Skip",
+      "focused": "Polaris-Frame--focused",
+      "pressed": "Polaris-Frame--pressed"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/media-query/hooks.js
+function useMediaQuery() {
+  const mediaQuery = (0, import_react136.useContext)(MediaQueryContext);
+  if (!mediaQuery) {
+    throw new Error("No mediaQuery was provided. Your application must be wrapped in an <AppProvider> component. See https://polaris.shopify.com/components/app-provider for implementation instructions.");
+  }
+  return mediaQuery;
+}
+var import_react136;
+var init_hooks7 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/media-query/hooks.js"() {
+    import_react136 = __toESM(require_react());
+    init_context6();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-is-mounted-ref.js
+function useIsMountedRef() {
+  const isMounted = (0, import_react137.useRef)(false);
+  (0, import_react137.useEffect)(() => {
+    isMounted.current = true;
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+  return isMounted;
+}
+var import_react137;
+var init_use_is_mounted_ref = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-is-mounted-ref.js"() {
+    import_react137 = __toESM(require_react());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.scss.js
+var styles32;
+var init_Loading_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.scss.js"() {
+    styles32 = {
+      "Loading": "Polaris-Frame-Loading",
+      "Level": "Polaris-Frame-Loading__Level"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.js
+function Loading() {
+  const i18n = useI18n();
+  const isMountedRef = useIsMountedRef();
+  const [progress, setProgress] = (0, import_react138.useState)(0);
+  const [animating, setAnimating] = (0, import_react138.useState)(false);
+  (0, import_react138.useEffect)(() => {
+    if (progress >= STUCK_THRESHOLD || animating) {
+      return;
+    }
+    requestAnimationFrame(() => {
+      if (!isMountedRef.current)
+        return;
+      const step = Math.max((STUCK_THRESHOLD - progress) / 10, 1);
+      setAnimating(true);
+      setProgress(progress + step);
+    });
+  }, [progress, animating, isMountedRef]);
+  const customStyles = {
+    transform: `scaleX(${Math.floor(progress) / 100})`
+  };
+  return /* @__PURE__ */ import_react138.default.createElement("div", {
+    className: styles32.Loading,
+    "aria-valuenow": progress,
+    "aria-valuemin": 0,
+    "aria-valuemax": 100,
+    role: "progressbar",
+    "aria-label": i18n.translate("Polaris.Loading.label")
+  }, /* @__PURE__ */ import_react138.default.createElement("div", {
+    className: styles32.Level,
+    style: customStyles,
+    onTransitionEnd: () => setAnimating(false)
+  }));
+}
+var import_react138, STUCK_THRESHOLD;
+var init_Loading = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.js"() {
+    import_react138 = __toESM(require_react());
+    init_use_is_mounted_ref();
+    init_Loading_scss();
+    init_hooks2();
+    STUCK_THRESHOLD = 99;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js
+var styles33;
+var init_CSSAnimation_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js"() {
+    styles33 = {
+      "startFade": "Polaris-Frame-CSSAnimation--startFade",
+      "endFade": "Polaris-Frame-CSSAnimation--endFade"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.js
+function CSSAnimation({
+  in: inProp,
+  className,
+  type,
+  children
+}) {
+  const [transitionStatus, setTransitionStatus] = (0, import_react139.useState)(inProp ? TransitionStatus2.Entering : TransitionStatus2.Exited);
+  const isMounted = (0, import_react139.useRef)(false);
+  const node = (0, import_react139.useRef)(null);
+  (0, import_react139.useEffect)(() => {
+    if (!isMounted.current)
+      return;
+    transitionStatus === TransitionStatus2.Entering && changeTransitionStatus(TransitionStatus2.Entered);
+  }, [transitionStatus]);
+  (0, import_react139.useEffect)(() => {
+    if (!isMounted.current)
+      return;
+    inProp && changeTransitionStatus(TransitionStatus2.Entering);
+    !inProp && changeTransitionStatus(TransitionStatus2.Exiting);
+  }, [inProp]);
+  (0, import_react139.useEffect)(() => {
+    isMounted.current = true;
+  }, []);
+  const wrapperClassName = classNames(className, styles33[variationName("start", type)], inProp && styles33[variationName("end", type)]);
+  const content = transitionStatus === TransitionStatus2.Exited && !inProp ? null : children;
+  return /* @__PURE__ */ import_react139.default.createElement("div", {
+    className: wrapperClassName,
+    ref: node,
+    onTransitionEnd: handleTransitionEnd
+  }, content);
+  function handleTransitionEnd() {
+    transitionStatus === TransitionStatus2.Exiting && changeTransitionStatus(TransitionStatus2.Exited);
+  }
+  function changeTransitionStatus(transitionStatus2) {
+    setTransitionStatus(transitionStatus2);
+    if (transitionStatus2 === TransitionStatus2.Entering)
+      node.current && node.current.getBoundingClientRect();
+  }
+}
+var import_react139, TransitionStatus2;
+var init_CSSAnimation = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.js"() {
+    import_react139 = __toESM(require_react());
+    init_css();
+    init_CSSAnimation_scss();
+    (function(TransitionStatus3) {
+      TransitionStatus3["Entering"] = "entering";
+      TransitionStatus3["Entered"] = "entered";
+      TransitionStatus3["Exiting"] = "exiting";
+      TransitionStatus3["Exited"] = "exited";
+    })(TransitionStatus2 || (TransitionStatus2 = {}));
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/pluck-deep.js
+function pluckDeep(obj, key) {
+  if (!obj) {
+    return null;
+  }
+  const keys = Object.keys(obj);
+  for (const currKey of keys) {
+    if (currKey === key) {
+      return obj[key];
+    }
+    if (isObject(obj[currKey])) {
+      const plucked = pluckDeep(obj[currKey], key);
+      if (plucked) {
+        return plucked;
+      }
+    }
+  }
+  return null;
+}
+var init_pluck_deep = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/pluck-deep.js"() {
+    init_is_object();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/get-width.js
+function getWidth(value = {}, defaultWidth = 0, key = "width") {
+  const width2 = typeof value === "number" ? value : pluckDeep(value, key);
+  return width2 ? `${width2}px` : `${defaultWidth}px`;
+}
+var init_get_width = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/get-width.js"() {
+    init_pluck_deep();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js
+var styles34;
+var init_ContextualSaveBar_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js"() {
+    styles34 = {
+      "ContextualSaveBar": "Polaris-Frame-ContextualSaveBar",
+      "LogoContainer": "Polaris-Frame-ContextualSaveBar__LogoContainer",
+      "ContextControl": "Polaris-Frame-ContextualSaveBar__ContextControl",
+      "Contents": "Polaris-Frame-ContextualSaveBar__Contents",
+      "fullWidth": "Polaris-Frame-ContextualSaveBar--fullWidth",
+      "MessageContainer": "Polaris-Frame-ContextualSaveBar__MessageContainer",
+      "ActionContainer": "Polaris-Frame-ContextualSaveBar__ActionContainer",
+      "Action": "Polaris-Frame-ContextualSaveBar__Action"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js
+function DiscardConfirmationModal({
+  open,
+  onDiscard,
+  onCancel
+}) {
+  const i18n = useI18n();
+  return /* @__PURE__ */ import_react140.default.createElement(Modal, {
+    title: i18n.translate("Polaris.DiscardConfirmationModal.title"),
+    open,
+    onClose: onCancel,
+    primaryAction: {
+      content: i18n.translate("Polaris.DiscardConfirmationModal.primaryAction"),
+      destructive: true,
+      onAction: onDiscard
+    },
+    secondaryActions: [{
+      content: i18n.translate("Polaris.DiscardConfirmationModal.secondaryAction"),
+      onAction: onCancel
+    }],
+    sectioned: true
+  }, i18n.translate("Polaris.DiscardConfirmationModal.message"));
+}
+var import_react140;
+var init_DiscardConfirmationModal = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js"() {
+    import_react140 = __toESM(require_react());
+    init_Modal();
+    init_hooks2();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/frame/hooks.js
+function useFrame() {
+  const frame = (0, import_react141.useContext)(FrameContext);
+  if (!frame) {
+    throw new Error("No Frame context was provided. Your component must be wrapped in a <Frame> component. See https://polaris.shopify.com/components/internal-only/frame for implementation instructions.");
+  }
+  return frame;
+}
+var import_react141;
+var init_hooks8 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/frame/hooks.js"() {
+    import_react141 = __toESM(require_react());
+    init_context11();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Image/Image.js
+function Image({
+  alt,
+  sourceSet,
+  source,
+  crossOrigin,
+  onLoad,
+  className,
+  ...rest
+}) {
+  const finalSourceSet = sourceSet ? sourceSet.map(({
+    source: subSource,
+    descriptor
+  }) => `${subSource} ${descriptor}`).join(",") : null;
+  const handleLoad = (0, import_react142.useCallback)(() => {
+    if (onLoad)
+      onLoad();
+  }, [onLoad]);
+  return /* @__PURE__ */ import_react142.default.createElement("img", Object.assign({
+    alt,
+    src: source,
+    crossOrigin,
+    className,
+    onLoad: handleLoad
+  }, finalSourceSet ? {
+    srcSet: finalSourceSet
+  } : {}, rest));
+}
+var import_react142;
+var init_Image = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Image/Image.js"() {
+    import_react142 = __toESM(require_react());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.js
+function ContextualSaveBar({
+  alignContentFlush,
+  message,
+  saveAction,
+  discardAction,
+  fullWidth,
+  contextControl,
+  secondaryMenu
+}) {
+  const i18n = useI18n();
+  const {
+    logo
+  } = useFrame();
+  const {
+    value: discardConfirmationModalVisible,
+    toggle: toggleDiscardConfirmationModal,
+    setFalse: closeDiscardConfirmationModal
+  } = useToggle(false);
+  const handleDiscardAction = (0, import_react143.useCallback)(() => {
+    if (discardAction && discardAction.onAction) {
+      discardAction.onAction();
+    }
+    closeDiscardConfirmationModal();
+  }, [closeDiscardConfirmationModal, discardAction]);
+  const discardActionContent = discardAction && discardAction.content ? discardAction.content : i18n.translate("Polaris.ContextualSaveBar.discard");
+  let discardActionHandler;
+  if (discardAction && discardAction.discardConfirmationModal) {
+    discardActionHandler = toggleDiscardConfirmationModal;
+  } else if (discardAction) {
+    discardActionHandler = discardAction.onAction;
+  }
+  const discardConfirmationModalMarkup = discardAction && discardAction.onAction && discardAction.discardConfirmationModal && /* @__PURE__ */ import_react143.default.createElement(DiscardConfirmationModal, {
+    open: discardConfirmationModalVisible,
+    onCancel: toggleDiscardConfirmationModal,
+    onDiscard: handleDiscardAction
+  });
+  const discardActionMarkup = discardAction && /* @__PURE__ */ import_react143.default.createElement(Button, {
+    variant: "tertiary",
+    size: "large",
+    url: discardAction.url,
+    onClick: discardActionHandler,
+    loading: discardAction.loading,
+    disabled: discardAction.disabled,
+    accessibilityLabel: discardAction.content
+  }, discardActionContent);
+  const saveActionContent = saveAction && saveAction.content ? saveAction.content : i18n.translate("Polaris.ContextualSaveBar.save");
+  const saveActionMarkup = saveAction && /* @__PURE__ */ import_react143.default.createElement(Button, {
+    variant: "primary",
+    tone: "success",
+    size: "large",
+    url: saveAction.url,
+    onClick: saveAction.onAction,
+    loading: saveAction.loading,
+    disabled: saveAction.disabled,
+    accessibilityLabel: saveAction.content
+  }, saveActionContent);
+  const width2 = getWidth(logo, 104);
+  const imageMarkup = logo && /* @__PURE__ */ import_react143.default.createElement(Image, {
+    style: {
+      width: width2
+    },
+    source: logo.contextualSaveBarSource || "",
+    alt: ""
+  });
+  const logoMarkup = alignContentFlush || contextControl ? null : /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: styles34.LogoContainer,
+    style: {
+      width: width2
+    }
+  }, imageMarkup);
+  const contextControlMarkup = contextControl ? /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: styles34.ContextControl
+  }, contextControl) : null;
+  const contentsClassName = classNames(styles34.Contents, fullWidth && styles34.fullWidth);
+  return /* @__PURE__ */ import_react143.default.createElement(import_react143.default.Fragment, null, /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: styles34.ContextualSaveBar
+  }, contextControlMarkup, logoMarkup, /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: contentsClassName
+  }, /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: styles34.MessageContainer
+  }, /* @__PURE__ */ import_react143.default.createElement(Icon, {
+    source: SvgAlertTriangleIcon
+  }), message && /* @__PURE__ */ import_react143.default.createElement(Text, {
+    as: "h2",
+    variant: "headingMd",
+    tone: "text-inverse",
+    truncate: true
+  }, message)), /* @__PURE__ */ import_react143.default.createElement("div", {
+    className: styles34.ActionContainer
+  }, /* @__PURE__ */ import_react143.default.createElement(LegacyStack, {
+    spacing: "tight",
+    wrap: false
+  }, secondaryMenu, discardActionMarkup, saveActionMarkup)))), discardConfirmationModalMarkup);
+}
+var import_react143;
+var init_ContextualSaveBar = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.js"() {
+    import_react143 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_get_width();
+    init_use_toggle();
+    init_ContextualSaveBar_scss();
+    init_DiscardConfirmationModal();
+    init_hooks2();
+    init_hooks8();
+    init_Button();
+    init_Image();
+    init_Icon();
+    init_Text();
+    init_LegacyStack();
+  }
+});
+
+// node_modules/react-fast-compare/index.js
+var require_react_fast_compare = __commonJS({
+  "node_modules/react-fast-compare/index.js"(exports, module) {
+    var hasElementType = typeof Element !== "undefined";
+    var hasMap = typeof Map === "function";
+    var hasSet = typeof Set === "function";
+    var hasArrayBuffer = typeof ArrayBuffer === "function" && !!ArrayBuffer.isView;
+    function equal(a, b) {
+      if (a === b)
+        return true;
+      if (a && b && typeof a == "object" && typeof b == "object") {
+        if (a.constructor !== b.constructor)
+          return false;
+        var length, i, keys;
+        if (Array.isArray(a)) {
+          length = a.length;
+          if (length != b.length)
+            return false;
+          for (i = length; i-- !== 0; )
+            if (!equal(a[i], b[i]))
+              return false;
+          return true;
+        }
+        var it;
+        if (hasMap && a instanceof Map && b instanceof Map) {
+          if (a.size !== b.size)
+            return false;
+          it = a.entries();
+          while (!(i = it.next()).done)
+            if (!b.has(i.value[0]))
+              return false;
+          it = a.entries();
+          while (!(i = it.next()).done)
+            if (!equal(i.value[1], b.get(i.value[0])))
+              return false;
+          return true;
+        }
+        if (hasSet && a instanceof Set && b instanceof Set) {
+          if (a.size !== b.size)
+            return false;
+          it = a.entries();
+          while (!(i = it.next()).done)
+            if (!b.has(i.value[0]))
+              return false;
+          return true;
+        }
+        if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
+          length = a.length;
+          if (length != b.length)
+            return false;
+          for (i = length; i-- !== 0; )
+            if (a[i] !== b[i])
+              return false;
+          return true;
+        }
+        if (a.constructor === RegExp)
+          return a.source === b.source && a.flags === b.flags;
+        if (a.valueOf !== Object.prototype.valueOf && typeof a.valueOf === "function" && typeof b.valueOf === "function")
+          return a.valueOf() === b.valueOf();
+        if (a.toString !== Object.prototype.toString && typeof a.toString === "function" && typeof b.toString === "function")
+          return a.toString() === b.toString();
+        keys = Object.keys(a);
+        length = keys.length;
+        if (length !== Object.keys(b).length)
+          return false;
+        for (i = length; i-- !== 0; )
+          if (!Object.prototype.hasOwnProperty.call(b, keys[i]))
+            return false;
+        if (hasElementType && a instanceof Element)
+          return false;
+        for (i = length; i-- !== 0; ) {
+          if ((keys[i] === "_owner" || keys[i] === "__v" || keys[i] === "__o") && a.$$typeof) {
+            continue;
+          }
+          if (!equal(a[keys[i]], b[keys[i]]))
+            return false;
+        }
+        return true;
+      }
+      return a !== a && b !== b;
+    }
+    module.exports = function isEqual5(a, b) {
+      try {
+        return equal(a, b);
+      } catch (error) {
+        if ((error.message || "").match(/stack|recursion/i)) {
+          console.warn("react-fast-compare cannot handle circular refs");
+          return false;
+        }
+        throw error;
+      }
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-deep-compare-ref.js
+function useDeepCompareRef(dependencies, comparator = import_react_fast_compare.default) {
+  const dependencyList = (0, import_react144.useRef)(dependencies);
+  if (!comparator(dependencyList.current, dependencies)) {
+    dependencyList.current = dependencies;
+  }
+  return dependencyList.current;
+}
+var import_react144, import_react_fast_compare;
+var init_use_deep_compare_ref = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-compare-ref.js"() {
+    import_react144 = __toESM(require_react());
+    import_react_fast_compare = __toESM(require_react_fast_compare());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-deep-effect.js
+function useDeepEffect(callback, dependencies, customCompare) {
+  (0, import_react145.useEffect)(callback, useDeepCompareRef(dependencies, customCompare));
+}
+var import_react145;
+var init_use_deep_effect = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-effect.js"() {
+    import_react145 = __toESM(require_react());
+    init_use_deep_compare_ref();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-deep-callback.js
+function useDeepCallback(callback, dependencies, customCompare) {
+  return (0, import_react146.useCallback)(callback, useDeepCompareRef(dependencies, customCompare));
+}
+var import_react146;
+var init_use_deep_callback = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-callback.js"() {
+    import_react146 = __toESM(require_react());
+    init_use_deep_compare_ref();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.scss.js
+var styles35;
+var init_ToastManager_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.scss.js"() {
+    styles35 = {
+      "ToastManager": "Polaris-Frame-ToastManager",
+      "ToastWrapper": "Polaris-Frame-ToastManager__ToastWrapper",
+      "ToastWrapper-enter": "Polaris-Frame-ToastManager__ToastWrapper--enter",
+      "ToastWrapper-exit": "Polaris-Frame-ToastManager__ToastWrapper--exit",
+      "ToastWrapper-enter-done": "Polaris-Frame-ToastManager--toastWrapperEnterDone"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.scss.js
+var styles36;
+var init_Toast_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.scss.js"() {
+    styles36 = {
+      "Toast": "Polaris-Frame-Toast",
+      "Action": "Polaris-Frame-Toast__Action",
+      "error": "Polaris-Frame-Toast--error",
+      "CloseButton": "Polaris-Frame-Toast__CloseButton",
+      "LeadingIcon": "Polaris-Frame-Toast__LeadingIcon"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.js
+function Toast({
+  content,
+  onDismiss,
+  duration,
+  error,
+  action
+}) {
+  (0, import_react147.useEffect)(() => {
+    let timeoutDuration = duration || DEFAULT_TOAST_DURATION;
+    if (action && !duration) {
+      timeoutDuration = DEFAULT_TOAST_DURATION_WITH_ACTION;
+    } else if (action && duration && duration < DEFAULT_TOAST_DURATION_WITH_ACTION) {
+      console.log("Toast with action should persist for at least 10,000 milliseconds to give the merchant enough time to act on it.");
+    }
+    const timer = setTimeout(onDismiss, timeoutDuration);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [action, duration, onDismiss]);
+  const dismissMarkup = /* @__PURE__ */ import_react147.default.createElement("button", {
+    type: "button",
+    className: styles36.CloseButton,
+    onClick: onDismiss
+  }, /* @__PURE__ */ import_react147.default.createElement(Icon, {
+    source: SvgXSmallIcon,
+    tone: "inherit"
+  }));
+  const actionMarkup = action ? /* @__PURE__ */ import_react147.default.createElement("div", {
+    className: styles36.Action
+  }, /* @__PURE__ */ import_react147.default.createElement(Button, {
+    variant: "monochromePlain",
+    removeUnderline: true,
+    size: "slim",
+    onClick: action.onAction
+  }, action.content)) : null;
+  const leadingIconMarkup = error ? /* @__PURE__ */ import_react147.default.createElement("div", {
+    className: styles36.LeadingIcon
+  }, /* @__PURE__ */ import_react147.default.createElement(Icon, {
+    source: SvgAlertCircleIcon,
+    tone: "inherit"
+  })) : null;
+  const className = classNames(styles36.Toast, error && styles36.error);
+  return /* @__PURE__ */ import_react147.default.createElement("div", {
+    className,
+    "aria-live": "assertive"
+  }, /* @__PURE__ */ import_react147.default.createElement(KeypressListener, {
+    keyCode: Key.Escape,
+    handler: onDismiss
+  }), leadingIconMarkup, /* @__PURE__ */ import_react147.default.createElement(InlineStack, {
+    gap: "400",
+    blockAlign: "center"
+  }, /* @__PURE__ */ import_react147.default.createElement(Text, {
+    as: "span",
+    fontWeight: "medium"
+  }, content)), actionMarkup, dismissMarkup);
+}
+var import_react147, DEFAULT_TOAST_DURATION, DEFAULT_TOAST_DURATION_WITH_ACTION;
+var init_Toast = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.js"() {
+    import_react147 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_types();
+    init_Toast_scss();
+    init_Icon();
+    init_Button();
+    init_KeypressListener();
+    init_InlineStack();
+    init_Text();
+    DEFAULT_TOAST_DURATION = 5e3;
+    DEFAULT_TOAST_DURATION_WITH_ACTION = 1e4;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.js
+var import_react148, ToastManager, toastClasses;
+var init_ToastManager = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.js"() {
+    import_react148 = __toESM(require_react());
+    init_esm();
+    init_css();
+    init_use_deep_effect();
+    init_use_deep_callback();
+    init_ToastManager_scss();
+    init_Toast();
+    init_Portal();
+    init_EventListener();
+    ToastManager = /* @__PURE__ */ (0, import_react148.memo)(function ToastManager2({
+      toastMessages
+    }) {
+      const toastNodes = [];
+      const updateToasts = useDeepCallback(() => {
+        let targetInPos = 0;
+        toastMessages.forEach((_, index) => {
+          const currentToast = toastNodes[index];
+          if (!currentToast.current)
+            return;
+          targetInPos += currentToast.current.clientHeight;
+          currentToast.current.style.setProperty("--pc-toast-manager-translate-y-in", `-${targetInPos}px`);
+          currentToast.current.style.setProperty("--pc-toast-manager-translate-y-out", `${-targetInPos + 150}px`);
+        });
+      }, [toastMessages, toastNodes]);
+      useDeepEffect(() => {
+        updateToasts();
+      }, [toastMessages]);
+      const toastsMarkup = toastMessages.map((toast, index) => {
+        const toastNode = /* @__PURE__ */ (0, import_react148.createRef)();
+        toastNodes[index] = toastNode;
+        return /* @__PURE__ */ import_react148.default.createElement(CSSTransition_default, {
+          nodeRef: toastNodes[index],
+          key: toast.id,
+          timeout: {
+            enter: 0,
+            exit: 400
+          },
+          classNames: toastClasses
+        }, /* @__PURE__ */ import_react148.default.createElement("div", {
+          ref: toastNode
+        }, /* @__PURE__ */ import_react148.default.createElement(Toast, toast)));
+      });
+      return /* @__PURE__ */ import_react148.default.createElement(Portal, {
+        idPrefix: "toast"
+      }, /* @__PURE__ */ import_react148.default.createElement(EventListener, {
+        event: "resize",
+        handler: updateToasts
+      }), /* @__PURE__ */ import_react148.default.createElement("div", {
+        className: styles35.ToastManager,
+        "aria-live": "assertive"
+      }, /* @__PURE__ */ import_react148.default.createElement(TransitionGroup_default, {
+        component: null
+      }, toastsMarkup)));
+    });
+    toastClasses = {
+      enter: classNames(styles35.ToastWrapper, styles35["ToastWrapper-enter"]),
+      enterDone: classNames(styles35.ToastWrapper, styles35["ToastWrapper-enter-done"]),
+      exit: classNames(styles35.ToastWrapper, styles35["ToastWrapper-exit"])
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Frame/Frame.js
+function Frame(props) {
+  const i18n = useI18n();
+  const mediaQuery = useMediaQuery();
+  return /* @__PURE__ */ import_react149.default.createElement(FrameInner, Object.assign({}, props, {
+    i18n,
+    mediaQuery
+  }));
+}
+var import_react149, APP_FRAME_MAIN, APP_FRAME_NAV, APP_FRAME_TOP_BAR, APP_FRAME_LOADING_BAR, FrameInner, navTransitionClasses;
+var init_Frame = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Frame/Frame.js"() {
+    import_react149 = __toESM(require_react());
+    init_dist();
+    init_esm();
+    init_css();
+    init_shared();
+    init_set_root_property();
+    init_use_theme();
+    init_Frame_scss();
+    init_hooks7();
+    init_Loading();
+    init_CSSAnimation();
+    init_ContextualSaveBar();
+    init_ToastManager();
+    init_hooks2();
+    init_Backdrop();
+    init_context11();
+    init_EventListener();
+    init_TrapFocus();
+    init_Icon();
+    APP_FRAME_MAIN = "AppFrameMain";
+    APP_FRAME_NAV = "AppFrameNav";
+    APP_FRAME_TOP_BAR = "AppFrameTopBar";
+    APP_FRAME_LOADING_BAR = "AppFrameLoadingBar";
+    FrameInner = class extends import_react149.PureComponent {
+      constructor(...args) {
+        super(...args);
+        this.state = {
+          skipFocused: false,
+          globalRibbonHeight: 0,
+          loadingStack: 0,
+          toastMessages: [],
+          showContextualSaveBar: false
+        };
+        this.contextualSaveBar = null;
+        this.globalRibbonContainer = null;
+        this.navigationNode = /* @__PURE__ */ (0, import_react149.createRef)();
+        this.setGlobalRibbonHeight = () => {
+          const {
+            globalRibbonContainer
+          } = this;
+          if (globalRibbonContainer) {
+            this.setState({
+              globalRibbonHeight: globalRibbonContainer.offsetHeight
+            }, this.setGlobalRibbonRootProperty);
+          }
+        };
+        this.setOffset = () => {
+          const {
+            offset = "0px"
+          } = this.props;
+          setRootProperty("--pc-frame-offset", offset);
+        };
+        this.setGlobalRibbonRootProperty = () => {
+          const {
+            globalRibbonHeight
+          } = this.state;
+          setRootProperty("--pc-frame-global-ribbon-height", `${globalRibbonHeight}px`);
+        };
+        this.showToast = (toast) => {
+          this.setState(({
+            toastMessages
+          }) => {
+            const hasToastById = toastMessages.find(({
+              id
+            }) => id === toast.id) != null;
+            return {
+              toastMessages: hasToastById ? toastMessages : [...toastMessages, toast]
+            };
+          });
+        };
+        this.hideToast = ({
+          id
+        }) => {
+          this.setState(({
+            toastMessages
+          }) => {
+            return {
+              toastMessages: toastMessages.filter(({
+                id: toastId
+              }) => id !== toastId)
+            };
+          });
+        };
+        this.setContextualSaveBar = (props) => {
+          const {
+            showContextualSaveBar
+          } = this.state;
+          this.contextualSaveBar = {
+            ...props
+          };
+          if (showContextualSaveBar === true) {
+            this.forceUpdate();
+          } else {
+            this.setState({
+              showContextualSaveBar: true
+            });
+          }
+        };
+        this.removeContextualSaveBar = () => {
+          this.contextualSaveBar = null;
+          this.setState({
+            showContextualSaveBar: false
+          });
+        };
+        this.startLoading = () => {
+          this.setState(({
+            loadingStack
+          }) => ({
+            loadingStack: loadingStack + 1
+          }));
+        };
+        this.stopLoading = () => {
+          this.setState(({
+            loadingStack
+          }) => ({
+            loadingStack: Math.max(0, loadingStack - 1)
+          }));
+        };
+        this.handleResize = () => {
+          if (this.props.globalRibbon) {
+            this.setGlobalRibbonHeight();
+          }
+        };
+        this.handleFocus = () => {
+          this.setState({
+            skipFocused: true
+          });
+        };
+        this.handleBlur = () => {
+          this.setState({
+            skipFocused: false
+          });
+        };
+        this.handleClick = (event) => {
+          const {
+            skipToContentTarget
+          } = this.props;
+          if (skipToContentTarget && skipToContentTarget.current) {
+            skipToContentTarget.current.focus();
+            event?.preventDefault();
+          }
+        };
+        this.handleNavigationDismiss = () => {
+          const {
+            onNavigationDismiss
+          } = this.props;
+          if (onNavigationDismiss != null) {
+            onNavigationDismiss();
+          }
+        };
+        this.setGlobalRibbonContainer = (node) => {
+          this.globalRibbonContainer = node;
+        };
+        this.handleNavKeydown = (event) => {
+          const {
+            key
+          } = event;
+          const {
+            mediaQuery: {
+              isNavigationCollapsed
+            },
+            showMobileNavigation
+          } = this.props;
+          const mobileNavShowing = isNavigationCollapsed && showMobileNavigation;
+          if (mobileNavShowing && key === "Escape") {
+            this.handleNavigationDismiss();
+          }
+        };
+      }
+      componentDidMount() {
+        this.handleResize();
+        if (this.props.globalRibbon) {
+          return;
+        }
+        this.setGlobalRibbonRootProperty();
+        this.setOffset();
+      }
+      componentDidUpdate(prevProps) {
+        if (this.props.globalRibbon !== prevProps.globalRibbon) {
+          this.setGlobalRibbonHeight();
+        }
+        this.setOffset();
+      }
+      render() {
+        const {
+          skipFocused,
+          loadingStack,
+          toastMessages,
+          showContextualSaveBar
+        } = this.state;
+        const {
+          logo,
+          children,
+          navigation,
+          topBar,
+          globalRibbon,
+          showMobileNavigation = false,
+          skipToContentTarget,
+          i18n,
+          sidebar,
+          mediaQuery: {
+            isNavigationCollapsed
+          }
+        } = this.props;
+        const navClassName = classNames(styles31.Navigation, showMobileNavigation && styles31["Navigation-visible"]);
+        const mobileNavHidden = isNavigationCollapsed && !showMobileNavigation;
+        const mobileNavShowing = isNavigationCollapsed && showMobileNavigation;
+        const tabIndex = mobileNavShowing ? 0 : -1;
+        const mobileNavAttributes = {
+          ...mobileNavShowing && {
+            "aria-modal": true,
+            role: "dialog"
+          }
+        };
+        const navigationMarkup = navigation ? /* @__PURE__ */ import_react149.default.createElement(UseTheme, null, (theme) => /* @__PURE__ */ import_react149.default.createElement(TrapFocus, {
+          trapping: mobileNavShowing
+        }, /* @__PURE__ */ import_react149.default.createElement(CSSTransition_default, {
+          nodeRef: this.navigationNode,
+          appear: isNavigationCollapsed,
+          exit: isNavigationCollapsed,
+          in: showMobileNavigation,
+          timeout: parseInt(theme.motion["motion-duration-300"], 10),
+          classNames: navTransitionClasses
+        }, /* @__PURE__ */ import_react149.default.createElement("div", Object.assign({
+          key: "NavContent"
+        }, mobileNavAttributes, {
+          "aria-label": i18n.translate("Polaris.Frame.navigationLabel"),
+          ref: this.navigationNode,
+          className: navClassName,
+          onKeyDown: this.handleNavKeydown,
+          id: APP_FRAME_NAV,
+          hidden: mobileNavHidden
+        }), navigation, /* @__PURE__ */ import_react149.default.createElement("button", {
+          type: "button",
+          className: styles31.NavigationDismiss,
+          onClick: this.handleNavigationDismiss,
+          "aria-hidden": mobileNavHidden || !isNavigationCollapsed && !showMobileNavigation,
+          "aria-label": i18n.translate("Polaris.Frame.Navigation.closeMobileNavigationLabel"),
+          tabIndex
+        }, /* @__PURE__ */ import_react149.default.createElement(Icon, {
+          source: SvgXIcon
+        })))))) : null;
+        const loadingMarkup = loadingStack > 0 ? /* @__PURE__ */ import_react149.default.createElement("div", {
+          className: styles31.LoadingBar,
+          id: APP_FRAME_LOADING_BAR
+        }, /* @__PURE__ */ import_react149.default.createElement(Loading, null)) : null;
+        const topBarMarkup = topBar ? /* @__PURE__ */ import_react149.default.createElement("div", Object.assign({
+          className: styles31.TopBar
+        }, layer.props, dataPolarisTopBar.props, {
+          id: APP_FRAME_TOP_BAR
+        }), topBar) : null;
+        const globalRibbonMarkup = globalRibbon ? /* @__PURE__ */ import_react149.default.createElement("div", {
+          className: styles31.GlobalRibbonContainer,
+          ref: this.setGlobalRibbonContainer
+        }, globalRibbon) : null;
+        const skipClassName = classNames(styles31.Skip, skipFocused && styles31.focused);
+        const skipTarget = skipToContentTarget?.current ? skipToContentTarget.current.id : APP_FRAME_MAIN;
+        const skipMarkup = /* @__PURE__ */ import_react149.default.createElement("div", {
+          className: skipClassName
+        }, /* @__PURE__ */ import_react149.default.createElement("a", {
+          href: `#${skipTarget}`,
+          onFocus: this.handleFocus,
+          onBlur: this.handleBlur,
+          onClick: this.handleClick
+        }, i18n.translate("Polaris.Frame.skipToContent")));
+        const navigationAttributes = navigation ? {
+          "data-has-navigation": true
+        } : {};
+        const frameClassName = classNames(styles31.Frame, navigation && styles31.hasNav, topBar && styles31.hasTopBar, sidebar && styles31.hasSidebar);
+        const contextualSaveBarMarkup = /* @__PURE__ */ import_react149.default.createElement(CSSAnimation, {
+          in: showContextualSaveBar,
+          className: styles31.ContextualSaveBar,
+          type: "fade"
+        }, /* @__PURE__ */ import_react149.default.createElement(ContextualSaveBar, this.contextualSaveBar));
+        const navigationOverlayMarkup = showMobileNavigation && isNavigationCollapsed ? /* @__PURE__ */ import_react149.default.createElement(Backdrop, {
+          belowNavigation: true,
+          onClick: this.handleNavigationDismiss,
+          onTouchStart: this.handleNavigationDismiss
+        }) : null;
+        const context = {
+          logo,
+          showToast: this.showToast,
+          hideToast: this.hideToast,
+          toastMessages,
+          startLoading: this.startLoading,
+          stopLoading: this.stopLoading,
+          setContextualSaveBar: this.setContextualSaveBar,
+          removeContextualSaveBar: this.removeContextualSaveBar
+        };
+        return /* @__PURE__ */ import_react149.default.createElement(FrameContext.Provider, {
+          value: context
+        }, /* @__PURE__ */ import_react149.default.createElement("div", Object.assign({
+          className: frameClassName
+        }, layer.props, navigationAttributes), skipMarkup, topBarMarkup, navigationMarkup, contextualSaveBarMarkup, loadingMarkup, navigationOverlayMarkup, /* @__PURE__ */ import_react149.default.createElement("main", {
+          className: styles31.Main,
+          id: APP_FRAME_MAIN,
+          "data-has-global-ribbon": Boolean(globalRibbon)
+        }, /* @__PURE__ */ import_react149.default.createElement("div", {
+          className: styles31.Content
+        }, children)), /* @__PURE__ */ import_react149.default.createElement(ToastManager, {
+          toastMessages
+        }), globalRibbonMarkup, /* @__PURE__ */ import_react149.default.createElement(EventListener, {
+          event: "resize",
+          handler: this.handleResize
+        })));
+      }
+    };
+    navTransitionClasses = {
+      enter: classNames(styles31["Navigation-enter"]),
+      enterActive: classNames(styles31["Navigation-enterActive"]),
+      enterDone: classNames(styles31["Navigation-enterActive"]),
+      exit: classNames(styles31["Navigation-exit"]),
+      exitActive: classNames(styles31["Navigation-exitActive"])
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-previous.js
+function usePrevious(value) {
+  const ref = (0, import_react150.useRef)();
+  (0, import_react150.useEffect)(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+var import_react150;
+var init_use_previous = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-previous.js"() {
+    import_react150 = __toESM(require_react());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/utilities.js
+function getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth, tabWidths, containerWidth) {
+  const sumTabWidths = tabWidths.reduce((sum, width2) => sum + width2, 0);
+  const arrayOfTabIndices = tabs.map((_, index) => {
+    return index;
+  });
+  const visibleTabs = [];
+  const hiddenTabs = [];
+  if (containerWidth > sumTabWidths) {
+    visibleTabs.push(...arrayOfTabIndices);
+  } else {
+    visibleTabs.push(selected);
+    let tabListWidth = tabWidths[selected];
+    arrayOfTabIndices.forEach((currentTabIndex) => {
+      if (currentTabIndex !== selected) {
+        const currentTabWidth = tabWidths[currentTabIndex];
+        if (tabListWidth + currentTabWidth >= containerWidth - disclosureWidth) {
+          hiddenTabs.push(currentTabIndex);
+          return;
+        }
+        visibleTabs.push(currentTabIndex);
+        tabListWidth += currentTabWidth;
+      }
+    });
+  }
+  return {
+    visibleTabs,
+    hiddenTabs
+  };
+}
+var init_utilities = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/utilities.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.scss.js
+var styles37;
+var init_Tabs_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.scss.js"() {
+    styles37 = {
+      "Outer": "Polaris-Tabs__Outer",
+      "Wrapper": "Polaris-Tabs__Wrapper",
+      "WrapperWithNewButton": "Polaris-Tabs__WrapperWithNewButton",
+      "ButtonWrapper": "Polaris-Tabs__ButtonWrapper",
+      "Tabs": "Polaris-Tabs",
+      "Tab": "Polaris-Tabs__Tab",
+      "Tab-active": "Polaris-Tabs__Tab--active",
+      "Tab-hasActions": "Polaris-Tabs__Tab--hasActions",
+      "Tab-iconOnly": "Polaris-Tabs__Tab--iconOnly",
+      "fillSpace": "Polaris-Tabs--fillSpace",
+      "TabContainer": "Polaris-Tabs__TabContainer",
+      "fitted": "Polaris-Tabs--fitted",
+      "titleWithIcon": "Polaris-Tabs--titleWithIcon",
+      "List": "Polaris-Tabs__List",
+      "Item": "Polaris-Tabs__Item",
+      "DisclosureTab": "Polaris-Tabs__DisclosureTab",
+      "DisclosureTab-visible": "Polaris-Tabs__DisclosureTab--visible",
+      "DisclosureActivator": "Polaris-Tabs__DisclosureActivator",
+      "TabsMeasurer": "Polaris-Tabs__TabsMeasurer",
+      "NewTab": "Polaris-Tabs__NewTab",
+      "ActionListWrap": "Polaris-Tabs__ActionListWrap",
+      "Panel": "Polaris-Tabs__Panel",
+      "Panel-hidden": "Polaris-Tabs__Panel--hidden"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Form/Form.js
+function Form({
+  acceptCharset,
+  action,
+  autoComplete,
+  children,
+  encType,
+  implicitSubmit = true,
+  method = "post",
+  name,
+  noValidate,
+  preventDefault: preventDefault2 = true,
+  target,
+  onSubmit
+}) {
+  const i18n = useI18n();
+  const handleSubmit = (0, import_react151.useCallback)((event) => {
+    if (!preventDefault2) {
+      return;
+    }
+    event.preventDefault();
+    onSubmit(event);
+  }, [onSubmit, preventDefault2]);
+  const autoCompleteInputs = normalizeAutoComplete(autoComplete);
+  const submitMarkup = implicitSubmit ? /* @__PURE__ */ import_react151.default.createElement(Text, {
+    as: "span",
+    visuallyHidden: true
+  }, /* @__PURE__ */ import_react151.default.createElement("button", {
+    type: "submit",
+    "aria-hidden": "true",
+    tabIndex: -1
+  }, i18n.translate("Polaris.Common.submit"))) : null;
+  return /* @__PURE__ */ import_react151.default.createElement("form", {
+    acceptCharset,
+    action,
+    autoComplete: autoCompleteInputs,
+    encType,
+    method,
+    name,
+    noValidate,
+    target,
+    onSubmit: handleSubmit
+  }, submitMarkup, children);
+}
+function normalizeAutoComplete(autoComplete) {
+  if (autoComplete == null) {
+    return autoComplete;
+  }
+  return autoComplete ? "on" : "off";
+}
+var import_react151;
+var init_Form = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Form/Form.js"() {
+    import_react151 = __toESM(require_react());
+    init_hooks2();
+    init_Text();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/DuplicateModal/DuplicateModal.js
+function DuplicateModal({
+  open,
+  isModalLoading,
+  name,
+  onClose,
+  onClickPrimaryAction,
+  onClickSecondaryAction,
+  helpText,
+  viewNames
+}) {
+  const i18n = useI18n();
+  const [value, setValue] = (0, import_react152.useState)(name);
+  const container = (0, import_react152.useRef)(null);
+  const hasSameNameError = viewNames?.some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
+  const isPrimaryActionDisabled = isModalLoading || hasSameNameError || !value || value.length > MAX_VIEW_NAME_LENGTH;
+  (0, import_react152.useEffect)(() => {
+    if (!container.current)
+      return;
+    if (open) {
+      focusFirstFocusableNode(container.current);
+    }
+  }, [open]);
+  (0, import_react152.useEffect)(() => {
+    if (open) {
+      setValue(name.slice(0, MAX_VIEW_NAME_LENGTH));
+    }
+  }, [name, open]);
+  const handleChange = (0, import_react152.useCallback)((newValue) => {
+    setValue(newValue);
+  }, []);
+  async function handlePrimaryAction() {
+    if (isPrimaryActionDisabled) {
+      return;
+    }
+    await onClickPrimaryAction(value);
+    setValue("");
+    onClose();
+  }
+  function handleSecondaryAction() {
+    onClickSecondaryAction?.();
+    setValue(name);
+    onClose();
+  }
+  return /* @__PURE__ */ import_react152.default.createElement(Modal, {
+    open,
+    onClose,
+    title: i18n.translate("Polaris.Tabs.DuplicateModal.title"),
+    primaryAction: {
+      content: i18n.translate("Polaris.Tabs.DuplicateModal.create"),
+      onAction: handlePrimaryAction,
+      disabled: isPrimaryActionDisabled
+    },
+    secondaryActions: [{
+      content: i18n.translate("Polaris.Tabs.DuplicateModal.cancel"),
+      onAction: handleSecondaryAction
+    }],
+    instant: true
+  }, /* @__PURE__ */ import_react152.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react152.default.createElement(Form, {
+    onSubmit: handlePrimaryAction
+  }, /* @__PURE__ */ import_react152.default.createElement(FormLayout, null, /* @__PURE__ */ import_react152.default.createElement("div", {
+    ref: container
+  }, /* @__PURE__ */ import_react152.default.createElement(TextField, {
+    label: i18n.translate("Polaris.Tabs.DuplicateModal.label"),
+    value,
+    onChange: handleChange,
+    autoComplete: "off",
+    helpText,
+    maxLength: MAX_VIEW_NAME_LENGTH,
+    showCharacterCount: true,
+    error: hasSameNameError ? i18n.translate("Polaris.Tabs.DuplicateModal.errors.sameName", {
+      name: value
+    }) : void 0
+  }))))));
+}
+var import_react152, MAX_VIEW_NAME_LENGTH;
+var init_DuplicateModal = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/DuplicateModal/DuplicateModal.js"() {
+    import_react152 = __toESM(require_react());
+    init_focus();
+    init_hooks2();
+    init_Modal();
+    init_Form();
+    init_FormLayout();
+    init_TextField();
+    MAX_VIEW_NAME_LENGTH = 40;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/RenameModal/RenameModal.js
+function RenameModal({
+  open,
+  isModalLoading,
+  name,
+  onClose,
+  onClickPrimaryAction,
+  onClickSecondaryAction,
+  helpText,
+  viewNames
+}) {
+  const i18n = useI18n();
+  const [value, setValue] = (0, import_react153.useState)(name);
+  const container = (0, import_react153.useRef)(null);
+  const hasSameNameError = viewNames?.filter((viewName) => viewName !== name).some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
+  const isPrimaryActionDisabled = isModalLoading || hasSameNameError || value === name || !value;
+  (0, import_react153.useEffect)(() => {
+    if (!container.current)
+      return;
+    if (open) {
+      focusFirstFocusableNode(container.current);
+    }
+  }, [open]);
+  (0, import_react153.useEffect)(() => {
+    if (open) {
+      setValue(name);
+    }
+  }, [name, open]);
+  const handleChange = (0, import_react153.useCallback)((newValue) => {
+    setValue(newValue);
+  }, []);
+  async function handlePrimaryAction() {
+    if (isPrimaryActionDisabled) {
+      return;
+    }
+    await onClickPrimaryAction(value);
+    setValue("");
+    onClose();
+  }
+  function handleSecondaryAction() {
+    onClickSecondaryAction?.();
+    setValue(name);
+    onClose();
+  }
+  return /* @__PURE__ */ import_react153.default.createElement(Modal, {
+    open,
+    onClose,
+    title: i18n.translate("Polaris.Tabs.RenameModal.title"),
+    primaryAction: {
+      content: i18n.translate("Polaris.Tabs.RenameModal.create"),
+      onAction: handlePrimaryAction,
+      disabled: isPrimaryActionDisabled
+    },
+    secondaryActions: [{
+      content: i18n.translate("Polaris.Tabs.RenameModal.cancel"),
+      onAction: handleSecondaryAction
+    }],
+    instant: true
+  }, /* @__PURE__ */ import_react153.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react153.default.createElement(Form, {
+    onSubmit: handlePrimaryAction
+  }, /* @__PURE__ */ import_react153.default.createElement(FormLayout, null, /* @__PURE__ */ import_react153.default.createElement("div", {
+    ref: container
+  }, /* @__PURE__ */ import_react153.default.createElement(TextField, {
+    label: i18n.translate("Polaris.Tabs.RenameModal.label"),
+    value,
+    onChange: handleChange,
+    autoComplete: "off",
+    helpText,
+    maxLength: 40,
+    showCharacterCount: true,
+    error: hasSameNameError ? i18n.translate("Polaris.Tabs.RenameModal.errors.sameName", {
+      name: value
+    }) : void 0
+  }))))));
+}
+var import_react153;
+var init_RenameModal = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/RenameModal/RenameModal.js"() {
+    import_react153 = __toESM(require_react());
+    init_focus();
+    init_Form();
+    init_FormLayout();
+    init_hooks2();
+    init_Modal();
+    init_TextField();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/Tab.js
+function focusPanelID(panelID) {
+  const panel = document.getElementById(panelID);
+  if (panel) {
+    panel.focus({
+      preventScroll: true
+    });
+  }
+}
+function mergeRefs(refs) {
+  return (node) => {
+    for (const ref of refs) {
+      if (ref != null) {
+        ref.current = node;
+      }
+    }
+  };
+}
+var import_react154, Tab;
+var init_Tab = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/Tab.js"() {
+    import_react154 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_focus();
+    init_breakpoints2();
+    init_Tabs_scss();
+    init_DuplicateModal();
+    init_RenameModal();
+    init_hooks2();
+    init_Icon();
+    init_Modal();
+    init_Popover();
+    init_ActionList();
+    init_InlineStack();
+    init_Text();
+    init_UnstyledLink();
+    init_UnstyledButton();
+    init_Badge();
+    Tab = /* @__PURE__ */ (0, import_react154.forwardRef)(({
+      content,
+      accessibilityLabel,
+      badge,
+      id,
+      panelID,
+      url,
+      onAction,
+      actions,
+      disabled,
+      isModalLoading,
+      icon,
+      siblingTabHasFocus,
+      measuring,
+      focused,
+      selected,
+      onToggleModal,
+      onTogglePopover,
+      viewNames,
+      tabIndexOverride,
+      onFocus
+    }, ref) => {
+      const i18n = useI18n();
+      const [popoverActive, setPopoverActive] = (0, import_react154.useState)(false);
+      const [activeModalType, setActiveModalType] = (0, import_react154.useState)(null);
+      const {
+        mdDown
+      } = useBreakpoints();
+      const wasSelected = (0, import_react154.useRef)(selected);
+      const panelFocused = (0, import_react154.useRef)(false);
+      const node = (0, import_react154.useRef)(null);
+      (0, import_react154.useEffect)(() => {
+        onTogglePopover(popoverActive);
+      }, [popoverActive, onTogglePopover]);
+      (0, import_react154.useEffect)(() => {
+        onToggleModal(Boolean(activeModalType));
+      }, [activeModalType, onToggleModal]);
+      (0, import_react154.useEffect)(() => {
+        return () => {
+          onToggleModal(false);
+          onTogglePopover(false);
+        };
+      }, [onToggleModal, onTogglePopover]);
+      (0, import_react154.useEffect)(() => {
+        if (measuring) {
+          return;
+        }
+        const itemHadFocus = focused || document.activeElement && document.activeElement.id === id;
+        if (itemHadFocus && selected && panelID != null && !panelFocused.current) {
+          focusPanelID(panelID);
+          panelFocused.current = true;
+        }
+        if (selected && !wasSelected.current && panelID != null) {
+          focusPanelID(panelID);
+        } else if (focused && node.current != null && activeModalType == null && !disabled) {
+          focusFirstFocusableNode(node.current);
+        }
+        wasSelected.current = selected;
+      }, [focused, id, content, measuring, panelID, selected, activeModalType, disabled]);
+      let tabIndex;
+      if (selected && !siblingTabHasFocus && !measuring) {
+        tabIndex = 0;
+      } else if (focused && !measuring) {
+        tabIndex = 0;
+      } else {
+        tabIndex = -1;
+      }
+      if (tabIndexOverride != null) {
+        tabIndex = tabIndexOverride;
+      }
+      const renameAction = actions?.find((action) => action.type === "rename");
+      const duplicateAction = actions?.find((action) => action.type === "duplicate");
+      const deleteAction = actions?.find((action) => action.type === "delete");
+      const togglePopoverActive = (0, import_react154.useCallback)(() => {
+        if (!actions?.length) {
+          return;
+        }
+        setPopoverActive((popoverActive2) => !popoverActive2);
+      }, [actions]);
+      const handleClick = (0, import_react154.useCallback)(() => {
+        if (disabled) {
+          return;
+        }
+        if (selected) {
+          togglePopoverActive();
+        } else {
+          onAction?.();
+        }
+      }, [selected, onAction, togglePopoverActive, disabled]);
+      const handleModalOpen = (type) => {
+        setActiveModalType(type);
+      };
+      const handleModalClose = () => {
+        setActiveModalType(null);
+      };
+      const handleSaveRenameModal = (0, import_react154.useCallback)(async (value) => {
+        await renameAction?.onPrimaryAction?.(value);
+        setTimeout(() => {
+          if (node.current) {
+            focusFirstFocusableNode(node.current);
+          }
+        }, 250);
+      }, [renameAction]);
+      const handleConfirmDeleteView = (0, import_react154.useCallback)(async () => {
+        await deleteAction?.onPrimaryAction?.(content);
+        handleModalClose();
+      }, [deleteAction, content]);
+      const handleSaveDuplicateModal = (0, import_react154.useCallback)(async (duplicateName) => {
+        await duplicateAction?.onPrimaryAction?.(duplicateName);
+      }, [duplicateAction]);
+      const actionContent = {
+        rename: {
+          icon: SvgInfoIcon,
+          content: i18n.translate("Polaris.Tabs.Tab.rename")
+        },
+        duplicate: {
+          icon: SvgDuplicateIcon,
+          content: i18n.translate("Polaris.Tabs.Tab.duplicate")
+        },
+        edit: {
+          icon: SvgEditIcon,
+          content: i18n.translate("Polaris.Tabs.Tab.edit")
+        },
+        "edit-columns": {
+          icon: SvgLayoutColumns3Icon,
+          content: i18n.translate("Polaris.Tabs.Tab.editColumns")
+        },
+        delete: {
+          icon: SvgDeleteIcon,
+          content: i18n.translate("Polaris.Tabs.Tab.delete"),
+          destructive: true
+        }
+      };
+      const formattedActions = actions?.map(({
+        type,
+        onAction: onAction2,
+        onPrimaryAction,
+        ...additionalOptions
+      }) => {
+        const isModalActivator = !type.includes("edit");
+        return {
+          ...actionContent[type],
+          ...additionalOptions,
+          onAction: () => {
+            onAction2?.(content);
+            togglePopoverActive();
+            if (isModalActivator) {
+              handleModalOpen(type);
+            }
+          }
+        };
+      });
+      const handleKeyDown5 = (0, import_react154.useCallback)((event) => {
+        if (event.key === " ") {
+          event.preventDefault();
+          handleClick();
+        }
+      }, [handleClick]);
+      const tabContainerClassNames = classNames(styles37.TabContainer, selected && styles37.Underline);
+      const urlIfNotDisabledOrSelected = disabled || selected ? void 0 : url;
+      const BaseComponent = urlIfNotDisabledOrSelected ? UnstyledLink : UnstyledButton;
+      const tabClassName = classNames(styles37.Tab, icon && styles37["Tab-iconOnly"], popoverActive && styles37["Tab-popoverActive"], selected && styles37["Tab-active"], selected && actions?.length && styles37["Tab-hasActions"]);
+      const badgeMarkup = badge ? /* @__PURE__ */ import_react154.default.createElement(Badge, {
+        tone: selected ? void 0 : "new"
+      }, badge) : null;
+      const disclosureMarkup = selected && actions?.length ? /* @__PURE__ */ import_react154.default.createElement("div", {
+        className: classNames(styles37.IconWrap)
+      }, /* @__PURE__ */ import_react154.default.createElement(Icon, {
+        source: SvgChevronDownIcon
+      })) : null;
+      const activator = /* @__PURE__ */ import_react154.default.createElement(BaseComponent, {
+        id,
+        className: tabClassName,
+        tabIndex,
+        "aria-selected": selected,
+        "aria-controls": panelID,
+        "aria-label": accessibilityLabel,
+        role: tabIndexOverride == null ? "tab" : void 0,
+        disabled,
+        url: urlIfNotDisabledOrSelected,
+        onFocus,
+        onMouseUp: handleMouseUpByBlurring,
+        onClick: handleClick,
+        onKeyDown: handleKeyDown5
+      }, /* @__PURE__ */ import_react154.default.createElement(InlineStack, {
+        gap: "200",
+        align: "center",
+        blockAlign: "center",
+        wrap: false
+      }, /* @__PURE__ */ import_react154.default.createElement(Text, {
+        as: "span",
+        variant: mdDown ? "bodyLg" : "bodySm",
+        fontWeight: "medium"
+      }, icon ?? content), badgeMarkup), disclosureMarkup);
+      const isPlainButton = !selected || !actions?.length;
+      const renameModal = renameAction ? /* @__PURE__ */ import_react154.default.createElement(RenameModal, {
+        name: content,
+        open: activeModalType === "rename",
+        onClose: handleModalClose,
+        onClickPrimaryAction: handleSaveRenameModal,
+        isModalLoading,
+        viewNames
+      }) : null;
+      const duplicateModal = duplicateAction ? /* @__PURE__ */ import_react154.default.createElement(DuplicateModal, {
+        open: activeModalType === "duplicate",
+        name: i18n.translate("Polaris.Tabs.Tab.copy", {
+          name: content
+        }),
+        onClose: handleModalClose,
+        onClickPrimaryAction: handleSaveDuplicateModal,
+        isModalLoading,
+        viewNames: viewNames || []
+      }) : null;
+      const deleteModal = deleteAction ? /* @__PURE__ */ import_react154.default.createElement(Modal, {
+        open: activeModalType === "delete",
+        onClose: handleModalClose,
+        primaryAction: {
+          content: i18n.translate("Polaris.Tabs.Tab.deleteModal.delete"),
+          onAction: handleConfirmDeleteView,
+          destructive: true,
+          disabled: isModalLoading
+        },
+        secondaryActions: [{
+          content: i18n.translate("Polaris.Tabs.Tab.deleteModal.cancel"),
+          onAction: handleModalClose
+        }],
+        title: i18n.translate("Polaris.Tabs.Tab.deleteModal.title"),
+        instant: true
+      }, /* @__PURE__ */ import_react154.default.createElement(Modal.Section, null, i18n.translate("Polaris.Tabs.Tab.deleteModal.description", {
+        viewName: content
+      }))) : null;
+      const markup = isPlainButton || disabled ? activator : /* @__PURE__ */ import_react154.default.createElement(import_react154.default.Fragment, null, /* @__PURE__ */ import_react154.default.createElement(Popover2, {
+        active: popoverActive,
+        activator,
+        autofocusTarget: "first-node",
+        onClose: togglePopoverActive
+      }, /* @__PURE__ */ import_react154.default.createElement("div", {
+        className: styles37.ActionListWrap
+      }, /* @__PURE__ */ import_react154.default.createElement(ActionList, {
+        actionRole: "menuitem",
+        items: formattedActions
+      }))), renameModal, duplicateModal, deleteModal);
+      if (icon) {
+        return markup;
+      }
+      return /* @__PURE__ */ import_react154.default.createElement("li", {
+        className: tabContainerClassNames,
+        ref: mergeRefs([node, ref]),
+        role: "presentation"
+      }, markup);
+    });
+    Tab.displayName = "Tab";
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/TabMeasurer/TabMeasurer.js
+function noop5() {
+}
+var import_react155, TabMeasurer;
+var init_TabMeasurer = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/TabMeasurer/TabMeasurer.js"() {
+    import_react155 = __toESM(require_react());
+    init_css();
+    init_use_component_did_mount();
+    init_use_event_listener();
+    init_Tabs_scss();
+    init_Tab();
+    TabMeasurer = /* @__PURE__ */ (0, import_react155.memo)(function TabMeasurer2({
+      selected,
+      tabs,
+      activator,
+      tabToFocus,
+      siblingTabHasFocus,
+      handleMeasurement: handleMeasurementProp
+    }) {
+      const containerNode = (0, import_react155.useRef)(null);
+      const animationFrame = (0, import_react155.useRef)(null);
+      const handleMeasurement = (0, import_react155.useCallback)(() => {
+        if (animationFrame.current) {
+          cancelAnimationFrame(animationFrame.current);
+        }
+        animationFrame.current = requestAnimationFrame(() => {
+          if (!containerNode.current) {
+            return;
+          }
+          const containerWidth = containerNode.current.offsetWidth - 20 - 28;
+          const hiddenTabNodes = containerNode.current.children;
+          const hiddenTabNodesArray = Array.from(hiddenTabNodes);
+          const hiddenTabWidths = hiddenTabNodesArray.map((node) => {
+            const buttonWidth = Math.ceil(node.getBoundingClientRect().width);
+            return buttonWidth + 4;
+          });
+          const disclosureWidth = hiddenTabWidths.pop() || 0;
+          handleMeasurementProp({
+            containerWidth,
+            disclosureWidth,
+            hiddenTabWidths
+          });
+        });
+      }, [handleMeasurementProp]);
+      (0, import_react155.useEffect)(() => {
+        handleMeasurement();
+      }, [handleMeasurement, tabs]);
+      useComponentDidMount(() => {
+        if (true) {
+          setTimeout(handleMeasurement, 0);
+        }
+      });
+      const tabsMarkup = tabs.map((tab, index) => {
+        return /* @__PURE__ */ import_react155.default.createElement(Tab, {
+          measuring: true,
+          key: `$${tab.id}Hidden`,
+          id: `${tab.id}Measurer`,
+          siblingTabHasFocus,
+          focused: index === tabToFocus,
+          selected: index === selected,
+          url: tab.url,
+          content: tab.content,
+          onTogglePopover: noop5,
+          onToggleModal: noop5
+        });
+      });
+      const classname = classNames(styles37.Tabs, styles37.TabsMeasurer);
+      useEventListener("resize", handleMeasurement);
+      return /* @__PURE__ */ import_react155.default.createElement("div", {
+        className: classname,
+        ref: containerNode
+      }, tabsMarkup, activator);
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Panel/Panel.js
+function Panel({
+  hidden,
+  id,
+  tabID,
+  children
+}) {
+  const className = classNames(styles37.Panel, hidden && styles37["Panel-hidden"]);
+  return /* @__PURE__ */ import_react156.default.createElement("div", {
+    className,
+    id,
+    role: "tabpanel",
+    "aria-labelledby": tabID,
+    tabIndex: -1
+  }, children);
+}
+var import_react156;
+var init_Panel = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Panel/Panel.js"() {
+    import_react156 = __toESM(require_react());
+    init_css();
+    init_Tabs_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Item/Item.js
+function noop6() {
+}
+var import_react157, Item6;
+var init_Item6 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Item/Item.js"() {
+    import_react157 = __toESM(require_react());
+    init_css();
+    init_Tabs_scss();
+    init_UnstyledLink();
+    Item6 = /* @__PURE__ */ (0, import_react157.memo)(function Item7({
+      id,
+      focused,
+      children,
+      url,
+      accessibilityLabel,
+      onClick = noop6
+    }) {
+      const focusedNode = (0, import_react157.useRef)(null);
+      (0, import_react157.useEffect)(() => {
+        if (focusedNode.current && focusedNode.current instanceof HTMLElement && focused) {
+          focusedNode.current.focus();
+        }
+      }, [focusedNode, focused]);
+      const classname = classNames(styles37.Item);
+      const sharedProps = {
+        id,
+        ref: focusedNode,
+        onClick,
+        className: classname,
+        "aria-selected": false,
+        "aria-label": accessibilityLabel
+      };
+      const markup = url ? /* @__PURE__ */ import_react157.default.createElement(UnstyledLink, Object.assign({}, sharedProps, {
+        url
+      }), children) : /* @__PURE__ */ import_react157.default.createElement("button", Object.assign({}, sharedProps, {
+        ref: focusedNode,
+        type: "button"
+      }), children);
+      return /* @__PURE__ */ import_react157.default.createElement("li", null, markup);
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/List/List.js
+function List({
+  focusIndex,
+  disclosureTabs,
+  onClick = noop7,
+  onKeyPress = noop7
+}) {
+  const tabs = disclosureTabs.map(({
+    id,
+    content,
+    ...tabProps
+  }, index) => {
+    return /* @__PURE__ */ import_react158.default.createElement(Item6, Object.assign({
+      key: id
+    }, tabProps, {
+      id,
+      focused: index === focusIndex,
+      onClick: onClick.bind(null, id)
+    }), content);
+  });
+  return /* @__PURE__ */ import_react158.default.createElement("ul", {
+    className: styles37.List,
+    onKeyDown: handleKeyDown,
+    onKeyUp: onKeyPress
+  }, tabs);
+}
+function noop7() {
+}
+function handleKeyDown(event) {
+  const {
+    key
+  } = event;
+  if (key === "ArrowLeft" || key === "ArrowRight") {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+}
+var import_react158;
+var init_List = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/List/List.js"() {
+    import_react158 = __toESM(require_react());
+    init_Tabs_scss();
+    init_Item6();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-is-touch-device.js
+function useIsTouchDevice() {
+  const [isTouchDevice, setIsTouchDevice] = (0, import_react159.useState)(false);
+  const handleTouchStart = (0, import_react159.useCallback)(() => setIsTouchDevice(true), []);
+  useEventListener("touchstart", handleTouchStart);
+  return isTouchDevice;
+}
+var import_react159;
+var init_use_is_touch_device = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-is-touch-device.js"() {
+    import_react159 = __toESM(require_react());
+    init_use_event_listener();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/components/CreateViewModal/CreateViewModal.js
+function CreateViewModal({
+  activator,
+  open,
+  onClose,
+  onClickPrimaryAction,
+  onClickSecondaryAction,
+  viewNames
+}) {
+  const i18n = useI18n();
+  const [value, setValue] = (0, import_react160.useState)("");
+  const [loading, setLoading] = (0, import_react160.useState)(false);
+  const container = (0, import_react160.useRef)(null);
+  const isTouchDevice = useIsTouchDevice();
+  const hasSameNameError = viewNames.some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
+  const isPrimaryActionDisabled = !value || hasSameNameError || loading || value.length > MAX_VIEW_NAME_LENGTH2;
+  (0, import_react160.useEffect)(() => {
+    if (!container.current || isTouchDevice)
+      return;
+    if (open) {
+      focusFirstFocusableNode(container.current);
+      const timeout2 = setTimeout(() => {
+        if (!container.current)
+          return;
+        focusFirstFocusableNode(container.current);
+      }, 50);
+      return () => clearTimeout(timeout2);
+    }
+  }, [open, isTouchDevice]);
+  const handleChange = (0, import_react160.useCallback)((newValue) => {
+    setValue(newValue);
+  }, []);
+  async function handlePrimaryAction() {
+    if (hasSameNameError || isPrimaryActionDisabled) {
+      return;
+    }
+    setLoading(true);
+    await onClickPrimaryAction(value);
+    setLoading(false);
+    setValue("");
+    onClose();
+  }
+  function handleSecondaryAction() {
+    onClickSecondaryAction?.();
+    setValue("");
+    onClose();
+  }
+  return /* @__PURE__ */ import_react160.default.createElement(Modal, {
+    activator,
+    open,
+    onClose,
+    title: i18n.translate("Polaris.Tabs.CreateViewModal.title"),
+    primaryAction: {
+      content: i18n.translate("Polaris.Tabs.CreateViewModal.create"),
+      onAction: handlePrimaryAction,
+      disabled: isPrimaryActionDisabled
+    },
+    secondaryActions: [{
+      content: i18n.translate("Polaris.Tabs.CreateViewModal.cancel"),
+      onAction: handleSecondaryAction
+    }]
+  }, /* @__PURE__ */ import_react160.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react160.default.createElement(Form, {
+    onSubmit: handlePrimaryAction
+  }, /* @__PURE__ */ import_react160.default.createElement(FormLayout, null, /* @__PURE__ */ import_react160.default.createElement("div", {
+    ref: container
+  }, /* @__PURE__ */ import_react160.default.createElement(TextField, {
+    label: i18n.translate("Polaris.Tabs.CreateViewModal.label"),
+    value,
+    onChange: handleChange,
+    autoComplete: "off",
+    maxLength: MAX_VIEW_NAME_LENGTH2,
+    showCharacterCount: true,
+    error: hasSameNameError ? i18n.translate("Polaris.Tabs.CreateViewModal.errors.sameName", {
+      name: value
+    }) : void 0
+  }))))));
+}
+var import_react160, MAX_VIEW_NAME_LENGTH2;
+var init_CreateViewModal = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/CreateViewModal/CreateViewModal.js"() {
+    import_react160 = __toESM(require_react());
+    init_use_is_touch_device();
+    init_focus();
+    init_hooks2();
+    init_Modal();
+    init_Form();
+    init_FormLayout();
+    init_TextField();
+    MAX_VIEW_NAME_LENGTH2 = 40;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.js
+var import_react161, CREATE_NEW_VIEW_ID, Tabs;
+var init_Tabs = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.js"() {
+    import_react161 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_breakpoints2();
+    init_use_previous();
+    init_utilities();
+    init_Tabs_scss();
+    init_Tab();
+    init_TabMeasurer();
+    init_Panel();
+    init_List();
+    init_CreateViewModal();
+    init_hooks2();
+    init_Text();
+    init_Icon();
+    init_UnstyledButton();
+    init_Box();
+    init_Popover();
+    init_Tooltip();
+    CREATE_NEW_VIEW_ID = "create-new-view";
+    Tabs = ({
+      tabs,
+      children,
+      selected,
+      newViewAccessibilityLabel,
+      canCreateNewView,
+      disabled,
+      onCreateNewView,
+      onSelect,
+      fitted,
+      disclosureText
+    }) => {
+      const i18n = useI18n();
+      const {
+        mdDown
+      } = useBreakpoints();
+      const scrollRef = (0, import_react161.useRef)(null);
+      const wrapRef = (0, import_react161.useRef)(null);
+      const selectedTabRef = (0, import_react161.useRef)(null);
+      const [state, setState] = (0, import_react161.useReducer)((data, partialData) => {
+        return {
+          ...data,
+          ...partialData
+        };
+      }, {
+        disclosureWidth: 0,
+        containerWidth: Infinity,
+        tabWidths: [],
+        visibleTabs: [],
+        hiddenTabs: [],
+        showDisclosure: false,
+        tabToFocus: -1,
+        isNewViewModalActive: false,
+        modalSubmitted: false,
+        isTabsFocused: false,
+        isTabPopoverOpen: false,
+        isTabModalOpen: false
+      });
+      const {
+        tabToFocus,
+        visibleTabs,
+        hiddenTabs,
+        showDisclosure,
+        isNewViewModalActive,
+        modalSubmitted,
+        disclosureWidth,
+        tabWidths,
+        containerWidth,
+        isTabsFocused,
+        isTabModalOpen,
+        isTabPopoverOpen
+      } = state;
+      const prevModalOpen = usePrevious(isTabModalOpen);
+      const prevPopoverOpen = usePrevious(isTabPopoverOpen);
+      (0, import_react161.useEffect)(() => {
+        const hasModalClosed = prevModalOpen && !isTabModalOpen;
+        const hasPopoverClosed = prevPopoverOpen && !isTabPopoverOpen;
+        if (hasModalClosed) {
+          setState({
+            isTabsFocused: true,
+            tabToFocus: selected
+          });
+        } else if (hasPopoverClosed && !isTabModalOpen) {
+          setState({
+            isTabsFocused: true,
+            tabToFocus: selected
+          });
+        }
+      }, [prevPopoverOpen, isTabPopoverOpen, prevModalOpen, isTabModalOpen, selected, tabToFocus]);
+      const handleTogglePopover = (0, import_react161.useCallback)((isOpen) => setState({
+        isTabPopoverOpen: isOpen
+      }), []);
+      const handleToggleModal = (0, import_react161.useCallback)((isOpen) => setState({
+        isTabModalOpen: isOpen
+      }), []);
+      const handleCloseNewViewModal = () => {
+        setState({
+          isNewViewModalActive: false
+        });
+      };
+      const handleSaveNewViewModal = async (value) => {
+        if (!onCreateNewView) {
+          return false;
+        }
+        const hasExecuted = await onCreateNewView?.(value);
+        if (hasExecuted) {
+          setState({
+            modalSubmitted: true
+          });
+        }
+        return hasExecuted;
+      };
+      const handleClickNewTab = () => {
+        setState({
+          isNewViewModalActive: true
+        });
+      };
+      const handleTabClick = (0, import_react161.useCallback)((id) => {
+        const tab = tabs.find((aTab) => aTab.id === id);
+        if (tab == null) {
+          return null;
+        }
+        const selectedIndex = tabs.indexOf(tab);
+        onSelect?.(selectedIndex);
+      }, [tabs, onSelect]);
+      const renderTabMarkup = (0, import_react161.useCallback)((tab, index) => {
+        const handleClick = () => {
+          handleTabClick(tab.id);
+          tab.onAction?.();
+        };
+        const viewNames2 = tabs.map(({
+          content
+        }) => content);
+        const tabPanelID = tab.panelID || `${tab.id}-panel`;
+        return /* @__PURE__ */ import_react161.default.createElement(Tab, Object.assign({}, tab, {
+          key: `${index}-${tab.id}`,
+          id: tab.id,
+          panelID: children ? tabPanelID : void 0,
+          disabled: disabled || tab.disabled,
+          siblingTabHasFocus: tabToFocus > -1,
+          focused: index === tabToFocus,
+          selected: index === selected,
+          onAction: handleClick,
+          accessibilityLabel: tab.accessibilityLabel,
+          url: tab.url,
+          content: tab.content,
+          onToggleModal: handleToggleModal,
+          onTogglePopover: handleTogglePopover,
+          viewNames: viewNames2,
+          ref: index === selected ? selectedTabRef : null
+        }));
+      }, [disabled, handleTabClick, tabs, children, selected, tabToFocus, handleToggleModal, handleTogglePopover]);
+      const handleFocus = (0, import_react161.useCallback)((event) => {
+        const target = event.target;
+        const isItem = target.classList.contains(styles37.Item);
+        const isInNaturalDOMOrder = target.closest(`[data-tabs-focus-catchment]`) || isItem;
+        const isDisclosureActivator = target.classList.contains(styles37.DisclosureActivator);
+        if (isDisclosureActivator || !isInNaturalDOMOrder) {
+          return;
+        }
+        setState({
+          isTabsFocused: true
+        });
+      }, []);
+      const handleBlur = (0, import_react161.useCallback)((event) => {
+        const target = event.target;
+        const relatedTarget = event.relatedTarget;
+        const isInNaturalDOMOrder = relatedTarget?.closest?.(`.${styles37.Tabs}`);
+        const targetIsATab = target?.classList?.contains?.(styles37.Tab);
+        const focusReceiverIsAnItem = relatedTarget?.classList.contains(styles37.Item);
+        if (!relatedTarget && !isTabModalOpen && !targetIsATab && !focusReceiverIsAnItem) {
+          setState({
+            tabToFocus: -1
+          });
+          return;
+        }
+        if (!isInNaturalDOMOrder && !isTabModalOpen && !targetIsATab && !focusReceiverIsAnItem) {
+          setState({
+            tabToFocus: -1
+          });
+          return;
+        }
+        setState({
+          isTabsFocused: false
+        });
+      }, [isTabModalOpen]);
+      const handleKeyDown5 = (event) => {
+        if (isTabPopoverOpen || isTabModalOpen || isNewViewModalActive) {
+          return;
+        }
+        const {
+          key
+        } = event;
+        if (key === "ArrowLeft" || key === "ArrowRight") {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      };
+      (0, import_react161.useEffect)(() => {
+        const {
+          visibleTabs: visibleTabs2,
+          hiddenTabs: hiddenTabs2
+        } = getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth, tabWidths, containerWidth);
+        setState({
+          visibleTabs: visibleTabs2,
+          hiddenTabs: hiddenTabs2
+        });
+      }, [containerWidth, disclosureWidth, tabs, selected, tabWidths, setState]);
+      const moveToSelectedTab = (0, import_react161.useCallback)(() => {
+        const activeButton = selectedTabRef.current?.querySelector(`.${styles37["Tab-active"]}`);
+        if (activeButton) {
+          moveToActiveTab(activeButton.offsetLeft);
+        }
+      }, []);
+      (0, import_react161.useEffect)(() => {
+        if (mdDown) {
+          moveToSelectedTab();
+        }
+      }, [moveToSelectedTab, selected, mdDown]);
+      (0, import_react161.useEffect)(() => {
+        if (isTabsFocused && !showDisclosure) {
+          const tabToFocus2 = selected;
+          setState({
+            tabToFocus: tabToFocus2
+          });
+        }
+      }, [isTabsFocused, selected, setState, showDisclosure]);
+      const handleKeyPress = (event) => {
+        const {
+          showDisclosure: showDisclosure2,
+          visibleTabs: visibleTabs2,
+          hiddenTabs: hiddenTabs2,
+          tabToFocus: tabToFocus2,
+          isNewViewModalActive: isNewViewModalActive2
+        } = state;
+        if (isTabModalOpen || isTabPopoverOpen || isNewViewModalActive2) {
+          return;
+        }
+        const key = event.key;
+        const tabsArrayInOrder = showDisclosure2 || mdDown ? visibleTabs2.concat(hiddenTabs2) : [...visibleTabs2];
+        let newFocus = tabsArrayInOrder.indexOf(tabToFocus2);
+        if (key === "ArrowRight") {
+          newFocus += 1;
+          if (newFocus === tabsArrayInOrder.length) {
+            newFocus = 0;
+          }
+        }
+        if (key === "ArrowLeft") {
+          if (newFocus === -1 || newFocus === 0) {
+            newFocus = tabsArrayInOrder.length - 1;
+          } else {
+            newFocus -= 1;
+          }
+        }
+        const buttonToFocus = tabsArrayInOrder[newFocus];
+        if (buttonToFocus != null) {
+          setState({
+            tabToFocus: buttonToFocus
+          });
+        }
+      };
+      const handleDisclosureActivatorClick = () => {
+        setState({
+          showDisclosure: !showDisclosure,
+          tabToFocus: hiddenTabs[0]
+        });
+      };
+      const handleClose = () => {
+        setState({
+          showDisclosure: false
+        });
+      };
+      const handleMeasurement = (0, import_react161.useCallback)((measurements) => {
+        const {
+          hiddenTabWidths: tabWidths2,
+          containerWidth: containerWidth2,
+          disclosureWidth: disclosureWidth2
+        } = measurements;
+        const {
+          visibleTabs: visibleTabs2,
+          hiddenTabs: hiddenTabs2
+        } = getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth2, tabWidths2, containerWidth2);
+        setState({
+          visibleTabs: visibleTabs2,
+          hiddenTabs: hiddenTabs2,
+          disclosureWidth: disclosureWidth2,
+          containerWidth: containerWidth2,
+          tabWidths: tabWidths2
+        });
+      }, [tabs, selected, setState]);
+      const handleListTabClick = (id) => {
+        handleTabClick(id);
+        handleClose();
+        setState({
+          isTabsFocused: true
+        });
+      };
+      const moveToActiveTab = (offsetLeft) => {
+        setTimeout(() => {
+          if (scrollRef.current && typeof scrollRef.current.scroll === "function") {
+            const scrollRefOffset = wrapRef?.current?.offsetLeft || 0;
+            scrollRef?.current?.scroll({
+              left: offsetLeft - scrollRefOffset
+            });
+          }
+        }, 0);
+      };
+      const createViewA11yLabel = newViewAccessibilityLabel || i18n.translate("Polaris.Tabs.newViewAccessibilityLabel");
+      const tabsToShow = mdDown ? [...visibleTabs, ...hiddenTabs] : visibleTabs;
+      const tabsMarkup = tabsToShow.sort((tabA, tabB) => tabA - tabB).filter((tabIndex) => tabs[tabIndex]).map((tabIndex) => renderTabMarkup(tabs[tabIndex], tabIndex));
+      const disclosureActivatorVisible = visibleTabs.length < tabs.length && !mdDown;
+      const classname = classNames(styles37.Tabs, fitted && styles37.fitted, disclosureActivatorVisible && styles37.fillSpace);
+      const wrapperClassNames = classNames(styles37.Wrapper, canCreateNewView && styles37.WrapperWithNewButton);
+      const disclosureTabClassName = classNames(styles37.DisclosureTab, disclosureActivatorVisible && styles37["DisclosureTab-visible"]);
+      const disclosureButtonClassName = classNames(styles37.DisclosureActivator);
+      const disclosureButtonContent = /* @__PURE__ */ import_react161.default.createElement(import_react161.default.Fragment, null, /* @__PURE__ */ import_react161.default.createElement(Text, {
+        as: "span",
+        variant: "bodySm",
+        fontWeight: "medium"
+      }, disclosureText ?? i18n.translate("Polaris.Tabs.toggleTabsLabel")), /* @__PURE__ */ import_react161.default.createElement("div", {
+        className: classNames(styles37.IconWrap, disclosureActivatorVisible && showDisclosure && styles37["IconWrap-open"])
+      }, /* @__PURE__ */ import_react161.default.createElement(Icon, {
+        source: SvgChevronDownIcon,
+        tone: "subdued"
+      })));
+      const disclosureButton = /* @__PURE__ */ import_react161.default.createElement(UnstyledButton, {
+        type: "button",
+        className: disclosureButtonClassName,
+        onClick: handleDisclosureActivatorClick,
+        "aria-label": disclosureText ?? i18n.translate("Polaris.Tabs.toggleTabsLabel"),
+        disabled
+      }, disclosureButtonContent);
+      const activator = disclosureButton;
+      const disclosureTabs = hiddenTabs.map((tabIndex) => tabs[tabIndex]);
+      const viewNames = tabs.map(({
+        content
+      }) => content);
+      const tabMeasurer = /* @__PURE__ */ import_react161.default.createElement(TabMeasurer, {
+        tabToFocus,
+        activator,
+        selected,
+        tabs,
+        siblingTabHasFocus: tabToFocus > -1,
+        handleMeasurement
+      });
+      const newTab = /* @__PURE__ */ import_react161.default.createElement(Tab, {
+        id: CREATE_NEW_VIEW_ID,
+        content: createViewA11yLabel,
+        actions: [],
+        onAction: handleClickNewTab,
+        onFocus: () => {
+          if (modalSubmitted) {
+            setState({
+              tabToFocus: selected,
+              modalSubmitted: false
+            });
+          }
+        },
+        icon: /* @__PURE__ */ import_react161.default.createElement(Icon, {
+          source: SvgPlusIcon,
+          accessibilityLabel: createViewA11yLabel
+        }),
+        disabled,
+        onTogglePopover: handleTogglePopover,
+        onToggleModal: handleToggleModal,
+        tabIndexOverride: 0
+      });
+      const panelMarkup = children ? tabs.map((_tab, index) => {
+        return selected === index ? /* @__PURE__ */ import_react161.default.createElement(Panel, {
+          id: tabs[index].panelID || `${tabs[index].id}-panel`,
+          tabID: tabs[index].id,
+          key: tabs[index].id
+        }, children) : /* @__PURE__ */ import_react161.default.createElement(Panel, {
+          id: tabs[index].panelID || `${tabs[index].id}-panel`,
+          tabID: tabs[index].id,
+          key: tabs[index].id,
+          hidden: true
+        });
+      }) : null;
+      return /* @__PURE__ */ import_react161.default.createElement("div", {
+        className: styles37.Outer
+      }, /* @__PURE__ */ import_react161.default.createElement(Box, {
+        padding: {
+          md: "200"
+        }
+      }, tabMeasurer, /* @__PURE__ */ import_react161.default.createElement("div", {
+        className: wrapperClassNames,
+        ref: scrollRef
+      }, /* @__PURE__ */ import_react161.default.createElement("div", {
+        className: styles37.ButtonWrapper,
+        ref: wrapRef
+      }, /* @__PURE__ */ import_react161.default.createElement("ul", {
+        role: tabsMarkup.length > 0 ? "tablist" : void 0,
+        className: classname,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
+        onKeyDown: handleKeyDown5,
+        onKeyUp: handleKeyPress,
+        "data-tabs-focus-catchment": true
+      }, tabsMarkup, mdDown || tabsToShow.length === 0 ? null : /* @__PURE__ */ import_react161.default.createElement("li", {
+        className: disclosureTabClassName,
+        role: "presentation"
+      }, /* @__PURE__ */ import_react161.default.createElement(Popover2, {
+        preferredPosition: "below",
+        preferredAlignment: "left",
+        activator,
+        active: disclosureActivatorVisible && showDisclosure,
+        onClose: handleClose,
+        autofocusTarget: "first-node"
+      }, /* @__PURE__ */ import_react161.default.createElement(List, {
+        focusIndex: hiddenTabs.indexOf(tabToFocus),
+        disclosureTabs,
+        onClick: handleListTabClick,
+        onKeyPress: handleKeyPress
+      })))), canCreateNewView && tabsToShow.length > 0 ? /* @__PURE__ */ import_react161.default.createElement("div", {
+        className: styles37.NewTab
+      }, /* @__PURE__ */ import_react161.default.createElement(CreateViewModal, {
+        open: isNewViewModalActive,
+        onClose: handleCloseNewViewModal,
+        onClickPrimaryAction: handleSaveNewViewModal,
+        viewNames,
+        activator: disabled ? newTab : /* @__PURE__ */ import_react161.default.createElement("div", null, /* @__PURE__ */ import_react161.default.createElement(Tooltip, {
+          content: i18n.translate("Polaris.Tabs.newViewTooltip"),
+          preferredPosition: "above",
+          hoverDelay: 400
+        }, newTab))
+      })) : null))), panelMarkup);
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Layout/Layout.scss.js
+var styles38;
+var init_Layout_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Layout/Layout.scss.js"() {
+    styles38 = {
+      "Layout": "Polaris-Layout",
+      "Section": "Polaris-Layout__Section",
+      "Section-fullWidth": "Polaris-Layout__Section--fullWidth",
+      "Section-oneHalf": "Polaris-Layout__Section--oneHalf",
+      "Section-oneThird": "Polaris-Layout__Section--oneThird",
+      "AnnotatedSection": "Polaris-Layout__AnnotatedSection",
+      "AnnotationWrapper": "Polaris-Layout__AnnotationWrapper",
+      "AnnotationContent": "Polaris-Layout__AnnotationContent",
+      "Annotation": "Polaris-Layout__Annotation"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.scss.js
+var styles39;
+var init_TextContainer_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.scss.js"() {
+    styles39 = {
+      "TextContainer": "Polaris-TextContainer",
+      "spacingTight": "Polaris-TextContainer--spacingTight",
+      "spacingLoose": "Polaris-TextContainer--spacingLoose"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.js
+function TextContainer({
+  spacing,
+  children
+}) {
+  const className = classNames(styles39.TextContainer, spacing && styles39[variationName("spacing", spacing)]);
+  return /* @__PURE__ */ import_react162.default.createElement("div", {
+    className
+  }, children);
+}
+var import_react162;
+var init_TextContainer = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/TextContainer/TextContainer.js"() {
+    import_react162 = __toESM(require_react());
+    init_css();
+    init_TextContainer_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Layout/components/AnnotatedSection/AnnotatedSection.js
+function AnnotatedSection({
+  children,
+  title,
+  description,
+  id
+}) {
+  const descriptionMarkup = typeof description === "string" ? /* @__PURE__ */ import_react163.default.createElement(Text, {
+    as: "p",
+    variant: "bodyMd"
+  }, description) : description;
+  return /* @__PURE__ */ import_react163.default.createElement("div", {
+    className: styles38.AnnotatedSection
+  }, /* @__PURE__ */ import_react163.default.createElement("div", {
+    className: styles38.AnnotationWrapper
+  }, /* @__PURE__ */ import_react163.default.createElement("div", {
+    className: styles38.Annotation
+  }, /* @__PURE__ */ import_react163.default.createElement(TextContainer, {
+    spacing: "tight"
+  }, /* @__PURE__ */ import_react163.default.createElement(Text, {
+    id,
+    variant: "headingMd",
+    as: "h2"
+  }, title), descriptionMarkup && /* @__PURE__ */ import_react163.default.createElement(Box, {
+    color: "text-secondary"
+  }, descriptionMarkup))), /* @__PURE__ */ import_react163.default.createElement("div", {
+    className: styles38.AnnotationContent
+  }, children)));
+}
+var import_react163;
+var init_AnnotatedSection = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Layout/components/AnnotatedSection/AnnotatedSection.js"() {
+    import_react163 = __toESM(require_react());
+    init_Layout_scss();
+    init_TextContainer();
+    init_Text();
+    init_Box();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Layout/components/Section/Section.js
+function Section5({
+  children,
+  variant
+}) {
+  const className = classNames(styles38.Section, styles38[`Section-${variant}`]);
+  return /* @__PURE__ */ import_react164.default.createElement("div", {
+    className
+  }, children);
+}
+var import_react164;
+var init_Section5 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Layout/components/Section/Section.js"() {
+    import_react164 = __toESM(require_react());
+    init_css();
+    init_Layout_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Layout/Layout.js
+var import_react165, Layout;
+var init_Layout = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Layout/Layout.js"() {
+    import_react165 = __toESM(require_react());
+    init_Layout_scss();
+    init_AnnotatedSection();
+    init_Section5();
+    Layout = function Layout2({
+      sectioned,
+      children
+    }) {
+      const content = sectioned ? /* @__PURE__ */ import_react165.default.createElement(Section5, null, children) : children;
+      return /* @__PURE__ */ import_react165.default.createElement("div", {
+        className: styles38.Layout
+      }, content);
+    };
+    Layout.AnnotatedSection = AnnotatedSection;
+    Layout.Section = Section5;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/banner-context.js
+var import_react166, BannerContext;
+var init_banner_context = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/banner-context.js"() {
+    import_react166 = __toESM(require_react());
+    BannerContext = /* @__PURE__ */ (0, import_react166.createContext)(false);
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Link/Link.scss.js
+var styles40;
+var init_Link_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Link/Link.scss.js"() {
+    styles40 = {
+      "Link": "Polaris-Link",
+      "monochrome": "Polaris-Link--monochrome",
+      "removeUnderline": "Polaris-Link--removeUnderline"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Link/Link.js
+function Link({
+  url,
+  children,
+  onClick,
+  external,
+  target,
+  id,
+  monochrome,
+  removeUnderline,
+  accessibilityLabel,
+  dataPrimaryLink
+}) {
+  return /* @__PURE__ */ import_react167.default.createElement(BannerContext.Consumer, null, (BannerContext2) => {
+    const shouldBeMonochrome = monochrome || BannerContext2;
+    const className = classNames(styles40.Link, shouldBeMonochrome && styles40.monochrome, removeUnderline && styles40.removeUnderline);
+    return url ? /* @__PURE__ */ import_react167.default.createElement(UnstyledLink, {
+      onClick,
+      className,
+      url,
+      external,
+      target,
+      id,
+      "aria-label": accessibilityLabel,
+      "data-primary-link": dataPrimaryLink
+    }, children) : /* @__PURE__ */ import_react167.default.createElement("button", {
+      type: "button",
+      onClick,
+      className,
+      id,
+      "aria-label": accessibilityLabel,
+      "data-primary-link": dataPrimaryLink
+    }, children);
+  });
+}
+var import_react167;
+var init_Link = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Link/Link.js"() {
+    import_react167 = __toESM(require_react());
+    init_banner_context();
+    init_css();
+    init_Link_scss();
+    init_UnstyledLink();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/List/List.scss.js
+var styles41;
+var init_List_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/List/List.scss.js"() {
+    styles41 = {
+      "List": "Polaris-List",
+      "typeNumber": "Polaris-List--typeNumber",
+      "Item": "Polaris-List__Item",
+      "spacingLoose": "Polaris-List--spacingLoose"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/List/components/Item/Item.js
+function Item8({
+  children
+}) {
+  return /* @__PURE__ */ import_react168.default.createElement("li", {
+    className: styles41.Item
+  }, children);
+}
+var import_react168;
+var init_Item7 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/List/components/Item/Item.js"() {
+    import_react168 = __toESM(require_react());
+    init_List_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/List/List.js
+var import_react169, List2;
+var init_List2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/List/List.js"() {
+    import_react169 = __toESM(require_react());
+    init_css();
+    init_List_scss();
+    init_Item7();
+    List2 = function List3({
+      children,
+      gap = "loose",
+      type = "bullet"
+    }) {
+      const className = classNames(styles41.List, gap && styles41[variationName("spacing", gap)], type && styles41[variationName("type", type)]);
+      const ListElement = type === "bullet" ? "ul" : "ol";
+      return /* @__PURE__ */ import_react169.default.createElement(ListElement, {
+        className
+      }, children);
+    };
+    List2.Item = Item8;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/is-interface.js
+function isInterface(x) {
+  return !/* @__PURE__ */ (0, import_react170.isValidElement)(x) && x !== void 0;
+}
+var import_react170;
+var init_is_interface = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/is-interface.js"() {
+    import_react170 = __toESM(require_react());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/is-react-element.js
+function isReactElement(x) {
+  return /* @__PURE__ */ (0, import_react171.isValidElement)(x) && x !== void 0;
+}
+var import_react171;
+var init_is_react_element = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/is-react-element.js"() {
+    import_react171 = __toESM(require_react());
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/Page.scss.js
+var styles42;
+var init_Page_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/Page.scss.js"() {
+    styles42 = {
+      "Page": "Polaris-Page",
+      "fullWidth": "Polaris-Page--fullWidth",
+      "narrowWidth": "Polaris-Page--narrowWidth",
+      "Content": "Polaris-Page__Content"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.scss.js
+var styles43;
+var init_Header_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.scss.js"() {
+    styles43 = {
+      "TitleWrapper": "Polaris-Page-Header__TitleWrapper",
+      "BreadcrumbWrapper": "Polaris-Page-Header__BreadcrumbWrapper",
+      "PaginationWrapper": "Polaris-Page-Header__PaginationWrapper",
+      "PrimaryActionWrapper": "Polaris-Page-Header__PrimaryActionWrapper",
+      "Row": "Polaris-Page-Header__Row",
+      "mobileView": "Polaris-Page-Header--mobileView",
+      "RightAlign": "Polaris-Page-Header__RightAlign",
+      "noBreadcrumbs": "Polaris-Page-Header--noBreadcrumbs",
+      "AdditionalMetaData": "Polaris-Page-Header__AdditionalMetaData",
+      "Actions": "Polaris-Page-Header__Actions",
+      "longTitle": "Polaris-Page-Header--longTitle",
+      "mediumTitle": "Polaris-Page-Header--mediumTitle",
+      "isSingleRow": "Polaris-Page-Header--isSingleRow"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Breadcrumbs/Breadcrumbs.js
+function Breadcrumbs({
+  backAction
+}) {
+  const {
+    content
+  } = backAction;
+  const breadcrumbMarkup = /* @__PURE__ */ import_react172.default.createElement(Button, {
+    key: content,
+    url: "url" in backAction ? backAction.url : void 0,
+    onClick: "onAction" in backAction ? backAction.onAction : void 0,
+    onPointerDown: handleMouseUpByBlurring,
+    icon: SvgArrowLeftIcon,
+    accessibilityLabel: backAction.accessibilityLabel ?? content
+  });
+  return /* @__PURE__ */ import_react172.default.createElement("nav", {
+    role: "navigation"
+  }, breadcrumbMarkup);
+}
+var import_react172;
+var init_Breadcrumbs = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Breadcrumbs/Breadcrumbs.js"() {
+    import_react172 = __toESM(require_react());
+    init_dist();
+    init_focus();
+    init_Button();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.scss.js
+var styles44;
+var init_Title_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.scss.js"() {
+    styles44 = {
+      "Title": "Polaris-Header-Title",
+      "TitleWithSubtitle": "Polaris-Header-Title__TitleWithSubtitle",
+      "TitleWrapper": "Polaris-Header-Title__TitleWrapper",
+      "SubTitle": "Polaris-Header-Title__SubTitle",
+      "SubtitleCompact": "Polaris-Header-Title__SubtitleCompact"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.scss.js
+var styles45;
+var init_Bleed_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.scss.js"() {
+    styles45 = {
+      "Bleed": "Polaris-Bleed"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.js
+var import_react173, Bleed;
+var init_Bleed = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Bleed/Bleed.js"() {
+    import_react173 = __toESM(require_react());
+    init_css();
+    init_Bleed_scss();
+    Bleed = ({
+      marginInline,
+      marginBlock,
+      marginBlockStart,
+      marginBlockEnd,
+      marginInlineStart,
+      marginInlineEnd,
+      children
+    }) => {
+      const getNegativeMargins = (direction) => {
+        const xAxis = ["marginInlineStart", "marginInlineEnd"];
+        const yAxis = ["marginBlockStart", "marginBlockEnd"];
+        const directionValues = {
+          marginBlockStart,
+          marginBlockEnd,
+          marginInlineStart,
+          marginInlineEnd,
+          marginInline,
+          marginBlock
+        };
+        if (directionValues[direction]) {
+          return directionValues[direction];
+        } else if (xAxis.includes(direction) && marginInline) {
+          return directionValues.marginInline;
+        } else if (yAxis.includes(direction) && marginBlock) {
+          return directionValues.marginBlock;
+        }
+      };
+      const negativeMarginBlockStart = getNegativeMargins("marginBlockStart");
+      const negativeMarginBlockEnd = getNegativeMargins("marginBlockEnd");
+      const negativeMarginInlineStart = getNegativeMargins("marginInlineStart");
+      const negativeMarginInlineEnd = getNegativeMargins("marginInlineEnd");
+      const style = {
+        ...getResponsiveProps("bleed", "margin-block-start", "space", negativeMarginBlockStart),
+        ...getResponsiveProps("bleed", "margin-block-end", "space", negativeMarginBlockEnd),
+        ...getResponsiveProps("bleed", "margin-inline-start", "space", negativeMarginInlineStart),
+        ...getResponsiveProps("bleed", "margin-inline-end", "space", negativeMarginInlineEnd)
+      };
+      return /* @__PURE__ */ import_react173.default.createElement("div", {
+        className: styles45.Bleed,
+        style: sanitizeCustomProperties(style)
+      }, children);
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.js
+function Title({
+  title,
+  subtitle,
+  titleMetadata,
+  compactTitle
+}) {
+  const className = classNames(styles44.Title, subtitle && styles44.TitleWithSubtitle);
+  const titleMarkup = title ? /* @__PURE__ */ import_react174.default.createElement("h1", {
+    className
+  }, title) : null;
+  const titleMetadataMarkup = titleMetadata ? /* @__PURE__ */ import_react174.default.createElement(Bleed, {
+    marginBlock: "100"
+  }, titleMetadata) : null;
+  const wrappedTitleMarkup = /* @__PURE__ */ import_react174.default.createElement("div", {
+    className: styles44.TitleWrapper
+  }, titleMarkup, titleMetadataMarkup);
+  const subtitleMarkup = subtitle ? /* @__PURE__ */ import_react174.default.createElement("div", {
+    className: classNames(styles44.SubTitle, compactTitle && styles44.SubtitleCompact)
+  }, /* @__PURE__ */ import_react174.default.createElement(Text, {
+    as: "p",
+    variant: "bodySm"
+  }, subtitle)) : null;
+  return /* @__PURE__ */ import_react174.default.createElement(import_react174.default.Fragment, null, wrappedTitleMarkup, subtitleMarkup);
+}
+var import_react174;
+var init_Title = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/components/Title/Title.js"() {
+    import_react174 = __toESM(require_react());
+    init_css();
+    init_Title_scss();
+    init_Text();
+    init_Bleed();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.scss.js
+var styles46;
+var init_ActionMenu_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.scss.js"() {
+    styles46 = {
+      "ActionMenu": "Polaris-ActionMenu"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js
+var styles47;
+var init_RollupActions_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.scss.js"() {
+    styles47 = {
+      "RollupActivator": "Polaris-ActionMenu-RollupActions__RollupActivator"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.js
+function RollupActions({
+  accessibilityLabel,
+  items = [],
+  sections = []
+}) {
+  const i18n = useI18n();
+  const {
+    value: rollupOpen,
+    toggle: toggleRollupOpen
+  } = useToggle(false);
+  if (items.length === 0 && sections.length === 0) {
+    return null;
+  }
+  const activatorMarkup = /* @__PURE__ */ import_react175.default.createElement("div", {
+    className: styles47.RollupActivator
+  }, /* @__PURE__ */ import_react175.default.createElement(Button, {
+    icon: SvgMenuHorizontalIcon,
+    accessibilityLabel: accessibilityLabel || i18n.translate("Polaris.ActionMenu.RollupActions.rollupButton"),
+    onClick: toggleRollupOpen
+  }));
+  return /* @__PURE__ */ import_react175.default.createElement(Popover2, {
+    active: rollupOpen,
+    activator: activatorMarkup,
+    preferredAlignment: "right",
+    onClose: toggleRollupOpen,
+    hideOnPrint: true
+  }, /* @__PURE__ */ import_react175.default.createElement(ActionList, {
+    items,
+    sections,
+    onActionAnyItem: toggleRollupOpen
+  }));
+}
+var import_react175;
+var init_RollupActions = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/RollupActions/RollupActions.js"() {
+    import_react175 = __toESM(require_react());
+    init_dist();
+    init_use_toggle();
+    init_RollupActions_scss();
+    init_hooks2();
+    init_Button();
+    init_Popover();
+    init_ActionList();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.scss.js
+var styles48;
+var init_Actions_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.scss.js"() {
+    styles48 = {
+      "ActionsLayout": "Polaris-ActionMenu-Actions__ActionsLayout"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.scss.js
+var styles49;
+var init_MenuGroup_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.scss.js"() {
+    styles49 = {
+      "Details": "Polaris-ActionMenu-MenuGroup__Details"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.scss.js
+var styles50;
+var init_SecondaryAction_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.scss.js"() {
+    styles50 = {
+      "SecondaryAction": "Polaris-ActionMenu-SecondaryAction",
+      "critical": "Polaris-ActionMenu-SecondaryAction--critical"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.js
+function SecondaryAction({
+  children,
+  tone,
+  helpText,
+  onAction,
+  getOffsetWidth,
+  destructive,
+  ...rest
+}) {
+  const secondaryActionsRef = (0, import_react176.useRef)(null);
+  (0, import_react176.useEffect)(() => {
+    if (!getOffsetWidth || !secondaryActionsRef.current)
+      return;
+    getOffsetWidth(secondaryActionsRef.current?.offsetWidth);
+  }, [getOffsetWidth]);
+  const buttonMarkup = /* @__PURE__ */ import_react176.default.createElement(Button, Object.assign({
+    onClick: onAction,
+    tone: destructive ? "critical" : void 0
+  }, rest), children);
+  const actionMarkup = helpText ? /* @__PURE__ */ import_react176.default.createElement(Tooltip, {
+    preferredPosition: "below",
+    content: helpText
+  }, buttonMarkup) : buttonMarkup;
+  return /* @__PURE__ */ import_react176.default.createElement("div", {
+    className: classNames(styles50.SecondaryAction, tone === "critical" && styles50.critical),
+    ref: secondaryActionsRef
+  }, actionMarkup);
+}
+var import_react176;
+var init_SecondaryAction = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/SecondaryAction/SecondaryAction.js"() {
+    import_react176 = __toESM(require_react());
+    init_css();
+    init_SecondaryAction_scss();
+    init_Button();
+    init_Tooltip();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js
+function MenuGroup({
+  accessibilityLabel,
+  active,
+  actions,
+  details,
+  title,
+  icon,
+  disabled,
+  onClick,
+  onClose,
+  onOpen,
+  getOffsetWidth,
+  sections
+}) {
+  const handleClose = (0, import_react177.useCallback)(() => {
+    onClose(title);
+  }, [onClose, title]);
+  const handleOpen = (0, import_react177.useCallback)(() => {
+    onOpen(title);
+  }, [onOpen, title]);
+  const handleClick = (0, import_react177.useCallback)(() => {
+    if (onClick) {
+      onClick(handleOpen);
+    } else {
+      handleOpen();
+    }
+  }, [onClick, handleOpen]);
+  const handleOffsetWidth = (0, import_react177.useCallback)((width2) => {
+    if (!getOffsetWidth)
+      return;
+    getOffsetWidth(width2);
+  }, [getOffsetWidth]);
+  const popoverActivator = /* @__PURE__ */ import_react177.default.createElement(SecondaryAction, {
+    disclosure: true,
+    disabled,
+    icon,
+    accessibilityLabel,
+    onClick: handleClick,
+    getOffsetWidth: handleOffsetWidth
+  }, title);
+  return /* @__PURE__ */ import_react177.default.createElement(Popover2, {
+    active: Boolean(active),
+    activator: popoverActivator,
+    preferredAlignment: "left",
+    onClose: handleClose,
+    hideOnPrint: true
+  }, /* @__PURE__ */ import_react177.default.createElement(ActionList, {
+    items: actions,
+    sections,
+    onActionAnyItem: handleClose
+  }), details && /* @__PURE__ */ import_react177.default.createElement("div", {
+    className: styles49.Details
+  }, details));
+}
+var import_react177;
+var init_MenuGroup = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/MenuGroup/MenuGroup.js"() {
+    import_react177 = __toESM(require_react());
+    init_MenuGroup_scss();
+    init_Popover();
+    init_ActionList();
+    init_SecondaryAction();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.js
+function Actions({
+  actions = [],
+  groups = [],
+  onActionRollup
+}) {
+  const i18n = useI18n();
+  const actionsLayoutRef = (0, import_react178.useRef)(null);
+  const menuGroupWidthRef = (0, import_react178.useRef)(0);
+  const availableWidthRef = (0, import_react178.useRef)(0);
+  const actionsAndGroupsLengthRef = (0, import_react178.useRef)(0);
+  const timesMeasured = (0, import_react178.useRef)(0);
+  const actionWidthsRef = (0, import_react178.useRef)([]);
+  const rollupActiveRef = (0, import_react178.useRef)(null);
+  const [activeMenuGroup, setActiveMenuGroup] = (0, import_react178.useState)(void 0);
+  const [measuredActions, setMeasuredActions] = (0, import_react178.useState)({
+    showable: [],
+    rolledUp: []
+  });
+  const defaultRollupGroup = {
+    title: i18n.translate("Polaris.ActionMenu.Actions.moreActions"),
+    actions: []
+  };
+  const lastMenuGroup = [...groups].pop();
+  const lastMenuGroupWidth = [...actionWidthsRef.current].pop() || 0;
+  const handleActionsOffsetWidth = (0, import_react178.useCallback)((width2) => {
+    actionWidthsRef.current = [...actionWidthsRef.current, width2];
+  }, []);
+  const handleMenuGroupToggle = (0, import_react178.useCallback)((group) => setActiveMenuGroup(activeMenuGroup ? void 0 : group), [activeMenuGroup]);
+  const handleMenuGroupClose = (0, import_react178.useCallback)(() => setActiveMenuGroup(void 0), []);
+  const updateActions = (0, import_react178.useCallback)(() => {
+    let actionsAndGroups = [...actions, ...groups];
+    if (groups.length > 0) {
+      actionsAndGroups = [...actionsAndGroups].slice(0, actionsAndGroups.length - 1);
+    }
+    setMeasuredActions((currentMeasuredActions) => {
+      const showable = actionsAndGroups.slice(0, currentMeasuredActions.showable.length);
+      const rolledUp = actionsAndGroups.slice(currentMeasuredActions.showable.length, actionsAndGroups.length);
+      return {
+        showable,
+        rolledUp
+      };
+    });
+  }, [actions, groups]);
+  const measureActions = (0, import_react178.useCallback)(() => {
+    if (actionWidthsRef.current.length === 0 || availableWidthRef.current === 0) {
+      return;
+    }
+    const actionsAndGroups = [...actions, ...groups];
+    if (actionsAndGroups.length === 1) {
+      setMeasuredActions({
+        showable: actionsAndGroups,
+        rolledUp: []
+      });
+      return;
+    }
+    let currentAvailableWidth = availableWidthRef.current;
+    let newShowableActions = [];
+    let newRolledUpActions = [];
+    actionsAndGroups.forEach((action, index) => {
+      const canFitAction = actionWidthsRef.current[index] + menuGroupWidthRef.current + ACTION_SPACING + lastMenuGroupWidth <= currentAvailableWidth;
+      if (canFitAction) {
+        currentAvailableWidth -= actionWidthsRef.current[index] + ACTION_SPACING * 2;
+        newShowableActions = [...newShowableActions, action];
+      } else {
+        currentAvailableWidth = 0;
+        if (action === lastMenuGroup)
+          return;
+        newRolledUpActions = [...newRolledUpActions, action];
+      }
+    });
+    if (onActionRollup) {
+      const isRollupActive = newShowableActions.length < actionsAndGroups.length - 1;
+      if (rollupActiveRef.current !== isRollupActive) {
+        onActionRollup(isRollupActive);
+        rollupActiveRef.current = isRollupActive;
+      }
+    }
+    setMeasuredActions({
+      showable: newShowableActions,
+      rolledUp: newRolledUpActions
+    });
+    timesMeasured.current += 1;
+    actionsAndGroupsLengthRef.current = actionsAndGroups.length;
+  }, [actions, groups, lastMenuGroup, lastMenuGroupWidth, onActionRollup]);
+  const handleResize = (0, import_react178.useMemo)(() => debounce(() => {
+    if (!actionsLayoutRef.current)
+      return;
+    availableWidthRef.current = actionsLayoutRef.current.offsetWidth;
+    timesMeasured.current = 0;
+    measureActions();
+  }, 50, {
+    leading: false,
+    trailing: true
+  }), [measureActions]);
+  useEventListener("resize", handleResize);
+  useIsomorphicLayoutEffect(() => {
+    if (!actionsLayoutRef.current)
+      return;
+    availableWidthRef.current = actionsLayoutRef.current.offsetWidth;
+    if (
+      // Allow measuring twice
+      // This accounts for the initial paint and re-flow
+      timesMeasured.current >= 2 && [...actions, ...groups].length === actionsAndGroupsLengthRef.current
+    ) {
+      updateActions();
+      return;
+    }
+    measureActions();
+  }, [actions, groups, measureActions, updateActions]);
+  const actionsMarkup = actions.map((action) => {
+    if (measuredActions.showable.length > 0 || measuredActions.rolledUp.includes(action))
+      return null;
+    const {
+      content,
+      onAction,
+      ...rest
+    } = action;
+    return /* @__PURE__ */ import_react178.default.createElement(SecondaryAction, Object.assign({
+      key: content,
+      onClick: onAction
+    }, rest, {
+      getOffsetWidth: handleActionsOffsetWidth
+    }), content);
+  });
+  const rollUppableActionsMarkup = measuredActions.showable.length > 0 ? measuredActions.showable.map((action) => action.content && /* @__PURE__ */ import_react178.default.createElement(SecondaryAction, Object.assign({
+    key: action.content
+  }, action, {
+    getOffsetWidth: handleActionsOffsetWidth
+  }), action.content)) : null;
+  const filteredGroups = [...groups, defaultRollupGroup].filter((group) => {
+    return groups.length === 0 ? group : group === lastMenuGroup || !measuredActions.rolledUp.some((rolledUpGroup) => isMenuGroup(rolledUpGroup) && rolledUpGroup.title === group.title);
+  });
+  const groupsMarkup = filteredGroups.map((group) => {
+    const {
+      title,
+      actions: groupActions,
+      ...rest
+    } = group;
+    const isDefaultGroup = group === defaultRollupGroup;
+    const isLastMenuGroup = group === lastMenuGroup;
+    const [finalRolledUpActions, finalRolledUpSectionGroups] = measuredActions.rolledUp.reduce(([actions2, sections], action) => {
+      if (isMenuGroup(action)) {
+        sections.push({
+          title: action.title,
+          items: action.actions.map((sectionAction) => ({
+            ...sectionAction,
+            disabled: action.disabled || sectionAction.disabled
+          }))
+        });
+      } else {
+        actions2.push(action);
+      }
+      return [actions2, sections];
+    }, [[], []]);
+    if (!isDefaultGroup && !isLastMenuGroup) {
+      return /* @__PURE__ */ import_react178.default.createElement(MenuGroup, Object.assign({
+        key: title,
+        title,
+        active: title === activeMenuGroup,
+        actions: groupActions
+      }, rest, {
+        onOpen: handleMenuGroupToggle,
+        onClose: handleMenuGroupClose,
+        getOffsetWidth: handleActionsOffsetWidth
+      }));
+    } else if (!isDefaultGroup && isLastMenuGroup) {
+      return /* @__PURE__ */ import_react178.default.createElement(MenuGroup, Object.assign({
+        key: title,
+        title,
+        active: title === activeMenuGroup,
+        actions: [...finalRolledUpActions, ...groupActions],
+        sections: finalRolledUpSectionGroups
+      }, rest, {
+        onOpen: handleMenuGroupToggle,
+        onClose: handleMenuGroupClose,
+        getOffsetWidth: handleActionsOffsetWidth
+      }));
+    } else if (isDefaultGroup && groups.length === 0 && finalRolledUpActions.length) {
+      return /* @__PURE__ */ import_react178.default.createElement(MenuGroup, Object.assign({
+        key: title,
+        title,
+        active: title === activeMenuGroup,
+        actions: finalRolledUpActions,
+        sections: finalRolledUpSectionGroups
+      }, rest, {
+        onOpen: handleMenuGroupToggle,
+        onClose: handleMenuGroupClose,
+        getOffsetWidth: handleActionsOffsetWidth
+      }));
+    }
+  });
+  const groupedActionsMarkup = /* @__PURE__ */ import_react178.default.createElement(ButtonGroup, {
+    gap: "tight"
+  }, rollUppableActionsMarkup, actionsMarkup, groupsMarkup);
+  return /* @__PURE__ */ import_react178.default.createElement("div", {
+    className: styles48.ActionsLayout,
+    ref: actionsLayoutRef
+  }, groupedActionsMarkup);
+}
+function isMenuGroup(actionOrMenuGroup) {
+  return "title" in actionOrMenuGroup;
+}
+var import_react178, ACTION_SPACING;
+var init_Actions = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/components/Actions/Actions.js"() {
+    import_react178 = __toESM(require_react());
+    init_debounce();
+    init_use_event_listener();
+    init_use_isomorphic_layout_effect();
+    init_Actions_scss();
+    init_MenuGroup();
+    init_ButtonGroup();
+    init_hooks2();
+    init_SecondaryAction();
+    ACTION_SPACING = 8;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.js
+function ActionMenu({
+  actions = [],
+  groups = [],
+  rollup,
+  rollupActionsLabel,
+  onActionRollup
+}) {
+  if (actions.length === 0 && groups.length === 0) {
+    return null;
+  }
+  const actionMenuClassNames = classNames(styles46.ActionMenu, rollup && styles46.rollup);
+  const rollupSections = groups.map((group) => convertGroupToSection(group));
+  return /* @__PURE__ */ import_react179.default.createElement("div", {
+    className: actionMenuClassNames
+  }, rollup ? /* @__PURE__ */ import_react179.default.createElement(RollupActions, {
+    accessibilityLabel: rollupActionsLabel,
+    items: actions,
+    sections: rollupSections
+  }) : /* @__PURE__ */ import_react179.default.createElement(Actions, {
+    actions,
+    groups,
+    onActionRollup
+  }));
+}
+function hasGroupsWithActions(groups = []) {
+  return groups.length === 0 ? false : groups.some((group) => group.actions.length > 0);
+}
+function convertGroupToSection({
+  title,
+  actions,
+  disabled
+}) {
+  return {
+    title,
+    items: actions.map((action) => ({
+      ...action,
+      disabled: disabled || action.disabled
+    }))
+  };
+}
+var import_react179;
+var init_ActionMenu = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/ActionMenu/ActionMenu.js"() {
+    import_react179 = __toESM(require_react());
+    init_css();
+    init_ActionMenu_scss();
+    init_RollupActions();
+    init_Actions();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/is-input-focused.js
+function isInputFocused() {
+  if (document == null || document.activeElement == null) {
+    return false;
+  }
+  const {
+    tagName
+  } = document.activeElement;
+  return tagName === EditableTarget.Input || tagName === EditableTarget.Textarea || tagName === EditableTarget.Select || document.activeElement.hasAttribute(EditableTarget.ContentEditable);
+}
+var EditableTarget;
+var init_is_input_focused = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/is-input-focused.js"() {
+    (function(EditableTarget2) {
+      EditableTarget2["Input"] = "INPUT";
+      EditableTarget2["Textarea"] = "TEXTAREA";
+      EditableTarget2["Select"] = "SELECT";
+      EditableTarget2["ContentEditable"] = "contenteditable";
+    })(EditableTarget || (EditableTarget = {}));
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.scss.js
+var styles51;
+var init_Pagination_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.scss.js"() {
+    styles51 = {
+      "Pagination": "Polaris-Pagination",
+      "table": "Polaris-Pagination--table"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.js
+function Pagination({
+  hasNext,
+  hasPrevious,
+  nextURL,
+  previousURL,
+  onNext,
+  onPrevious,
+  nextTooltip,
+  previousTooltip,
+  nextKeys,
+  previousKeys,
+  accessibilityLabel,
+  accessibilityLabels,
+  label,
+  type = "page"
+}) {
+  const i18n = useI18n();
+  const node = /* @__PURE__ */ (0, import_react180.createRef)();
+  const navLabel = accessibilityLabel || i18n.translate("Polaris.Pagination.pagination");
+  const previousLabel = accessibilityLabels?.previous || i18n.translate("Polaris.Pagination.previous");
+  const nextLabel = accessibilityLabels?.next || i18n.translate("Polaris.Pagination.next");
+  const prev = /* @__PURE__ */ import_react180.default.createElement(Button, {
+    icon: SvgChevronLeftIcon,
+    accessibilityLabel: previousLabel,
+    url: previousURL,
+    onClick: onPrevious,
+    disabled: !hasPrevious,
+    id: "previousURL"
+  });
+  const constructedPrevious = previousTooltip && hasPrevious ? /* @__PURE__ */ import_react180.default.createElement(Tooltip, {
+    activatorWrapper: "span",
+    content: previousTooltip,
+    preferredPosition: "below"
+  }, prev) : prev;
+  const next = /* @__PURE__ */ import_react180.default.createElement(Button, {
+    icon: SvgChevronRightIcon,
+    accessibilityLabel: nextLabel,
+    url: nextURL,
+    onClick: onNext,
+    disabled: !hasNext,
+    id: "nextURL"
+  });
+  const constructedNext = nextTooltip && hasNext ? /* @__PURE__ */ import_react180.default.createElement(Tooltip, {
+    activatorWrapper: "span",
+    content: nextTooltip,
+    preferredPosition: "below"
+  }, next) : next;
+  const previousHandler = onPrevious || noop8;
+  const previousButtonEvents = previousKeys && (previousURL || onPrevious) && hasPrevious && previousKeys.map((key) => /* @__PURE__ */ import_react180.default.createElement(KeypressListener, {
+    key,
+    keyCode: key,
+    handler: previousURL ? handleCallback(clickPaginationLink("previousURL", node)) : handleCallback(previousHandler)
+  }));
+  const nextHandler = onNext || noop8;
+  const nextButtonEvents = nextKeys && (nextURL || onNext) && hasNext && nextKeys.map((key) => /* @__PURE__ */ import_react180.default.createElement(KeypressListener, {
+    key,
+    keyCode: key,
+    handler: nextURL ? handleCallback(clickPaginationLink("nextURL", node)) : handleCallback(nextHandler)
+  }));
+  if (type === "table") {
+    const labelMarkup2 = label ? /* @__PURE__ */ import_react180.default.createElement(Text, {
+      as: "span",
+      variant: "bodySm",
+      fontWeight: "medium"
+    }, label) : null;
+    return /* @__PURE__ */ import_react180.default.createElement("nav", {
+      "aria-label": navLabel,
+      ref: node,
+      className: classNames(styles51.Pagination, styles51.table)
+    }, previousButtonEvents, nextButtonEvents, /* @__PURE__ */ import_react180.default.createElement(Box, {
+      background: "bg-surface-secondary",
+      paddingBlockStart: "150",
+      paddingBlockEnd: "150",
+      paddingInlineStart: "300",
+      paddingInlineEnd: "200"
+    }, /* @__PURE__ */ import_react180.default.createElement(InlineStack, {
+      align: labelMarkup2 ? "space-between" : "end",
+      blockAlign: "center"
+    }, labelMarkup2, /* @__PURE__ */ import_react180.default.createElement(ButtonGroup, {
+      variant: "segmented"
+    }, constructedPrevious, constructedNext))));
+  }
+  const labelTextMarkup = hasNext && hasPrevious ? /* @__PURE__ */ import_react180.default.createElement("span", null, label) : /* @__PURE__ */ import_react180.default.createElement(Text, {
+    tone: "subdued",
+    as: "span"
+  }, label);
+  const labelMarkup = label ? /* @__PURE__ */ import_react180.default.createElement(Box, {
+    padding: "300",
+    paddingBlockStart: "0",
+    paddingBlockEnd: "0"
+  }, /* @__PURE__ */ import_react180.default.createElement("div", {
+    "aria-live": "polite"
+  }, labelTextMarkup)) : null;
+  return /* @__PURE__ */ import_react180.default.createElement("nav", {
+    "aria-label": navLabel,
+    ref: node,
+    className: styles51.Pagination
+  }, previousButtonEvents, nextButtonEvents, /* @__PURE__ */ import_react180.default.createElement(ButtonGroup, {
+    variant: "segmented"
+  }, constructedPrevious, labelMarkup, constructedNext));
+}
+function clickPaginationLink(id, node) {
+  return () => {
+    if (node.current == null) {
+      return;
+    }
+    const link = node.current.querySelector(`#${id}`);
+    if (link) {
+      link.click();
+    }
+  };
+}
+function handleCallback(fn) {
+  return () => {
+    if (isInputFocused()) {
+      return;
+    }
+    fn();
+  };
+}
+function noop8() {
+}
+var import_react180;
+var init_Pagination = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Pagination/Pagination.js"() {
+    init_dist();
+    import_react180 = __toESM(require_react());
+    init_is_input_focused();
+    init_css();
+    init_Pagination_scss();
+    init_hooks2();
+    init_KeypressListener();
+    init_Box();
+    init_InlineStack();
+    init_ButtonGroup();
+    init_Tooltip();
+    init_Text();
+    init_Button();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.js
+function Header3({
+  title,
+  subtitle,
+  pageReadyAccessibilityLabel,
+  titleMetadata,
+  additionalMetadata,
+  titleHidden = false,
+  primaryAction,
+  pagination,
+  filterActions,
+  backAction,
+  secondaryActions = [],
+  actionGroups = [],
+  compactTitle = false,
+  onActionRollup
+}) {
+  const i18n = useI18n();
+  const {
+    isNavigationCollapsed
+  } = useMediaQuery();
+  const isSingleRow = !primaryAction && !pagination && (isInterface(secondaryActions) && !secondaryActions.length || isReactElement(secondaryActions)) && !actionGroups.length;
+  const breadcrumbMarkup = backAction ? /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.BreadcrumbWrapper
+  }, /* @__PURE__ */ import_react181.default.createElement(Box, {
+    maxWidth: "100%",
+    paddingInlineEnd: "100",
+    printHidden: true
+  }, /* @__PURE__ */ import_react181.default.createElement(Breadcrumbs, {
+    backAction
+  }))) : null;
+  const paginationMarkup = pagination && !isNavigationCollapsed ? /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.PaginationWrapper
+  }, /* @__PURE__ */ import_react181.default.createElement(Box, {
+    printHidden: true
+  }, /* @__PURE__ */ import_react181.default.createElement(Pagination, Object.assign({}, pagination, {
+    hasPrevious: pagination.hasPrevious,
+    hasNext: pagination.hasNext
+  })))) : null;
+  const pageTitleMarkup = /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.TitleWrapper
+  }, /* @__PURE__ */ import_react181.default.createElement(Title, {
+    title,
+    subtitle,
+    titleMetadata,
+    compactTitle
+  }));
+  const labelForPageReadyAccessibilityLabel = pageReadyAccessibilityLabel || title;
+  const pageReadyAccessibilityLabelMarkup = labelForPageReadyAccessibilityLabel ? /* @__PURE__ */ import_react181.default.createElement("div", {
+    role: "status"
+  }, /* @__PURE__ */ import_react181.default.createElement(Text, {
+    visuallyHidden: true,
+    as: "p"
+  }, i18n.translate("Polaris.Page.Header.pageReadyAccessibilityLabel", {
+    title: labelForPageReadyAccessibilityLabel
+  }))) : void 0;
+  const primaryActionMarkup = primaryAction ? /* @__PURE__ */ import_react181.default.createElement(PrimaryActionMarkup, {
+    primaryAction
+  }) : null;
+  let actionMenuMarkup = null;
+  if (isInterface(secondaryActions) && (secondaryActions.length > 0 || hasGroupsWithActions(actionGroups))) {
+    actionMenuMarkup = /* @__PURE__ */ import_react181.default.createElement(ActionMenu, {
+      actions: secondaryActions,
+      groups: actionGroups,
+      rollup: isNavigationCollapsed,
+      rollupActionsLabel: title ? i18n.translate("Polaris.Page.Header.rollupActionsLabel", {
+        title
+      }) : void 0,
+      onActionRollup
+    });
+  } else if (isReactElement(secondaryActions)) {
+    actionMenuMarkup = /* @__PURE__ */ import_react181.default.createElement(import_react181.default.Fragment, null, secondaryActions);
+  }
+  const navigationMarkup = breadcrumbMarkup || paginationMarkup ? /* @__PURE__ */ import_react181.default.createElement(Box, {
+    printHidden: true,
+    paddingBlockEnd: "100",
+    paddingInlineEnd: actionMenuMarkup && isNavigationCollapsed ? "1000" : void 0
+  }, /* @__PURE__ */ import_react181.default.createElement(InlineStack, {
+    gap: "400",
+    align: "space-between",
+    blockAlign: "center"
+  }, breadcrumbMarkup, paginationMarkup)) : null;
+  const additionalMetadataMarkup = additionalMetadata ? /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.AdditionalMetaData
+  }, /* @__PURE__ */ import_react181.default.createElement(Text, {
+    tone: "subdued",
+    as: "span",
+    variant: "bodySm"
+  }, additionalMetadata)) : null;
+  const headerClassNames = classNames(isSingleRow && styles43.isSingleRow, navigationMarkup && styles43.hasNavigation, actionMenuMarkup && styles43.hasActionMenu, isNavigationCollapsed && styles43.mobileView, !backAction && styles43.noBreadcrumbs, title && title.length < LONG_TITLE && styles43.mediumTitle, title && title.length > LONG_TITLE && styles43.longTitle);
+  const {
+    slot1,
+    slot2,
+    slot3,
+    slot4,
+    slot5
+  } = determineLayout({
+    actionMenuMarkup,
+    additionalMetadataMarkup,
+    breadcrumbMarkup,
+    isNavigationCollapsed,
+    pageTitleMarkup,
+    paginationMarkup,
+    primaryActionMarkup,
+    title
+  });
+  return /* @__PURE__ */ import_react181.default.createElement(Box, {
+    position: "relative",
+    paddingBlockStart: {
+      xs: "400",
+      md: "600"
+    },
+    paddingBlockEnd: {
+      xs: "400",
+      md: "600"
+    },
+    paddingInlineStart: {
+      xs: "400",
+      sm: "0"
+    },
+    paddingInlineEnd: {
+      xs: "400",
+      sm: "0"
+    },
+    visuallyHidden: titleHidden
+  }, pageReadyAccessibilityLabelMarkup, /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: headerClassNames
+  }, /* @__PURE__ */ import_react181.default.createElement(FilterActionsProvider, {
+    filterActions: Boolean(filterActions)
+  }, /* @__PURE__ */ import_react181.default.createElement(ConditionalRender, {
+    condition: [slot1, slot2, slot3, slot4].some(notNull)
+  }, /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.Row
+  }, slot1, slot2, /* @__PURE__ */ import_react181.default.createElement(ConditionalRender, {
+    condition: [slot3, slot4].some(notNull)
+  }, /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.RightAlign
+  }, /* @__PURE__ */ import_react181.default.createElement(ConditionalWrapper, {
+    condition: [slot3, slot4].every(notNull),
+    wrapper: (children) => /* @__PURE__ */ import_react181.default.createElement("div", {
+      className: styles43.Actions
+    }, children)
+  }, slot3, slot4))))), /* @__PURE__ */ import_react181.default.createElement(ConditionalRender, {
+    condition: [slot5].some(notNull)
+  }, /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.Row
+  }, /* @__PURE__ */ import_react181.default.createElement(InlineStack, {
+    gap: "400"
+  }, slot5))))));
+}
+function PrimaryActionMarkup({
+  primaryAction
+}) {
+  const {
+    isNavigationCollapsed
+  } = useMediaQuery();
+  let actionMarkup;
+  if (isInterface(primaryAction)) {
+    const {
+      primary: isPrimary,
+      helpText
+    } = primaryAction;
+    const primary = isPrimary === void 0 ? true : isPrimary;
+    const content = buttonFrom(shouldShowIconOnly(isNavigationCollapsed, primaryAction), {
+      variant: primary ? "primary" : void 0
+    });
+    actionMarkup = helpText ? /* @__PURE__ */ import_react181.default.createElement(Tooltip, {
+      content: helpText
+    }, content) : content;
+  } else {
+    actionMarkup = primaryAction;
+  }
+  return /* @__PURE__ */ import_react181.default.createElement("div", {
+    className: styles43.PrimaryActionWrapper
+  }, /* @__PURE__ */ import_react181.default.createElement(Box, {
+    printHidden: true
+  }, actionMarkup));
+}
+function shouldShowIconOnly(isMobile, action) {
+  let {
+    content,
+    accessibilityLabel,
+    icon
+  } = action;
+  if (icon == null)
+    return {
+      ...action,
+      icon: void 0
+    };
+  if (isMobile) {
+    accessibilityLabel = accessibilityLabel || content;
+    content = void 0;
+  } else {
+    icon = void 0;
+  }
+  return {
+    ...action,
+    content,
+    accessibilityLabel,
+    icon
+  };
+}
+function notNull(value) {
+  return value != null;
+}
+function determineLayout({
+  actionMenuMarkup,
+  additionalMetadataMarkup,
+  breadcrumbMarkup,
+  isNavigationCollapsed,
+  pageTitleMarkup,
+  paginationMarkup,
+  primaryActionMarkup,
+  title
+}) {
+  const layouts = {
+    mobileCompact: {
+      slots: {
+        slot1: null,
+        slot2: pageTitleMarkup,
+        slot3: actionMenuMarkup,
+        slot4: primaryActionMarkup,
+        slot5: additionalMetadataMarkup
+      },
+      condition: isNavigationCollapsed && breadcrumbMarkup == null && title != null && title.length <= REALLY_SHORT_TITLE
+    },
+    mobileDefault: {
+      slots: {
+        slot1: breadcrumbMarkup,
+        slot2: pageTitleMarkup,
+        slot3: actionMenuMarkup,
+        slot4: primaryActionMarkup,
+        slot5: additionalMetadataMarkup
+      },
+      condition: isNavigationCollapsed
+    },
+    desktopCompact: {
+      slots: {
+        slot1: breadcrumbMarkup,
+        slot2: pageTitleMarkup,
+        slot3: actionMenuMarkup,
+        slot4: primaryActionMarkup,
+        slot5: additionalMetadataMarkup
+      },
+      condition: !isNavigationCollapsed && paginationMarkup == null && actionMenuMarkup == null && title != null && title.length <= SHORT_TITLE
+    },
+    desktopDefault: {
+      slots: {
+        slot1: breadcrumbMarkup,
+        slot2: pageTitleMarkup,
+        slot3: /* @__PURE__ */ import_react181.default.createElement(import_react181.default.Fragment, null, actionMenuMarkup, primaryActionMarkup),
+        slot4: paginationMarkup,
+        slot5: additionalMetadataMarkup
+      },
+      condition: !isNavigationCollapsed
+    }
+  };
+  const layout = Object.values(layouts).find((layout2) => layout2.condition) || layouts.desktopDefault;
+  return layout.slots;
+}
+var import_react181, SHORT_TITLE, REALLY_SHORT_TITLE, LONG_TITLE;
+var init_Header3 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/components/Header/Header.js"() {
+    import_react181 = __toESM(require_react());
+    init_css();
+    init_components();
+    init_is_interface();
+    init_is_react_element();
+    init_Header_scss();
+    init_Breadcrumbs();
+    init_Title();
+    init_ActionMenu();
+    init_FilterActionsProvider();
+    init_hooks2();
+    init_hooks7();
+    init_Box();
+    init_Pagination();
+    init_Text();
+    init_InlineStack();
+    init_utils3();
+    init_Tooltip();
+    SHORT_TITLE = 20;
+    REALLY_SHORT_TITLE = 8;
+    LONG_TITLE = 34;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Page/Page.js
+function Page({
+  children,
+  fullWidth,
+  narrowWidth,
+  ...rest
+}) {
+  const pageClassName = classNames(styles42.Page, fullWidth && styles42.fullWidth, narrowWidth && styles42.narrowWidth);
+  const hasHeaderContent = rest.title != null && rest.title !== "" || rest.subtitle != null && rest.subtitle !== "" || rest.primaryAction != null || rest.secondaryActions != null && (isInterface(rest.secondaryActions) && rest.secondaryActions.length > 0 || isReactElement(rest.secondaryActions)) || rest.actionGroups != null && rest.actionGroups.length > 0 || rest.backAction != null;
+  const contentClassName = classNames(!hasHeaderContent && styles42.Content);
+  const headerMarkup = hasHeaderContent ? /* @__PURE__ */ import_react182.default.createElement(Header3, Object.assign({
+    filterActions: true
+  }, rest)) : null;
+  return /* @__PURE__ */ import_react182.default.createElement("div", {
+    className: pageClassName
+  }, headerMarkup, /* @__PURE__ */ import_react182.default.createElement("div", {
+    className: contentClassName
+  }, children));
+}
+var import_react182;
+var init_Page = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Page/Page.js"() {
+    import_react182 = __toESM(require_react());
+    init_css();
+    init_is_interface();
+    init_is_react_element();
+    init_Page_scss();
+    init_Header3();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/configure.js
+var DEFAULT_LOCALE, SUPPORTED_LOCALES;
+var init_configure = __esm({
+  "node_modules/@shopify/polaris/build/esm/configure.js"() {
+    DEFAULT_LOCALE = "en";
+    SUPPORTED_LOCALES = ["cs", "da", "de", "en", "es", "fi", "fr", "it", "ja", "ko", "nb", "nl", "pl", "pt-BR", "pt-PT", "sv", "th", "tr", "vi", "zh-CN", "zh-TW"];
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/clamp.js
+function clamp(number, min, max) {
+  if (number < min)
+    return min;
+  if (number > max)
+    return max;
+  return number;
+}
+var init_clamp = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/clamp.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/roundNumberToDecimalPlaces.js
+function roundNumberToDecimalPlaces(value, decimals) {
+  const exponent = Number(`${value}e${decimals}`);
+  const roundedExponent = Math.round(exponent);
+  const numberWithDecimalPlaces = Number(`${roundedExponent}e-${decimals}`);
+  return numberWithDecimalPlaces;
+}
+var init_roundNumberToDecimalPlaces = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/roundNumberToDecimalPlaces.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/color-transformers.js
+function rgbString(color2) {
+  const {
+    red: red2,
+    green: green2,
+    blue: blue2
+  } = color2;
+  if ("alpha" in color2) {
+    return `rgba(${red2}, ${green2}, ${blue2}, ${color2.alpha})`;
+  } else {
+    return `rgb(${red2}, ${green2}, ${blue2})`;
+  }
+}
+function rgbToHex({
+  red: red2,
+  green: green2,
+  blue: blue2
+}) {
+  return `#${componentToHex(red2)}${componentToHex(green2)}${componentToHex(blue2)}`;
+}
+function componentToHex(component) {
+  const hex = component.toString(16);
+  return hex.length === 1 ? `0${hex}` : hex;
+}
+function hsbToHex(color2) {
+  return rgbToHex(hsbToRgb(color2));
+}
+function rgbFromHueAndChroma(hue, chroma) {
+  const huePrime = hue / 60;
+  const hueDelta = 1 - Math.abs(huePrime % 2 - 1);
+  const intermediateValue = chroma * hueDelta;
+  let red2 = 0;
+  let green2 = 0;
+  let blue2 = 0;
+  if (huePrime >= 0 && huePrime <= 1) {
+    red2 = chroma;
+    green2 = intermediateValue;
+    blue2 = 0;
+  }
+  if (huePrime >= 1 && huePrime <= 2) {
+    red2 = intermediateValue;
+    green2 = chroma;
+    blue2 = 0;
+  }
+  if (huePrime >= 2 && huePrime <= 3) {
+    red2 = 0;
+    green2 = chroma;
+    blue2 = intermediateValue;
+  }
+  if (huePrime >= 3 && huePrime <= 4) {
+    red2 = 0;
+    green2 = intermediateValue;
+    blue2 = chroma;
+  }
+  if (huePrime >= 4 && huePrime <= 5) {
+    red2 = intermediateValue;
+    green2 = 0;
+    blue2 = chroma;
+  }
+  if (huePrime >= 5 && huePrime <= 6) {
+    red2 = chroma;
+    green2 = 0;
+    blue2 = intermediateValue;
+  }
+  return {
+    red: red2,
+    green: green2,
+    blue: blue2
+  };
+}
+function hsbToRgb(color2) {
+  const {
+    hue,
+    saturation,
+    brightness,
+    alpha = 1
+  } = color2;
+  const chroma = brightness * saturation;
+  let {
+    red: red2,
+    green: green2,
+    blue: blue2
+  } = rgbFromHueAndChroma(hue, chroma);
+  const chromaBrightnessDelta = brightness - chroma;
+  red2 += chromaBrightnessDelta;
+  green2 += chromaBrightnessDelta;
+  blue2 += chromaBrightnessDelta;
+  return {
+    red: Math.round(red2 * 255),
+    green: Math.round(green2 * 255),
+    blue: Math.round(blue2 * 255),
+    alpha
+  };
+}
+function hslToRgb(color2) {
+  const {
+    hue,
+    saturation,
+    lightness,
+    alpha = 1
+  } = color2;
+  const chroma = (1 - Math.abs(2 * (lightness / 100) - 1)) * (saturation / 100);
+  let {
+    red: red2,
+    green: green2,
+    blue: blue2
+  } = rgbFromHueAndChroma(hue, chroma);
+  const lightnessVal = lightness / 100 - chroma / 2;
+  red2 += lightnessVal;
+  green2 += lightnessVal;
+  blue2 += lightnessVal;
+  return {
+    red: Math.round(red2 * 255),
+    green: Math.round(green2 * 255),
+    blue: Math.round(blue2 * 255),
+    alpha
+  };
+}
+function rgbToHsbl(color2, type = "b") {
+  const {
+    alpha = 1
+  } = color2;
+  const red2 = color2.red / 255;
+  const green2 = color2.green / 255;
+  const blue2 = color2.blue / 255;
+  const largestComponent = Math.max(red2, green2, blue2);
+  const smallestComponent = Math.min(red2, green2, blue2);
+  const delta = largestComponent - smallestComponent;
+  const lightness = (largestComponent + smallestComponent) / 2;
+  let saturation = 0;
+  if (largestComponent === 0) {
+    saturation = 0;
+  } else if (type === "b") {
+    saturation = delta / largestComponent;
+  } else if (type === "l") {
+    const baseSaturation = lightness > 0.5 ? delta / (2 - largestComponent - smallestComponent) : delta / (largestComponent + smallestComponent);
+    saturation = isNaN(baseSaturation) ? 0 : baseSaturation;
+  }
+  let huePercentage = 0;
+  switch (largestComponent) {
+    case red2:
+      huePercentage = (green2 - blue2) / delta + (green2 < blue2 ? 6 : 0);
+      break;
+    case green2:
+      huePercentage = (blue2 - red2) / delta + 2;
+      break;
+    case blue2:
+      huePercentage = (red2 - green2) / delta + 4;
+  }
+  const hue = huePercentage / 6 * 360;
+  const clampedHue = clamp(hue, 0, 360);
+  return {
+    hue: clampedHue ? roundNumberToDecimalPlaces(clampedHue, 2) : 0,
+    saturation: roundNumberToDecimalPlaces(clamp(saturation, 0, 1), 4),
+    brightness: roundNumberToDecimalPlaces(clamp(largestComponent, 0, 1), 4),
+    lightness: roundNumberToDecimalPlaces(lightness, 4),
+    alpha: roundNumberToDecimalPlaces(alpha, 4)
+  };
+}
+function rgbToHsb(color2) {
+  const {
+    hue,
+    saturation,
+    brightness,
+    alpha = 1
+  } = rgbToHsbl(color2, "b");
+  return {
+    hue,
+    saturation,
+    brightness,
+    alpha
+  };
+}
+function rgbToHsl(color2) {
+  const {
+    hue,
+    saturation: rawSaturation,
+    lightness: rawLightness,
+    alpha = 1
+  } = rgbToHsbl(color2, "l");
+  const saturation = roundNumberToDecimalPlaces(rawSaturation * 100, 2);
+  const lightness = roundNumberToDecimalPlaces(rawLightness * 100, 2);
+  return {
+    hue,
+    saturation,
+    lightness,
+    alpha
+  };
+}
+function hexToRgb(color2) {
+  if (color2.length === 4) {
+    const repeatHex = (hex1, hex2) => color2.slice(hex1, hex2).repeat(2);
+    const red3 = parseInt(repeatHex(1, 2), 16);
+    const green3 = parseInt(repeatHex(2, 3), 16);
+    const blue3 = parseInt(repeatHex(3, 4), 16);
+    return {
+      red: red3,
+      green: green3,
+      blue: blue3
+    };
+  }
+  const red2 = parseInt(color2.slice(1, 3), 16);
+  const green2 = parseInt(color2.slice(3, 5), 16);
+  const blue2 = parseInt(color2.slice(5, 7), 16);
+  return {
+    red: red2,
+    green: green2,
+    blue: blue2
+  };
+}
+var rgbaString;
+var init_color_transformers = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/color-transformers.js"() {
+    init_clamp();
+    init_roundNumberToDecimalPlaces();
+    rgbaString = rgbString;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/use-index-resource-state.js
+function defaultResourceIDResolver(resource) {
+  if ("id" in resource) {
+    return resource.id;
+  }
+  throw new Error("Your resource does not directly contain an `id`. Pass a `resourceIDResolver` to `useIndexResourceState`");
+}
+function useIndexResourceState(resources, {
+  selectedResources: initSelectedResources = [],
+  allResourcesSelected: initAllResourcesSelected = false,
+  resourceIDResolver = defaultResourceIDResolver,
+  resourceFilter = void 0
+} = {
+  selectedResources: [],
+  allResourcesSelected: false,
+  resourceIDResolver: defaultResourceIDResolver,
+  resourceFilter: void 0
+}) {
+  const [selectedResources, setSelectedResources] = (0, import_react183.useState)(initSelectedResources);
+  const [allResourcesSelected, setAllResourcesSelected] = (0, import_react183.useState)(initAllResourcesSelected);
+  const handleSelectionChange = (0, import_react183.useCallback)((selectionType, isSelecting, selection, _position) => {
+    if (selectionType === SelectionType.All) {
+      setAllResourcesSelected(isSelecting);
+    } else if (allResourcesSelected) {
+      setAllResourcesSelected(false);
+    }
+    switch (selectionType) {
+      case SelectionType.Single:
+        setSelectedResources((newSelectedResources) => isSelecting ? [...newSelectedResources, selection] : newSelectedResources.filter((id) => id !== selection));
+        break;
+      case SelectionType.All:
+      case SelectionType.Page:
+        if (resourceFilter) {
+          const filteredResources = resources.filter(resourceFilter);
+          setSelectedResources(isSelecting && selectedResources.length < filteredResources.length ? filteredResources.map(resourceIDResolver) : []);
+        } else {
+          setSelectedResources(isSelecting ? resources.map(resourceIDResolver) : []);
+        }
+        break;
+      case SelectionType.Multi:
+        if (!selection)
+          break;
+        setSelectedResources((currentSelectedResources) => {
+          const ids = [];
+          const filteredResources = resourceFilter ? resources.filter(resourceFilter) : resources;
+          for (let i = selection[0]; i <= selection[1]; i++) {
+            if (filteredResources.includes(resources[i])) {
+              const id = resourceIDResolver(resources[i]);
+              if (isSelecting && !currentSelectedResources.includes(id) || !isSelecting && currentSelectedResources.includes(id)) {
+                ids.push(id);
+              }
+            }
+          }
+          return isSelecting ? [...currentSelectedResources, ...ids] : currentSelectedResources.filter((id) => !ids.includes(id));
+        });
+        break;
+      case SelectionType.Range:
+        if (!selection)
+          break;
+        setSelectedResources((currentSelectedResources) => {
+          const filteredResources = resourceFilter ? resources.filter(resourceFilter) : resources;
+          const resourceIds = filteredResources.map(resourceIDResolver);
+          const selectedIds = resourceIds.slice(Number(selection[0]), Number(selection[1]) + 1);
+          const isIndeterminate = selectedIds.some((id) => {
+            return selectedResources.includes(id);
+          });
+          const isChecked = selectedIds.every((id) => {
+            return selectedResources.includes(id);
+          });
+          const isSelectingAllInRange = !isChecked && (isSelecting || isIndeterminate);
+          const nextSelectedResources = isSelectingAllInRange ? [...(/* @__PURE__ */ new Set([...currentSelectedResources, ...selectedIds])).values()] : currentSelectedResources.filter((id) => !selectedIds.includes(id));
+          return nextSelectedResources;
+        });
+        break;
+    }
+  }, [allResourcesSelected, resourceFilter, selectedResources, resources, resourceIDResolver]);
+  const clearSelection = (0, import_react183.useCallback)(() => {
+    setSelectedResources([]);
+    setAllResourcesSelected(false);
+  }, []);
+  const removeSelectedResources = (0, import_react183.useCallback)((removeResources) => {
+    const selectedResourcesCopy = [...selectedResources];
+    const newSelectedResources = selectedResourcesCopy.filter((resource) => !removeResources.includes(resource));
+    setSelectedResources(newSelectedResources);
+    if (newSelectedResources.length === 0) {
+      setAllResourcesSelected(false);
+    }
+  }, [selectedResources]);
+  return {
+    selectedResources,
+    allResourcesSelected,
+    handleSelectionChange,
+    clearSelection,
+    removeSelectedResources
+  };
+}
+var import_react183, SelectionType;
+var init_use_index_resource_state = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/use-index-resource-state.js"() {
+    import_react183 = __toESM(require_react());
+    (function(SelectionType3) {
+      SelectionType3["All"] = "all";
+      SelectionType3["Page"] = "page";
+      SelectionType3["Multi"] = "multi";
+      SelectionType3["Single"] = "single";
+      SelectionType3["Range"] = "range";
+    })(SelectionType || (SelectionType = {}));
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.scss.js
+var styles52;
+var init_SettingAction_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.scss.js"() {
+    styles52 = {
+      "SettingAction": "Polaris-SettingAction",
+      "Setting": "Polaris-SettingAction__Setting",
+      "Action": "Polaris-SettingAction__Action"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.js
+function SettingAction({
+  action,
+  children
+}) {
+  return /* @__PURE__ */ import_react184.default.createElement("div", {
+    className: styles52.SettingAction
+  }, /* @__PURE__ */ import_react184.default.createElement("div", {
+    className: styles52.Setting
+  }, children), /* @__PURE__ */ import_react184.default.createElement("div", {
+    className: styles52.Action
+  }, action));
+}
+var import_react184;
+var init_SettingAction = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/SettingAction/SettingAction.js"() {
+    import_react184 = __toESM(require_react());
+    init_SettingAction_scss();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.scss.js
+var styles53;
+var init_Avatar_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.scss.js"() {
+    styles53 = {
+      "Avatar": "Polaris-Avatar",
+      "imageHasLoaded": "Polaris-Avatar--imageHasLoaded",
+      "Text": "Polaris-Avatar__Text",
+      "long": "Polaris-Avatar--long",
+      "hidden": "Polaris-Avatar--hidden",
+      "sizeXs": "Polaris-Avatar--sizeXs",
+      "sizeSm": "Polaris-Avatar--sizeSm",
+      "sizeMd": "Polaris-Avatar--sizeMd",
+      "sizeLg": "Polaris-Avatar--sizeLg",
+      "sizeXl": "Polaris-Avatar--sizeXl",
+      "styleOne": "Polaris-Avatar--styleOne",
+      "styleTwo": "Polaris-Avatar--styleTwo",
+      "styleThree": "Polaris-Avatar--styleThree",
+      "styleFour": "Polaris-Avatar--styleFour",
+      "styleFive": "Polaris-Avatar--styleFive",
+      "styleSix": "Polaris-Avatar--styleSix",
+      "styleSeven": "Polaris-Avatar--styleSeven",
+      "Image": "Polaris-Avatar__Image",
+      "Initials": "Polaris-Avatar__Initials",
+      "Svg": "Polaris-Avatar__Svg"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.js
+function xorHash(str) {
+  let hash = 0;
+  for (const char of str) {
+    hash ^= char.charCodeAt(0);
+  }
+  return hash;
+}
+function styleClass(name) {
+  return name ? STYLE_CLASSES[xorHash(name) % STYLE_CLASSES.length] : STYLE_CLASSES[0];
+}
+function Avatar({
+  name,
+  source,
+  onError,
+  initials,
+  customer,
+  size: size2 = "md",
+  accessibilityLabel
+}) {
+  const i18n = useI18n();
+  const isAfterInitialMount = useIsAfterInitialMount();
+  const [status, setStatus] = (0, import_react185.useState)(Status.Pending);
+  (0, import_react185.useEffect)(() => {
+    setStatus(Status.Pending);
+  }, [source]);
+  const handleError = (0, import_react185.useCallback)(() => {
+    setStatus(Status.Errored);
+    if (onError) {
+      onError();
+    }
+  }, [onError]);
+  const handleLoad = (0, import_react185.useCallback)(() => {
+    setStatus(Status.Loaded);
+  }, []);
+  const hasImage = source && status !== Status.Errored;
+  const nameString = name || initials;
+  let label;
+  if (accessibilityLabel) {
+    label = accessibilityLabel;
+  } else if (name) {
+    label = name;
+  } else if (initials) {
+    const splitInitials = initials.split("").join(" ");
+    label = i18n.translate("Polaris.Avatar.labelWithInitials", {
+      initials: splitInitials
+    });
+  }
+  const className = classNames(styles53.Avatar, size2 && styles53[variationName("size", size2)], hasImage && status === Status.Loaded && styles53.imageHasLoaded, !customer && !hasImage && styles53[variationName("style", styleClass(nameString))]);
+  const textClassName = classNames(styles53.Text, (initials?.length || 0) > 2 && styles53.long);
+  const imageClassName = classNames(styles53.Image, status !== Status.Loaded && styles53.hidden);
+  const imageMarkUp = source && isAfterInitialMount && status !== Status.Errored ? /* @__PURE__ */ import_react185.default.createElement(Image, {
+    className: imageClassName,
+    source,
+    alt: "",
+    role: "presentation",
+    onLoad: handleLoad,
+    onError: handleError
+  }) : null;
+  const verticalOffset = "0.35em";
+  const avatarPath = /* @__PURE__ */ import_react185.default.createElement(import_react185.default.Fragment, null, /* @__PURE__ */ import_react185.default.createElement("path", {
+    fill: "none",
+    d: "M25.5 13.5C25.5 16.5376 23.0376 19 20 19C16.9624 19 14.5 16.5376 14.5 13.5C14.5 10.4624 16.9624 8 20 8C23.0376 8 25.5 10.4624 25.5 13.5Z",
+    stroke: "currentColor",
+    strokeWidth: avatarStrokeWidth[size2]
+  }), /* @__PURE__ */ import_react185.default.createElement("path", {
+    fill: "none",
+    d: "M10.3433 29.682L9.47 31.254C9.03481 32.0373 9.60125 33 10.4974 33H29.5026C30.3988 33 30.9652 32.0373 30.53 31.254L29.6567 29.682C27.7084 26.175 24.0119 24 20 24C15.9882 24 12.2916 26.175 10.3433 29.682Z",
+    stroke: "currentColor",
+    strokeWidth: avatarStrokeWidth[size2],
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }));
+  const avatarBody = customer || !initials ? avatarPath : /* @__PURE__ */ import_react185.default.createElement("text", {
+    className: textClassName,
+    x: "50%",
+    y: "50%",
+    dy: verticalOffset,
+    fill: "currentColor",
+    textAnchor: "middle"
+  }, initials);
+  const svgMarkup = hasImage ? null : /* @__PURE__ */ import_react185.default.createElement("span", {
+    className: styles53.Initials
+  }, /* @__PURE__ */ import_react185.default.createElement("svg", {
+    className: styles53.Svg,
+    viewBox: "0 0 40 40"
+  }, avatarBody));
+  return /* @__PURE__ */ import_react185.default.createElement("span", {
+    "aria-label": label,
+    role: label ? "img" : "presentation",
+    className
+  }, svgMarkup, imageMarkUp);
+}
+var import_react185, Status, STYLE_CLASSES, avatarStrokeWidth;
+var init_Avatar = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Avatar/Avatar.js"() {
+    import_react185 = __toESM(require_react());
+    init_css();
+    init_use_is_after_initial_mount();
+    init_Avatar_scss();
+    init_hooks2();
+    init_Image();
+    (function(Status2) {
+      Status2["Pending"] = "PENDING";
+      Status2["Loaded"] = "LOADED";
+      Status2["Errored"] = "ERRORED";
+    })(Status || (Status = {}));
+    STYLE_CLASSES = ["one", "two", "three", "four", "five", "six", "seven"];
+    avatarStrokeWidth = {
+      xs: "3",
+      sm: "2.5",
+      md: "2.5",
+      lg: "2.5",
+      xl: "2"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/AccountConnection/AccountConnection.js
+function AccountConnection({
+  connected = false,
+  action,
+  avatarUrl,
+  accountName = "",
+  title,
+  details,
+  termsOfService
+}) {
+  const breakpoints2 = useBreakpoints();
+  const initials = accountName ? accountName.split(/\s+/).map((name) => name[0]).join("") : void 0;
+  const avatarMarkup = connected ? /* @__PURE__ */ import_react186.default.createElement("span", null, /* @__PURE__ */ import_react186.default.createElement(Avatar, {
+    accessibilityLabel: "",
+    name: accountName,
+    initials,
+    source: avatarUrl
+  })) : null;
+  const titleContent = title ? title : accountName;
+  const titleMarkup = /* @__PURE__ */ import_react186.default.createElement(Text, {
+    as: "h2",
+    variant: "headingSm"
+  }, titleContent);
+  const detailsMarkup = details ? /* @__PURE__ */ import_react186.default.createElement(Text, {
+    as: "span",
+    tone: "subdued"
+  }, details) : null;
+  const termsOfServiceMarkup = termsOfService ? /* @__PURE__ */ import_react186.default.createElement(Box, {
+    paddingBlockStart: breakpoints2.mdUp ? "400" : "500"
+  }, termsOfService) : null;
+  const actionElement = action ? buttonFrom(action, {
+    variant: connected ? void 0 : "primary"
+  }) : null;
+  return /* @__PURE__ */ import_react186.default.createElement(Card, null, /* @__PURE__ */ import_react186.default.createElement(SettingAction, {
+    action: actionElement
+  }, /* @__PURE__ */ import_react186.default.createElement(InlineStack, {
+    gap: "400"
+  }, avatarMarkup, /* @__PURE__ */ import_react186.default.createElement(BlockStack, {
+    gap: "100"
+  }, titleMarkup, detailsMarkup))), termsOfServiceMarkup);
+}
+var import_react186;
+var init_AccountConnection = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/AccountConnection/AccountConnection.js"() {
+    import_react186 = __toESM(require_react());
+    init_breakpoints2();
+    init_utils3();
+    init_Card();
+    init_SettingAction();
+    init_InlineStack();
+    init_BlockStack();
+    init_Avatar();
+    init_Box();
+    init_Text();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/options.js
+function isSection(arr) {
+  return typeof arr[0] === "object" && Object.prototype.hasOwnProperty.call(arr[0], "options");
+}
+var init_options = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/options.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.scss.js
 var styles54;
+var init_Autocomplete_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.scss.js"() {
+    styles54 = {
+      "Loading": "Polaris-Autocomplete__Loading",
+      "SectionWrapper": "Polaris-Autocomplete__SectionWrapper"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.scss.js
+var styles55;
+var init_MappedOption_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.scss.js"() {
+    styles55 = {
+      "Content": "Polaris-Autocomplete-MappedOption__Content",
+      "Media": "Polaris-Autocomplete-MappedOption__Media",
+      "singleSelectionMedia": "Polaris-Autocomplete-MappedOption--singleSelectionMedia",
+      "disabledMedia": "Polaris-Autocomplete-MappedOption--disabledMedia"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.scss.js
+var styles56;
+var init_Listbox_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.scss.js"() {
+    styles56 = {
+      "Listbox": "Polaris-Listbox"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/combobox/context.js
+var import_react187, ComboboxTextFieldContext, ComboboxListboxContext, ComboboxListboxOptionContext;
+var init_context12 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/combobox/context.js"() {
+    import_react187 = __toESM(require_react());
+    ComboboxTextFieldContext = /* @__PURE__ */ (0, import_react187.createContext)(void 0);
+    ComboboxListboxContext = /* @__PURE__ */ (0, import_react187.createContext)({});
+    ComboboxListboxOptionContext = /* @__PURE__ */ (0, import_react187.createContext)({});
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/combobox/hooks.js
+function useComboboxTextField() {
+  const context = (0, import_react188.useContext)(ComboboxTextFieldContext);
+  if (!context) {
+    throw new Error("No Combobox was provided. Your component must be wrapped in a <Combobox> component.");
+  }
+  return context;
+}
+function useComboboxListbox() {
+  const context = (0, import_react188.useContext)(ComboboxListboxContext);
+  return context;
+}
+var import_react188;
+var init_hooks9 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/combobox/hooks.js"() {
+    import_react188 = __toESM(require_react());
+    init_context12();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/listbox/utilities.js
+function scrollOptionIntoView(option, scrollable2) {
+  const listTop = scrollable2.scrollTop;
+  const listBottom = listTop + scrollable2.clientHeight;
+  const {
+    offsetHeight: optionHeight
+  } = option;
+  const {
+    offsetTop: optionTop
+  } = option;
+  const optionBottom = optionTop + optionHeight;
+  const isVisible = optionTop > listTop && optionBottom < listBottom;
+  if (!isVisible) {
+    let top = 0;
+    if (optionBottom > listBottom) {
+      top = optionBottom + optionHeight * 0.85 - listBottom;
+    } else if (optionTop < listTop) {
+      top = optionTop - optionHeight * 0.15 - listTop;
+    }
+    requestAnimationFrame(() => {
+      scrollable2.scrollBy({
+        top,
+        behavior: "auto"
+      });
+    });
+  }
+}
+var init_utilities2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/listbox/utilities.js"() {
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/listbox/context.js
+var import_react189, ListboxContext, WithinListboxContext, ActionContext;
+var init_context13 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/listbox/context.js"() {
+    import_react189 = __toESM(require_react());
+    ListboxContext = /* @__PURE__ */ (0, import_react189.createContext)(void 0);
+    WithinListboxContext = /* @__PURE__ */ (0, import_react189.createContext)(false);
+    ActionContext = /* @__PURE__ */ (0, import_react189.createContext)(false);
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.scss.js
+var styles57;
+var init_TextOption_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.scss.js"() {
+    styles57 = {
+      "TextOption": "Polaris-Listbox-TextOption",
+      "allowMultiple": "Polaris-Listbox-TextOption--allowMultiple",
+      "isAction": "Polaris-Listbox-TextOption--isAction",
+      "disabled": "Polaris-Listbox-TextOption--disabled",
+      "selected": "Polaris-Listbox-TextOption--selected",
+      "Content": "Polaris-Listbox-TextOption__Content",
+      "Checkbox": "Polaris-Listbox-TextOption__Checkbox"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.scss.js
+var styles58;
+var init_Checkbox_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.scss.js"() {
+    styles58 = {
+      "Checkbox": "Polaris-Checkbox",
+      "ChoiceLabel": "Polaris-Checkbox__ChoiceLabel",
+      "Backdrop": "Polaris-Checkbox__Backdrop",
+      "Input": "Polaris-Checkbox__Input",
+      "Input-indeterminate": "Polaris-Checkbox__Input--indeterminate",
+      "Icon": "Polaris-Checkbox__Icon",
+      "animated": "Polaris-Checkbox--animated",
+      "toneMagic": "Polaris-Checkbox--toneMagic",
+      "hover": "Polaris-Checkbox--hover",
+      "error": "Polaris-Checkbox--error",
+      "checked": "Polaris-Checkbox--checked",
+      "pathAnimation": "Polaris-Checkbox--pathAnimation"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Choice/Choice.scss.js
+var styles59;
+var init_Choice_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Choice/Choice.scss.js"() {
+    styles59 = {
+      "Choice": "Polaris-Choice",
+      "labelHidden": "Polaris-Choice--labelHidden",
+      "Label": "Polaris-Choice__Label",
+      "Control": "Polaris-Choice__Control",
+      "disabled": "Polaris-Choice--disabled",
+      "toneMagic": "Polaris-Choice--toneMagic",
+      "Descriptions": "Polaris-Choice__Descriptions",
+      "HelpText": "Polaris-Choice__HelpText"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Choice/Choice.js
+function Choice({
+  id,
+  label,
+  disabled,
+  error,
+  children,
+  labelHidden,
+  helpText,
+  onClick,
+  labelClassName,
+  fill,
+  bleed,
+  bleedBlockStart,
+  bleedBlockEnd,
+  bleedInlineStart,
+  bleedInlineEnd,
+  tone
+}) {
+  const className = classNames(styles59.Choice, labelHidden && styles59.labelHidden, disabled && styles59.disabled, tone && styles59[variationName("tone", tone)], labelClassName);
+  const labelStyle = {
+    // Pass through overrides for bleed values if they're set by the prop
+    ...getResponsiveProps("choice", "bleed-block-end", "space", bleedBlockEnd || bleed),
+    ...getResponsiveProps("choice", "bleed-block-start", "space", bleedBlockStart || bleed),
+    ...getResponsiveProps("choice", "bleed-inline-start", "space", bleedInlineStart || bleed),
+    ...getResponsiveProps("choice", "bleed-inline-end", "space", bleedInlineEnd || bleed),
+    ...Object.fromEntries(Object.entries(getResponsiveValue("choice", "fill", fill)).map(
+      // Map "true" => "100%" and "false" => "auto" for use in
+      // inline/block-size calc()
+      ([key, value]) => [key, value ? "100%" : "auto"]
+    ))
+  };
+  const labelMarkup = (
+    // NOTE: Can't use a Box here for a few reasons:
+    // - as="label" fails `Element` typecheck (even though the JS works)
+    // - Can't pass hard coded values to padding (forced to tokens)
+    // - Can't pass negative values to padding
+    // - Can't pass margins at all
+    /* @__PURE__ */ import_react190.default.createElement("label", {
+      className,
+      htmlFor: id,
+      onClick,
+      style: sanitizeCustomProperties(labelStyle)
+    }, /* @__PURE__ */ import_react190.default.createElement("span", {
+      className: styles59.Control
+    }, children), /* @__PURE__ */ import_react190.default.createElement("span", {
+      className: styles59.Label
+    }, /* @__PURE__ */ import_react190.default.createElement("span", null, label)))
+  );
+  const helpTextMarkup = helpText ? /* @__PURE__ */ import_react190.default.createElement("div", {
+    className: styles59.HelpText,
+    id: helpTextID2(id)
+  }, /* @__PURE__ */ import_react190.default.createElement(Text, {
+    as: "span",
+    tone: disabled ? void 0 : "subdued"
+  }, helpText)) : null;
+  const errorMarkup = error && typeof error !== "boolean" && /* @__PURE__ */ import_react190.default.createElement("div", {
+    className: styles59.Error
+  }, /* @__PURE__ */ import_react190.default.createElement(InlineError, {
+    message: error,
+    fieldID: id
+  }));
+  const descriptionMarkup = helpTextMarkup || errorMarkup ? /* @__PURE__ */ import_react190.default.createElement("div", {
+    className: styles59.Descriptions
+  }, errorMarkup, helpTextMarkup) : null;
+  return descriptionMarkup ? /* @__PURE__ */ import_react190.default.createElement("div", null, labelMarkup, descriptionMarkup) : labelMarkup;
+}
+function helpTextID2(id) {
+  return `${id}HelpText`;
+}
+var import_react190;
+var init_Choice = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Choice/Choice.js"() {
+    import_react190 = __toESM(require_react());
+    init_css();
+    init_Choice_scss();
+    init_Text();
+    init_InlineError();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.js
+function noop9() {
+}
+function stopPropagation(event) {
+  event.stopPropagation();
+}
+var import_react191, Checkbox;
+var init_Checkbox = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Checkbox/Checkbox.js"() {
+    import_react191 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_context13();
+    init_Checkbox_scss();
+    init_Choice();
+    init_InlineError();
+    init_Icon();
+    Checkbox = /* @__PURE__ */ (0, import_react191.forwardRef)(function Checkbox2({
+      ariaControls,
+      ariaDescribedBy: ariaDescribedByProp,
+      label,
+      labelHidden,
+      checked = false,
+      helpText,
+      disabled,
+      id: idProp,
+      name,
+      value,
+      error,
+      onChange,
+      onFocus,
+      onBlur,
+      labelClassName,
+      fill,
+      bleed,
+      bleedBlockStart,
+      bleedBlockEnd,
+      bleedInlineStart,
+      bleedInlineEnd,
+      tone
+    }, ref) {
+      const inputNode = (0, import_react191.useRef)(null);
+      const uniqId = (0, import_react191.useId)();
+      const id = idProp ?? uniqId;
+      const isWithinListbox = (0, import_react191.useContext)(WithinListboxContext);
+      (0, import_react191.useImperativeHandle)(ref, () => ({
+        focus: () => {
+          if (inputNode.current) {
+            inputNode.current.focus();
+          }
+        }
+      }));
+      const handleBlur = () => {
+        onBlur && onBlur();
+      };
+      const handleOnClick = () => {
+        if (onChange == null || inputNode.current == null || disabled) {
+          return;
+        }
+        onChange(inputNode.current.checked, id);
+        inputNode.current.focus();
+      };
+      const describedBy = [];
+      if (error && typeof error !== "boolean") {
+        describedBy.push(errorTextID(id));
+      }
+      if (helpText) {
+        describedBy.push(helpTextID2(id));
+      }
+      if (ariaDescribedByProp) {
+        describedBy.push(ariaDescribedByProp);
+      }
+      const ariaDescribedBy = describedBy.length ? describedBy.join(" ") : void 0;
+      const wrapperClassName = classNames(styles58.Checkbox, error && styles58.error);
+      const isIndeterminate = checked === "indeterminate";
+      const isChecked = !isIndeterminate && Boolean(checked);
+      const indeterminateAttributes = isIndeterminate ? {
+        indeterminate: "true",
+        "aria-checked": "mixed"
+      } : {
+        "aria-checked": isChecked
+      };
+      const iconSource = /* @__PURE__ */ import_react191.default.createElement("svg", {
+        viewBox: "0 0 16 16",
+        shapeRendering: "geometricPrecision",
+        textRendering: "geometricPrecision"
+      }, /* @__PURE__ */ import_react191.default.createElement("path", {
+        className: classNames(checked && styles58.checked),
+        d: "M1.5,5.5L3.44655,8.22517C3.72862,8.62007,4.30578,8.64717,4.62362,8.28044L10.5,1.5",
+        transform: "translate(2 2.980376)",
+        opacity: "0",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        pathLength: "1"
+      }));
+      const inputClassName = classNames(styles58.Input, isIndeterminate && styles58["Input-indeterminate"], tone && styles58[variationName("tone", tone)]);
+      const extraChoiceProps = {
+        helpText,
+        error,
+        bleed,
+        bleedBlockStart,
+        bleedBlockEnd,
+        bleedInlineStart,
+        bleedInlineEnd
+      };
+      return /* @__PURE__ */ import_react191.default.createElement(Choice, Object.assign({
+        id,
+        label,
+        labelHidden,
+        disabled,
+        labelClassName: classNames(styles58.ChoiceLabel, labelClassName),
+        fill,
+        tone
+      }, extraChoiceProps), /* @__PURE__ */ import_react191.default.createElement("span", {
+        className: wrapperClassName
+      }, /* @__PURE__ */ import_react191.default.createElement("input", Object.assign({
+        ref: inputNode,
+        id,
+        name,
+        value,
+        type: "checkbox",
+        checked: isChecked,
+        disabled,
+        className: inputClassName,
+        onBlur: handleBlur,
+        onChange: noop9,
+        onClick: handleOnClick,
+        onFocus,
+        "aria-invalid": error != null,
+        "aria-controls": ariaControls,
+        "aria-describedby": ariaDescribedBy,
+        role: isWithinListbox ? "presentation" : "checkbox"
+      }, indeterminateAttributes)), /* @__PURE__ */ import_react191.default.createElement("span", {
+        className: styles58.Backdrop,
+        onClick: stopPropagation,
+        onKeyUp: stopPropagation
+      }), /* @__PURE__ */ import_react191.default.createElement("span", {
+        className: classNames(styles58.Icon, !isIndeterminate && styles58.animated)
+      }, isIndeterminate ? /* @__PURE__ */ import_react191.default.createElement(Icon, {
+        source: SvgMinusIcon
+      }) : iconSource)));
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.js
+var import_react192, TextOption;
+var init_TextOption = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/TextOption/TextOption.js"() {
+    import_react192 = __toESM(require_react());
+    init_dist();
+    init_css();
+    init_context12();
+    init_context13();
+    init_TextOption_scss();
+    init_Checkbox();
+    init_Box();
+    init_InlineStack();
+    init_Icon();
+    TextOption = /* @__PURE__ */ (0, import_react192.memo)(function TextOption2({
+      children,
+      selected,
+      disabled
+    }) {
+      const {
+        allowMultiple
+      } = (0, import_react192.useContext)(ComboboxListboxOptionContext);
+      const isAction = (0, import_react192.useContext)(ActionContext);
+      const textOptionClassName = classNames(styles57.TextOption, selected && !allowMultiple && styles57.selected, disabled && styles57.disabled, allowMultiple && styles57.allowMultiple, isAction && styles57.isAction);
+      const optionMarkup = selected ? /* @__PURE__ */ import_react192.default.createElement(Box, {
+        width: "100%"
+      }, /* @__PURE__ */ import_react192.default.createElement(InlineStack, {
+        wrap: false,
+        align: "space-between",
+        gap: "200"
+      }, children, /* @__PURE__ */ import_react192.default.createElement(InlineStack, {
+        align: "end"
+      }, /* @__PURE__ */ import_react192.default.createElement(Icon, {
+        source: SvgCheckIcon
+      })))) : /* @__PURE__ */ import_react192.default.createElement(import_react192.default.Fragment, null, children);
+      return /* @__PURE__ */ import_react192.default.createElement("div", {
+        className: textOptionClassName
+      }, /* @__PURE__ */ import_react192.default.createElement("div", {
+        className: styles57.Content
+      }, allowMultiple && !isAction ? /* @__PURE__ */ import_react192.default.createElement("div", {
+        className: styles57.Checkbox
+      }, /* @__PURE__ */ import_react192.default.createElement(Checkbox, {
+        disabled,
+        checked: selected,
+        label: children
+      })) : optionMarkup));
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.scss.js
+var styles60;
+var init_Loading_scss2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.scss.js"() {
+    styles60 = {
+      "ListItem": "Polaris-Listbox-Loading__ListItem",
+      "Loading": "Polaris-Listbox-Loading"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/listbox/hooks.js
+function useListbox() {
+  const listbox = (0, import_react193.useContext)(ListboxContext);
+  if (!listbox) {
+    throw new Error("No Listbox was provided. Listbox components must be wrapped in a Listbox");
+  }
+  return listbox;
+}
+var import_react193;
+var init_hooks10 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/listbox/hooks.js"() {
+    import_react193 = __toESM(require_react());
+    init_context13();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.js
+var import_react194, Loading2;
+var init_Loading2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Loading/Loading.js"() {
+    import_react194 = __toESM(require_react());
+    init_Loading_scss2();
+    init_hooks10();
+    init_Spinner();
+    Loading2 = /* @__PURE__ */ (0, import_react194.memo)(function LoadingOption({
+      children,
+      accessibilityLabel: label
+    }) {
+      const {
+        setLoading
+      } = useListbox();
+      (0, import_react194.useEffect)(() => {
+        setLoading(label);
+        return () => {
+          setLoading(void 0);
+        };
+      }, [label, setLoading]);
+      return /* @__PURE__ */ import_react194.default.createElement("li", {
+        className: styles60.ListItem,
+        role: "presentation"
+      }, children ? children : /* @__PURE__ */ import_react194.default.createElement("div", {
+        className: styles60.Loading
+      }, /* @__PURE__ */ import_react194.default.createElement(Spinner, {
+        size: "small",
+        accessibilityLabel: label
+      })));
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/selectors.js
+var listboxSectionDataSelector, listboxWithinSectionDataSelector;
+var init_selectors = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/selectors.js"() {
+    listboxSectionDataSelector = {
+      props: {
+        "data-polaris-listbox-section-item": true
+      },
+      selector: "[data-polaris-listbox-section-item]"
+    };
+    listboxWithinSectionDataSelector = {
+      attribute: "data-polaris-listbox-within-section-item"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/context.js
+var import_react195, SectionContext;
+var init_context14 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/context.js"() {
+    import_react195 = __toESM(require_react());
+    SectionContext = /* @__PURE__ */ (0, import_react195.createContext)(null);
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.scss.js
+var styles61;
+var init_Section_scss2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.scss.js"() {
+    styles61 = {
+      "SectionGroup": "Polaris-Listbox-Section__SectionGroup",
+      "noDivider": "Polaris-Listbox-Section--noDivider"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.js
+function Section6({
+  children,
+  divider = true,
+  title
+}) {
+  const id = (0, import_react196.useId)();
+  return /* @__PURE__ */ import_react196.default.createElement(SectionContext.Provider, {
+    value: id
+  }, /* @__PURE__ */ import_react196.default.createElement("li", Object.assign({
+    role: "presentation"
+  }, listboxSectionDataSelector.props), title, /* @__PURE__ */ import_react196.default.createElement("ul", {
+    role: "group",
+    "aria-labelledby": id,
+    className: classNames(styles61.SectionGroup, !divider && styles61.noDivider)
+  }, children)));
+}
+var import_react196;
+var init_Section6 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/Section.js"() {
+    import_react196 = __toESM(require_react());
+    init_css();
+    init_selectors();
+    init_context14();
+    init_Section_scss2();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/hooks.js
+function useSection() {
+  const context = (0, import_react197.useContext)(SectionContext);
+  return context;
+}
+var import_react197;
+var init_hooks11 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Section/hooks.js"() {
+    import_react197 = __toESM(require_react());
+    init_context14();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Header/Header.js
+function Header4({
+  children
+}) {
+  const sectionId = useSection() || "";
+  const content = typeof children === "string" ? /* @__PURE__ */ import_react198.default.createElement(Box, {
+    paddingBlockStart: "200",
+    paddingInlineStart: "400",
+    paddingBlockEnd: "200",
+    paddingInlineEnd: "400"
+  }, /* @__PURE__ */ import_react198.default.createElement(Text, {
+    as: "span",
+    variant: "headingSm",
+    tone: "subdued"
+  }, children)) : children;
+  return /* @__PURE__ */ import_react198.default.createElement("div", {
+    "aria-hidden": true,
+    id: sectionId
+  }, content);
+}
+var import_react198;
+var init_Header4 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Header/Header.js"() {
+    import_react198 = __toESM(require_react());
+    init_hooks11();
+    init_Box();
+    init_Text();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.scss.js
+var styles62;
+var init_Action_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.scss.js"() {
+    styles62 = {
+      "Action": "Polaris-Listbox-Action",
+      "ActionDivider": "Polaris-Listbox-Action__ActionDivider",
+      "Icon": "Polaris-Listbox-Action__Icon"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.scss.js
+var styles63;
+var init_Option_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.scss.js"() {
+    styles63 = {
+      "Option": "Polaris-Listbox-Option",
+      "divider": "Polaris-Listbox-Option--divider"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/utilities/autocomplete/context.js
+var import_react199, MappedActionContext;
+var init_context15 = __esm({
+  "node_modules/@shopify/polaris/build/esm/utilities/autocomplete/context.js"() {
+    import_react199 = __toESM(require_react());
+    MappedActionContext = /* @__PURE__ */ (0, import_react199.createContext)({});
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.js
+var import_react200, Option;
+var init_Option = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Option/Option.js"() {
+    import_react200 = __toESM(require_react());
+    init_css();
+    init_context13();
+    init_Option_scss();
+    init_hooks10();
+    init_context15();
+    init_hooks11();
+    init_selectors();
+    init_TextOption();
+    init_UnstyledLink();
+    Option = /* @__PURE__ */ (0, import_react200.memo)(function Option2({
+      value,
+      children,
+      selected,
+      disabled = false,
+      accessibilityLabel,
+      divider
+    }) {
+      const {
+        onOptionSelect
+      } = useListbox();
+      const isAction = (0, import_react200.useContext)(ActionContext);
+      const {
+        role,
+        url,
+        external,
+        onAction,
+        destructive
+      } = (0, import_react200.useContext)(MappedActionContext);
+      const listItemRef = (0, import_react200.useRef)(null);
+      const domId = (0, import_react200.useId)();
+      const sectionId = useSection();
+      const isWithinSection = Boolean(sectionId);
+      const handleOptionSelect = (0, import_react200.useCallback)((event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onAction && onAction();
+        if (listItemRef.current && !onAction) {
+          onOptionSelect({
+            domId,
+            value,
+            element: listItemRef.current,
+            disabled
+          });
+        }
+      }, [domId, onOptionSelect, value, disabled, onAction]);
+      const handleMouseDown = (event) => {
+        event.preventDefault();
+      };
+      const content = typeof children === "string" ? /* @__PURE__ */ import_react200.default.createElement(TextOption, {
+        selected,
+        disabled
+      }, children) : children;
+      const sectionAttributes = {
+        [listboxWithinSectionDataSelector.attribute]: isWithinSection
+      };
+      const legacyRoleSupport = role || "option";
+      const contentMarkup = url ? /* @__PURE__ */ import_react200.default.createElement(UnstyledLink, {
+        url,
+        external
+      }, content) : content;
+      return /* @__PURE__ */ import_react200.default.createElement("li", Object.assign({}, sectionAttributes, {
+        "data-listbox-option": true,
+        "data-listbox-option-action": isAction,
+        "data-listbox-option-value": value,
+        "data-listbox-option-destructive": destructive,
+        "data-within-section": isWithinSection,
+        className: classNames(styles63.Option, divider && styles63.divider),
+        id: domId,
+        ref: listItemRef,
+        tabIndex: -1,
+        role: legacyRoleSupport,
+        "aria-label": accessibilityLabel,
+        "aria-selected": selected,
+        "aria-disabled": disabled,
+        onClick: disabled ? void 0 : handleOptionSelect,
+        onKeyDown: disabled ? void 0 : handleOptionSelect,
+        onMouseDown: handleMouseDown
+      }), contentMarkup);
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.js
+function Action(props) {
+  const {
+    selected,
+    disabled,
+    children,
+    icon,
+    divider
+  } = props;
+  const iconMarkup = icon && /* @__PURE__ */ import_react201.default.createElement("div", {
+    className: styles62.Icon
+  }, /* @__PURE__ */ import_react201.default.createElement(Icon, {
+    tone: "subdued",
+    source: icon
+  }));
+  const className = classNames(styles62.Action, divider && styles62.ActionDivider);
+  return /* @__PURE__ */ import_react201.default.createElement(ActionContext.Provider, {
+    value: true
+  }, /* @__PURE__ */ import_react201.default.createElement(Option, props, /* @__PURE__ */ import_react201.default.createElement("div", {
+    className
+  }, /* @__PURE__ */ import_react201.default.createElement(TextOption, {
+    selected,
+    disabled
+  }, iconMarkup, children))));
+}
+var import_react201;
+var init_Action = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/components/Action/Action.js"() {
+    import_react201 = __toESM(require_react());
+    init_css();
+    init_context13();
+    init_Action_scss();
+    init_Option();
+    init_TextOption();
+    init_Icon();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.js
+function Listbox({
+  children,
+  autoSelection = AutoSelection.FirstSelected,
+  enableKeyboardControl,
+  accessibilityLabel,
+  customListId,
+  onSelect,
+  onActiveOptionChange
+}) {
+  const [loading, setLoading] = (0, import_react202.useState)();
+  const [activeOption, setActiveOption] = (0, import_react202.useState)();
+  const [lazyLoading, setLazyLoading] = (0, import_react202.useState)(false);
+  const [currentOptions, setCurrentOptions] = (0, import_react202.useState)([]);
+  const {
+    value: keyboardEventsEnabled,
+    setTrue: enableKeyboardEvents,
+    setFalse: disableKeyboardEvents
+  } = useToggle(Boolean(enableKeyboardControl));
+  const uniqueId = (0, import_react202.useId)();
+  const listId = customListId || uniqueId;
+  const scrollableRef = (0, import_react202.useRef)(null);
+  const listboxRef = (0, import_react202.useRef)(null);
+  const {
+    listboxId,
+    textFieldLabelId,
+    textFieldFocused,
+    willLoadMoreOptions,
+    setActiveOptionId,
+    setListboxId,
+    onOptionSelected,
+    onKeyToBottom
+  } = useComboboxListbox();
+  const inCombobox = Boolean(setActiveOptionId);
+  (0, import_react202.useEffect)(() => {
+    if (setListboxId && !listboxId) {
+      setListboxId(listId);
+    }
+  }, [setListboxId, listboxId, listId]);
+  const getNavigableOptions = (0, import_react202.useCallback)(() => {
+    if (!listboxRef.current) {
+      return [];
+    }
+    return [...new Set(listboxRef.current.querySelectorAll(OPTION_SELECTOR))];
+  }, []);
+  const getFirstNavigableOption = (0, import_react202.useCallback)((currentOptions2) => {
+    const hasSelectedOptions = currentOptions2.some((option) => option.getAttribute("aria-selected") === "true");
+    let elementIndex = 0;
+    const element = currentOptions2.find((option, index) => {
+      const isInteractable = option.getAttribute("aria-disabled") !== "true";
+      let isFirstNavigableOption;
+      if (hasSelectedOptions && autoSelection === AutoSelection.FirstSelected) {
+        const isSelected2 = option.getAttribute("aria-selected") === "true";
+        isFirstNavigableOption = isSelected2 && isInteractable;
+      } else {
+        isFirstNavigableOption = isInteractable;
+      }
+      if (isFirstNavigableOption)
+        elementIndex = index;
+      return isFirstNavigableOption;
+    });
+    if (!element)
+      return;
+    return {
+      element,
+      index: elementIndex
+    };
+  }, [autoSelection]);
+  const handleScrollIntoView = (0, import_react202.useCallback)((option) => {
+    const {
+      current: scrollable2
+    } = scrollableRef;
+    if (scrollable2) {
+      scrollOptionIntoView(option.element, scrollable2);
+    }
+  }, []);
+  const handleScrollIntoViewDebounced = debounce(handleScrollIntoView, 50);
+  const handleKeyToBottom = (0, import_react202.useCallback)(() => {
+    if (onKeyToBottom) {
+      setLazyLoading(true);
+      return Promise.resolve(onKeyToBottom());
+    }
+  }, [onKeyToBottom]);
+  const handleChangeActiveOption = (0, import_react202.useCallback)((nextOption) => {
+    if (!nextOption)
+      return setActiveOption(void 0);
+    activeOption?.element.removeAttribute(OPTION_FOCUS_ATTRIBUTE);
+    nextOption.element.setAttribute(OPTION_FOCUS_ATTRIBUTE, "true");
+    handleScrollIntoViewDebounced(nextOption);
+    setActiveOption(nextOption);
+    setActiveOptionId?.(nextOption.domId);
+    onActiveOptionChange?.(nextOption.value, nextOption.domId);
+  }, [activeOption, setActiveOptionId, onActiveOptionChange, handleScrollIntoViewDebounced]);
+  const getFormattedOption = (0, import_react202.useCallback)((element, index) => {
+    return {
+      element,
+      index,
+      domId: element.id,
+      value: element.getAttribute(OPTION_VALUE_ATTRIBUTE) || "",
+      disabled: element.getAttribute("aria-disabled") === "true",
+      isAction: element.getAttribute(OPTION_ACTION_ATTRIBUTE) === "true"
+    };
+  }, []);
+  const resetActiveOption = (0, import_react202.useCallback)(() => {
+    let nextOption;
+    const nextOptions = getNavigableOptions();
+    const nextActiveOption = getFirstNavigableOption(nextOptions);
+    if (nextOptions.length === 0 && currentOptions.length > 0) {
+      setCurrentOptions(nextOptions);
+      handleChangeActiveOption();
+      return;
+    }
+    if (nextActiveOption) {
+      const {
+        element,
+        index
+      } = nextActiveOption;
+      nextOption = getFormattedOption(element, index);
+    }
+    const optionIsAlreadyActive = activeOption !== void 0 && nextOption?.domId === activeOption?.domId;
+    const actionContentHasUpdated = activeOption?.isAction && nextOption?.isAction && nextOption?.value !== activeOption?.value;
+    const currentValues = currentOptions.map((option) => option.getAttribute(OPTION_VALUE_ATTRIBUTE));
+    const nextValues = nextOptions.map((option) => option.getAttribute(OPTION_VALUE_ATTRIBUTE));
+    const listIsUnchanged = nextValues.length === currentValues.length && nextValues.every((value, index) => {
+      return currentValues[index] === value;
+    });
+    const listIsAppended = currentValues.length !== 0 && nextValues.length > currentValues.length && currentValues.every((value, index) => {
+      return nextValues[index] === value;
+    });
+    if (listIsUnchanged) {
+      if (optionIsAlreadyActive && actionContentHasUpdated) {
+        setCurrentOptions(nextOptions);
+        handleChangeActiveOption(nextOption);
+      }
+      return;
+    }
+    if (listIsAppended) {
+      setCurrentOptions(nextOptions);
+      return;
+    }
+    setCurrentOptions(nextOptions);
+    if (lazyLoading) {
+      setLazyLoading(false);
+      return;
+    }
+    handleChangeActiveOption(nextOption);
+  }, [lazyLoading, currentOptions, activeOption, getFirstNavigableOption, getNavigableOptions, getFormattedOption, handleChangeActiveOption]);
+  (0, import_react202.useEffect)(() => {
+    if (autoSelection !== AutoSelection.None && !loading && children && import_react202.Children.count(children) > 0) {
+      resetActiveOption();
+    }
+  }, [children, autoSelection, activeOption, loading, resetActiveOption]);
+  (0, import_react202.useEffect)(() => {
+    if (listboxRef.current) {
+      scrollableRef.current = listboxRef.current.closest(scrollable.selector);
+    }
+  }, []);
+  (0, import_react202.useEffect)(() => {
+    if (enableKeyboardControl && !keyboardEventsEnabled) {
+      enableKeyboardEvents();
+    }
+  }, [enableKeyboardControl, keyboardEventsEnabled, enableKeyboardEvents]);
+  const onOptionSelect = (0, import_react202.useCallback)((option) => {
+    handleChangeActiveOption(option);
+    if (onOptionSelected)
+      onOptionSelected();
+    if (onSelect)
+      onSelect(option.value);
+  }, [handleChangeActiveOption, onSelect, onOptionSelected]);
+  const getNextIndex = (0, import_react202.useCallback)((currentIndex, lastIndex, direction) => {
+    let nextIndex;
+    if (direction === "down") {
+      if (currentIndex === lastIndex) {
+        nextIndex = willLoadMoreOptions ? currentIndex + 1 : 0;
+      } else {
+        nextIndex = currentIndex + 1;
+      }
+    } else {
+      nextIndex = currentIndex === 0 ? lastIndex : currentIndex - 1;
+    }
+    return nextIndex;
+  }, [willLoadMoreOptions]);
+  const getNextValidOption = (0, import_react202.useCallback)(async (key) => {
+    const lastIndex = currentOptions.length - 1;
+    let currentIndex = activeOption?.index || 0;
+    let nextIndex = 0;
+    let element = activeOption?.element;
+    let totalOptions = -1;
+    if (!activeOption && autoSelection === AutoSelection.None) {
+      const nextOptions = getNavigableOptions();
+      const nextActiveOption = getFirstNavigableOption(nextOptions);
+      setCurrentOptions(nextOptions);
+      return {
+        element: nextActiveOption?.element,
+        nextIndex: nextActiveOption?.index || 0
+      };
+    }
+    while (totalOptions++ < lastIndex) {
+      nextIndex = getNextIndex(currentIndex, lastIndex, key);
+      element = currentOptions[nextIndex];
+      const triggerLazyLoad = nextIndex >= lastIndex;
+      const isDisabled = element?.getAttribute("aria-disabled") === "true";
+      if (triggerLazyLoad && willLoadMoreOptions) {
+        await handleKeyToBottom();
+      }
+      if (isDisabled) {
+        currentIndex = nextIndex;
+        element = void 0;
+        continue;
+      }
+      break;
+    }
+    return {
+      element,
+      nextIndex
+    };
+  }, [autoSelection, currentOptions, activeOption, willLoadMoreOptions, getNextIndex, handleKeyToBottom, getFirstNavigableOption, getNavigableOptions]);
+  const handleArrow = (0, import_react202.useCallback)(async (type, event) => {
+    event.preventDefault();
+    const {
+      element,
+      nextIndex
+    } = await getNextValidOption(type);
+    if (!element)
+      return;
+    const nextOption = getFormattedOption(element, nextIndex);
+    handleChangeActiveOption(nextOption);
+  }, [getFormattedOption, getNextValidOption, handleChangeActiveOption]);
+  const handleDownArrow = (0, import_react202.useCallback)((event) => {
+    handleArrow("down", event);
+  }, [handleArrow]);
+  const handleUpArrow = (0, import_react202.useCallback)((event) => {
+    handleArrow("up", event);
+  }, [handleArrow]);
+  const handleEnter = (0, import_react202.useCallback)((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (activeOption) {
+      onOptionSelect(activeOption);
+    }
+  }, [activeOption, onOptionSelect]);
+  const handleFocus = (0, import_react202.useCallback)(() => {
+    if (enableKeyboardControl)
+      return;
+    enableKeyboardEvents();
+  }, [enableKeyboardControl, enableKeyboardEvents]);
+  const handleBlur = (0, import_react202.useCallback)((event) => {
+    event.stopPropagation();
+    if (keyboardEventsEnabled) {
+      const nextActiveOption = getFirstNavigableOption(currentOptions);
+      if (nextActiveOption) {
+        const {
+          element,
+          index
+        } = nextActiveOption;
+        const nextOption = getFormattedOption(element, index);
+        handleChangeActiveOption(nextOption);
+      }
+    }
+    if (enableKeyboardControl)
+      return;
+    disableKeyboardEvents();
+  }, [enableKeyboardControl, currentOptions, keyboardEventsEnabled, disableKeyboardEvents, getFirstNavigableOption, getFormattedOption, handleChangeActiveOption]);
+  const listeners = keyboardEventsEnabled || textFieldFocused ? /* @__PURE__ */ import_react202.default.createElement(import_react202.default.Fragment, null, /* @__PURE__ */ import_react202.default.createElement(KeypressListener, {
+    keyEvent: "keydown",
+    keyCode: Key.DownArrow,
+    handler: handleDownArrow
+  }), /* @__PURE__ */ import_react202.default.createElement(KeypressListener, {
+    keyEvent: "keydown",
+    keyCode: Key.UpArrow,
+    handler: handleUpArrow
+  }), /* @__PURE__ */ import_react202.default.createElement(KeypressListener, {
+    keyEvent: "keydown",
+    keyCode: Key.Enter,
+    handler: handleEnter
+  })) : null;
+  const listboxContext = (0, import_react202.useMemo)(() => ({
+    onOptionSelect,
+    setLoading
+  }), [onOptionSelect]);
+  return /* @__PURE__ */ import_react202.default.createElement(import_react202.default.Fragment, null, listeners, /* @__PURE__ */ import_react202.default.createElement(Text, {
+    as: "span",
+    visuallyHidden: true
+  }, /* @__PURE__ */ import_react202.default.createElement("div", {
+    "aria-live": "polite"
+  }, loading ? loading : null)), /* @__PURE__ */ import_react202.default.createElement(ListboxContext.Provider, {
+    value: listboxContext
+  }, /* @__PURE__ */ import_react202.default.createElement(WithinListboxContext.Provider, {
+    value: true
+  }, children ? /* @__PURE__ */ import_react202.default.createElement("ul", {
+    tabIndex: 0,
+    role: "listbox",
+    className: styles56.Listbox,
+    "aria-label": inCombobox ? void 0 : accessibilityLabel,
+    "aria-labelledby": textFieldLabelId,
+    "aria-busy": Boolean(loading),
+    "aria-activedescendant": activeOption && activeOption.domId,
+    id: listId,
+    onFocus: inCombobox ? void 0 : handleFocus,
+    onBlur: inCombobox ? void 0 : handleBlur,
+    ref: listboxRef
+  }, children) : null)));
+}
+var import_react202, AutoSelection, OPTION_SELECTOR, OPTION_VALUE_ATTRIBUTE, OPTION_ACTION_ATTRIBUTE, OPTION_FOCUS_ATTRIBUTE;
+var init_Listbox = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Listbox/Listbox.js"() {
+    import_react202 = __toESM(require_react());
+    init_debounce();
+    init_use_toggle();
+    init_types();
+    init_shared();
+    init_Listbox_scss();
+    init_hooks9();
+    init_utilities2();
+    init_context13();
+    init_TextOption();
+    init_Loading2();
+    init_Section6();
+    init_Header4();
+    init_Action();
+    init_KeypressListener();
+    init_Text();
+    init_Option();
+    (function(AutoSelection2) {
+      AutoSelection2["FirstSelected"] = "FIRST_SELECTED";
+      AutoSelection2["First"] = "FIRST";
+      AutoSelection2["None"] = "NONE";
+    })(AutoSelection || (AutoSelection = {}));
+    OPTION_SELECTOR = "[data-listbox-option]";
+    OPTION_VALUE_ATTRIBUTE = "data-listbox-option-value";
+    OPTION_ACTION_ATTRIBUTE = "data-listbox-option-action";
+    OPTION_FOCUS_ATTRIBUTE = "data-focused";
+    Listbox.Option = Option;
+    Listbox.TextOption = TextOption;
+    Listbox.Loading = Loading2;
+    Listbox.Section = Section6;
+    Listbox.Header = Header4;
+    Listbox.Action = Action;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.js
+var import_react203, MappedOption;
+var init_MappedOption = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedOption/MappedOption.js"() {
+    import_react203 = __toESM(require_react());
+    init_css();
+    init_MappedOption_scss();
+    init_Listbox();
+    MappedOption = /* @__PURE__ */ (0, import_react203.memo)(function MappedOption2({
+      label,
+      value,
+      disabled,
+      media,
+      selected,
+      singleSelection
+    }) {
+      const mediaClassNames = classNames(styles55.Media, disabled && styles55.disabledMedia, singleSelection && styles55.singleSelectionMedia);
+      const mediaMarkup = media ? /* @__PURE__ */ import_react203.default.createElement("div", {
+        className: mediaClassNames
+      }, media) : null;
+      const accessibilityLabel = typeof label === "string" ? label : void 0;
+      return /* @__PURE__ */ import_react203.default.createElement(Listbox.Option, {
+        accessibilityLabel,
+        key: value,
+        selected,
+        value,
+        disabled
+      }, /* @__PURE__ */ import_react203.default.createElement(Listbox.TextOption, {
+        selected,
+        disabled
+      }, /* @__PURE__ */ import_react203.default.createElement("div", {
+        className: styles55.Content
+      }, mediaMarkup, label)));
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.scss.js
+var styles64;
+var init_Combobox_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.scss.js"() {
+    styles64 = {
+      "Listbox": "Polaris-Combobox__Listbox"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Combobox/components/TextField/TextField.js
+function TextField2({
+  value,
+  id: idProp,
+  type = "text",
+  ariaAutocomplete = "list",
+  onFocus,
+  onBlur,
+  onChange,
+  ...rest
+}) {
+  const comboboxTextFieldContext = useComboboxTextField();
+  const {
+    activeOptionId,
+    listboxId,
+    expanded,
+    setTextFieldFocused,
+    setTextFieldLabelId,
+    onTextFieldFocus,
+    onTextFieldChange,
+    onTextFieldBlur
+  } = comboboxTextFieldContext;
+  const uniqueId = (0, import_react204.useId)();
+  const textFieldId = (0, import_react204.useMemo)(() => idProp || uniqueId, [uniqueId, idProp]);
+  const labelId = (0, import_react204.useMemo)(() => labelID(idProp || uniqueId), [uniqueId, idProp]);
+  (0, import_react204.useEffect)(() => {
+    if (setTextFieldLabelId)
+      setTextFieldLabelId(labelId);
+  }, [labelId, setTextFieldLabelId]);
+  const handleFocus = (0, import_react204.useCallback)((event) => {
+    if (onFocus)
+      onFocus(event);
+    if (onTextFieldFocus)
+      onTextFieldFocus();
+    if (setTextFieldFocused)
+      setTextFieldFocused(true);
+  }, [onFocus, onTextFieldFocus, setTextFieldFocused]);
+  const handleBlur = (0, import_react204.useCallback)((event) => {
+    if (onBlur)
+      onBlur(event);
+    if (onTextFieldBlur)
+      onTextFieldBlur();
+    if (setTextFieldFocused)
+      setTextFieldFocused(false);
+  }, [onBlur, onTextFieldBlur, setTextFieldFocused]);
+  const handleChange = (0, import_react204.useCallback)((value2, id) => {
+    if (onChange)
+      onChange(value2, id);
+    if (onTextFieldChange)
+      onTextFieldChange(value2);
+  }, [onChange, onTextFieldChange]);
+  return /* @__PURE__ */ import_react204.default.createElement(TextField, Object.assign({}, rest, {
+    value,
+    id: textFieldId,
+    type,
+    ariaAutocomplete,
+    "aria-haspopup": "listbox",
+    ariaActiveDescendant: activeOptionId,
+    ariaControls: listboxId,
+    role: "combobox",
+    ariaExpanded: expanded,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    onChange: handleChange
+  }));
+}
+var import_react204;
+var init_TextField2 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Combobox/components/TextField/TextField.js"() {
+    import_react204 = __toESM(require_react());
+    init_hooks9();
+    init_Label();
+    init_TextField();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.js
+function Combobox({
+  activator,
+  allowMultiple,
+  children,
+  preferredPosition = "below",
+  willLoadMoreOptions,
+  height: height2,
+  onScrolledToBottom,
+  onClose
+}) {
+  const [popoverActive, setPopoverActive] = (0, import_react205.useState)(false);
+  const [activeOptionId, setActiveOptionId] = (0, import_react205.useState)();
+  const [textFieldLabelId, setTextFieldLabelId] = (0, import_react205.useState)();
+  const [listboxId, setListboxId] = (0, import_react205.useState)();
+  const [textFieldFocused, setTextFieldFocused] = (0, import_react205.useState)(false);
+  const shouldOpen = Boolean(!popoverActive && import_react205.Children.count(children) > 0);
+  const ref = (0, import_react205.useRef)(null);
+  const handleClose = (0, import_react205.useCallback)(() => {
+    setPopoverActive(false);
+    onClose?.();
+    setActiveOptionId(void 0);
+  }, [onClose]);
+  const handleOpen = (0, import_react205.useCallback)(() => {
+    setPopoverActive(true);
+    setActiveOptionId(void 0);
+  }, []);
+  const onOptionSelected = (0, import_react205.useCallback)(() => {
+    if (!allowMultiple) {
+      handleClose();
+      setActiveOptionId(void 0);
+      return;
+    }
+    ref.current?.forceUpdatePosition();
+  }, [allowMultiple, handleClose]);
+  const handleFocus = (0, import_react205.useCallback)(() => {
+    if (shouldOpen) {
+      handleOpen();
+    }
+  }, [shouldOpen, handleOpen]);
+  const handleChange = (0, import_react205.useCallback)(() => {
+    if (shouldOpen) {
+      handleOpen();
+    }
+  }, [shouldOpen, handleOpen]);
+  const handleBlur = (0, import_react205.useCallback)(() => {
+    if (popoverActive) {
+      handleClose();
+    }
+  }, [popoverActive, handleClose]);
+  const textFieldContextValue = (0, import_react205.useMemo)(() => ({
+    activeOptionId,
+    expanded: popoverActive,
+    listboxId,
+    setTextFieldFocused,
+    setTextFieldLabelId,
+    onTextFieldFocus: handleFocus,
+    onTextFieldChange: handleChange,
+    onTextFieldBlur: handleBlur
+  }), [activeOptionId, popoverActive, listboxId, setTextFieldFocused, setTextFieldLabelId, handleFocus, handleChange, handleBlur]);
+  const listboxOptionContextValue = (0, import_react205.useMemo)(() => ({
+    allowMultiple
+  }), [allowMultiple]);
+  const listboxContextValue = (0, import_react205.useMemo)(() => ({
+    listboxId,
+    textFieldLabelId,
+    textFieldFocused,
+    willLoadMoreOptions,
+    onOptionSelected,
+    setActiveOptionId,
+    setListboxId,
+    onKeyToBottom: onScrolledToBottom
+  }), [listboxId, textFieldLabelId, textFieldFocused, willLoadMoreOptions, onOptionSelected, setActiveOptionId, setListboxId, onScrolledToBottom]);
+  return /* @__PURE__ */ import_react205.default.createElement(Popover2, {
+    ref,
+    active: popoverActive,
+    activator: /* @__PURE__ */ import_react205.default.createElement(ComboboxTextFieldContext.Provider, {
+      value: textFieldContextValue
+    }, activator),
+    autofocusTarget: "none",
+    preventFocusOnClose: true,
+    fullWidth: true,
+    preferInputActivator: false,
+    preferredPosition,
+    onClose: handleClose
+  }, import_react205.Children.count(children) > 0 ? /* @__PURE__ */ import_react205.default.createElement(Popover2.Pane, {
+    onScrolledToBottom,
+    height: height2
+  }, /* @__PURE__ */ import_react205.default.createElement(ComboboxListboxContext.Provider, {
+    value: listboxContextValue
+  }, /* @__PURE__ */ import_react205.default.createElement(ComboboxListboxOptionContext.Provider, {
+    value: listboxOptionContextValue
+  }, /* @__PURE__ */ import_react205.default.createElement("div", {
+    className: styles64.Listbox
+  }, children)))) : null);
+}
+var import_react205;
+var init_Combobox = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Combobox/Combobox.js"() {
+    import_react205 = __toESM(require_react());
+    init_Combobox_scss();
+    init_context12();
+    init_TextField2();
+    init_Popover();
+    Combobox.TextField = TextField2;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.scss.js
+var styles65;
+var init_MappedAction_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.scss.js"() {
+    styles65 = {
+      "ActionContainer": "Polaris-Autocomplete-MappedAction__ActionContainer",
+      "Action": "Polaris-Autocomplete-MappedAction__Action",
+      "destructive": "Polaris-Autocomplete-MappedAction--destructive",
+      "selected": "Polaris-Autocomplete-MappedAction--selected",
+      "disabled": "Polaris-Autocomplete-MappedAction--disabled",
+      "Prefix": "Polaris-Autocomplete-MappedAction__Prefix",
+      "Suffix": "Polaris-Autocomplete-MappedAction__Suffix",
+      "Content": "Polaris-Autocomplete-MappedAction__Content",
+      "Text": "Polaris-Autocomplete-MappedAction__Text",
+      "ContentWrap": "Polaris-Autocomplete-MappedAction__ContentWrap"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.js
+function MappedAction({
+  active,
+  content,
+  disabled,
+  icon,
+  image,
+  prefix,
+  suffix,
+  ellipsis,
+  role,
+  url,
+  external,
+  onAction,
+  destructive,
+  badge,
+  helpText,
+  wrapOverflow = false
+}) {
+  const i18n = useI18n();
+  let prefixMarkup = null;
+  const contentOverflowStyle = wrapOverflow ? styles65.ContentWrap : void 0;
+  if (prefix) {
+    prefixMarkup = /* @__PURE__ */ import_react206.default.createElement("div", {
+      className: styles65.Prefix
+    }, prefix);
+  } else if (icon) {
+    prefixMarkup = /* @__PURE__ */ import_react206.default.createElement("div", {
+      className: styles65.Prefix
+    }, /* @__PURE__ */ import_react206.default.createElement(Icon, {
+      source: icon
+    }));
+  } else if (image) {
+    prefixMarkup = /* @__PURE__ */ import_react206.default.createElement("div", {
+      role: "presentation",
+      className: styles65.Prefix,
+      style: {
+        backgroundImage: `url(${image}`
+      }
+    });
+  }
+  const badgeMarkup = badge && /* @__PURE__ */ import_react206.default.createElement("span", {
+    className: styles65.Suffix
+  }, /* @__PURE__ */ import_react206.default.createElement(Badge, {
+    tone: badge.tone
+  }, badge.content));
+  const suffixMarkup = suffix && /* @__PURE__ */ import_react206.default.createElement("span", {
+    className: styles65.Suffix
+  }, suffix);
+  const contentText = ellipsis && content ? i18n.translate("Polaris.Autocomplete.ellipsis", {
+    content
+  }) : content;
+  const contentMarkup = /* @__PURE__ */ import_react206.default.createElement("div", {
+    className: styles65.Text
+  }, /* @__PURE__ */ import_react206.default.createElement("div", {
+    className: contentOverflowStyle
+  }, contentText), helpText ? /* @__PURE__ */ import_react206.default.createElement(Text, {
+    tone: "subdued",
+    as: "span"
+  }, helpText) : null);
+  const context = (0, import_react206.useMemo)(() => ({
+    role,
+    url,
+    external,
+    onAction,
+    destructive
+  }), [role, url, external, onAction, destructive]);
+  const actionClassNames = classNames(styles65.Action, disabled && styles65.disabled, destructive && styles65.destructive, active && styles65.selected);
+  return /* @__PURE__ */ import_react206.default.createElement(MappedActionContext.Provider, {
+    value: context
+  }, /* @__PURE__ */ import_react206.default.createElement("div", {
+    className: styles65.ActionContainer
+  }, /* @__PURE__ */ import_react206.default.createElement(Listbox.Action, {
+    selected: active,
+    disabled,
+    value: content || ""
+  }, /* @__PURE__ */ import_react206.default.createElement("div", {
+    className: actionClassNames
+  }, /* @__PURE__ */ import_react206.default.createElement("div", {
+    className: styles65.Content
+  }, prefixMarkup, contentMarkup, badgeMarkup, suffixMarkup)))));
+}
+var import_react206;
+var init_MappedAction = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/components/MappedAction/MappedAction.js"() {
+    import_react206 = __toESM(require_react());
+    init_css();
+    init_MappedAction_scss();
+    init_hooks2();
+    init_Icon();
+    init_Badge();
+    init_Text();
+    init_context15();
+    init_Listbox();
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.js
+var import_react207, Autocomplete;
+var init_Autocomplete = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Autocomplete/Autocomplete.js"() {
+    import_react207 = __toESM(require_react());
+    init_options();
+    init_Autocomplete_scss();
+    init_MappedOption();
+    init_Listbox();
+    init_Combobox();
+    init_MappedAction();
+    init_hooks2();
+    Autocomplete = function Autocomplete2({
+      options,
+      selected,
+      textField,
+      preferredPosition,
+      listTitle,
+      allowMultiple,
+      loading,
+      actionBefore,
+      willLoadMoreResults,
+      emptyState,
+      onSelect,
+      onLoadMoreResults
+    }) {
+      const i18n = useI18n();
+      const buildMappedOptionFromOption = (0, import_react207.useCallback)((options2) => {
+        return options2.map((option) => /* @__PURE__ */ import_react207.default.createElement(MappedOption, Object.assign({
+          key: option.id || option.value
+        }, option, {
+          selected: selected.includes(option.value),
+          singleSelection: !allowMultiple
+        })));
+      }, [selected, allowMultiple]);
+      const optionsMarkup = (0, import_react207.useMemo)(() => {
+        const conditionalOptions = loading && !willLoadMoreResults ? [] : options;
+        if (isSection(conditionalOptions)) {
+          const noOptionsAvailable = conditionalOptions.every(({
+            options: options2
+          }) => options2.length === 0);
+          if (noOptionsAvailable) {
+            return null;
+          }
+          const optionsMarkup2 = conditionalOptions.map(({
+            options: options2,
+            title
+          }) => {
+            if (options2.length === 0) {
+              return null;
+            }
+            const optionMarkup = buildMappedOptionFromOption(options2);
+            return /* @__PURE__ */ import_react207.default.createElement(Listbox.Section, {
+              divider: false,
+              title: /* @__PURE__ */ import_react207.default.createElement(Listbox.Header, null, title),
+              key: title
+            }, optionMarkup);
+          });
+          return /* @__PURE__ */ import_react207.default.createElement("div", {
+            className: styles54.SectionWrapper
+          }, optionsMarkup2);
+        }
+        const optionList = conditionalOptions.length > 0 ? buildMappedOptionFromOption(conditionalOptions) : null;
+        if (listTitle) {
+          return /* @__PURE__ */ import_react207.default.createElement(Listbox.Section, {
+            divider: false,
+            title: /* @__PURE__ */ import_react207.default.createElement(Listbox.Header, null, listTitle)
+          }, optionList);
+        }
+        return optionList;
+      }, [listTitle, loading, options, willLoadMoreResults, buildMappedOptionFromOption]);
+      const loadingMarkup = loading ? /* @__PURE__ */ import_react207.default.createElement(Listbox.Loading, {
+        accessibilityLabel: i18n.translate("Polaris.Autocomplete.spinnerAccessibilityLabel")
+      }) : null;
+      const updateSelection = (0, import_react207.useCallback)((newSelection) => {
+        if (actionBefore && newSelection === actionBefore.content) {
+          actionBefore.onAction && actionBefore.onAction();
+          return;
+        }
+        if (allowMultiple) {
+          if (selected.includes(newSelection)) {
+            onSelect(selected.filter((option) => option !== newSelection));
+          } else {
+            onSelect([...selected, newSelection]);
+          }
+        } else {
+          onSelect([newSelection]);
+        }
+      }, [allowMultiple, onSelect, selected, actionBefore]);
+      const actionMarkup = actionBefore && /* @__PURE__ */ import_react207.default.createElement(MappedAction, actionBefore);
+      const emptyStateMarkup = emptyState && options.length < 1 && !loading && /* @__PURE__ */ import_react207.default.createElement("div", {
+        role: "status"
+      }, emptyState);
+      const autoSelection = actionBefore ? AutoSelection.First : void 0;
+      return /* @__PURE__ */ import_react207.default.createElement(Combobox, {
+        activator: textField,
+        allowMultiple,
+        onScrolledToBottom: onLoadMoreResults,
+        preferredPosition,
+        willLoadMoreOptions: willLoadMoreResults
+      }, actionMarkup || optionsMarkup || loadingMarkup || emptyStateMarkup ? /* @__PURE__ */ import_react207.default.createElement(Listbox, {
+        autoSelection,
+        onSelect: updateSelection
+      }, actionMarkup, optionsMarkup && (!loading || willLoadMoreResults) ? optionsMarkup : null, loadingMarkup, emptyStateMarkup) : null);
+    };
+    Autocomplete.TextField = Combobox.TextField;
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Banner/Banner.scss.js
+var styles66;
+var init_Banner_scss = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Banner/Banner.scss.js"() {
+    styles66 = {
+      "Banner": "Polaris-Banner",
+      "keyFocused": "Polaris-Banner--keyFocused",
+      "withinContentContainer": "Polaris-Banner--withinContentContainer",
+      "withinPage": "Polaris-Banner--withinPage",
+      "DismissIcon": "Polaris-Banner__DismissIcon",
+      "text-success-on-bg-fill": "Polaris-Banner--textSuccessOnBgFill",
+      "text-success": "Polaris-Banner__text--success",
+      "text-warning-on-bg-fill": "Polaris-Banner--textWarningOnBgFill",
+      "text-warning": "Polaris-Banner__text--warning",
+      "text-critical-on-bg-fill": "Polaris-Banner--textCriticalOnBgFill",
+      "text-critical": "Polaris-Banner__text--critical",
+      "text-info-on-bg-fill": "Polaris-Banner--textInfoOnBgFill",
+      "text-info": "Polaris-Banner__text--info",
+      "icon-secondary": "Polaris-Banner__icon--secondary"
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Banner/utilities.js
+function useBannerFocus(bannerRef) {
+  const wrapperRef = (0, import_react208.useRef)(null);
+  const [shouldShowFocus, setShouldShowFocus] = (0, import_react208.useState)(false);
+  (0, import_react208.useImperativeHandle)(bannerRef, () => ({
+    focus: () => {
+      wrapperRef.current?.focus();
+      setShouldShowFocus(true);
+    }
+  }), []);
+  const handleKeyUp = (event) => {
+    if (event.target === wrapperRef.current) {
+      setShouldShowFocus(true);
+    }
+  };
+  const handleBlur = () => setShouldShowFocus(false);
+  const handleMouseUp = (event) => {
+    event.currentTarget.blur();
+    setShouldShowFocus(false);
+  };
+  return {
+    wrapperRef,
+    handleKeyUp,
+    handleBlur,
+    handleMouseUp,
+    shouldShowFocus
+  };
+}
+var import_react208, bannerAttributes;
+var init_utilities3 = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Banner/utilities.js"() {
+    init_dist();
+    import_react208 = __toESM(require_react());
+    bannerAttributes = {
+      success: {
+        withinPage: {
+          background: "bg-fill-success",
+          text: "text-success-on-bg-fill",
+          icon: "text-success-on-bg-fill"
+        },
+        withinContentContainer: {
+          background: "bg-surface-success",
+          text: "text-success",
+          icon: "text-success"
+        },
+        icon: SvgCheckIcon
+      },
+      warning: {
+        withinPage: {
+          background: "bg-fill-warning",
+          text: "text-warning-on-bg-fill",
+          icon: "text-warning-on-bg-fill"
+        },
+        withinContentContainer: {
+          background: "bg-surface-warning",
+          text: "text-warning",
+          icon: "text-warning"
+        },
+        icon: SvgAlertTriangleIcon
+      },
+      critical: {
+        withinPage: {
+          background: "bg-fill-critical",
+          text: "text-critical-on-bg-fill",
+          icon: "text-critical-on-bg-fill"
+        },
+        withinContentContainer: {
+          background: "bg-surface-critical",
+          text: "text-critical",
+          icon: "text-critical"
+        },
+        icon: SvgAlertDiamondIcon
+      },
+      info: {
+        withinPage: {
+          background: "bg-fill-info",
+          text: "text-info-on-bg-fill",
+          icon: "text-info-on-bg-fill"
+        },
+        withinContentContainer: {
+          background: "bg-surface-info",
+          text: "text-info",
+          icon: "text-info"
+        },
+        icon: SvgInfoIcon
+      }
+    };
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/Banner/Banner.js
+function BannerLayout({
+  tone = "info",
+  icon,
+  hideIcon,
+  onDismiss,
+  action,
+  secondaryAction,
+  title,
+  children
+}) {
+  const i18n = useI18n();
+  const withinContentContainer = (0, import_react209.useContext)(WithinContentContext);
+  const isInlineIconBanner = !title && !withinContentContainer;
+  const bannerTone = Object.keys(bannerAttributes).includes(tone) ? tone : "info";
+  const bannerColors = bannerAttributes[bannerTone][withinContentContainer ? "withinContentContainer" : "withinPage"];
+  const sharedBannerProps = {
+    backgroundColor: bannerColors.background,
+    textColor: bannerColors.text,
+    bannerTitle: title ? /* @__PURE__ */ import_react209.default.createElement(Text, {
+      as: "h2",
+      variant: "headingSm",
+      breakWord: true
+    }, title) : null,
+    bannerIcon: hideIcon ? null : /* @__PURE__ */ import_react209.default.createElement("span", {
+      className: styles66[bannerColors.icon]
+    }, /* @__PURE__ */ import_react209.default.createElement(Icon, {
+      source: icon ?? bannerAttributes[bannerTone].icon
+    })),
+    actionButtons: action || secondaryAction ? /* @__PURE__ */ import_react209.default.createElement(ButtonGroup, null, action && /* @__PURE__ */ import_react209.default.createElement(Button, Object.assign({
+      onClick: action.onAction
+    }, action), action.content), secondaryAction && /* @__PURE__ */ import_react209.default.createElement(Button, Object.assign({
+      onClick: secondaryAction.onAction
+    }, secondaryAction), secondaryAction.content)) : null,
+    dismissButton: onDismiss ? /* @__PURE__ */ import_react209.default.createElement(Button, {
+      variant: "tertiary",
+      icon: /* @__PURE__ */ import_react209.default.createElement("span", {
+        className: styles66[isInlineIconBanner ? "icon-secondary" : bannerColors.icon]
+      }, /* @__PURE__ */ import_react209.default.createElement(Icon, {
+        source: SvgXIcon
+      })),
+      onClick: onDismiss,
+      accessibilityLabel: i18n.translate("Polaris.Banner.dismissButton")
+    }) : null
+  };
+  if (withinContentContainer) {
+    return /* @__PURE__ */ import_react209.default.createElement(WithinContentContainerBanner, sharedBannerProps, children);
+  }
+  if (isInlineIconBanner) {
+    return /* @__PURE__ */ import_react209.default.createElement(InlineIconBanner, sharedBannerProps, children);
+  }
+  return /* @__PURE__ */ import_react209.default.createElement(DefaultBanner, sharedBannerProps, children);
+}
+function DefaultBanner({
+  backgroundColor,
+  textColor,
+  bannerTitle,
+  bannerIcon,
+  actionButtons,
+  dismissButton,
+  children
+}) {
+  const {
+    smUp
+  } = useBreakpoints();
+  const hasContent = children || actionButtons;
+  return /* @__PURE__ */ import_react209.default.createElement(Box, {
+    width: "100%"
+  }, /* @__PURE__ */ import_react209.default.createElement(BlockStack, {
+    align: "space-between"
+  }, /* @__PURE__ */ import_react209.default.createElement(Box, {
+    background: backgroundColor,
+    color: textColor,
+    borderStartStartRadius: smUp ? "300" : void 0,
+    borderStartEndRadius: smUp ? "300" : void 0,
+    borderEndStartRadius: !hasContent && smUp ? "300" : void 0,
+    borderEndEndRadius: !hasContent && smUp ? "300" : void 0,
+    padding: "300"
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    align: "space-between",
+    blockAlign: "center",
+    gap: "200",
+    wrap: false
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    gap: "100",
+    wrap: false
+  }, bannerIcon, bannerTitle), dismissButton)), hasContent && /* @__PURE__ */ import_react209.default.createElement(Box, {
+    padding: {
+      xs: "300",
+      md: "400"
+    },
+    paddingBlockStart: "300"
+  }, /* @__PURE__ */ import_react209.default.createElement(BlockStack, {
+    gap: "200"
+  }, /* @__PURE__ */ import_react209.default.createElement("div", null, children), actionButtons))));
+}
+function InlineIconBanner({
+  backgroundColor,
+  bannerIcon,
+  actionButtons,
+  dismissButton,
+  children
+}) {
+  const [blockAlign, setBlockAlign] = (0, import_react209.useState)("center");
+  const contentNode = (0, import_react209.useRef)(null);
+  const iconNode = (0, import_react209.useRef)(null);
+  const dismissIconNode = (0, import_react209.useRef)(null);
+  const handleResize = (0, import_react209.useCallback)(() => {
+    const contentHeight = contentNode.current?.offsetHeight;
+    const iconBoxHeight = iconNode.current?.offsetHeight || dismissIconNode.current?.offsetHeight;
+    if (!contentHeight || !iconBoxHeight)
+      return;
+    contentHeight > iconBoxHeight ? setBlockAlign("start") : setBlockAlign("center");
+  }, []);
+  (0, import_react209.useEffect)(() => handleResize(), [handleResize]);
+  useEventListener("resize", handleResize);
+  return /* @__PURE__ */ import_react209.default.createElement(Box, {
+    width: "100%",
+    padding: "300",
+    borderRadius: "300"
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    align: "space-between",
+    blockAlign,
+    wrap: false
+  }, /* @__PURE__ */ import_react209.default.createElement(Box, {
+    width: "100%"
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    gap: "200",
+    wrap: false,
+    blockAlign
+  }, bannerIcon ? /* @__PURE__ */ import_react209.default.createElement("div", {
+    ref: iconNode
+  }, /* @__PURE__ */ import_react209.default.createElement(Box, {
+    background: backgroundColor,
+    borderRadius: "200",
+    padding: "100"
+  }, bannerIcon)) : null, /* @__PURE__ */ import_react209.default.createElement(Box, {
+    ref: contentNode,
+    width: "100%"
+  }, /* @__PURE__ */ import_react209.default.createElement(BlockStack, {
+    gap: "200"
+  }, /* @__PURE__ */ import_react209.default.createElement("div", null, children), actionButtons)))), /* @__PURE__ */ import_react209.default.createElement("div", {
+    ref: dismissIconNode,
+    className: styles66.DismissIcon
+  }, dismissButton)));
+}
+function WithinContentContainerBanner({
+  backgroundColor,
+  textColor,
+  bannerTitle,
+  bannerIcon,
+  actionButtons,
+  dismissButton,
+  children
+}) {
+  return /* @__PURE__ */ import_react209.default.createElement(Box, {
+    width: "100%",
+    background: backgroundColor,
+    padding: "200",
+    borderRadius: "200",
+    color: textColor
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    align: "space-between",
+    blockAlign: "start",
+    wrap: false,
+    gap: "200"
+  }, /* @__PURE__ */ import_react209.default.createElement(InlineStack, {
+    gap: "150",
+    wrap: false
+  }, bannerIcon, /* @__PURE__ */ import_react209.default.createElement(Box, {
+    width: "100%"
+  }, /* @__PURE__ */ import_react209.default.createElement(BlockStack, {
+    gap: "200"
+  }, /* @__PURE__ */ import_react209.default.createElement(BlockStack, {
+    gap: "050"
+  }, bannerTitle, /* @__PURE__ */ import_react209.default.createElement("div", null, children)), actionButtons))), dismissButton));
+}
+var import_react209, Banner;
+var init_Banner = __esm({
+  "node_modules/@shopify/polaris/build/esm/components/Banner/Banner.js"() {
+    import_react209 = __toESM(require_react());
+    init_dist();
+    init_banner_context();
+    init_within_content_context();
+    init_css();
+    init_breakpoints2();
+    init_use_event_listener();
+    init_Banner_scss();
+    init_utilities3();
+    init_hooks2();
+    init_Text();
+    init_Icon();
+    init_ButtonGroup();
+    init_Button();
+    init_Box();
+    init_BlockStack();
+    init_InlineStack();
+    Banner = /* @__PURE__ */ (0, import_react209.forwardRef)(function Banner2(props, bannerRef) {
+      const {
+        tone,
+        stopAnnouncements
+      } = props;
+      const withinContentContainer = (0, import_react209.useContext)(WithinContentContext);
+      const {
+        wrapperRef,
+        handleKeyUp,
+        handleBlur,
+        handleMouseUp,
+        shouldShowFocus
+      } = useBannerFocus(bannerRef);
+      const className = classNames(styles66.Banner, shouldShowFocus && styles66.keyFocused, withinContentContainer ? styles66.withinContentContainer : styles66.withinPage);
+      return /* @__PURE__ */ import_react209.default.createElement(BannerContext.Provider, {
+        value: true
+      }, /* @__PURE__ */ import_react209.default.createElement("div", {
+        className,
+        tabIndex: 0,
+        ref: wrapperRef,
+        role: tone === "warning" || tone === "critical" ? "alert" : "status",
+        "aria-live": stopAnnouncements ? "off" : "polite",
+        onMouseUp: handleMouseUp,
+        onKeyUp: handleKeyUp,
+        onBlur: handleBlur
+      }, /* @__PURE__ */ import_react209.default.createElement(BannerLayout, props)));
+    });
+  }
+});
+
+// node_modules/@shopify/polaris/build/esm/components/BulkActions/BulkActions.scss.js
+var styles67;
 var init_BulkActions_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/BulkActions/BulkActions.scss.js"() {
-    styles54 = {
+    styles67 = {
       "Group": "Polaris-BulkActions__Group",
       "Group-not-sticky": "Polaris-BulkActions--groupNotSticky",
       "Group-entering": "Polaris-BulkActions__Group--entering",
@@ -15544,10 +18918,10 @@ var init_BulkActions_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Indicator/Indicator.scss.js
-var styles55;
+var styles68;
 var init_Indicator_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Indicator/Indicator.scss.js"() {
-    styles55 = {
+    styles68 = {
       "Indicator": "Polaris-Indicator",
       "pulseIndicator": "Polaris-Indicator--pulseIndicator"
     };
@@ -15558,15 +18932,15 @@ var init_Indicator_scss = __esm({
 function Indicator({
   pulse = true
 }) {
-  const className = classNames(styles55.Indicator, pulse && styles55.pulseIndicator);
-  return /* @__PURE__ */ import_react169.default.createElement("span", {
+  const className = classNames(styles68.Indicator, pulse && styles68.pulseIndicator);
+  return /* @__PURE__ */ import_react210.default.createElement("span", {
     className
   });
 }
-var import_react169;
+var import_react210;
 var init_Indicator = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Indicator/Indicator.js"() {
-    import_react169 = __toESM(require_react());
+    import_react210 = __toESM(require_react());
     init_css();
     init_Indicator_scss();
   }
@@ -15585,7 +18959,7 @@ function BulkActionButton({
   indicator,
   showContentInButton
 }) {
-  const bulkActionButton = (0, import_react170.useRef)(null);
+  const bulkActionButton = (0, import_react211.useRef)(null);
   useComponentDidMount(() => {
     if (handleMeasurement && bulkActionButton.current) {
       const width2 = bulkActionButton.current.getBoundingClientRect().width;
@@ -15594,7 +18968,7 @@ function BulkActionButton({
   });
   const isActivatorForMoreActionsPopover = disclosure && !showContentInButton;
   const buttonContent = isActivatorForMoreActionsPopover ? void 0 : content;
-  const buttonMarkup = /* @__PURE__ */ import_react170.default.createElement(Button, {
+  const buttonMarkup = /* @__PURE__ */ import_react211.default.createElement(Button, {
     external,
     url,
     accessibilityLabel: isActivatorForMoreActionsPopover ? content : accessibilityLabel,
@@ -15602,23 +18976,23 @@ function BulkActionButton({
     onClick: onAction,
     disabled,
     size: "slim",
-    icon: isActivatorForMoreActionsPopover ? /* @__PURE__ */ import_react170.default.createElement(Icon, {
+    icon: isActivatorForMoreActionsPopover ? /* @__PURE__ */ import_react211.default.createElement(Icon, {
       source: SvgMenuHorizontalIcon,
       tone: "base"
     }) : void 0
   }, buttonContent);
-  return /* @__PURE__ */ import_react170.default.createElement("div", {
-    className: styles54.BulkActionButton,
+  return /* @__PURE__ */ import_react211.default.createElement("div", {
+    className: styles67.BulkActionButton,
     ref: bulkActionButton
-  }, isActivatorForMoreActionsPopover ? /* @__PURE__ */ import_react170.default.createElement(Tooltip, {
+  }, isActivatorForMoreActionsPopover ? /* @__PURE__ */ import_react211.default.createElement(Tooltip, {
     content,
     preferredPosition: "above"
-  }, buttonMarkup) : buttonMarkup, indicator && /* @__PURE__ */ import_react170.default.createElement(Indicator, null));
+  }, buttonMarkup) : buttonMarkup, indicator && /* @__PURE__ */ import_react211.default.createElement(Indicator, null));
 }
-var import_react170;
+var import_react211;
 var init_BulkActionButton = __esm({
   "node_modules/@shopify/polaris/build/esm/components/BulkActions/components/BulkActionButton/BulkActionButton.js"() {
-    import_react170 = __toESM(require_react());
+    import_react211 = __toESM(require_react());
     init_dist();
     init_use_component_did_mount();
     init_BulkActions_scss();
@@ -15639,9 +19013,9 @@ function BulkActionMenu({
     value: isVisible,
     toggle: toggleMenuVisibility
   } = useToggle(false);
-  return /* @__PURE__ */ import_react171.default.createElement(import_react171.default.Fragment, null, /* @__PURE__ */ import_react171.default.createElement(Popover2, {
+  return /* @__PURE__ */ import_react212.default.createElement(import_react212.default.Fragment, null, /* @__PURE__ */ import_react212.default.createElement(Popover2, {
     active: isVisible,
-    activator: /* @__PURE__ */ import_react171.default.createElement(BulkActionButton, {
+    activator: /* @__PURE__ */ import_react212.default.createElement(BulkActionButton, {
       disclosure: true,
       showContentInButton: true,
       onAction: toggleMenuVisibility,
@@ -15650,15 +19024,15 @@ function BulkActionMenu({
     }),
     onClose: toggleMenuVisibility,
     preferInputActivator: true
-  }, /* @__PURE__ */ import_react171.default.createElement(ActionList, {
+  }, /* @__PURE__ */ import_react212.default.createElement(ActionList, {
     items: actions,
     onActionAnyItem: toggleMenuVisibility
   })));
 }
-var import_react171;
+var import_react212;
 var init_BulkActionMenu = __esm({
   "node_modules/@shopify/polaris/build/esm/components/BulkActions/components/BulkActionMenu/BulkActionMenu.js"() {
-    import_react171 = __toESM(require_react());
+    import_react212 = __toESM(require_react());
     init_use_toggle();
     init_BulkActionButton();
     init_Popover();
@@ -15684,14 +19058,14 @@ function instanceOfMenuGroupDescriptor(action) {
 }
 function BulkActions(props) {
   const i18n = useI18n();
-  return /* @__PURE__ */ import_react172.default.createElement(BulkActionsInner, Object.assign({}, props, {
+  return /* @__PURE__ */ import_react213.default.createElement(BulkActionsInner, Object.assign({}, props, {
     i18n
   }));
 }
-var import_react172, BUTTONS_NODE_ADDITIONAL_WIDTH, BulkActionsInner;
+var import_react213, BUTTONS_NODE_ADDITIONAL_WIDTH, BulkActionsInner;
 var init_BulkActions = __esm({
   "node_modules/@shopify/polaris/build/esm/components/BulkActions/BulkActions.js"() {
-    import_react172 = __toESM(require_react());
+    import_react213 = __toESM(require_react());
     init_esm();
     init_debounce();
     init_css();
@@ -15705,7 +19079,7 @@ var init_BulkActions = __esm({
     init_EventListener();
     init_InlineStack();
     BUTTONS_NODE_ADDITIONAL_WIDTH = 64;
-    BulkActionsInner = class extends import_react172.PureComponent {
+    BulkActionsInner = class extends import_react213.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -15716,7 +19090,7 @@ var init_BulkActions = __esm({
         this.containerNode = null;
         this.buttonsNode = null;
         this.moreActionsNode = null;
-        this.groupNode = /* @__PURE__ */ (0, import_react172.createRef)();
+        this.groupNode = /* @__PURE__ */ (0, import_react213.createRef)();
         this.promotedActionsWidths = [];
         this.bulkActionsWidth = 0;
         this.addedMoreActionsWidthForMeasuring = 0;
@@ -15868,13 +19242,13 @@ var init_BulkActions = __esm({
         const numberOfPromotedActionsToRender = this.numberOfPromotedActionsToRender();
         const promotedActionsMarkup = promotedActions && numberOfPromotedActionsToRender > 0 ? [...promotedActions].slice(0, numberOfPromotedActionsToRender).map((action, index) => {
           if (instanceOfMenuGroupDescriptor(action)) {
-            return /* @__PURE__ */ import_react172.default.createElement(BulkActionMenu, Object.assign({
+            return /* @__PURE__ */ import_react213.default.createElement(BulkActionMenu, Object.assign({
               key: index
             }, action, {
               isNewBadgeInBadgeActions: this.isNewBadgeInBadgeActions()
             }));
           }
-          return /* @__PURE__ */ import_react172.default.createElement(BulkActionButton, Object.assign({
+          return /* @__PURE__ */ import_react213.default.createElement(BulkActionButton, Object.assign({
             key: index,
             disabled
           }, action, {
@@ -15891,12 +19265,12 @@ var init_BulkActions = __esm({
         } else if (rolledInPromotedActions.length > 0) {
           combinedActions = [...rolledInPromotedActions];
         }
-        const actionsPopover = actionSections || rolledInPromotedActions.length > 0 || measuring ? /* @__PURE__ */ import_react172.default.createElement("div", {
-          className: styles54.Popover,
+        const actionsPopover = actionSections || rolledInPromotedActions.length > 0 || measuring ? /* @__PURE__ */ import_react213.default.createElement("div", {
+          className: styles67.Popover,
           ref: this.setMoreActionsNode
-        }, /* @__PURE__ */ import_react172.default.createElement(Popover2, {
+        }, /* @__PURE__ */ import_react213.default.createElement(Popover2, {
           active: popoverVisible,
-          activator: /* @__PURE__ */ import_react172.default.createElement(BulkActionButton, {
+          activator: /* @__PURE__ */ import_react213.default.createElement(BulkActionButton, {
             disclosure: true,
             showContentInButton: !promotedActionsMarkup,
             onAction: this.togglePopover,
@@ -15906,40 +19280,40 @@ var init_BulkActions = __esm({
           }),
           preferredAlignment: "right",
           onClose: this.togglePopover
-        }, /* @__PURE__ */ import_react172.default.createElement(ActionList, {
+        }, /* @__PURE__ */ import_react213.default.createElement(ActionList, {
           sections: combinedActions,
           onActionAnyItem: this.togglePopover
         }))) : null;
-        const groupContent = promotedActionsMarkup || actionsPopover ? /* @__PURE__ */ import_react172.default.createElement(InlineStack, {
+        const groupContent = promotedActionsMarkup || actionsPopover ? /* @__PURE__ */ import_react213.default.createElement(InlineStack, {
           gap: "300"
         }, promotedActionsMarkup, actionsPopover) : null;
         if (!groupContent) {
           return null;
         }
-        const group = /* @__PURE__ */ import_react172.default.createElement(Transition_default, {
+        const group = /* @__PURE__ */ import_react213.default.createElement(Transition_default, {
           timeout: 100,
           in: selectMode,
           key: "group",
           nodeRef: this.groupNode
         }, (status) => {
-          const groupClassName = classNames(styles54.Group, !isSticky && styles54["Group-not-sticky"], !measuring && isSticky && styles54[`Group-${status}`], measuring && styles54["Group-measuring"]);
-          return /* @__PURE__ */ import_react172.default.createElement("div", {
+          const groupClassName = classNames(styles67.Group, !isSticky && styles67["Group-not-sticky"], !measuring && isSticky && styles67[`Group-${status}`], measuring && styles67["Group-measuring"]);
+          return /* @__PURE__ */ import_react213.default.createElement("div", {
             className: groupClassName,
             ref: this.groupNode,
             style: {
               width: width2
             }
-          }, /* @__PURE__ */ import_react172.default.createElement(EventListener, {
+          }, /* @__PURE__ */ import_react213.default.createElement(EventListener, {
             event: "resize",
             handler: this.handleResize
-          }), /* @__PURE__ */ import_react172.default.createElement("div", {
-            className: styles54.ButtonGroupWrapper,
+          }), /* @__PURE__ */ import_react213.default.createElement("div", {
+            className: styles67.ButtonGroupWrapper,
             ref: this.setButtonsNode
-          }, /* @__PURE__ */ import_react172.default.createElement("div", {
-            className: styles54.ButtonGroupInner
+          }, /* @__PURE__ */ import_react213.default.createElement("div", {
+            className: styles67.ButtonGroupInner
           }, groupContent)));
         });
-        return /* @__PURE__ */ import_react172.default.createElement("div", {
+        return /* @__PURE__ */ import_react213.default.createElement("div", {
           ref: this.setContainerNode
         }, group);
       }
@@ -15960,10 +19334,10 @@ var init_BulkActions = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/CalloutCard/CalloutCard.scss.js
-var styles56;
+var styles69;
 var init_CalloutCard_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/CalloutCard/CalloutCard.scss.js"() {
-    styles56 = {
+    styles69 = {
       "CalloutCard": "Polaris-CalloutCard",
       "Image": "Polaris-CalloutCard__Image",
       "DismissImage": "Polaris-CalloutCard__DismissImage",
@@ -15974,347 +19348,6 @@ var init_CalloutCard_scss = __esm({
       "Dismiss": "Polaris-CalloutCard__Dismiss",
       "hasDismiss": "Polaris-CalloutCard--hasDismiss"
     };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.scss.js
-var styles57;
-var init_LegacyCard_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.scss.js"() {
-    styles57 = {
-      "LegacyCard": "Polaris-LegacyCard",
-      "Section": "Polaris-LegacyCard__Section",
-      "subdued": "Polaris-LegacyCard--subdued",
-      "Section-hideOnPrint": "Polaris-LegacyCard__Section--hideOnPrint",
-      "hideOnPrint": "Polaris-LegacyCard--hideOnPrint",
-      "Header": "Polaris-LegacyCard__Header",
-      "Section-fullWidth": "Polaris-LegacyCard__Section--fullWidth",
-      "Section-flush": "Polaris-LegacyCard__Section--flush",
-      "Section-subdued": "Polaris-LegacyCard__Section--subdued",
-      "SectionHeader": "Polaris-LegacyCard__SectionHeader",
-      "Subsection": "Polaris-LegacyCard__Subsection",
-      "Footer": "Polaris-LegacyCard__Footer",
-      "LeftJustified": "Polaris-LegacyCard__LeftJustified",
-      "FirstSectionPadding": "Polaris-LegacyCard__FirstSectionPadding",
-      "LastSectionPadding": "Polaris-LegacyCard__LastSectionPadding"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Header/Header.js
-function Header3({
-  children,
-  title,
-  actions
-}) {
-  const actionMarkup = actions ? /* @__PURE__ */ import_react173.default.createElement(ButtonGroup, null, buttonsFrom(actions, {
-    variant: "plain"
-  })) : null;
-  const titleMarkup = /* @__PURE__ */ (0, import_react173.isValidElement)(title) ? title : /* @__PURE__ */ import_react173.default.createElement(Text, {
-    variant: "headingSm",
-    as: "h2"
-  }, title);
-  const headingMarkup = actionMarkup || children ? /* @__PURE__ */ import_react173.default.createElement(InlineStack, {
-    wrap: false,
-    gap: "200",
-    align: "space-between",
-    blockAlign: "center"
-  }, titleMarkup, /* @__PURE__ */ import_react173.default.createElement(InlineStack, {
-    wrap: false,
-    gap: "400",
-    blockAlign: "center"
-  }, actionMarkup, children)) : titleMarkup;
-  return /* @__PURE__ */ import_react173.default.createElement("div", {
-    className: styles57.Header
-  }, headingMarkup);
-}
-var import_react173;
-var init_Header3 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Header/Header.js"() {
-    import_react173 = __toESM(require_react());
-    init_LegacyCard_scss();
-    init_utils3();
-    init_ButtonGroup();
-    init_InlineStack();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.scss.js
-var styles58;
-var init_LegacyStack_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.scss.js"() {
-    styles58 = {
-      "LegacyStack": "Polaris-LegacyStack",
-      "Item": "Polaris-LegacyStack__Item",
-      "noWrap": "Polaris-LegacyStack--noWrap",
-      "spacingNone": "Polaris-LegacyStack--spacingNone",
-      "spacingExtraTight": "Polaris-LegacyStack--spacingExtraTight",
-      "spacingTight": "Polaris-LegacyStack--spacingTight",
-      "spacingBaseTight": "Polaris-LegacyStack--spacingBaseTight",
-      "spacingLoose": "Polaris-LegacyStack--spacingLoose",
-      "spacingExtraLoose": "Polaris-LegacyStack--spacingExtraLoose",
-      "distributionLeading": "Polaris-LegacyStack--distributionLeading",
-      "distributionTrailing": "Polaris-LegacyStack--distributionTrailing",
-      "distributionCenter": "Polaris-LegacyStack--distributionCenter",
-      "distributionEqualSpacing": "Polaris-LegacyStack--distributionEqualSpacing",
-      "distributionFill": "Polaris-LegacyStack--distributionFill",
-      "distributionFillEvenly": "Polaris-LegacyStack--distributionFillEvenly",
-      "alignmentLeading": "Polaris-LegacyStack--alignmentLeading",
-      "alignmentTrailing": "Polaris-LegacyStack--alignmentTrailing",
-      "alignmentCenter": "Polaris-LegacyStack--alignmentCenter",
-      "alignmentFill": "Polaris-LegacyStack--alignmentFill",
-      "alignmentBaseline": "Polaris-LegacyStack--alignmentBaseline",
-      "vertical": "Polaris-LegacyStack--vertical",
-      "Item-fill": "Polaris-LegacyStack__Item--fill"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyStack/components/Item/Item.js
-function Item6({
-  children,
-  fill
-}) {
-  const className = classNames(styles58.Item, fill && styles58["Item-fill"]);
-  return /* @__PURE__ */ import_react174.default.createElement("div", {
-    className
-  }, children);
-}
-var import_react174;
-var init_Item6 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/components/Item/Item.js"() {
-    import_react174 = __toESM(require_react());
-    init_css();
-    init_LegacyStack_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.js
-var import_react175, LegacyStack;
-var init_LegacyStack = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyStack/LegacyStack.js"() {
-    import_react175 = __toESM(require_react());
-    init_css();
-    init_components();
-    init_LegacyStack_scss();
-    init_Item6();
-    LegacyStack = /* @__PURE__ */ (0, import_react175.memo)(function Stack({
-      children,
-      vertical,
-      spacing,
-      distribution,
-      alignment,
-      wrap
-    }) {
-      const className = classNames(styles58.LegacyStack, vertical && styles58.vertical, spacing && styles58[variationName("spacing", spacing)], distribution && styles58[variationName("distribution", distribution)], alignment && styles58[variationName("alignment", alignment)], wrap === false && styles58.noWrap);
-      const itemMarkup = elementChildren(children).map((child, index) => {
-        const props = {
-          key: index
-        };
-        return wrapWithComponent(child, Item6, props);
-      });
-      return /* @__PURE__ */ import_react175.default.createElement("div", {
-        className
-      }, itemMarkup);
-    });
-    LegacyStack.Item = Item6;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Section/Section.js
-function Section5({
-  children,
-  title,
-  subdued,
-  flush,
-  fullWidth,
-  actions,
-  hideOnPrint
-}) {
-  const className = classNames(styles57.Section, flush && styles57["Section-flush"], subdued && styles57["Section-subdued"], fullWidth && styles57["Section-fullWidth"], hideOnPrint && styles57["Section-hideOnPrint"]);
-  const actionMarkup = actions ? /* @__PURE__ */ import_react176.default.createElement(ButtonGroup, null, buttonsFrom(actions, {
-    variant: "plain"
-  })) : null;
-  const titleMarkup = typeof title === "string" ? /* @__PURE__ */ import_react176.default.createElement(Text, {
-    variant: "headingSm",
-    as: "h3",
-    fontWeight: "medium"
-  }, title) : title;
-  const titleAreaMarkup = titleMarkup || actionMarkup ? /* @__PURE__ */ import_react176.default.createElement("div", {
-    className: styles57.SectionHeader
-  }, actionMarkup ? /* @__PURE__ */ import_react176.default.createElement(LegacyStack, {
-    alignment: "baseline"
-  }, /* @__PURE__ */ import_react176.default.createElement(LegacyStack.Item, {
-    fill: true
-  }, titleMarkup), actionMarkup) : titleMarkup) : null;
-  return /* @__PURE__ */ import_react176.default.createElement("div", {
-    className
-  }, titleAreaMarkup, children);
-}
-var import_react176;
-var init_Section5 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Section/Section.js"() {
-    import_react176 = __toESM(require_react());
-    init_css();
-    init_LegacyCard_scss();
-    init_LegacyStack();
-    init_ButtonGroup();
-    init_utils3();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Subsection/Subsection.js
-function Subsection({
-  children
-}) {
-  return /* @__PURE__ */ import_react177.default.createElement("div", {
-    className: styles57.Subsection
-  }, children);
-}
-var import_react177;
-var init_Subsection = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/components/Subsection/Subsection.js"() {
-    import_react177 = __toESM(require_react());
-    init_LegacyCard_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.js
-function useLegacyCardPaddingObserverRef() {
-  const legacyCard = (0, import_react178.useRef)(null);
-  (0, import_react178.useEffect)(() => {
-    const legacyCardNode = legacyCard.current;
-    let firstSection;
-    let lastSection;
-    if (legacyCardNode) {
-      const updateFirstAndLastSectionPadding = () => {
-        updatePadding(firstSection, "top", false);
-        updatePadding(lastSection, "bottom", false);
-        const currentElements = legacyCardNode.querySelectorAll(`.${styles57.Section}, .${styles57.Header}, .${styles57.Footer}`);
-        if (!currentElements?.length)
-          return;
-        const firstElement = currentElements[0];
-        const lastElement = getMostSeniorLastElement(currentElements);
-        if (legacyCardNode.firstChild?.contains(firstElement)) {
-          firstSection = firstElement;
-          updatePadding(firstSection, "top", true);
-        }
-        if (legacyCardNode.lastChild?.contains(lastElement)) {
-          lastSection = lastElement;
-          updatePadding(lastSection, "bottom", true);
-        }
-      };
-      updateFirstAndLastSectionPadding();
-      const observer = new MutationObserver(updateFirstAndLastSectionPadding);
-      observer.observe(legacyCardNode, {
-        childList: true,
-        subtree: true
-      });
-      return () => {
-        updatePadding(firstSection, "top", false);
-        updatePadding(lastSection, "bottom", false);
-        observer.disconnect();
-      };
-    }
-  }, []);
-  return legacyCard;
-}
-function updatePadding(element, area, add) {
-  if (!element || element.className.includes(styles57["Section-flush"]))
-    return;
-  switch (area) {
-    case "top":
-      element.classList.toggle(styles57.FirstSectionPadding, add);
-      return;
-    case "bottom":
-      element.classList.toggle(styles57.LastSectionPadding, add);
-  }
-}
-function getMostSeniorLastElement(elements) {
-  let lastElement = elements[0];
-  elements.forEach((element) => {
-    if (!lastElement.contains(element)) {
-      lastElement = element;
-    }
-  });
-  return lastElement;
-}
-var import_react178, LegacyCard;
-var init_LegacyCard = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/LegacyCard/LegacyCard.js"() {
-    import_react178 = __toESM(require_react());
-    init_css();
-    init_use_toggle();
-    init_within_content_context();
-    init_LegacyCard_scss();
-    init_Header3();
-    init_Section5();
-    init_Subsection();
-    init_hooks2();
-    init_utils3();
-    init_Popover();
-    init_Button();
-    init_ActionList();
-    init_ButtonGroup();
-    LegacyCard = function LegacyCard2({
-      children,
-      hideOnPrint,
-      title,
-      subdued,
-      sectioned,
-      actions,
-      primaryFooterAction,
-      secondaryFooterActions,
-      secondaryFooterActionsDisclosureText,
-      footerActionAlignment = "right"
-    }) {
-      const i18n = useI18n();
-      const {
-        value: secondaryActionsPopoverOpen,
-        toggle: toggleSecondaryActionsPopoverOpen
-      } = useToggle(false);
-      const legacyCard = useLegacyCardPaddingObserverRef();
-      const className = classNames(styles57.LegacyCard, subdued && styles57.subdued, hideOnPrint && styles57.hideOnPrint);
-      const headerMarkup = title || actions ? /* @__PURE__ */ import_react178.default.createElement(Header3, {
-        actions,
-        title
-      }) : null;
-      const content = sectioned ? /* @__PURE__ */ import_react178.default.createElement(Section5, null, children) : children;
-      const primaryFooterActionMarkup = primaryFooterAction ? buttonFrom(primaryFooterAction, {
-        variant: "primary"
-      }) : null;
-      let secondaryFooterActionsMarkup = null;
-      if (secondaryFooterActions && secondaryFooterActions.length) {
-        if (secondaryFooterActions.length === 1) {
-          secondaryFooterActionsMarkup = buttonFrom(secondaryFooterActions[0]);
-        } else {
-          secondaryFooterActionsMarkup = /* @__PURE__ */ import_react178.default.createElement(import_react178.default.Fragment, null, /* @__PURE__ */ import_react178.default.createElement(Popover2, {
-            active: secondaryActionsPopoverOpen,
-            activator: /* @__PURE__ */ import_react178.default.createElement(Button, {
-              disclosure: true,
-              onClick: toggleSecondaryActionsPopoverOpen
-            }, secondaryFooterActionsDisclosureText || i18n.translate("Polaris.Common.more")),
-            onClose: toggleSecondaryActionsPopoverOpen
-          }, /* @__PURE__ */ import_react178.default.createElement(ActionList, {
-            items: secondaryFooterActions
-          })));
-        }
-      }
-      const footerMarkup = primaryFooterActionMarkup || secondaryFooterActionsMarkup ? /* @__PURE__ */ import_react178.default.createElement("div", {
-        className: classNames(styles57.Footer, footerActionAlignment === "left" && styles57.LeftJustified)
-      }, footerActionAlignment === "right" ? /* @__PURE__ */ import_react178.default.createElement(ButtonGroup, null, secondaryFooterActionsMarkup, primaryFooterActionMarkup) : /* @__PURE__ */ import_react178.default.createElement(ButtonGroup, null, primaryFooterActionMarkup, secondaryFooterActionsMarkup)) : null;
-      return /* @__PURE__ */ import_react178.default.createElement(WithinContentContext.Provider, {
-        value: true
-      }, /* @__PURE__ */ import_react178.default.createElement("div", {
-        className,
-        ref: legacyCard
-      }, headerMarkup, content, footerMarkup));
-    };
-    LegacyCard.Header = Header3;
-    LegacyCard.Section = Section5;
-    LegacyCard.Subsection = Subsection;
   }
 });
 
@@ -16331,40 +19364,40 @@ function CalloutCard({
   const secondaryActionMarkup = secondaryAction ? buttonFrom(secondaryAction, {
     variant: "tertiary"
   }) : null;
-  const buttonMarkup = secondaryActionMarkup ? /* @__PURE__ */ import_react179.default.createElement(ButtonGroup, null, primaryActionMarkup, secondaryActionMarkup) : primaryActionMarkup;
-  const dismissButton = onDismiss ? /* @__PURE__ */ import_react179.default.createElement("div", {
-    className: styles56.Dismiss
-  }, /* @__PURE__ */ import_react179.default.createElement(Button, {
+  const buttonMarkup = secondaryActionMarkup ? /* @__PURE__ */ import_react214.default.createElement(ButtonGroup, null, primaryActionMarkup, secondaryActionMarkup) : primaryActionMarkup;
+  const dismissButton = onDismiss ? /* @__PURE__ */ import_react214.default.createElement("div", {
+    className: styles69.Dismiss
+  }, /* @__PURE__ */ import_react214.default.createElement(Button, {
     variant: "plain",
     icon: SvgXSmallIcon,
     onClick: onDismiss,
     accessibilityLabel: "Dismiss card"
   })) : null;
-  const imageClassName = classNames(styles56.Image, onDismiss && styles56.DismissImage);
-  const containerClassName = classNames(styles56.Container, onDismiss && styles56.hasDismiss);
-  return /* @__PURE__ */ import_react179.default.createElement(LegacyCard, null, /* @__PURE__ */ import_react179.default.createElement("div", {
+  const imageClassName = classNames(styles69.Image, onDismiss && styles69.DismissImage);
+  const containerClassName = classNames(styles69.Container, onDismiss && styles69.hasDismiss);
+  return /* @__PURE__ */ import_react214.default.createElement(LegacyCard, null, /* @__PURE__ */ import_react214.default.createElement("div", {
     className: containerClassName
-  }, dismissButton, /* @__PURE__ */ import_react179.default.createElement(LegacyCard.Section, null, /* @__PURE__ */ import_react179.default.createElement("div", {
-    className: styles56.CalloutCard
-  }, /* @__PURE__ */ import_react179.default.createElement("div", {
-    className: styles56.Content
-  }, /* @__PURE__ */ import_react179.default.createElement("div", {
-    className: styles56.Title
-  }, /* @__PURE__ */ import_react179.default.createElement(Text, {
+  }, dismissButton, /* @__PURE__ */ import_react214.default.createElement(LegacyCard.Section, null, /* @__PURE__ */ import_react214.default.createElement("div", {
+    className: styles69.CalloutCard
+  }, /* @__PURE__ */ import_react214.default.createElement("div", {
+    className: styles69.Content
+  }, /* @__PURE__ */ import_react214.default.createElement("div", {
+    className: styles69.Title
+  }, /* @__PURE__ */ import_react214.default.createElement(Text, {
     variant: "headingMd",
     as: "h2"
-  }, title)), /* @__PURE__ */ import_react179.default.createElement(TextContainer, null, children), /* @__PURE__ */ import_react179.default.createElement("div", {
-    className: styles56.Buttons
-  }, buttonMarkup)), /* @__PURE__ */ import_react179.default.createElement(Image, {
+  }, title)), /* @__PURE__ */ import_react214.default.createElement(TextContainer, null, children), /* @__PURE__ */ import_react214.default.createElement("div", {
+    className: styles69.Buttons
+  }, buttonMarkup)), /* @__PURE__ */ import_react214.default.createElement(Image, {
     alt: "",
     className: imageClassName,
     source: illustration
   })))));
 }
-var import_react179;
+var import_react214;
 var init_CalloutCard = __esm({
   "node_modules/@shopify/polaris/build/esm/components/CalloutCard/CalloutCard.js"() {
-    import_react179 = __toESM(require_react());
+    import_react214 = __toESM(require_react());
     init_dist();
     init_css();
     init_CalloutCard_scss();
@@ -16379,20 +19412,20 @@ var init_CalloutCard = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ChoiceList/ChoiceList.scss.js
-var styles59;
+var styles70;
 var init_ChoiceList_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ChoiceList/ChoiceList.scss.js"() {
-    styles59 = {
+    styles70 = {
       "ChoiceChildren": "Polaris-ChoiceList__ChoiceChildren"
     };
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/RadioButton/RadioButton.scss.js
-var styles60;
+var styles71;
 var init_RadioButton_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/RadioButton/RadioButton.scss.js"() {
-    styles60 = {
+    styles71 = {
       "RadioButton": "Polaris-RadioButton",
       "Input": "Polaris-RadioButton__Input",
       "Backdrop": "Polaris-RadioButton__Backdrop",
@@ -16424,10 +19457,10 @@ function RadioButton({
   bleedInlineEnd,
   tone
 }) {
-  const uniqId = (0, import_react180.useId)();
+  const uniqId = (0, import_react215.useId)();
   const id = idProp ?? uniqId;
   const name = nameProp || id;
-  const inputNode = (0, import_react180.useRef)(null);
+  const inputNode = (0, import_react215.useRef)(null);
   const handleBlur = () => {
     onBlur && onBlur();
   };
@@ -16444,7 +19477,7 @@ function RadioButton({
     describedBy.push(ariaDescribedByProp);
   }
   const ariaDescribedBy = describedBy.length ? describedBy.join(" ") : void 0;
-  const inputClassName = classNames(styles60.Input, tone && styles60[variationName("tone", tone)]);
+  const inputClassName = classNames(styles71.Input, tone && styles71[variationName("tone", tone)]);
   const extraChoiceProps = {
     helpText,
     bleed,
@@ -16453,18 +19486,18 @@ function RadioButton({
     bleedInlineStart,
     bleedInlineEnd
   };
-  return /* @__PURE__ */ import_react180.default.createElement(Choice, Object.assign({
+  return /* @__PURE__ */ import_react215.default.createElement(Choice, Object.assign({
     label,
     labelHidden,
     disabled,
     id,
-    labelClassName: styles60.ChoiceLabel,
+    labelClassName: styles71.ChoiceLabel,
     fill
   }, extraChoiceProps, checked ? {
     tone
-  } : {}), /* @__PURE__ */ import_react180.default.createElement("span", {
-    className: styles60.RadioButton
-  }, /* @__PURE__ */ import_react180.default.createElement("input", {
+  } : {}), /* @__PURE__ */ import_react215.default.createElement("span", {
+    className: styles71.RadioButton
+  }, /* @__PURE__ */ import_react215.default.createElement("input", {
     id,
     name,
     value,
@@ -16477,14 +19510,14 @@ function RadioButton({
     onBlur: handleBlur,
     "aria-describedby": ariaDescribedBy,
     ref: inputNode
-  }), /* @__PURE__ */ import_react180.default.createElement("span", {
-    className: styles60.Backdrop
+  }), /* @__PURE__ */ import_react215.default.createElement("span", {
+    className: styles71.Backdrop
   })));
 }
-var import_react180;
+var import_react215;
 var init_RadioButton = __esm({
   "node_modules/@shopify/polaris/build/esm/components/RadioButton/RadioButton.js"() {
-    import_react180 = __toESM(require_react());
+    import_react215 = __toESM(require_react());
     init_css();
     init_RadioButton_scss();
     init_Choice();
@@ -16498,17 +19531,17 @@ function ChoiceList({
   allowMultiple,
   choices,
   selected,
-  onChange = noop7,
+  onChange = noop10,
   error,
   disabled = false,
   name: nameProp,
   tone
 }) {
   const ControlComponent = allowMultiple ? Checkbox : RadioButton;
-  const uniqName = (0, import_react181.useId)();
+  const uniqName = (0, import_react216.useId)();
   const name = nameProp ?? uniqName;
   const finalName = allowMultiple ? `${name}[]` : name;
-  const titleMarkup = title ? /* @__PURE__ */ import_react181.default.createElement(Box, {
+  const titleMarkup = title ? /* @__PURE__ */ import_react216.default.createElement(Box, {
     as: "legend",
     paddingBlockEnd: {
       xs: "500",
@@ -16530,24 +19563,24 @@ function ChoiceList({
     }
     const isSelected2 = choiceIsSelected(choice, selected);
     const renderedChildren = choice.renderChildren ? choice.renderChildren(isSelected2) : null;
-    const children = renderedChildren ? /* @__PURE__ */ import_react181.default.createElement("div", {
-      className: styles59.ChoiceChildren
-    }, /* @__PURE__ */ import_react181.default.createElement(Box, {
+    const children = renderedChildren ? /* @__PURE__ */ import_react216.default.createElement("div", {
+      className: styles70.ChoiceChildren
+    }, /* @__PURE__ */ import_react216.default.createElement(Box, {
       paddingBlockStart: {
         xs: "400",
         md: "0"
       }
     }, renderedChildren)) : null;
-    return /* @__PURE__ */ import_react181.default.createElement("li", {
+    return /* @__PURE__ */ import_react216.default.createElement("li", {
       key: value
-    }, /* @__PURE__ */ import_react181.default.createElement(Bleed, {
+    }, /* @__PURE__ */ import_react216.default.createElement(Bleed, {
       marginBlockEnd: helpText ? {
         xs: "100",
         md: "0"
       } : {
         xs: "0"
       }
-    }, /* @__PURE__ */ import_react181.default.createElement(ControlComponent, {
+    }, /* @__PURE__ */ import_react216.default.createElement(ControlComponent, {
       name: finalName,
       value,
       id,
@@ -16564,17 +19597,17 @@ function ChoiceList({
       tone
     }), children));
   });
-  const errorMarkup = error && /* @__PURE__ */ import_react181.default.createElement(Box, {
+  const errorMarkup = error && /* @__PURE__ */ import_react216.default.createElement(Box, {
     paddingBlockStart: {
       xs: "0",
       md: "100"
     },
     paddingBlockEnd: "200"
-  }, /* @__PURE__ */ import_react181.default.createElement(InlineError, {
+  }, /* @__PURE__ */ import_react216.default.createElement(InlineError, {
     message: error,
     fieldID: finalName
   }));
-  return /* @__PURE__ */ import_react181.default.createElement(BlockStack, {
+  return /* @__PURE__ */ import_react216.default.createElement(BlockStack, {
     as: "fieldset",
     gap: {
       xs: "400",
@@ -16582,7 +19615,7 @@ function ChoiceList({
     },
     "aria-invalid": error != null,
     id: finalName
-  }, titleMarkup, /* @__PURE__ */ import_react181.default.createElement(BlockStack, {
+  }, titleMarkup, /* @__PURE__ */ import_react216.default.createElement(BlockStack, {
     as: "ul",
     gap: {
       xs: "400",
@@ -16590,7 +19623,7 @@ function ChoiceList({
     }
   }, choicesMarkup), errorMarkup);
 }
-function noop7() {
+function noop10() {
 }
 function choiceIsSelected({
   value
@@ -16605,10 +19638,10 @@ function updateSelectedChoices({
   }
   return selected.filter((selectedChoice) => selectedChoice !== value);
 }
-var import_react181;
+var import_react216;
 var init_ChoiceList = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ChoiceList/ChoiceList.js"() {
-    import_react181 = __toESM(require_react());
+    import_react216 = __toESM(require_react());
     init_ChoiceList_scss();
     init_Bleed();
     init_RadioButton();
@@ -16620,10 +19653,10 @@ var init_ChoiceList = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Collapsible/Collapsible.scss.js
-var styles61;
+var styles72;
 var init_Collapsible_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Collapsible/Collapsible.scss.js"() {
-    styles61 = {
+    styles72 = {
       "Collapsible": "Polaris-Collapsible",
       "isFullyClosed": "Polaris-Collapsible--isFullyClosed",
       "expandOnPrint": "Polaris-Collapsible--expandOnPrint"
@@ -16640,14 +19673,14 @@ function Collapsible({
   children,
   onAnimationEnd
 }) {
-  const [height2, setHeight] = (0, import_react182.useState)(0);
-  const [isOpen, setIsOpen] = (0, import_react182.useState)(open);
-  const [animationState, setAnimationState] = (0, import_react182.useState)("idle");
-  const collapsibleContainer = (0, import_react182.useRef)(null);
+  const [height2, setHeight] = (0, import_react217.useState)(0);
+  const [isOpen, setIsOpen] = (0, import_react217.useState)(open);
+  const [animationState, setAnimationState] = (0, import_react217.useState)("idle");
+  const collapsibleContainer = (0, import_react217.useRef)(null);
   const isFullyOpen = animationState === "idle" && open && isOpen;
   const isFullyClosed = animationState === "idle" && !open && !isOpen;
   const content = expandOnPrint || !isFullyClosed ? children : null;
-  const wrapperClassName = classNames(styles61.Collapsible, isFullyClosed && styles61.isFullyClosed, expandOnPrint && styles61.expandOnPrint);
+  const wrapperClassName = classNames(styles72.Collapsible, isFullyClosed && styles72.isFullyClosed, expandOnPrint && styles72.expandOnPrint);
   const transitionDisabled = isTransitionDisabled(transition);
   const transitionStyles3 = typeof transition === "object" && {
     transitionDuration: transition.duration,
@@ -16660,7 +19693,7 @@ function Collapsible({
       overflow: isFullyOpen ? "visible" : "hidden"
     }
   };
-  const handleCompleteAnimation = (0, import_react182.useCallback)(({
+  const handleCompleteAnimation = (0, import_react217.useCallback)(({
     target
   }) => {
     if (target === collapsibleContainer.current) {
@@ -16669,7 +19702,7 @@ function Collapsible({
       onAnimationEnd && onAnimationEnd();
     }
   }, [onAnimationEnd, open]);
-  const startAnimation = (0, import_react182.useCallback)(() => {
+  const startAnimation = (0, import_react217.useCallback)(() => {
     if (transitionDisabled) {
       setIsOpen(open);
       setAnimationState("idle");
@@ -16682,17 +19715,17 @@ function Collapsible({
       setAnimationState("measuring");
     }
   }, [open, transitionDisabled]);
-  (0, import_react182.useEffect)(() => {
+  (0, import_react217.useEffect)(() => {
     if (open !== isOpen) {
       startAnimation();
     }
   }, [open, isOpen]);
-  (0, import_react182.useEffect)(() => {
+  (0, import_react217.useEffect)(() => {
     if (!open || !collapsibleContainer.current)
       return;
     setHeight(collapsibleContainer.current.scrollHeight);
   }, []);
-  (0, import_react182.useEffect)(() => {
+  (0, import_react217.useEffect)(() => {
     if (!collapsibleContainer.current)
       return;
     switch (animationState) {
@@ -16706,7 +19739,7 @@ function Collapsible({
         setHeight(open ? collapsibleContainer.current.scrollHeight : 0);
     }
   }, [animationState, open, isOpen]);
-  return /* @__PURE__ */ import_react182.default.createElement("div", {
+  return /* @__PURE__ */ import_react217.default.createElement("div", {
     id,
     style: collapsibleStyles,
     ref: collapsibleContainer,
@@ -16727,10 +19760,10 @@ function isTransitionDisabled(transitionProp) {
   }
   return false;
 }
-var import_react182, zeroDurationRegex;
+var import_react217, zeroDurationRegex;
 var init_Collapsible = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Collapsible/Collapsible.js"() {
-    import_react182 = __toESM(require_react());
+    import_react217 = __toESM(require_react());
     init_css();
     init_Collapsible_scss();
     zeroDurationRegex = /^0(ms|s)$/;
@@ -16738,10 +19771,10 @@ var init_Collapsible = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ColorPicker/ColorPicker.scss.js
-var styles62;
+var styles73;
 var init_ColorPicker_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/ColorPicker.scss.js"() {
-    styles62 = {
+    styles73 = {
       "ColorPicker": "Polaris-ColorPicker",
       "MainColor": "Polaris-ColorPicker__MainColor",
       "fullWidth": "Polaris-ColorPicker--fullWidth",
@@ -16773,7 +19806,7 @@ function offsetForAlpha(alpha, sliderHeight, draggerHeight) {
   return clamp((1 - alpha) * slidableArea + VERTICAL_PADDING, 0, sliderHeight - draggerHeight);
 }
 var VERTICAL_PADDING;
-var init_utilities3 = __esm({
+var init_utilities4 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/AlphaPicker/utilities.js"() {
     init_clamp();
     VERTICAL_PADDING = 13;
@@ -16787,10 +19820,10 @@ function isMouseMoveEvent(event) {
 function isMouseDownEvent(event) {
   return event.type === "mousedown";
 }
-var import_react183, isDragging, Slidable;
+var import_react218, isDragging, Slidable;
 var init_Slidable = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/Slidable/Slidable.js"() {
-    import_react183 = __toESM(require_react());
+    import_react218 = __toESM(require_react());
     init_target();
     init_ColorPicker_scss();
     init_EventListener();
@@ -16805,7 +19838,7 @@ var init_Slidable = __esm({
         passive: false
       });
     }
-    Slidable = class extends import_react183.PureComponent {
+    Slidable = class extends import_react218.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -16893,36 +19926,36 @@ var init_Slidable = __esm({
         const draggerPositioning = {
           transform: `translate3d(${draggerX}px, ${draggerY}px, 0)`
         };
-        const moveListener = dragging ? /* @__PURE__ */ import_react183.default.createElement(EventListener, {
+        const moveListener = dragging ? /* @__PURE__ */ import_react218.default.createElement(EventListener, {
           event: "mousemove",
           handler: this.handleMove,
           passive: false
         }) : null;
-        const touchMoveListener = dragging ? /* @__PURE__ */ import_react183.default.createElement(EventListener, {
+        const touchMoveListener = dragging ? /* @__PURE__ */ import_react218.default.createElement(EventListener, {
           event: "touchmove",
           handler: this.handleMove,
           passive: false
         }) : null;
-        const endDragListener = dragging ? /* @__PURE__ */ import_react183.default.createElement(EventListener, {
+        const endDragListener = dragging ? /* @__PURE__ */ import_react218.default.createElement(EventListener, {
           event: "mouseup",
           handler: this.handleDragEnd
         }) : null;
-        const touchEndListener = dragging ? /* @__PURE__ */ import_react183.default.createElement(EventListener, {
+        const touchEndListener = dragging ? /* @__PURE__ */ import_react218.default.createElement(EventListener, {
           event: "touchend",
           handler: this.handleDragEnd
         }) : null;
-        const touchCancelListener = dragging ? /* @__PURE__ */ import_react183.default.createElement(EventListener, {
+        const touchCancelListener = dragging ? /* @__PURE__ */ import_react218.default.createElement(EventListener, {
           event: "touchcancel",
           handler: this.handleDragEnd
         }) : null;
-        return /* @__PURE__ */ import_react183.default.createElement("div", {
+        return /* @__PURE__ */ import_react218.default.createElement("div", {
           ref: this.setNode,
-          className: styles62.Slidable,
+          className: styles73.Slidable,
           onMouseDown: this.startDrag,
           onTouchStart: this.startDrag
-        }, endDragListener, moveListener, touchMoveListener, touchEndListener, touchCancelListener, /* @__PURE__ */ import_react183.default.createElement("div", {
+        }, endDragListener, moveListener, touchMoveListener, touchEndListener, touchCancelListener, /* @__PURE__ */ import_react218.default.createElement("div", {
           style: draggerPositioning,
-          className: styles62.Dragger,
+          className: styles73.Dragger,
           ref: this.setDraggerNode
         }));
       }
@@ -16940,15 +19973,15 @@ function alphaGradientForColor(color2) {
   const rgb = `${red2}, ${green2}, ${blue2}`;
   return `linear-gradient(to top, rgba(${rgb}, 0) 18px, rgba(${rgb}, 1) calc(100% - 18px))`;
 }
-var import_react184, AlphaPicker;
+var import_react219, AlphaPicker;
 var init_AlphaPicker = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/AlphaPicker/AlphaPicker.js"() {
-    import_react184 = __toESM(require_react());
+    import_react219 = __toESM(require_react());
     init_color_transformers();
     init_ColorPicker_scss();
-    init_utilities3();
+    init_utilities4();
     init_Slidable();
-    AlphaPicker = class extends import_react184.PureComponent {
+    AlphaPicker = class extends import_react219.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -16999,15 +20032,15 @@ var init_AlphaPicker = __esm({
         } = this.state;
         const draggerY = calculateDraggerY(alpha, sliderHeight, draggerHeight);
         const background = alphaGradientForColor(color2);
-        return /* @__PURE__ */ import_react184.default.createElement("div", {
-          className: styles62.AlphaPicker,
+        return /* @__PURE__ */ import_react219.default.createElement("div", {
+          className: styles73.AlphaPicker,
           ref: this.setSliderHeight
-        }, /* @__PURE__ */ import_react184.default.createElement("div", {
-          className: styles62.ColorLayer,
+        }, /* @__PURE__ */ import_react219.default.createElement("div", {
+          className: styles73.ColorLayer,
           style: {
             background
           }
-        }), /* @__PURE__ */ import_react184.default.createElement(Slidable, {
+        }), /* @__PURE__ */ import_react219.default.createElement(Slidable, {
           draggerY,
           draggerX: 0,
           onChange: this.handleChange,
@@ -17037,7 +20070,7 @@ function offsetForHue(hue, sliderHeight, draggerHeight) {
   return clamp(hue / 360 * slidableArea + VERTICAL_PADDING2, 0, sliderHeight - draggerHeight);
 }
 var VERTICAL_PADDING2;
-var init_utilities4 = __esm({
+var init_utilities5 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/HuePicker/utilities.js"() {
     init_clamp();
     VERTICAL_PADDING2 = 13;
@@ -17045,14 +20078,14 @@ var init_utilities4 = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/HuePicker/HuePicker.js
-var import_react185, HuePicker;
+var import_react220, HuePicker;
 var init_HuePicker = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/components/HuePicker/HuePicker.js"() {
-    import_react185 = __toESM(require_react());
+    import_react220 = __toESM(require_react());
     init_ColorPicker_scss();
-    init_utilities4();
+    init_utilities5();
     init_Slidable();
-    HuePicker = class extends import_react185.PureComponent {
+    HuePicker = class extends import_react220.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -17101,10 +20134,10 @@ var init_HuePicker = __esm({
           draggerHeight
         } = this.state;
         const draggerY = calculateDraggerY2(hue, sliderHeight, draggerHeight);
-        return /* @__PURE__ */ import_react185.default.createElement("div", {
-          className: styles62.HuePicker,
+        return /* @__PURE__ */ import_react220.default.createElement("div", {
+          className: styles73.HuePicker,
           ref: this.setSliderHeight
-        }, /* @__PURE__ */ import_react185.default.createElement(Slidable, {
+        }, /* @__PURE__ */ import_react220.default.createElement(Slidable, {
           draggerY,
           draggerX: 0,
           onChange: this.handleChange,
@@ -17116,10 +20149,10 @@ var init_HuePicker = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ColorPicker/ColorPicker.js
-var import_react186, RESIZE_DEBOUNCE_TIME_MS, ColorPicker;
+var import_react221, RESIZE_DEBOUNCE_TIME_MS, ColorPicker;
 var init_ColorPicker = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ColorPicker/ColorPicker.js"() {
-    import_react186 = __toESM(require_react());
+    import_react221 = __toESM(require_react());
     init_debounce();
     init_clamp();
     init_css();
@@ -17130,7 +20163,7 @@ var init_ColorPicker = __esm({
     init_Slidable();
     init_EventListener();
     RESIZE_DEBOUNCE_TIME_MS = 200;
-    ColorPicker = class extends import_react186.PureComponent {
+    ColorPicker = class extends import_react221.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -17273,32 +20306,32 @@ var init_ColorPicker = __esm({
         const colorString = `rgba(${red2}, ${green2}, ${blue2}, ${alpha})`;
         const draggerX = clamp(saturation * pickerSize.width, 0, pickerSize.width);
         const draggerY = clamp(pickerSize.height - brightness * pickerSize.height, 0, pickerSize.height);
-        const alphaSliderMarkup = allowAlpha ? /* @__PURE__ */ import_react186.default.createElement(AlphaPicker, {
+        const alphaSliderMarkup = allowAlpha ? /* @__PURE__ */ import_react221.default.createElement(AlphaPicker, {
           alpha,
           color: color2,
           onChange: this.handleAlphaChange
         }) : null;
-        const className = classNames(styles62.ColorPicker, fullWidth && styles62.fullWidth);
-        return /* @__PURE__ */ import_react186.default.createElement("div", {
+        const className = classNames(styles73.ColorPicker, fullWidth && styles73.fullWidth);
+        return /* @__PURE__ */ import_react221.default.createElement("div", {
           className,
           id,
           onMouseDown: this.handlePickerDrag
-        }, /* @__PURE__ */ import_react186.default.createElement("div", {
+        }, /* @__PURE__ */ import_react221.default.createElement("div", {
           ref: this.setColorNode,
-          className: styles62.MainColor
-        }, /* @__PURE__ */ import_react186.default.createElement("div", {
-          className: styles62.ColorLayer,
+          className: styles73.MainColor
+        }, /* @__PURE__ */ import_react221.default.createElement("div", {
+          className: styles73.ColorLayer,
           style: {
             backgroundColor: colorString
           }
-        }), /* @__PURE__ */ import_react186.default.createElement(Slidable, {
+        }), /* @__PURE__ */ import_react221.default.createElement(Slidable, {
           onChange: this.handleDraggerMove,
           draggerX,
           draggerY
-        })), /* @__PURE__ */ import_react186.default.createElement(HuePicker, {
+        })), /* @__PURE__ */ import_react221.default.createElement(HuePicker, {
           hue,
           onChange: this.handleHueChange
-        }), alphaSliderMarkup, /* @__PURE__ */ import_react186.default.createElement(EventListener, {
+        }), alphaSliderMarkup, /* @__PURE__ */ import_react221.default.createElement(EventListener, {
           event: "resize",
           handler: this.handleResize
         }));
@@ -17307,99 +20340,13 @@ var init_ColorPicker = __esm({
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.scss.js
-var styles63;
-var init_InlineGrid_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.scss.js"() {
-    styles63 = {
-      "InlineGrid": "Polaris-InlineGrid"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.js
-function InlineGrid({
-  children,
-  columns,
-  gap,
-  alignItems
-}) {
-  const style = {
-    ...getResponsiveValue("inline-grid", "grid-template-columns", formatInlineGrid(columns)),
-    ...getResponsiveProps("inline-grid", "gap", "space", gap),
-    "--pc-inline-grid-align-items": alignItems
-  };
-  return /* @__PURE__ */ import_react187.default.createElement("div", {
-    className: styles63.InlineGrid,
-    style: sanitizeCustomProperties(style)
-  }, children);
-}
-function formatInlineGrid(columns) {
-  if (typeof columns === "object" && columns !== null && !Array.isArray(columns)) {
-    return Object.fromEntries(Object.entries(columns).map(([breakpointAlias, breakpointInlineGrid]) => [breakpointAlias, getColumnValue(breakpointInlineGrid)]));
-  }
-  return getColumnValue(columns);
-}
-function getColumnValue(columns) {
-  if (!columns)
-    return void 0;
-  if (typeof columns === "number" || !isNaN(Number(columns))) {
-    return `repeat(${Number(columns)}, minmax(0, 1fr))`;
-  }
-  if (typeof columns === "string")
-    return columns;
-  return columns.map((column) => {
-    switch (column) {
-      case "oneThird":
-        return "minmax(0, 1fr)";
-      case "oneHalf":
-        return "minmax(0, 1fr)";
-      case "twoThirds":
-        return "minmax(0, 2fr)";
-    }
-  }).join(" ");
-}
-var import_react187;
-var init_InlineGrid = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/InlineGrid/InlineGrid.js"() {
-    import_react187 = __toESM(require_react());
-    init_css();
-    init_InlineGrid_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/frame/context.js
-var import_react188, FrameContext;
-var init_context15 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/frame/context.js"() {
-    import_react188 = __toESM(require_react());
-    FrameContext = /* @__PURE__ */ (0, import_react188.createContext)(void 0);
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/frame/hooks.js
-function useFrame() {
-  const frame = (0, import_react189.useContext)(FrameContext);
-  if (!frame) {
-    throw new Error("No Frame context was provided. Your component must be wrapped in a <Frame> component. See https://polaris.shopify.com/components/internal-only/frame for implementation instructions.");
-  }
-  return frame;
-}
-var import_react189;
-var init_hooks10 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/frame/hooks.js"() {
-    import_react189 = __toESM(require_react());
-    init_context15();
-  }
-});
-
 // node_modules/@shopify/polaris/build/esm/components/ContextualSaveBar/ContextualSaveBar.js
-var import_react190, ContextualSaveBar;
-var init_ContextualSaveBar = __esm({
+var import_react222, ContextualSaveBar2;
+var init_ContextualSaveBar2 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ContextualSaveBar/ContextualSaveBar.js"() {
-    import_react190 = __toESM(require_react());
-    init_hooks10();
-    ContextualSaveBar = /* @__PURE__ */ (0, import_react190.memo)(function ContextualSaveBar2({
+    import_react222 = __toESM(require_react());
+    init_hooks8();
+    ContextualSaveBar2 = /* @__PURE__ */ (0, import_react222.memo)(function ContextualSaveBar3({
       message,
       saveAction,
       discardAction,
@@ -17412,7 +20359,7 @@ var init_ContextualSaveBar = __esm({
         setContextualSaveBar,
         removeContextualSaveBar
       } = useFrame();
-      (0, import_react190.useEffect)(() => {
+      (0, import_react222.useEffect)(() => {
         setContextualSaveBar({
           message,
           saveAction,
@@ -17423,106 +20370,11 @@ var init_ContextualSaveBar = __esm({
           secondaryMenu
         });
       }, [message, saveAction, discardAction, alignContentFlush, setContextualSaveBar, fullWidth, contextControl, secondaryMenu]);
-      (0, import_react190.useEffect)(() => {
+      (0, import_react222.useEffect)(() => {
         return removeContextualSaveBar;
       }, [removeContextualSaveBar]);
       return null;
     });
-  }
-});
-
-// node_modules/react-fast-compare/index.js
-var require_react_fast_compare = __commonJS({
-  "node_modules/react-fast-compare/index.js"(exports, module) {
-    var hasElementType = typeof Element !== "undefined";
-    var hasMap = typeof Map === "function";
-    var hasSet = typeof Set === "function";
-    var hasArrayBuffer = typeof ArrayBuffer === "function" && !!ArrayBuffer.isView;
-    function equal(a, b) {
-      if (a === b)
-        return true;
-      if (a && b && typeof a == "object" && typeof b == "object") {
-        if (a.constructor !== b.constructor)
-          return false;
-        var length, i, keys;
-        if (Array.isArray(a)) {
-          length = a.length;
-          if (length != b.length)
-            return false;
-          for (i = length; i-- !== 0; )
-            if (!equal(a[i], b[i]))
-              return false;
-          return true;
-        }
-        var it;
-        if (hasMap && a instanceof Map && b instanceof Map) {
-          if (a.size !== b.size)
-            return false;
-          it = a.entries();
-          while (!(i = it.next()).done)
-            if (!b.has(i.value[0]))
-              return false;
-          it = a.entries();
-          while (!(i = it.next()).done)
-            if (!equal(i.value[1], b.get(i.value[0])))
-              return false;
-          return true;
-        }
-        if (hasSet && a instanceof Set && b instanceof Set) {
-          if (a.size !== b.size)
-            return false;
-          it = a.entries();
-          while (!(i = it.next()).done)
-            if (!b.has(i.value[0]))
-              return false;
-          return true;
-        }
-        if (hasArrayBuffer && ArrayBuffer.isView(a) && ArrayBuffer.isView(b)) {
-          length = a.length;
-          if (length != b.length)
-            return false;
-          for (i = length; i-- !== 0; )
-            if (a[i] !== b[i])
-              return false;
-          return true;
-        }
-        if (a.constructor === RegExp)
-          return a.source === b.source && a.flags === b.flags;
-        if (a.valueOf !== Object.prototype.valueOf && typeof a.valueOf === "function" && typeof b.valueOf === "function")
-          return a.valueOf() === b.valueOf();
-        if (a.toString !== Object.prototype.toString && typeof a.toString === "function" && typeof b.toString === "function")
-          return a.toString() === b.toString();
-        keys = Object.keys(a);
-        length = keys.length;
-        if (length !== Object.keys(b).length)
-          return false;
-        for (i = length; i-- !== 0; )
-          if (!Object.prototype.hasOwnProperty.call(b, keys[i]))
-            return false;
-        if (hasElementType && a instanceof Element)
-          return false;
-        for (i = length; i-- !== 0; ) {
-          if ((keys[i] === "_owner" || keys[i] === "__v" || keys[i] === "__o") && a.$$typeof) {
-            continue;
-          }
-          if (!equal(a[keys[i]], b[keys[i]]))
-            return false;
-        }
-        return true;
-      }
-      return a !== a && b !== b;
-    }
-    module.exports = function isEqual5(a, b) {
-      try {
-        return equal(a, b);
-      } catch (error) {
-        if ((error.message || "").match(/stack|recursion/i)) {
-          console.warn("react-fast-compare cannot handle circular refs");
-          return false;
-        }
-        throw error;
-      }
-    };
   }
 });
 
@@ -17568,16 +20420,16 @@ function getPrevAndCurrentColumns(tableData, columnData) {
     currentColumn
   };
 }
-var init_utilities5 = __esm({
+var init_utilities6 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DataTable/utilities.js"() {
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DataTable/DataTable.scss.js
-var styles64;
+var styles74;
 var init_DataTable_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DataTable/DataTable.scss.js"() {
-    styles64 = {
+    styles74 = {
       "DataTable": "Polaris-DataTable",
       "condensed": "Polaris-DataTable--condensed",
       "Navigation": "Polaris-DataTable__Navigation",
@@ -17656,23 +20508,23 @@ function Cell({
 }) {
   const i18n = useI18n();
   const numeric = contentType === "numeric";
-  const className = classNames(styles64.Cell, styles64[`Cell-${variationName("verticalAlign", verticalAlign)}`], firstColumn && styles64["Cell-firstColumn"], truncate && styles64["Cell-truncated"], header && styles64["Cell-header"], total && styles64["Cell-total"], totalInFooter && styles64["Cell-total-footer"], numeric && styles64["Cell-numeric"], sortable && styles64["Cell-sortable"], sorted && styles64["Cell-sorted"], stickyHeadingCell && styles64.StickyHeaderCell, hovered && styles64["Cell-hovered"], lastFixedFirstColumn && inFixedNthColumn && fixedCellVisible && styles64["Cell-separate"], nthColumn && inFixedNthColumn && stickyHeadingCell && styles64.FixedFirstColumn);
-  const headerClassName = classNames(header && styles64.Heading, header && contentType === "text" && styles64["Heading-left"]);
-  const iconClassName = classNames(sortable && styles64.Icon);
+  const className = classNames(styles74.Cell, styles74[`Cell-${variationName("verticalAlign", verticalAlign)}`], firstColumn && styles74["Cell-firstColumn"], truncate && styles74["Cell-truncated"], header && styles74["Cell-header"], total && styles74["Cell-total"], totalInFooter && styles74["Cell-total-footer"], numeric && styles74["Cell-numeric"], sortable && styles74["Cell-sortable"], sorted && styles74["Cell-sorted"], stickyHeadingCell && styles74.StickyHeaderCell, hovered && styles74["Cell-hovered"], lastFixedFirstColumn && inFixedNthColumn && fixedCellVisible && styles74["Cell-separate"], nthColumn && inFixedNthColumn && stickyHeadingCell && styles74.FixedFirstColumn);
+  const headerClassName = classNames(header && styles74.Heading, header && contentType === "text" && styles74["Heading-left"]);
+  const iconClassName = classNames(sortable && styles74.Icon);
   const direction = sorted && sortDirection ? sortDirection : defaultSortDirection;
   const source = direction === "descending" ? SvgSortDescendingIcon : SvgSortAscendingIcon;
   const oppositeDirection = sortDirection === "ascending" ? "descending" : "ascending";
   const sortAccessibilityLabel = i18n.translate("Polaris.DataTable.sortAccessibilityLabel", {
     direction: sorted ? oppositeDirection : direction
   });
-  const iconMarkup = /* @__PURE__ */ import_react191.default.createElement("span", {
+  const iconMarkup = /* @__PURE__ */ import_react223.default.createElement("span", {
     className: iconClassName
-  }, /* @__PURE__ */ import_react191.default.createElement(Icon, {
+  }, /* @__PURE__ */ import_react223.default.createElement(Icon, {
     source,
     accessibilityLabel: sortAccessibilityLabel
   }));
   const focusable = !(stickyHeadingCell && hasFixedNthColumn && nthColumn && !inFixedNthColumn);
-  const sortableHeadingContent = /* @__PURE__ */ import_react191.default.createElement("button", {
+  const sortableHeadingContent = /* @__PURE__ */ import_react223.default.createElement("button", {
     className: headerClassName,
     onClick: onSort,
     onFocus: handleFocus,
@@ -17687,7 +20539,7 @@ function Cell({
   } : {
     minWidth: stickyCellWidth
   };
-  const stickyHeading = /* @__PURE__ */ import_react191.default.createElement("th", Object.assign({
+  const stickyHeading = /* @__PURE__ */ import_react223.default.createElement("th", Object.assign({
     ref: setRef
   }, headerCell.props, colSpanProp, {
     className,
@@ -17698,7 +20550,7 @@ function Cell({
     },
     "data-index-table-sticky-heading": true
   }), columnHeadingContent);
-  const headingMarkup = header ? /* @__PURE__ */ import_react191.default.createElement("th", Object.assign({}, headerCell.props, {
+  const headingMarkup = header ? /* @__PURE__ */ import_react223.default.createElement("th", Object.assign({}, headerCell.props, {
     "aria-sort": sortDirection
   }, colSpanProp, {
     ref: setRef,
@@ -17707,25 +20559,25 @@ function Cell({
     style: {
       ...minWidthStyles
     }
-  }), columnHeadingContent) : /* @__PURE__ */ import_react191.default.createElement("th", Object.assign({}, colSpanProp, {
+  }), columnHeadingContent) : /* @__PURE__ */ import_react223.default.createElement("th", Object.assign({}, colSpanProp, {
     ref: setRef,
     className,
     scope: "row",
     style: {
       ...minWidthStyles
     }
-  }), truncate ? /* @__PURE__ */ import_react191.default.createElement(TruncatedText, {
-    className: styles64.TooltipContent
+  }), truncate ? /* @__PURE__ */ import_react223.default.createElement(TruncatedText, {
+    className: styles74.TooltipContent
   }, content) : content);
-  const cellMarkup = header || firstColumn || nthColumn ? headingMarkup : /* @__PURE__ */ import_react191.default.createElement("td", Object.assign({
+  const cellMarkup = header || firstColumn || nthColumn ? headingMarkup : /* @__PURE__ */ import_react223.default.createElement("td", Object.assign({
     className
   }, colSpanProp), content);
   return stickyHeadingCell ? stickyHeading : cellMarkup;
 }
-var import_react191, TruncatedText;
+var import_react223, TruncatedText;
 var init_Cell = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DataTable/components/Cell/Cell.js"() {
-    import_react191 = __toESM(require_react());
+    import_react223 = __toESM(require_react());
     init_dist();
     init_css();
     init_shared();
@@ -17737,15 +20589,15 @@ var init_Cell = __esm({
       children,
       className = ""
     }) => {
-      const textRef = (0, import_react191.useRef)(null);
+      const textRef = (0, import_react223.useRef)(null);
       const {
         current
       } = textRef;
-      const text2 = /* @__PURE__ */ import_react191.default.createElement("span", {
+      const text2 = /* @__PURE__ */ import_react223.default.createElement("span", {
         ref: textRef,
         className
       }, children);
-      return current?.scrollWidth > current?.offsetWidth ? /* @__PURE__ */ import_react191.default.createElement(Tooltip, {
+      return current?.scrollWidth > current?.offsetWidth ? /* @__PURE__ */ import_react223.default.createElement(Tooltip, {
         content: textRef.current.innerText
       }, text2) : text2;
     };
@@ -17760,33 +20612,33 @@ function AfterInitialMount({
 }) {
   const isMounted = useIsAfterInitialMount();
   const content = isMounted ? children : fallback;
-  (0, import_react192.useEffect)(() => {
+  (0, import_react224.useEffect)(() => {
     if (isMounted && onMount) {
       onMount();
     }
   }, [isMounted, onMount]);
-  return /* @__PURE__ */ import_react192.default.createElement(import_react192.default.Fragment, null, content);
+  return /* @__PURE__ */ import_react224.default.createElement(import_react224.default.Fragment, null, content);
 }
-var import_react192;
+var import_react224;
 var init_AfterInitialMount = __esm({
   "node_modules/@shopify/polaris/build/esm/components/AfterInitialMount/AfterInitialMount.js"() {
-    import_react192 = __toESM(require_react());
+    import_react224 = __toESM(require_react());
     init_use_is_after_initial_mount();
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/utilities/sticky-manager/hooks.js
 function useStickyManager() {
-  const stickyManager = (0, import_react193.useContext)(StickyManagerContext);
+  const stickyManager = (0, import_react225.useContext)(StickyManagerContext);
   if (!stickyManager) {
     throw new MissingAppProviderError("No StickyManager was provided.");
   }
   return stickyManager;
 }
-var import_react193;
-var init_hooks11 = __esm({
+var import_react225;
+var init_hooks12 = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/sticky-manager/hooks.js"() {
-    import_react193 = __toESM(require_react());
+    import_react225 = __toESM(require_react());
     init_errors();
     init_context4();
   }
@@ -17798,17 +20650,17 @@ function isFunction(arg) {
 }
 function Sticky(props) {
   const stickyManager = useStickyManager();
-  return /* @__PURE__ */ import_react194.default.createElement(StickyInner, Object.assign({}, props, {
+  return /* @__PURE__ */ import_react226.default.createElement(StickyInner, Object.assign({}, props, {
     stickyManager
   }));
 }
-var import_react194, StickyInner;
+var import_react226, StickyInner;
 var init_Sticky = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Sticky/Sticky.js"() {
-    import_react194 = __toESM(require_react());
+    import_react226 = __toESM(require_react());
     init_geometry();
-    init_hooks11();
-    StickyInner = class extends import_react194.Component {
+    init_hooks12();
+    StickyInner = class extends import_react226.Component {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -17893,9 +20745,9 @@ var init_Sticky = __esm({
           children
         } = this.props;
         const childrenContent = isFunction(children) ? children(isSticky) : children;
-        return /* @__PURE__ */ import_react194.default.createElement("div", null, /* @__PURE__ */ import_react194.default.createElement("div", {
+        return /* @__PURE__ */ import_react226.default.createElement("div", null, /* @__PURE__ */ import_react226.default.createElement("div", {
           ref: this.setPlaceHolderNode
-        }), /* @__PURE__ */ import_react194.default.createElement("div", {
+        }), /* @__PURE__ */ import_react226.default.createElement("div", {
           ref: this.setStickyNode,
           style
         }, childrenContent));
@@ -17919,8 +20771,8 @@ function Navigation({
   const pipMarkup = columnVisibilityData.map((column, index) => {
     if (index < fixedFirstColumns)
       return;
-    const className = classNames(styles64.Pip, column.isVisible && styles64["Pip-visible"]);
-    return /* @__PURE__ */ import_react195.default.createElement("div", {
+    const className = classNames(styles74.Pip, column.isVisible && styles74["Pip-visible"]);
+    return /* @__PURE__ */ import_react227.default.createElement("div", {
       className,
       key: `pip-${index}`
     });
@@ -17931,16 +20783,16 @@ function Navigation({
   const rightA11yLabel = i18n.translate("Polaris.DataTable.navAccessibilityLabel", {
     direction: "right"
   });
-  return /* @__PURE__ */ import_react195.default.createElement("div", {
-    className: styles64.Navigation,
+  return /* @__PURE__ */ import_react227.default.createElement("div", {
+    className: styles74.Navigation,
     ref: setRef
-  }, /* @__PURE__ */ import_react195.default.createElement(Button, {
+  }, /* @__PURE__ */ import_react227.default.createElement(Button, {
     variant: "tertiary",
     icon: SvgChevronLeftIcon,
     disabled: isScrolledFarthestLeft,
     accessibilityLabel: leftA11yLabel,
     onClick: navigateTableLeft
-  }), pipMarkup, /* @__PURE__ */ import_react195.default.createElement(Button, {
+  }), pipMarkup, /* @__PURE__ */ import_react227.default.createElement(Button, {
     variant: "tertiary",
     icon: SvgChevronRightIcon,
     disabled: isScrolledFarthestRight,
@@ -17948,10 +20800,10 @@ function Navigation({
     onClick: navigateTableRight
   }));
 }
-var import_react195;
+var import_react227;
 var init_Navigation = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DataTable/components/Navigation/Navigation.js"() {
-    import_react195 = __toESM(require_react());
+    import_react227 = __toESM(require_react());
     init_dist();
     init_css();
     init_DataTable_scss();
@@ -17963,19 +20815,19 @@ var init_Navigation = __esm({
 // node_modules/@shopify/polaris/build/esm/components/DataTable/DataTable.js
 function DataTable(props) {
   const i18n = useI18n();
-  return /* @__PURE__ */ import_react196.default.createElement(DataTableInner, Object.assign({}, props, {
+  return /* @__PURE__ */ import_react228.default.createElement(DataTableInner, Object.assign({}, props, {
     i18n
   }));
 }
-var import_react196, import_react_fast_compare, getRowClientHeights, DataTableInner;
+var import_react228, import_react_fast_compare2, getRowClientHeights, DataTableInner;
 var init_DataTable = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DataTable/DataTable.js"() {
-    import_react196 = __toESM(require_react());
-    import_react_fast_compare = __toESM(require_react_fast_compare());
+    import_react228 = __toESM(require_react());
+    import_react_fast_compare2 = __toESM(require_react_fast_compare());
     init_debounce();
     init_css();
     init_shared();
-    init_utilities5();
+    init_utilities6();
     init_DataTable_scss();
     init_Cell();
     init_Pagination();
@@ -17994,7 +20846,7 @@ var init_DataTable = __esm({
       });
       return heights;
     };
-    DataTableInner = class extends import_react196.PureComponent {
+    DataTableInner = class extends import_react228.PureComponent {
       constructor(...args) {
         super(...args);
         this.state = {
@@ -18004,10 +20856,10 @@ var init_DataTable = __esm({
           isScrolledFarthestRight: false,
           rowHovered: void 0
         };
-        this.dataTable = /* @__PURE__ */ (0, import_react196.createRef)();
-        this.scrollContainer = /* @__PURE__ */ (0, import_react196.createRef)();
-        this.table = /* @__PURE__ */ (0, import_react196.createRef)();
-        this.stickyTable = /* @__PURE__ */ (0, import_react196.createRef)();
+        this.dataTable = /* @__PURE__ */ (0, import_react228.createRef)();
+        this.scrollContainer = /* @__PURE__ */ (0, import_react228.createRef)();
+        this.table = /* @__PURE__ */ (0, import_react228.createRef)();
+        this.stickyTable = /* @__PURE__ */ (0, import_react228.createRef)();
         this.stickyNav = null;
         this.headerNav = null;
         this.tableHeadings = [];
@@ -18303,7 +21155,7 @@ var init_DataTable = __esm({
             firstColumnMinWidth
           };
           if (inFixedNthColumn && inStickyHeader) {
-            return [/* @__PURE__ */ import_react196.default.createElement(Cell, Object.assign({
+            return [/* @__PURE__ */ import_react228.default.createElement(Cell, Object.assign({
               key: id
             }, cellProps, {
               setRef: (ref) => {
@@ -18314,7 +21166,7 @@ var init_DataTable = __esm({
                 });
               },
               inFixedNthColumn: false
-            })), /* @__PURE__ */ import_react196.default.createElement(Cell, Object.assign({
+            })), /* @__PURE__ */ import_react228.default.createElement(Cell, Object.assign({
               key: `${id}-sticky`
             }, cellProps, {
               setRef: (ref) => {
@@ -18331,7 +21183,7 @@ var init_DataTable = __esm({
               }
             }))];
           }
-          return /* @__PURE__ */ import_react196.default.createElement(Cell, Object.assign({
+          return /* @__PURE__ */ import_react228.default.createElement(Cell, Object.assign({
             key: id
           }, cellProps, {
             setRef: (ref) => {
@@ -18378,7 +21230,7 @@ var init_DataTable = __esm({
             content = total;
           }
           const totalInFooter = this.props.showTotalsInFooter;
-          return /* @__PURE__ */ import_react196.default.createElement(Cell, {
+          return /* @__PURE__ */ import_react228.default.createElement(Cell, {
             total: true,
             totalInFooter,
             nthColumn: index <= fixedFirstColumns - 1,
@@ -18418,8 +21270,8 @@ var init_DataTable = __esm({
             condensed
           } = this.state;
           const fixedFirstColumns = this.fixedFirstColumns();
-          const className = classNames(styles64.TableRow, hoverable && styles64.hoverable);
-          return /* @__PURE__ */ import_react196.default.createElement("tr", {
+          const className = classNames(styles74.TableRow, hoverable && styles74.hoverable);
+          return /* @__PURE__ */ import_react228.default.createElement("tr", {
             key: `row-${index}`,
             className,
             onMouseEnter: this.handleHover(index),
@@ -18428,7 +21280,7 @@ var init_DataTable = __esm({
             const hovered = index === this.state.rowHovered;
             const id = `cell-${cellIndex}-row-${index}`;
             const colSpan = this.getColSpan(row.length, headings.length, columnContentTypes.length, cellIndex);
-            return /* @__PURE__ */ import_react196.default.createElement(Cell, {
+            return /* @__PURE__ */ import_react228.default.createElement(Cell, {
               key: id,
               content,
               contentType: columnContentTypes[cellIndex],
@@ -18482,7 +21334,7 @@ var init_DataTable = __esm({
         }
       }
       componentDidUpdate(prevProps) {
-        if ((0, import_react_fast_compare.default)(prevProps, this.props)) {
+        if ((0, import_react_fast_compare2.default)(prevProps, this.props)) {
           return;
         }
         this.handleResize();
@@ -18515,15 +21367,15 @@ var init_DataTable = __esm({
         }
         const fixedFirstColumns = this.fixedFirstColumns();
         const rowCountIsEven = rows.length % 2 === 0;
-        const className = classNames(styles64.DataTable, condensed && styles64.condensed, totals && styles64.ShowTotals, showTotalsInFooter && styles64.ShowTotalsInFooter, hasZebraStripingOnData && styles64.ZebraStripingOnData, hasZebraStripingOnData && rowCountIsEven && styles64.RowCountIsEven);
-        const wrapperClassName = classNames(styles64.TableWrapper, condensed && styles64.condensed, increasedTableDensity && styles64.IncreasedTableDensity, stickyHeader && styles64.StickyHeaderEnabled);
-        const headingMarkup = /* @__PURE__ */ import_react196.default.createElement("tr", null, headings.map((heading, index) => this.renderHeading({
+        const className = classNames(styles74.DataTable, condensed && styles74.condensed, totals && styles74.ShowTotals, showTotalsInFooter && styles74.ShowTotalsInFooter, hasZebraStripingOnData && styles74.ZebraStripingOnData, hasZebraStripingOnData && rowCountIsEven && styles74.RowCountIsEven);
+        const wrapperClassName = classNames(styles74.TableWrapper, condensed && styles74.condensed, increasedTableDensity && styles74.IncreasedTableDensity, stickyHeader && styles74.StickyHeaderEnabled);
+        const headingMarkup = /* @__PURE__ */ import_react228.default.createElement("tr", null, headings.map((heading, index) => this.renderHeading({
           heading,
           headingIndex: index,
           inFixedNthColumn: false,
           inStickyHeader: false
         })));
-        const totalsMarkup = totals ? /* @__PURE__ */ import_react196.default.createElement("tr", null, totals.map((total, index) => this.renderTotals({
+        const totalsMarkup = totals ? /* @__PURE__ */ import_react228.default.createElement("tr", null, totals.map((total, index) => this.renderTotals({
           total,
           index
         }))) : null;
@@ -18534,12 +21386,12 @@ var init_DataTable = __esm({
         const tableBodyRows = this.table.current?.children[1].childNodes;
         const headerRowHeights = getRowClientHeights(tableHeaderRows);
         const bodyRowHeights = getRowClientHeights(tableBodyRows);
-        const fixedNthColumnMarkup = condensed && fixedFirstColumns !== 0 && /* @__PURE__ */ import_react196.default.createElement("table", {
-          className: classNames(styles64.FixedFirstColumn, !isScrolledFarthestLeft && styles64.separate),
+        const fixedNthColumnMarkup = condensed && fixedFirstColumns !== 0 && /* @__PURE__ */ import_react228.default.createElement("table", {
+          className: classNames(styles74.FixedFirstColumn, !isScrolledFarthestLeft && styles74.separate),
           style: {
             width: `${columnVisibilityData[fixedFirstColumns - 1]?.rightEdge}px`
           }
-        }, /* @__PURE__ */ import_react196.default.createElement("thead", null, /* @__PURE__ */ import_react196.default.createElement("tr", {
+        }, /* @__PURE__ */ import_react228.default.createElement("thead", null, /* @__PURE__ */ import_react228.default.createElement("tr", {
           style: {
             height: `${headerRowHeights[0]}px`
           }
@@ -18548,19 +21400,19 @@ var init_DataTable = __esm({
           headingIndex: index,
           inFixedNthColumn: true,
           inStickyHeader: false
-        }))), totals && !showTotalsInFooter && /* @__PURE__ */ import_react196.default.createElement("tr", {
+        }))), totals && !showTotalsInFooter && /* @__PURE__ */ import_react228.default.createElement("tr", {
           style: {
             height: `${headerRowHeights[1]}px`
           }
         }, nthTotals?.map((total, index) => this.renderTotals({
           total,
           index
-        })))), /* @__PURE__ */ import_react196.default.createElement("tbody", null, nthColumns.map((row, index) => this.defaultRenderRow({
+        })))), /* @__PURE__ */ import_react228.default.createElement("tbody", null, nthColumns.map((row, index) => this.defaultRenderRow({
           row,
           index,
           inFixedNthColumn: true,
           rowHeights: bodyRowHeights
-        }))), totals && showTotalsInFooter && /* @__PURE__ */ import_react196.default.createElement("tfoot", null, /* @__PURE__ */ import_react196.default.createElement("tr", null, nthTotals?.map((total, index) => this.renderTotals({
+        }))), totals && showTotalsInFooter && /* @__PURE__ */ import_react228.default.createElement("tfoot", null, /* @__PURE__ */ import_react228.default.createElement("tr", null, nthTotals?.map((total, index) => this.renderTotals({
           total,
           index
         })))));
@@ -18569,15 +21421,15 @@ var init_DataTable = __esm({
           index,
           inFixedNthColumn: false
         }));
-        const footerMarkup = footerContent ? /* @__PURE__ */ import_react196.default.createElement("div", {
-          className: styles64.Footer
+        const footerMarkup = footerContent ? /* @__PURE__ */ import_react228.default.createElement("div", {
+          className: styles74.Footer
         }, footerContent) : null;
-        const paginationMarkup = pagination ? /* @__PURE__ */ import_react196.default.createElement(Pagination, Object.assign({
+        const paginationMarkup = pagination ? /* @__PURE__ */ import_react228.default.createElement(Pagination, Object.assign({
           type: "table"
         }, pagination)) : null;
         const headerTotalsMarkup = !showTotalsInFooter ? totalsMarkup : null;
-        const footerTotalsMarkup = showTotalsInFooter ? /* @__PURE__ */ import_react196.default.createElement("tfoot", null, totalsMarkup) : null;
-        const navigationMarkup = (location) => hideScrollIndicator ? null : /* @__PURE__ */ import_react196.default.createElement(Navigation, {
+        const footerTotalsMarkup = showTotalsInFooter ? /* @__PURE__ */ import_react228.default.createElement("tfoot", null, totalsMarkup) : null;
+        const navigationMarkup = (location) => hideScrollIndicator ? null : /* @__PURE__ */ import_react228.default.createElement(Navigation, {
           columnVisibilityData,
           isScrolledFarthestLeft,
           isScrolledFarthestRight,
@@ -18592,25 +21444,25 @@ var init_DataTable = __esm({
             }
           }
         });
-        const stickyHeaderMarkup = stickyHeader ? /* @__PURE__ */ import_react196.default.createElement(AfterInitialMount, null, /* @__PURE__ */ import_react196.default.createElement("div", {
-          className: styles64.StickyHeaderWrapper,
+        const stickyHeaderMarkup = stickyHeader ? /* @__PURE__ */ import_react228.default.createElement(AfterInitialMount, null, /* @__PURE__ */ import_react228.default.createElement("div", {
+          className: styles74.StickyHeaderWrapper,
           role: "presentation"
-        }, /* @__PURE__ */ import_react196.default.createElement(Sticky, {
+        }, /* @__PURE__ */ import_react228.default.createElement(Sticky, {
           boundingElement: this.dataTable.current,
           onStickyChange: (isSticky) => {
             this.changeHeadingFocus();
             this.stickyHeaderActive = isSticky;
           }
         }, (isSticky) => {
-          const stickyHeaderInnerClassNames = classNames(styles64.StickyHeaderInner, isSticky && styles64["StickyHeaderInner-isSticky"]);
-          const stickyHeaderTableClassNames = classNames(styles64.StickyHeaderTable, !isScrolledFarthestLeft && styles64.separate);
-          return /* @__PURE__ */ import_react196.default.createElement("div", {
+          const stickyHeaderInnerClassNames = classNames(styles74.StickyHeaderInner, isSticky && styles74["StickyHeaderInner-isSticky"]);
+          const stickyHeaderTableClassNames = classNames(styles74.StickyHeaderTable, !isScrolledFarthestLeft && styles74.separate);
+          return /* @__PURE__ */ import_react228.default.createElement("div", {
             className: stickyHeaderInnerClassNames
-          }, /* @__PURE__ */ import_react196.default.createElement("div", null, navigationMarkup("sticky")), /* @__PURE__ */ import_react196.default.createElement("table", {
+          }, /* @__PURE__ */ import_react228.default.createElement("div", null, navigationMarkup("sticky")), /* @__PURE__ */ import_react228.default.createElement("table", {
             className: stickyHeaderTableClassNames,
             ref: this.stickyTable
-          }, /* @__PURE__ */ import_react196.default.createElement("thead", null, /* @__PURE__ */ import_react196.default.createElement("tr", {
-            className: styles64.StickyTableHeadingsRow
+          }, /* @__PURE__ */ import_react228.default.createElement("thead", null, /* @__PURE__ */ import_react228.default.createElement("tr", {
+            className: styles74.StickyTableHeadingsRow
           }, headings.map((heading, index) => {
             return this.renderHeading({
               heading,
@@ -18620,26 +21472,26 @@ var init_DataTable = __esm({
             });
           })))));
         }))) : null;
-        return /* @__PURE__ */ import_react196.default.createElement("div", {
+        return /* @__PURE__ */ import_react228.default.createElement("div", {
           className: wrapperClassName,
           ref: this.dataTable
-        }, stickyHeaderMarkup, navigationMarkup("header"), /* @__PURE__ */ import_react196.default.createElement("div", {
+        }, stickyHeaderMarkup, navigationMarkup("header"), /* @__PURE__ */ import_react228.default.createElement("div", {
           className
-        }, /* @__PURE__ */ import_react196.default.createElement("div", {
-          className: styles64.ScrollContainer,
+        }, /* @__PURE__ */ import_react228.default.createElement("div", {
+          className: styles74.ScrollContainer,
           ref: this.scrollContainer
-        }, /* @__PURE__ */ import_react196.default.createElement(EventListener, {
+        }, /* @__PURE__ */ import_react228.default.createElement(EventListener, {
           event: "resize",
           handler: this.handleResize
-        }), /* @__PURE__ */ import_react196.default.createElement(EventListener, {
+        }), /* @__PURE__ */ import_react228.default.createElement(EventListener, {
           capture: true,
           passive: true,
           event: "scroll",
           handler: this.scrollListener
-        }), fixedNthColumnMarkup, /* @__PURE__ */ import_react196.default.createElement("table", {
-          className: styles64.Table,
+        }), fixedNthColumnMarkup, /* @__PURE__ */ import_react228.default.createElement("table", {
+          className: styles74.Table,
           ref: this.table
-        }, /* @__PURE__ */ import_react196.default.createElement("thead", null, headingMarkup, headerTotalsMarkup), /* @__PURE__ */ import_react196.default.createElement("tbody", null, bodyMarkup), footerTotalsMarkup)), paginationMarkup, footerMarkup));
+        }, /* @__PURE__ */ import_react228.default.createElement("thead", null, headingMarkup, headerTotalsMarkup), /* @__PURE__ */ import_react228.default.createElement("tbody", null, bodyMarkup), footerTotalsMarkup)), paginationMarkup, footerMarkup));
       }
       fixedFirstColumns() {
         const {
@@ -18847,16 +21699,16 @@ function weekdayName(weekday) {
       return "saturday";
   }
 }
-var init_utilities6 = __esm({
+var init_utilities7 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/utilities.js"() {
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DatePicker/DatePicker.scss.js
-var styles65;
+var styles75;
 var init_DatePicker_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/DatePicker.scss.js"() {
-    styles65 = {
+    styles75 = {
       "DatePicker": "Polaris-DatePicker",
       "MonthLayout": "Polaris-DatePicker__MonthLayout",
       "MonthContainer": "Polaris-DatePicker__MonthContainer",
@@ -18884,19 +21736,19 @@ var init_DatePicker_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DatePicker/components/Weekday/Weekday.js
-var import_react197, Weekday;
+var import_react229, Weekday;
 var init_Weekday = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/components/Weekday/Weekday.js"() {
-    import_react197 = __toESM(require_react());
+    import_react229 = __toESM(require_react());
     init_css();
     init_DatePicker_scss();
-    Weekday = /* @__PURE__ */ (0, import_react197.memo)(function Weekday2({
+    Weekday = /* @__PURE__ */ (0, import_react229.memo)(function Weekday2({
       label,
       title,
       current
     }) {
-      const className = classNames(styles65.Weekday, current && styles65["Weekday-current"]);
-      return /* @__PURE__ */ import_react197.default.createElement("th", {
+      const className = classNames(styles75.Weekday, current && styles75["Weekday-current"]);
+      return /* @__PURE__ */ import_react229.default.createElement("th", {
         "aria-label": label,
         scope: "col",
         className
@@ -18906,23 +21758,23 @@ var init_Weekday = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DatePicker/components/Day/Day.js
-function noop8() {
+function noop11() {
 }
-var import_react198, Day;
+var import_react230, Day;
 var init_Day = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/components/Day/Day.js"() {
-    import_react198 = __toESM(require_react());
+    import_react230 = __toESM(require_react());
     init_css();
     init_dates();
-    init_utilities6();
+    init_utilities7();
     init_DatePicker_scss();
     init_hooks2();
-    Day = /* @__PURE__ */ (0, import_react198.memo)(function Day2({
+    Day = /* @__PURE__ */ (0, import_react230.memo)(function Day2({
       day,
       focused,
       onClick,
-      onHover = noop8,
-      onFocus = noop8,
+      onHover = noop11,
+      onFocus = noop11,
       selected,
       inRange,
       inHoveringRange,
@@ -18936,29 +21788,29 @@ var init_Day = __esm({
       selectedAccessibilityLabelPrefix
     }) {
       const i18n = useI18n();
-      const dayNode = (0, import_react198.useRef)(null);
+      const dayNode = (0, import_react230.useRef)(null);
       const hoverValue = lastDayOfMonth || day;
-      (0, import_react198.useEffect)(() => {
+      (0, import_react230.useEffect)(() => {
         if (focused && dayNode.current) {
           dayNode.current.focus();
         }
       }, [focused]);
       if (!day) {
-        return /* @__PURE__ */ import_react198.default.createElement("td", {
-          className: styles65.EmptyDayCell,
+        return /* @__PURE__ */ import_react230.default.createElement("td", {
+          className: styles75.EmptyDayCell,
           onMouseOver: () => onHover(hoverValue)
         });
       }
-      const handleClick = onClick && !disabled ? onClick.bind(null, day) : noop8;
+      const handleClick = onClick && !disabled ? onClick.bind(null, day) : noop11;
       const today = isSameDay(/* @__PURE__ */ new Date(), day);
-      const dayCellClassName = classNames(styles65.DayCell, selected && styles65["DayCell-selected"], (inRange || inHoveringRange) && !disabled && styles65["DayCell-inRange"], isLastSelectedDay && styles65["DayCell-lastInRange"], isFirstSelectedDay && styles65["DayCell-firstInRange"], isHoveringRight && styles65["DayCell-hoverRight"], rangeIsDifferent && styles65["DayCell-hasRange"]);
-      const dayClassName = classNames(styles65.Day, selected && styles65["Day-selected"], disabled && styles65["Day-disabled"], today && styles65["Day-today"], (inRange || inHoveringRange) && !disabled && styles65["Day-inRange"], isLastSelectedDay && styles65["Day-lastInRange"], isFirstSelectedDay && styles65["Day-firstInRange"], isHoveringRight && styles65["Day-hoverRight"], rangeIsDifferent && styles65["Day-hasRange"]);
+      const dayCellClassName = classNames(styles75.DayCell, selected && styles75["DayCell-selected"], (inRange || inHoveringRange) && !disabled && styles75["DayCell-inRange"], isLastSelectedDay && styles75["DayCell-lastInRange"], isFirstSelectedDay && styles75["DayCell-firstInRange"], isHoveringRight && styles75["DayCell-hoverRight"], rangeIsDifferent && styles75["DayCell-hasRange"]);
+      const dayClassName = classNames(styles75.Day, selected && styles75["Day-selected"], disabled && styles75["Day-disabled"], today && styles75["Day-today"], (inRange || inHoveringRange) && !disabled && styles75["Day-inRange"], isLastSelectedDay && styles75["Day-lastInRange"], isFirstSelectedDay && styles75["Day-firstInRange"], isHoveringRight && styles75["Day-hoverRight"], rangeIsDifferent && styles75["Day-hasRange"]);
       const date = day.getDate();
       const tabIndex = (focused || selected || today || date === 1) && !disabled ? 0 : -1;
       const ariaLabel = [selected && selectedAccessibilityLabelPrefix ? `${selectedAccessibilityLabelPrefix} ` : "", `${today ? i18n.translate("Polaris.DatePicker.today") : ""}`, `${weekday ? weekday : ""} `, `${i18n.translate(`Polaris.DatePicker.months.${monthName(day.getMonth())}`)} `, `${date} `, `${day.getFullYear()}`].join("");
-      return /* @__PURE__ */ import_react198.default.createElement("td", {
+      return /* @__PURE__ */ import_react230.default.createElement("td", {
         className: dayCellClassName
-      }, /* @__PURE__ */ import_react198.default.createElement("button", {
+      }, /* @__PURE__ */ import_react230.default.createElement("button", {
         onFocus: () => onFocus(day),
         type: "button",
         ref: dayNode,
@@ -18983,9 +21835,9 @@ function Month({
   disableDatesAfter,
   disableSpecificDates,
   allowRange,
-  onChange = noop9,
-  onHover = noop9,
-  onFocus = noop9,
+  onChange = noop12,
+  onHover = noop12,
+  onFocus = noop12,
   month,
   year,
   weekStartsOn,
@@ -18995,21 +21847,21 @@ function Month({
   const isInHoveringRange = allowRange ? hoveringDateIsInRange : () => false;
   const now = /* @__PURE__ */ new Date();
   const current = now.getMonth() === month && now.getFullYear() === year;
-  const className = classNames(styles65.Title, current && styles65["Month-current"]);
-  const weeks = (0, import_react199.useMemo)(() => getWeeksForMonth(month, year, weekStartsOn), [month, weekStartsOn, year]);
-  const weekdays = getOrderedWeekdays(weekStartsOn).map((weekday) => /* @__PURE__ */ import_react199.default.createElement(Weekday, {
+  const className = classNames(styles75.Title, current && styles75["Month-current"]);
+  const weeks = (0, import_react231.useMemo)(() => getWeeksForMonth(month, year, weekStartsOn), [month, weekStartsOn, year]);
+  const weekdays = getOrderedWeekdays(weekStartsOn).map((weekday) => /* @__PURE__ */ import_react231.default.createElement(Weekday, {
     key: weekday,
     title: i18n.translate(`Polaris.DatePicker.daysAbbreviated.${weekdayName(weekday)}`),
     label: weekdayLabel(weekday),
     current: current && (/* @__PURE__ */ new Date()).getDay() === weekday
   }));
-  const handleDateClick = (0, import_react199.useCallback)((selectedDate) => {
+  const handleDateClick = (0, import_react231.useCallback)((selectedDate) => {
     onChange(getNewRange(allowRange ? selected : void 0, selectedDate));
   }, [allowRange, onChange, selected]);
-  const lastDayOfMonth = (0, import_react199.useMemo)(() => new Date(year, month + 1, 0), [month, year]);
+  const lastDayOfMonth = (0, import_react231.useMemo)(() => new Date(year, month + 1, 0), [month, year]);
   function renderWeek(day, dayIndex) {
     if (day == null) {
-      return /* @__PURE__ */ import_react199.default.createElement(Day, {
+      return /* @__PURE__ */ import_react231.default.createElement(Day, {
         key: dayIndex,
         onHover,
         lastDayOfMonth
@@ -19027,7 +21879,7 @@ function Month({
     } else if (allowRange && isLastSelectedDay) {
       accessibilityLabelPrefix = lastAccessibilityLabelPrefix;
     }
-    return /* @__PURE__ */ import_react199.default.createElement(Day, {
+    return /* @__PURE__ */ import_react231.default.createElement(Day, {
       selectedAccessibilityLabelPrefix: accessibilityLabelPrefix,
       weekday: weekdayLabel(dayIndex),
       focused: focusedDate != null && isSameDay(day, focusedDate),
@@ -19046,25 +21898,25 @@ function Month({
       rangeIsDifferent
     });
   }
-  const weeksMarkup = weeks.map((week, index) => /* @__PURE__ */ import_react199.default.createElement("tr", {
-    className: styles65.Week,
+  const weeksMarkup = weeks.map((week, index) => /* @__PURE__ */ import_react231.default.createElement("tr", {
+    className: styles75.Week,
     key: index
   }, week.map(renderWeek)));
-  return /* @__PURE__ */ import_react199.default.createElement("div", {
-    className: styles65.MonthContainer
-  }, /* @__PURE__ */ import_react199.default.createElement("table", {
+  return /* @__PURE__ */ import_react231.default.createElement("div", {
+    className: styles75.MonthContainer
+  }, /* @__PURE__ */ import_react231.default.createElement("table", {
     role: "grid",
-    className: styles65.Month
-  }, /* @__PURE__ */ import_react199.default.createElement("caption", {
+    className: styles75.Month
+  }, /* @__PURE__ */ import_react231.default.createElement("caption", {
     className
-  }, i18n.translate(`Polaris.DatePicker.months.${monthName(month)}`), " ", year), /* @__PURE__ */ import_react199.default.createElement("thead", null, /* @__PURE__ */ import_react199.default.createElement("tr", {
-    className: styles65.WeekHeadings
-  }, weekdays)), /* @__PURE__ */ import_react199.default.createElement("tbody", null, weeksMarkup)));
+  }, i18n.translate(`Polaris.DatePicker.months.${monthName(month)}`), " ", year), /* @__PURE__ */ import_react231.default.createElement("thead", null, /* @__PURE__ */ import_react231.default.createElement("tr", {
+    className: styles75.WeekHeadings
+  }, weekdays)), /* @__PURE__ */ import_react231.default.createElement("tbody", null, weeksMarkup)));
   function weekdayLabel(weekday) {
     return i18n.translate(`Polaris.DatePicker.days.${weekdayName(weekday)}`);
   }
 }
-function noop9() {
+function noop12() {
 }
 function hoveringDateIsInRange(day, range, hoverEndDate) {
   if (day == null) {
@@ -19092,14 +21944,14 @@ function isDateStart(day, range) {
   } = range;
   return Boolean(start && isSameDay(start, day));
 }
-var import_react199;
+var import_react231;
 var init_Month = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/components/Month/Month.js"() {
-    import_react199 = __toESM(require_react());
+    import_react231 = __toESM(require_react());
     init_css();
     init_dates();
     init_DatePicker_scss();
-    init_utilities6();
+    init_utilities7();
     init_Weekday();
     init_Day();
     init_hooks2();
@@ -19120,25 +21972,25 @@ function DatePicker({
   weekStartsOn = 0,
   dayAccessibilityLabelPrefix,
   onMonthChange,
-  onChange = noop10
+  onChange = noop13
 }) {
   const i18n = useI18n();
-  const [hoverDate, setHoverDate] = (0, import_react200.useState)(void 0);
-  const [focusDate, setFocusDate] = (0, import_react200.useState)(void 0);
-  (0, import_react200.useEffect)(() => {
+  const [hoverDate, setHoverDate] = (0, import_react232.useState)(void 0);
+  const [focusDate, setFocusDate] = (0, import_react232.useState)(void 0);
+  (0, import_react232.useEffect)(() => {
     setFocusDate(void 0);
   }, [selected]);
-  const handleFocus = (0, import_react200.useCallback)((date) => {
+  const handleFocus = (0, import_react232.useCallback)((date) => {
     setFocusDate(date);
   }, []);
-  const setFocusDateAndHandleMonthChange = (0, import_react200.useCallback)((date) => {
+  const setFocusDateAndHandleMonthChange = (0, import_react232.useCallback)((date) => {
     if (onMonthChange) {
       onMonthChange(date.getMonth(), date.getFullYear());
     }
     setHoverDate(date);
     setFocusDate(date);
   }, [onMonthChange]);
-  const handleDateSelection = (0, import_react200.useCallback)((range) => {
+  const handleDateSelection = (0, import_react232.useCallback)((range) => {
     const {
       end
     } = range;
@@ -19146,17 +21998,17 @@ function DatePicker({
     setFocusDate(new Date(end));
     onChange(range);
   }, [onChange]);
-  const handleMonthChangeClick = (0, import_react200.useCallback)((month2, year2) => {
+  const handleMonthChangeClick = (0, import_react232.useCallback)((month2, year2) => {
     if (!onMonthChange) {
       return;
     }
     setFocusDate(void 0);
     onMonthChange(month2, year2);
   }, [onMonthChange]);
-  const handleHover = (0, import_react200.useCallback)((date) => {
+  const handleHover = (0, import_react232.useCallback)((date) => {
     setHoverDate(date);
   }, []);
-  const handleKeyUp = (0, import_react200.useCallback)((event) => {
+  const handleKeyUp = (0, import_react232.useCallback)((event) => {
     const {
       key
     } = event;
@@ -19203,11 +22055,11 @@ function DatePicker({
   const previousMonthName = i18n.translate(`Polaris.DatePicker.months.${monthName(showPreviousMonth)}`);
   const nextMonth = multiMonth ? i18n.translate(`Polaris.DatePicker.months.${monthName(showNextToNextMonth)}`) : i18n.translate(`Polaris.DatePicker.months.${monthName(showNextMonth)}`);
   const nextYear = multiMonth ? showNextToNextYear : showNextYear;
-  const monthIsSelected = (0, import_react200.useMemo)(() => deriveRange(selected), [selected]);
+  const monthIsSelected = (0, import_react232.useMemo)(() => deriveRange(selected), [selected]);
   const firstDatePickerAccessibilityLabelPrefix = allowRange ? i18n.translate(`Polaris.DatePicker.start`) : dayAccessibilityLabelPrefix;
   const secondDatePickerAccessibilityLabelPrefix = i18n.translate(`Polaris.DatePicker.end`);
   const accessibilityLabelPrefixes = [firstDatePickerAccessibilityLabelPrefix, secondDatePickerAccessibilityLabelPrefix];
-  const secondDatePicker = multiMonth ? /* @__PURE__ */ import_react200.default.createElement(Month, {
+  const secondDatePicker = multiMonth ? /* @__PURE__ */ import_react232.default.createElement(Month, {
     onFocus: handleFocus,
     focusedDate: focusDate,
     month: showNextMonth,
@@ -19223,15 +22075,15 @@ function DatePicker({
     weekStartsOn,
     accessibilityLabelPrefixes
   }) : null;
-  const datePickerClassName = classNames(styles65.DatePicker);
-  return /* @__PURE__ */ import_react200.default.createElement("div", {
+  const datePickerClassName = classNames(styles75.DatePicker);
+  return /* @__PURE__ */ import_react232.default.createElement("div", {
     id,
     className: datePickerClassName,
-    onKeyDown: handleKeyDown,
+    onKeyDown: handleKeyDown2,
     onKeyUp: handleKeyUp
-  }, /* @__PURE__ */ import_react200.default.createElement("div", {
-    className: styles65.Header
-  }, /* @__PURE__ */ import_react200.default.createElement(Button, {
+  }, /* @__PURE__ */ import_react232.default.createElement("div", {
+    className: styles75.Header
+  }, /* @__PURE__ */ import_react232.default.createElement(Button, {
     variant: "tertiary",
     icon: SvgArrowLeftIcon,
     accessibilityLabel: i18n.translate("Polaris.DatePicker.previousMonth", {
@@ -19239,7 +22091,7 @@ function DatePicker({
       showPreviousYear
     }),
     onClick: () => handleMonthChangeClick(showPreviousMonth, showPreviousYear)
-  }), /* @__PURE__ */ import_react200.default.createElement(Button, {
+  }), /* @__PURE__ */ import_react232.default.createElement(Button, {
     variant: "tertiary",
     icon: SvgArrowRightIcon,
     accessibilityLabel: i18n.translate("Polaris.DatePicker.nextMonth", {
@@ -19247,9 +22099,9 @@ function DatePicker({
       nextYear
     }),
     onClick: () => handleMonthChangeClick(showNextMonth, showNextYear)
-  })), /* @__PURE__ */ import_react200.default.createElement("div", {
-    className: styles65.MonthLayout
-  }, /* @__PURE__ */ import_react200.default.createElement(Month, {
+  })), /* @__PURE__ */ import_react232.default.createElement("div", {
+    className: styles75.MonthLayout
+  }, /* @__PURE__ */ import_react232.default.createElement(Month, {
     onFocus: handleFocus,
     focusedDate: focusDate,
     month,
@@ -19266,9 +22118,9 @@ function DatePicker({
     accessibilityLabelPrefixes
   }), secondDatePicker));
 }
-function noop10() {
+function noop13() {
 }
-function handleKeyDown(event) {
+function handleKeyDown2(event) {
   const {
     key
   } = event;
@@ -19283,14 +22135,14 @@ function deriveRange(selected) {
     end: selected
   } : selected;
 }
-var import_react200;
+var import_react232;
 var init_DatePicker = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DatePicker/DatePicker.js"() {
-    import_react200 = __toESM(require_react());
+    import_react232 = __toESM(require_react());
     init_dist();
     init_css();
     init_dates();
-    init_utilities6();
+    init_utilities7();
     init_DatePicker_scss();
     init_Month();
     init_hooks2();
@@ -19299,10 +22151,10 @@ var init_DatePicker = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DescriptionList/DescriptionList.scss.js
-var styles66;
+var styles76;
 var init_DescriptionList_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DescriptionList/DescriptionList.scss.js"() {
-    styles66 = {
+    styles76 = {
       "DescriptionList": "Polaris-DescriptionList",
       "Term": "Polaris-DescriptionList__Term",
       "spacingTight": "Polaris-DescriptionList--spacingTight",
@@ -19319,25 +22171,25 @@ function DescriptionList({
   const terms = items.reduce((allTerms, {
     term,
     description
-  }, index) => [...allTerms, /* @__PURE__ */ import_react201.default.createElement("dt", {
+  }, index) => [...allTerms, /* @__PURE__ */ import_react233.default.createElement("dt", {
     key: `dt${index}`,
-    className: styles66.Term
-  }, /* @__PURE__ */ import_react201.default.createElement(Text, {
+    className: styles76.Term
+  }, /* @__PURE__ */ import_react233.default.createElement(Text, {
     as: "span",
     variant: "headingSm"
-  }, term)), /* @__PURE__ */ import_react201.default.createElement("dd", {
+  }, term)), /* @__PURE__ */ import_react233.default.createElement("dd", {
     key: `dd${index}`,
-    className: styles66.Description
+    className: styles76.Description
   }, description)], []);
-  const className = classNames(styles66.DescriptionList, gap === "tight" && styles66.spacingTight);
-  return /* @__PURE__ */ import_react201.default.createElement("dl", {
+  const className = classNames(styles76.DescriptionList, gap === "tight" && styles76.spacingTight);
+  return /* @__PURE__ */ import_react233.default.createElement("dl", {
     className
   }, terms);
 }
-var import_react201;
+var import_react233;
 var init_DescriptionList = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DescriptionList/DescriptionList.js"() {
-    import_react201 = __toESM(require_react());
+    import_react233 = __toESM(require_react());
     init_css();
     init_DescriptionList_scss();
     init_Text();
@@ -19345,28 +22197,28 @@ var init_DescriptionList = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Divider/Divider.scss.js
-var styles67;
+var styles77;
 var init_Divider_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Divider/Divider.scss.js"() {
-    styles67 = {
+    styles77 = {
       "Divider": "Polaris-Divider"
     };
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Divider/Divider.js
-var import_react202, Divider;
+var import_react234, Divider;
 var init_Divider = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Divider/Divider.js"() {
-    import_react202 = __toESM(require_react());
+    import_react234 = __toESM(require_react());
     init_Divider_scss();
     Divider = ({
       borderColor = "border-secondary",
       borderWidth = "025"
     }) => {
       const borderColorValue = borderColor === "transparent" ? borderColor : `var(--p-color-${borderColor})`;
-      return /* @__PURE__ */ import_react202.default.createElement("hr", {
-        className: styles67.Divider,
+      return /* @__PURE__ */ import_react234.default.createElement("hr", {
+        className: styles77.Divider,
         style: {
           borderBlockStart: `var(--p-border-width-${borderWidth}) solid ${borderColorValue}`
         }
@@ -19438,12 +22290,12 @@ var init_utils5 = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DropZone/context.js
-var import_react203, DropZoneContext;
+var import_react235, DropZoneContext;
 var init_context16 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DropZone/context.js"() {
-    import_react203 = __toESM(require_react());
+    import_react235 = __toESM(require_react());
     init_utils5();
-    DropZoneContext = /* @__PURE__ */ (0, import_react203.createContext)({
+    DropZoneContext = /* @__PURE__ */ (0, import_react235.createContext)({
       disabled: false,
       focused: false,
       size: "extraLarge",
@@ -19455,10 +22307,10 @@ var init_context16 = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DropZone/DropZone.scss.js
-var styles68;
+var styles78;
 var init_DropZone_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DropZone/DropZone.scss.js"() {
-    styles68 = {
+    styles78 = {
       "DropZone": "Polaris-DropZone",
       "focused": "Polaris-DropZone--focused",
       "hasOutline": "Polaris-DropZone--hasOutline",
@@ -19476,10 +22328,10 @@ var init_DropZone_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/DropZone/components/FileUpload/FileUpload.scss.js
-var styles69;
+var styles79;
 var init_FileUpload_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DropZone/components/FileUpload/FileUpload.scss.js"() {
-    styles69 = {
+    styles79 = {
       "FileUpload": "Polaris-DropZone-FileUpload",
       "large": "Polaris-DropZone-FileUpload--large",
       "small": "Polaris-DropZone-FileUpload--small",
@@ -19502,19 +22354,19 @@ function FileUpload(props) {
     type,
     disabled,
     allowMultiple
-  } = (0, import_react204.useContext)(DropZoneContext);
+  } = (0, import_react236.useContext)(DropZoneContext);
   const typeSuffix = capitalize2(type);
   const allowMultipleKey = createAllowMultipleKey(allowMultiple);
   const {
     actionTitle = i18n.translate(`Polaris.DropZone.${allowMultipleKey}.actionTitle${typeSuffix}`),
     actionHint
   } = props;
-  const actionClassNames = classNames(styles69.Action, disabled && styles69.disabled);
-  const actionMarkup = /* @__PURE__ */ import_react204.default.createElement("div", {
+  const actionClassNames = classNames(styles79.Action, disabled && styles79.disabled);
+  const actionMarkup = /* @__PURE__ */ import_react236.default.createElement("div", {
     className: actionClassNames
   }, actionTitle);
-  const fileUploadClassName = classNames(styles69.FileUpload, measuring && styles69.measuring, size2 === "large" && styles69.large, size2 === "small" && styles69.small);
-  const actionHintMarkup = actionHint && /* @__PURE__ */ import_react204.default.createElement(Text, {
+  const fileUploadClassName = classNames(styles79.FileUpload, measuring && styles79.measuring, size2 === "large" && styles79.large, size2 === "small" && styles79.small);
+  const actionHintMarkup = actionHint && /* @__PURE__ */ import_react236.default.createElement(Text, {
     variant: "bodySm",
     as: "p",
     tone: "subdued"
@@ -19522,33 +22374,33 @@ function FileUpload(props) {
   let viewMarkup;
   switch (size2) {
     case "large":
-      viewMarkup = /* @__PURE__ */ import_react204.default.createElement(BlockStack, {
+      viewMarkup = /* @__PURE__ */ import_react236.default.createElement(BlockStack, {
         inlineAlign: "center",
         gap: "200"
       }, actionMarkup, actionHintMarkup);
       break;
     case "medium":
-      viewMarkup = /* @__PURE__ */ import_react204.default.createElement(BlockStack, {
+      viewMarkup = /* @__PURE__ */ import_react236.default.createElement(BlockStack, {
         inlineAlign: "center",
         gap: "200"
       }, actionMarkup, actionHintMarkup);
       break;
     case "small":
-      viewMarkup = /* @__PURE__ */ import_react204.default.createElement("div", {
-        className: classNames(styles69.UploadIcon, disabled && styles69.disabled)
-      }, /* @__PURE__ */ import_react204.default.createElement(Icon, {
+      viewMarkup = /* @__PURE__ */ import_react236.default.createElement("div", {
+        className: classNames(styles79.UploadIcon, disabled && styles79.disabled)
+      }, /* @__PURE__ */ import_react236.default.createElement(Icon, {
         source: SvgUploadIcon
       }));
       break;
   }
-  return /* @__PURE__ */ import_react204.default.createElement("div", {
+  return /* @__PURE__ */ import_react236.default.createElement("div", {
     className: fileUploadClassName
   }, viewMarkup);
 }
-var import_react204;
+var import_react236;
 var init_FileUpload = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DropZone/components/FileUpload/FileUpload.js"() {
-    import_react204 = __toESM(require_react());
+    import_react236 = __toESM(require_react());
     init_dist();
     init_css();
     init_capitalize();
@@ -19567,10 +22419,10 @@ function stopEvent(event) {
   event.preventDefault();
   event.stopPropagation();
 }
-var import_react205, DropZone;
+var import_react237, DropZone;
 var init_DropZone = __esm({
   "node_modules/@shopify/polaris/build/esm/components/DropZone/DropZone.js"() {
-    import_react205 = __toESM(require_react());
+    import_react237 = __toESM(require_react());
     init_dist();
     init_debounce();
     init_css();
@@ -19617,10 +22469,10 @@ var init_DropZone = __esm({
       onDragOver,
       onDragLeave
     }) {
-      const node = (0, import_react205.useRef)(null);
-      const inputRef = (0, import_react205.useRef)(null);
-      const dragTargets = (0, import_react205.useRef)([]);
-      const adjustSize = (0, import_react205.useCallback)(debounce(() => {
+      const node = (0, import_react237.useRef)(null);
+      const inputRef = (0, import_react237.useRef)(null);
+      const dragTargets = (0, import_react237.useRef)([]);
+      const adjustSize = (0, import_react237.useCallback)(debounce(() => {
         if (!node.current) {
           return;
         }
@@ -19640,17 +22492,17 @@ var init_DropZone = __esm({
       }, 50, {
         trailing: true
       }), []);
-      const [dragging, setDragging] = (0, import_react205.useState)(false);
-      const [internalError, setInternalError] = (0, import_react205.useState)(false);
+      const [dragging, setDragging] = (0, import_react237.useState)(false);
+      const [internalError, setInternalError] = (0, import_react237.useState)(false);
       const {
         value: focused,
         setTrue: handleFocus,
         setFalse: handleBlur
       } = useToggle(false);
-      const [size2, setSize] = (0, import_react205.useState)("large");
-      const [measuring, setMeasuring] = (0, import_react205.useState)(true);
+      const [size2, setSize] = (0, import_react237.useState)("large");
+      const [measuring, setMeasuring] = (0, import_react237.useState)(true);
       const i18n = useI18n();
-      const getValidatedFiles = (0, import_react205.useCallback)((files) => {
+      const getValidatedFiles = (0, import_react237.useCallback)((files) => {
         const acceptedFiles = [];
         const rejectedFiles = [];
         Array.from(files).forEach((file) => {
@@ -19666,7 +22518,7 @@ var init_DropZone = __esm({
           rejectedFiles
         };
       }, [accept, allowMultiple, customValidator]);
-      const handleDrop = (0, import_react205.useCallback)((event) => {
+      const handleDrop = (0, import_react237.useCallback)((event) => {
         stopEvent(event);
         if (disabled)
           return;
@@ -19686,7 +22538,7 @@ var init_DropZone = __esm({
           return;
         event.target.value = "";
       }, [disabled, getValidatedFiles, onDrop, onDropAccepted, onDropRejected]);
-      const handleDragEnter = (0, import_react205.useCallback)((event) => {
+      const handleDragEnter = (0, import_react237.useCallback)((event) => {
         stopEvent(event);
         if (disabled)
           return;
@@ -19703,13 +22555,13 @@ var init_DropZone = __esm({
         setInternalError(rejectedFiles.length > 0);
         onDragEnter && onDragEnter();
       }, [disabled, dragging, getValidatedFiles, onDragEnter]);
-      const handleDragOver = (0, import_react205.useCallback)((event) => {
+      const handleDragOver = (0, import_react237.useCallback)((event) => {
         stopEvent(event);
         if (disabled)
           return;
         onDragOver && onDragOver();
       }, [disabled, onDragOver]);
-      const handleDragLeave = (0, import_react205.useCallback)((event) => {
+      const handleDragLeave = (0, import_react237.useCallback)((event) => {
         event.preventDefault();
         if (disabled)
           return;
@@ -19732,7 +22584,7 @@ var init_DropZone = __esm({
       useComponentDidMount(() => {
         adjustSize();
       });
-      const uniqId = (0, import_react205.useId)();
+      const uniqId = (0, import_react237.useId)();
       const id = idProp ?? uniqId;
       const typeSuffix = capitalize2(type);
       const allowMultipleKey = createAllowMultipleKey(allowMultiple);
@@ -19740,10 +22592,10 @@ var init_DropZone = __esm({
       const errorOverlayTextWithDefault = errorOverlayText === void 0 ? i18n.translate(`Polaris.DropZone.errorOverlayText${typeSuffix}`) : errorOverlayText;
       const labelValue = label || i18n.translate(`Polaris.DropZone.${allowMultipleKey}.label${typeSuffix}`);
       const labelHiddenValue = label ? labelHidden : true;
-      const classes = classNames(styles68.DropZone, outline && styles68.hasOutline, focused && styles68.focused, (active || dragging) && styles68.isDragging, disabled && styles68.isDisabled, (internalError || error) && styles68.hasError, !variableHeight && styles68[variationName("size", size2)], measuring && styles68.measuring);
+      const classes = classNames(styles78.DropZone, outline && styles78.hasOutline, focused && styles78.focused, (active || dragging) && styles78.isDragging, disabled && styles78.isDisabled, (internalError || error) && styles78.hasError, !variableHeight && styles78[variationName("size", size2)], measuring && styles78.measuring);
       const dragOverlay = (active || dragging) && !internalError && !error && overlay2 && overlayMarkup(SvgUploadIcon, overlayTextWithDefault);
       const dragErrorOverlay = dragging && (internalError || error) && overlayMarkup(SvgAlertCircleIcon, errorOverlayTextWithDefault, "critical");
-      const context = (0, import_react205.useMemo)(() => ({
+      const context = (0, import_react237.useMemo)(() => ({
         disabled,
         focused,
         size: size2,
@@ -19751,25 +22603,25 @@ var init_DropZone = __esm({
         measuring,
         allowMultiple
       }), [disabled, focused, measuring, size2, type, allowMultiple]);
-      const open = (0, import_react205.useCallback)(() => {
+      const open = (0, import_react237.useCallback)(() => {
         if (!inputRef.current)
           return;
         inputRef.current.click();
       }, [inputRef]);
-      const triggerFileDialog = (0, import_react205.useCallback)(() => {
+      const triggerFileDialog = (0, import_react237.useCallback)(() => {
         open();
         onFileDialogClose?.();
       }, [open, onFileDialogClose]);
       function overlayMarkup(icon, text2, color2) {
-        return /* @__PURE__ */ import_react205.default.createElement("div", {
-          className: styles68.Overlay
-        }, /* @__PURE__ */ import_react205.default.createElement(BlockStack, {
+        return /* @__PURE__ */ import_react237.default.createElement("div", {
+          className: styles78.Overlay
+        }, /* @__PURE__ */ import_react237.default.createElement(BlockStack, {
           gap: "200",
           inlineAlign: "center"
-        }, size2 === "small" && /* @__PURE__ */ import_react205.default.createElement(Icon, {
+        }, size2 === "small" && /* @__PURE__ */ import_react237.default.createElement(Icon, {
           source: icon,
           tone: color2
-        }), (size2 === "medium" || size2 === "large") && /* @__PURE__ */ import_react205.default.createElement(Text, {
+        }), (size2 === "medium" || size2 === "large") && /* @__PURE__ */ import_react237.default.createElement(Text, {
           variant: "bodySm",
           as: "p",
           fontWeight: "bold"
@@ -19780,28 +22632,28 @@ var init_DropZone = __esm({
           return;
         return onClick ? onClick(event) : open();
       }
-      (0, import_react205.useEffect)(() => {
+      (0, import_react237.useEffect)(() => {
         if (openFileDialog)
           triggerFileDialog();
       }, [openFileDialog, triggerFileDialog]);
-      return /* @__PURE__ */ import_react205.default.createElement(DropZoneContext.Provider, {
+      return /* @__PURE__ */ import_react237.default.createElement(DropZoneContext.Provider, {
         value: context
-      }, /* @__PURE__ */ import_react205.default.createElement(Labelled, {
+      }, /* @__PURE__ */ import_react237.default.createElement(Labelled, {
         id,
         label: labelValue,
         action: labelAction,
         labelHidden: labelHiddenValue
-      }, /* @__PURE__ */ import_react205.default.createElement("div", {
+      }, /* @__PURE__ */ import_react237.default.createElement("div", {
         ref: node,
         className: classes,
         "aria-disabled": disabled,
         onClick: handleClick,
         onDragStart: stopEvent
-      }, dragOverlay, dragErrorOverlay, /* @__PURE__ */ import_react205.default.createElement(Text, {
+      }, dragOverlay, dragErrorOverlay, /* @__PURE__ */ import_react237.default.createElement(Text, {
         variant: "bodySm",
         as: "span",
         visuallyHidden: true
-      }, /* @__PURE__ */ import_react205.default.createElement("input", {
+      }, /* @__PURE__ */ import_react237.default.createElement("input", {
         id,
         accept,
         disabled,
@@ -19812,8 +22664,8 @@ var init_DropZone = __esm({
         type: "file",
         ref: inputRef,
         autoComplete: "off"
-      })), /* @__PURE__ */ import_react205.default.createElement("div", {
-        className: styles68.Container
+      })), /* @__PURE__ */ import_react237.default.createElement("div", {
+        className: styles78.Container
       }, children))));
     };
     DropZone.FileUpload = FileUpload;
@@ -19837,27 +22689,27 @@ function EmptySearchResult({
 }) {
   const i18n = useI18n();
   const altText = i18n.translate("Polaris.EmptySearchResult.altText");
-  const descriptionMarkup = description ? /* @__PURE__ */ import_react206.default.createElement("p", null, description) : null;
-  const illustrationMarkup = withIllustration ? /* @__PURE__ */ import_react206.default.createElement(Image, {
+  const descriptionMarkup = description ? /* @__PURE__ */ import_react238.default.createElement("p", null, description) : null;
+  const illustrationMarkup = withIllustration ? /* @__PURE__ */ import_react238.default.createElement(Image, {
     alt: altText,
     source: emptySearch,
     draggable: false
   }) : null;
-  return /* @__PURE__ */ import_react206.default.createElement(LegacyStack, {
+  return /* @__PURE__ */ import_react238.default.createElement(LegacyStack, {
     alignment: "center",
     vertical: true
-  }, illustrationMarkup, /* @__PURE__ */ import_react206.default.createElement(Text, {
+  }, illustrationMarkup, /* @__PURE__ */ import_react238.default.createElement(Text, {
     variant: "headingLg",
     as: "p"
-  }, title), /* @__PURE__ */ import_react206.default.createElement(Text, {
+  }, title), /* @__PURE__ */ import_react238.default.createElement(Text, {
     tone: "subdued",
     as: "span"
   }, descriptionMarkup));
 }
-var import_react206;
+var import_react238;
 var init_EmptySearchResult = __esm({
   "node_modules/@shopify/polaris/build/esm/components/EmptySearchResult/EmptySearchResult.js"() {
-    import_react206 = __toESM(require_react());
+    import_react238 = __toESM(require_react());
     init_empty_search_svg();
     init_hooks2();
     init_LegacyStack();
@@ -19867,10 +22719,10 @@ var init_EmptySearchResult = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/EmptyState/EmptyState.scss.js
-var styles70;
+var styles80;
 var init_EmptyState_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/EmptyState/EmptyState.scss.js"() {
-    styles70 = {
+    styles80 = {
       "imageContained": "Polaris-EmptyState--imageContained"
     };
   }
@@ -19888,8 +22740,8 @@ function EmptyState({
   secondaryAction,
   footerContent
 }) {
-  const imageContainedClass = classNames(imageContained && styles70.imageContained);
-  const imageMarkup = largeImage ? /* @__PURE__ */ import_react207.default.createElement(Image, {
+  const imageContainedClass = classNames(imageContained && styles80.imageContained);
+  const imageMarkup = largeImage ? /* @__PURE__ */ import_react239.default.createElement(Image, {
     alt: "",
     role: "presentation",
     source: largeImage,
@@ -19902,16 +22754,16 @@ function EmptyState({
       descriptor: "1136w"
     }],
     sizes: "(max-width: 568px) 60vw"
-  }) : /* @__PURE__ */ import_react207.default.createElement(Image, {
+  }) : /* @__PURE__ */ import_react239.default.createElement(Image, {
     className: imageContainedClass,
     role: "presentation",
     alt: "",
     source: image
   });
   const secondaryActionMarkup = secondaryAction ? buttonFrom(secondaryAction, {}) : null;
-  const footerContentMarkup = footerContent ? /* @__PURE__ */ import_react207.default.createElement(Box, {
+  const footerContentMarkup = footerContent ? /* @__PURE__ */ import_react239.default.createElement(Box, {
     paddingBlockStart: "400"
-  }, /* @__PURE__ */ import_react207.default.createElement(Text, {
+  }, /* @__PURE__ */ import_react239.default.createElement(Text, {
     as: "span",
     alignment: "center",
     variant: "bodySm"
@@ -19920,43 +22772,43 @@ function EmptyState({
     variant: "primary",
     size: "medium"
   }) : null;
-  const headingMarkup = heading ? /* @__PURE__ */ import_react207.default.createElement(Box, {
+  const headingMarkup = heading ? /* @__PURE__ */ import_react239.default.createElement(Box, {
     paddingBlockEnd: "150"
-  }, /* @__PURE__ */ import_react207.default.createElement(Text, {
+  }, /* @__PURE__ */ import_react239.default.createElement(Text, {
     variant: "headingMd",
     as: "p",
     alignment: "center"
   }, heading)) : null;
-  const childrenMarkup = children ? /* @__PURE__ */ import_react207.default.createElement(Text, {
+  const childrenMarkup = children ? /* @__PURE__ */ import_react239.default.createElement(Text, {
     as: "span",
     alignment: "center",
     variant: "bodySm"
   }, children) : null;
-  const textContentMarkup = headingMarkup || children ? /* @__PURE__ */ import_react207.default.createElement(Box, {
+  const textContentMarkup = headingMarkup || children ? /* @__PURE__ */ import_react239.default.createElement(Box, {
     paddingBlockEnd: "400"
   }, headingMarkup, childrenMarkup) : null;
-  const actionsMarkup = primaryActionMarkup || secondaryActionMarkup ? /* @__PURE__ */ import_react207.default.createElement(InlineStack, {
+  const actionsMarkup = primaryActionMarkup || secondaryActionMarkup ? /* @__PURE__ */ import_react239.default.createElement(InlineStack, {
     align: "center",
     gap: "200"
   }, secondaryActionMarkup, primaryActionMarkup) : null;
-  const detailsMarkup = textContentMarkup || actionsMarkup || footerContentMarkup ? /* @__PURE__ */ import_react207.default.createElement(Box, {
+  const detailsMarkup = textContentMarkup || actionsMarkup || footerContentMarkup ? /* @__PURE__ */ import_react239.default.createElement(Box, {
     maxWidth: fullWidth ? "100%" : "400px"
-  }, /* @__PURE__ */ import_react207.default.createElement(BlockStack, {
+  }, /* @__PURE__ */ import_react239.default.createElement(BlockStack, {
     inlineAlign: "center"
   }, textContentMarkup, actionsMarkup, footerContentMarkup)) : null;
-  return /* @__PURE__ */ import_react207.default.createElement(Box, {
+  return /* @__PURE__ */ import_react239.default.createElement(Box, {
     paddingInlineStart: "0",
     paddingInlineEnd: "0",
     paddingBlockStart: "500",
     paddingBlockEnd: "1600"
-  }, /* @__PURE__ */ import_react207.default.createElement(BlockStack, {
+  }, /* @__PURE__ */ import_react239.default.createElement(BlockStack, {
     inlineAlign: "center"
   }, imageMarkup, detailsMarkup));
 }
-var import_react207;
+var import_react239;
 var init_EmptyState = __esm({
   "node_modules/@shopify/polaris/build/esm/components/EmptyState/EmptyState.js"() {
-    import_react207 = __toESM(require_react());
+    import_react239 = __toESM(require_react());
     init_css();
     init_EmptyState_scss();
     init_utils3();
@@ -19969,10 +22821,10 @@ var init_EmptyState = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/ExceptionList/ExceptionList.scss.js
-var styles71;
+var styles81;
 var init_ExceptionList_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ExceptionList/ExceptionList.scss.js"() {
-    styles71 = {
+    styles81 = {
       "ExceptionList": "Polaris-ExceptionList",
       "Item": "Polaris-ExceptionList__Item",
       "Icon": "Polaris-ExceptionList__Icon",
@@ -19986,10 +22838,10 @@ var init_ExceptionList_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Truncate/Truncate.scss.js
-var styles72;
+var styles82;
 var init_Truncate_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Truncate/Truncate.scss.js"() {
-    styles72 = {
+    styles82 = {
       "Truncate": "Polaris-Truncate"
     };
   }
@@ -19999,14 +22851,14 @@ var init_Truncate_scss = __esm({
 function Truncate({
   children
 }) {
-  return /* @__PURE__ */ import_react208.default.createElement("span", {
-    className: styles72.Truncate
+  return /* @__PURE__ */ import_react240.default.createElement("span", {
+    className: styles82.Truncate
   }, children);
 }
-var import_react208;
+var import_react240;
 var init_Truncate = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Truncate/Truncate.js"() {
-    import_react208 = __toESM(require_react());
+    import_react240 = __toESM(require_react());
     init_Truncate_scss();
   }
 });
@@ -20023,34 +22875,34 @@ function ExceptionList({
       description,
       truncate = false
     } = item;
-    const itemClasses = classNames(styles71.Item, status && styles71[variationName("status", status)]);
-    const iconMarkup = icon ? /* @__PURE__ */ import_react209.default.createElement(Icon, {
+    const itemClasses = classNames(styles81.Item, status && styles81[variationName("status", status)]);
+    const iconMarkup = icon ? /* @__PURE__ */ import_react241.default.createElement(Icon, {
       source: icon
-    }) : /* @__PURE__ */ import_react209.default.createElement("span", {
-      className: styles71.Bullet
+    }) : /* @__PURE__ */ import_react241.default.createElement("span", {
+      className: styles81.Bullet
     });
-    const titleMarkup = title && /* @__PURE__ */ import_react209.default.createElement("span", {
-      className: styles71.Title
+    const titleMarkup = title && /* @__PURE__ */ import_react241.default.createElement("span", {
+      className: styles81.Title
     }, title);
-    const descriptionMarkup = description && /* @__PURE__ */ import_react209.default.createElement("span", {
-      className: styles71.Description
+    const descriptionMarkup = description && /* @__PURE__ */ import_react241.default.createElement("span", {
+      className: styles81.Description
     }, description);
-    const Element2 = truncate ? Truncate : import_react209.Fragment;
-    return /* @__PURE__ */ import_react209.default.createElement("li", {
+    const Element2 = truncate ? Truncate : import_react241.Fragment;
+    return /* @__PURE__ */ import_react241.default.createElement("li", {
       className: itemClasses,
       key: index
-    }, /* @__PURE__ */ import_react209.default.createElement("span", {
-      className: styles71.Icon
-    }, iconMarkup), /* @__PURE__ */ import_react209.default.createElement(Element2, null, titleMarkup, descriptionMarkup));
+    }, /* @__PURE__ */ import_react241.default.createElement("span", {
+      className: styles81.Icon
+    }, iconMarkup), /* @__PURE__ */ import_react241.default.createElement(Element2, null, titleMarkup, descriptionMarkup));
   });
-  return /* @__PURE__ */ import_react209.default.createElement("ul", {
-    className: styles71.ExceptionList
+  return /* @__PURE__ */ import_react241.default.createElement("ul", {
+    className: styles81.ExceptionList
   }, items);
 }
-var import_react209;
+var import_react241;
 var init_ExceptionList = __esm({
   "node_modules/@shopify/polaris/build/esm/components/ExceptionList/ExceptionList.js"() {
-    import_react209 = __toESM(require_react());
+    import_react241 = __toESM(require_react());
     init_css();
     init_ExceptionList_scss();
     init_Truncate();
@@ -20059,10 +22911,10 @@ var init_ExceptionList = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Filters/Filters.scss.js
-var styles73;
+var styles83;
 var init_Filters_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/Filters.scss.js"() {
-    styles73 = {
+    styles83 = {
       "Container": "Polaris-Filters__Container",
       "SearchField": "Polaris-Filters__SearchField",
       "FiltersWrapper": "Polaris-Filters__FiltersWrapper",
@@ -20079,10 +22931,10 @@ var init_Filters_scss = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Filters/components/SearchField/SearchField.scss.js
-var styles74;
+var styles84;
 var init_SearchField_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/components/SearchField/SearchField.scss.js"() {
-    styles74 = {
+    styles84 = {
       "Spinner": "Polaris-Filters-SearchField__Spinner"
     };
   }
@@ -20101,7 +22953,7 @@ function SearchField({
   borderlessQueryField,
   loading
 }) {
-  const id = (0, import_react210.useId)();
+  const id = (0, import_react242.useId)();
   const {
     mdUp
   } = useBreakpoints();
@@ -20115,7 +22967,7 @@ function SearchField({
       onChange("");
     }
   }
-  return /* @__PURE__ */ import_react210.default.createElement(TextField, {
+  return /* @__PURE__ */ import_react242.default.createElement(TextField, {
     id,
     value,
     onChange: (eventValue) => handleChange(eventValue ?? value),
@@ -20127,12 +22979,12 @@ function SearchField({
     disabled,
     variant: borderlessQueryField ? "borderless" : "inherit",
     size: "slim",
-    prefix: mdUp ? /* @__PURE__ */ import_react210.default.createElement(Icon, {
+    prefix: mdUp ? /* @__PURE__ */ import_react242.default.createElement(Icon, {
       source: SvgSearchIcon
     }) : void 0,
-    suffix: loading ? /* @__PURE__ */ import_react210.default.createElement("div", {
-      className: styles74.Spinner
-    }, /* @__PURE__ */ import_react210.default.createElement(Spinner, {
+    suffix: loading ? /* @__PURE__ */ import_react242.default.createElement("div", {
+      className: styles84.Spinner
+    }, /* @__PURE__ */ import_react242.default.createElement(Spinner, {
       size: "small"
     })) : null,
     focused,
@@ -20141,10 +22993,10 @@ function SearchField({
     clearButton: true
   });
 }
-var import_react210;
+var import_react242;
 var init_SearchField = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/components/SearchField/SearchField.js"() {
-    import_react210 = __toESM(require_react());
+    import_react242 = __toESM(require_react());
     init_dist();
     init_breakpoints2();
     init_SearchField_scss();
@@ -20156,8 +23008,8 @@ var init_SearchField = __esm({
 
 // node_modules/@shopify/polaris/build/esm/utilities/use-on-value-change.js
 function useOnValueChange(value, onChange) {
-  const tracked = import_react211.default.useRef(value);
-  (0, import_react211.useEffect)(() => {
+  const tracked = import_react243.default.useRef(value);
+  (0, import_react243.useEffect)(() => {
     const oldValue = tracked.current;
     if (value !== tracked.current) {
       tracked.current = value;
@@ -20165,18 +23017,18 @@ function useOnValueChange(value, onChange) {
     }
   }, [value, onChange]);
 }
-var import_react211;
+var import_react243;
 var init_use_on_value_change = __esm({
   "node_modules/@shopify/polaris/build/esm/utilities/use-on-value-change.js"() {
-    import_react211 = __toESM(require_react());
+    import_react243 = __toESM(require_react());
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Filters/components/FilterPill/FilterPill.scss.js
-var styles75;
+var styles85;
 var init_FilterPill_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/components/FilterPill/FilterPill.scss.js"() {
-    styles75 = {
+    styles85 = {
       "FilterButton": "Polaris-Filters-FilterPill__FilterButton",
       "focusedFilterButton": "Polaris-Filters-FilterPill--focusedFilterButton",
       "ActiveFilterButton": "Polaris-Filters-FilterPill__ActiveFilterButton",
@@ -20208,14 +23060,14 @@ function FilterPill({
   const {
     mdDown
   } = useBreakpoints();
-  const elementRef = (0, import_react212.useRef)(null);
+  const elementRef = (0, import_react244.useRef)(null);
   const {
     value: focused,
     setTrue: setFocusedTrue,
     setFalse: setFocusedFalse
   } = useToggle(false);
-  const [popoverActive, setPopoverActive] = (0, import_react212.useState)(initialActive);
-  (0, import_react212.useEffect)(() => {
+  const [popoverActive, setPopoverActive] = (0, import_react244.useState)(initialActive);
+  (0, import_react244.useEffect)(() => {
     const node = elementRef.current;
     if (!node || !popoverActive) {
       return;
@@ -20228,7 +23080,7 @@ function FilterPill({
       left: node.offsetLeft
     });
   }, [elementRef, popoverActive]);
-  const togglePopoverActive = (0, import_react212.useCallback)(() => {
+  const togglePopoverActive = (0, import_react244.useCallback)(() => {
     if (filter) {
       setPopoverActive((popoverActive2) => !popoverActive2);
     }
@@ -20236,7 +23088,7 @@ function FilterPill({
       onClick(filterKey);
     }
   }, [filter, filterKey, onClick]);
-  const handlePopoverClose = (0, import_react212.useCallback)(() => {
+  const handlePopoverClose = (0, import_react244.useCallback)(() => {
     togglePopoverActive();
     if (!selected) {
       onRemove?.(filterKey);
@@ -20247,51 +23099,51 @@ function FilterPill({
       onRemove(filterKey);
     setPopoverActive(false);
   };
-  const buttonClasses = classNames(styles75.FilterButton, selected && styles75.ActiveFilterButton, popoverActive && styles75.FocusFilterButton, focused && styles75.focusedFilterButton);
-  const clearButtonClassNames = classNames(styles75.PlainButton, styles75.clearButton);
-  const toggleButtonClassNames = classNames(styles75.PlainButton, styles75.ToggleButton);
+  const buttonClasses = classNames(styles85.FilterButton, selected && styles85.ActiveFilterButton, popoverActive && styles85.FocusFilterButton, focused && styles85.focusedFilterButton);
+  const clearButtonClassNames = classNames(styles85.PlainButton, styles85.clearButton);
+  const toggleButtonClassNames = classNames(styles85.PlainButton, styles85.ToggleButton);
   const labelVariant = mdDown ? "bodyLg" : "bodySm";
-  const wrappedLabel = /* @__PURE__ */ import_react212.default.createElement("div", {
-    className: styles75.Label
-  }, /* @__PURE__ */ import_react212.default.createElement(Text, {
+  const wrappedLabel = /* @__PURE__ */ import_react244.default.createElement("div", {
+    className: styles85.Label
+  }, /* @__PURE__ */ import_react244.default.createElement(Text, {
     variant: labelVariant,
     as: "span"
   }, label));
-  const activator = /* @__PURE__ */ import_react212.default.createElement("div", {
+  const activator = /* @__PURE__ */ import_react244.default.createElement("div", {
     className: buttonClasses
-  }, /* @__PURE__ */ import_react212.default.createElement(InlineStack, {
+  }, /* @__PURE__ */ import_react244.default.createElement(InlineStack, {
     gap: "0",
     wrap: false
-  }, /* @__PURE__ */ import_react212.default.createElement(UnstyledButton, {
+  }, /* @__PURE__ */ import_react244.default.createElement(UnstyledButton, {
     onFocus: setFocusedTrue,
     onBlur: setFocusedFalse,
     onClick: togglePopoverActive,
     className: toggleButtonClassNames,
     type: "button"
-  }, /* @__PURE__ */ import_react212.default.createElement(InlineStack, {
+  }, /* @__PURE__ */ import_react244.default.createElement(InlineStack, {
     wrap: false,
     align: "center",
     blockAlign: "center",
     gap: "0"
-  }, selected ? /* @__PURE__ */ import_react212.default.createElement(import_react212.default.Fragment, null, wrappedLabel) : /* @__PURE__ */ import_react212.default.createElement(import_react212.default.Fragment, null, wrappedLabel, /* @__PURE__ */ import_react212.default.createElement("div", {
-    className: styles75.IconWrapper
-  }, /* @__PURE__ */ import_react212.default.createElement(Icon, {
+  }, selected ? /* @__PURE__ */ import_react244.default.createElement(import_react244.default.Fragment, null, wrappedLabel) : /* @__PURE__ */ import_react244.default.createElement(import_react244.default.Fragment, null, wrappedLabel, /* @__PURE__ */ import_react244.default.createElement("div", {
+    className: styles85.IconWrapper
+  }, /* @__PURE__ */ import_react244.default.createElement(Icon, {
     source: SvgChevronDownIcon,
     tone: "base"
-  }))))), selected ? /* @__PURE__ */ import_react212.default.createElement(UnstyledButton, {
+  }))))), selected ? /* @__PURE__ */ import_react244.default.createElement(UnstyledButton, {
     onClick: handleClear,
     className: clearButtonClassNames,
     type: "button",
     "aria-label": i18n.translate("Polaris.FilterPill.clear")
-  }, /* @__PURE__ */ import_react212.default.createElement("div", {
-    className: styles75.IconWrapper
-  }, /* @__PURE__ */ import_react212.default.createElement(Icon, {
+  }, /* @__PURE__ */ import_react244.default.createElement("div", {
+    className: styles85.IconWrapper
+  }, /* @__PURE__ */ import_react244.default.createElement(Icon, {
     source: SvgXSmallIcon,
     tone: "base"
   }))) : null));
-  const clearButtonMarkup = !hideClearButton && /* @__PURE__ */ import_react212.default.createElement("div", {
-    className: styles75.ClearButtonWrapper
-  }, /* @__PURE__ */ import_react212.default.createElement(Button, {
+  const clearButtonMarkup = !hideClearButton && /* @__PURE__ */ import_react244.default.createElement("div", {
+    className: styles85.ClearButtonWrapper
+  }, /* @__PURE__ */ import_react244.default.createElement(Button, {
     onClick: handleClear,
     variant: "plain",
     disabled: !selected,
@@ -20300,25 +23152,25 @@ function FilterPill({
   if (disabled) {
     return null;
   }
-  return /* @__PURE__ */ import_react212.default.createElement("div", {
+  return /* @__PURE__ */ import_react244.default.createElement("div", {
     ref: elementRef
-  }, /* @__PURE__ */ import_react212.default.createElement(Popover2, {
+  }, /* @__PURE__ */ import_react244.default.createElement(Popover2, {
     active: popoverActive,
     activator,
     key: filterKey,
     onClose: handlePopoverClose,
     preferredAlignment: "left",
     preventCloseOnChildOverlayClick: !closeOnChildOverlayClick
-  }, /* @__PURE__ */ import_react212.default.createElement("div", {
-    className: styles75.PopoverWrapper
-  }, /* @__PURE__ */ import_react212.default.createElement(Popover2.Section, null, /* @__PURE__ */ import_react212.default.createElement(BlockStack, {
+  }, /* @__PURE__ */ import_react244.default.createElement("div", {
+    className: styles85.PopoverWrapper
+  }, /* @__PURE__ */ import_react244.default.createElement(Popover2.Section, null, /* @__PURE__ */ import_react244.default.createElement(BlockStack, {
     gap: "100"
   }, filter, clearButtonMarkup)))));
 }
-var import_react212;
+var import_react244;
 var init_FilterPill = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/components/FilterPill/FilterPill.js"() {
-    import_react212 = __toESM(require_react());
+    import_react244 = __toESM(require_react());
     init_dist();
     init_use_toggle();
     init_breakpoints2();
@@ -20352,9 +23204,9 @@ function FiltersBar({
   const {
     mdDown
   } = useBreakpoints();
-  const [popoverActive, setPopoverActive] = (0, import_react213.useState)(false);
-  const hasMounted = (0, import_react213.useRef)(false);
-  (0, import_react213.useEffect)(() => {
+  const [popoverActive, setPopoverActive] = (0, import_react245.useState)(false);
+  const hasMounted = (0, import_react245.useRef)(false);
+  (0, import_react245.useEffect)(() => {
     hasMounted.current = true;
   });
   const togglePopoverActive = () => setPopoverActive((popoverActive2) => !popoverActive2);
@@ -20377,7 +23229,7 @@ function FiltersBar({
     const isPinnedOrApplied = Boolean(pinned) || appliedFilterKeys?.includes(key);
     return isPinnedOrApplied;
   });
-  const [localPinnedFilters, setLocalPinnedFilters] = (0, import_react213.useState)(pinnedFiltersFromPropsAndAppliedFilters.map(({
+  const [localPinnedFilters, setLocalPinnedFilters] = (0, import_react245.useState)(pinnedFiltersFromPropsAndAppliedFilters.map(({
     key
   }) => key));
   useOnValueChange(filters.length, () => {
@@ -20420,16 +23272,16 @@ function FiltersBar({
   }, []);
   const hasOneOrMorePinnedFilters = pinnedFilters.length >= 1;
   const labelVariant = mdDown ? "bodyMd" : "bodySm";
-  const addFilterActivator = /* @__PURE__ */ import_react213.default.createElement("div", null, /* @__PURE__ */ import_react213.default.createElement(UnstyledButton, {
+  const addFilterActivator = /* @__PURE__ */ import_react245.default.createElement("div", null, /* @__PURE__ */ import_react245.default.createElement(UnstyledButton, {
     type: "button",
-    className: styles73.AddFilter,
+    className: styles83.AddFilter,
     onClick: handleAddFilterClick,
     "aria-label": i18n.translate("Polaris.Filters.addFilter"),
     disabled: disabled || unsectionedFilters.length === 0 && sectionedFilters.length === 0 || disableFilters
-  }, /* @__PURE__ */ import_react213.default.createElement(Text, {
+  }, /* @__PURE__ */ import_react245.default.createElement(Text, {
     variant: labelVariant,
     as: "span"
-  }, i18n.translate("Polaris.Filters.addFilter"), " "), /* @__PURE__ */ import_react213.default.createElement(SvgPlusIcon, null)));
+  }, i18n.translate("Polaris.Filters.addFilter"), " "), /* @__PURE__ */ import_react245.default.createElement(SvgPlusIcon, null)));
   const handleClearAllFilters = () => {
     setLocalPinnedFilters(pinnedFromPropsKeys);
     onClearAll?.();
@@ -20450,7 +23302,7 @@ function FiltersBar({
       }));
       appliedFilter?.onRemove(filterKey);
     };
-    return /* @__PURE__ */ import_react213.default.createElement(FilterPill, Object.assign({
+    return /* @__PURE__ */ import_react245.default.createElement(FilterPill, Object.assign({
       key: filterKey
     }, pinnedFilter, {
       initialActive: hasMounted.current && !pinnedFilter.pinned && !appliedFilter,
@@ -20462,38 +23314,38 @@ function FiltersBar({
       closeOnChildOverlayClick
     }));
   });
-  const addButton = shouldShowAddButton ? /* @__PURE__ */ import_react213.default.createElement("div", {
-    className: classNames(styles73.AddFilterActivator, hasOneOrMorePinnedFilters && styles73.AddFilterActivatorMultiple)
-  }, /* @__PURE__ */ import_react213.default.createElement(Popover2, {
+  const addButton = shouldShowAddButton ? /* @__PURE__ */ import_react245.default.createElement("div", {
+    className: classNames(styles83.AddFilterActivator, hasOneOrMorePinnedFilters && styles83.AddFilterActivatorMultiple)
+  }, /* @__PURE__ */ import_react245.default.createElement(Popover2, {
     active: popoverActive && !disabled,
     activator: addFilterActivator,
     onClose: togglePopoverActive
-  }, /* @__PURE__ */ import_react213.default.createElement(ActionList, {
+  }, /* @__PURE__ */ import_react245.default.createElement(ActionList, {
     actionRole: "menuitem",
     items: unsectionedFilters,
     sections: sectionedFilters
   }))) : null;
-  const clearAllMarkup = appliedFilters?.length ? /* @__PURE__ */ import_react213.default.createElement("div", {
-    className: classNames(styles73.ClearAll, hasOneOrMorePinnedFilters && shouldShowAddButton && styles73.MultiplePinnedFilterClearAll)
-  }, /* @__PURE__ */ import_react213.default.createElement(Button, {
+  const clearAllMarkup = appliedFilters?.length ? /* @__PURE__ */ import_react245.default.createElement("div", {
+    className: classNames(styles83.ClearAll, hasOneOrMorePinnedFilters && shouldShowAddButton && styles83.MultiplePinnedFilterClearAll)
+  }, /* @__PURE__ */ import_react245.default.createElement(Button, {
     size: "micro",
     onClick: handleClearAllFilters,
     removeUnderline: true,
     variant: "monochromePlain"
   }, i18n.translate("Polaris.Filters.clearFilters"))) : null;
-  return /* @__PURE__ */ import_react213.default.createElement("div", {
-    className: classNames(styles73.FiltersWrapper, shouldShowAddButton && hasOneOrMorePinnedFilters && styles73.FiltersWrapperWithAddButton),
+  return /* @__PURE__ */ import_react245.default.createElement("div", {
+    className: classNames(styles83.FiltersWrapper, shouldShowAddButton && hasOneOrMorePinnedFilters && styles83.FiltersWrapperWithAddButton),
     "aria-live": "polite",
     style: mountedStateStyles
-  }, /* @__PURE__ */ import_react213.default.createElement("div", {
-    className: classNames(styles73.FiltersInner)
-  }, /* @__PURE__ */ import_react213.default.createElement("div", {
-    className: classNames(styles73.FiltersStickyArea)
-  }, pinnedFiltersMarkup, addButton, clearAllMarkup)), hideQueryField ? /* @__PURE__ */ import_react213.default.createElement(Box, {
+  }, /* @__PURE__ */ import_react245.default.createElement("div", {
+    className: classNames(styles83.FiltersInner)
+  }, /* @__PURE__ */ import_react245.default.createElement("div", {
+    className: classNames(styles83.FiltersStickyArea)
+  }, pinnedFiltersMarkup, addButton, clearAllMarkup)), hideQueryField ? /* @__PURE__ */ import_react245.default.createElement(Box, {
     paddingInlineEnd: "300",
     paddingBlockStart: "200",
     paddingBlockEnd: "200"
-  }, /* @__PURE__ */ import_react213.default.createElement(InlineStack, {
+  }, /* @__PURE__ */ import_react245.default.createElement(InlineStack, {
     align: "start",
     blockAlign: "center",
     gap: {
@@ -20502,10 +23354,10 @@ function FiltersBar({
     }
   }, children)) : null);
 }
-var import_react213;
+var import_react245;
 var init_FiltersBar = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/components/FiltersBar/FiltersBar.js"() {
-    import_react213 = __toESM(require_react());
+    import_react245 = __toESM(require_react());
     init_dist();
     init_use_on_value_change();
     init_css();
@@ -20548,24 +23400,24 @@ function Filters({
   closeOnChildOverlayClick
 }) {
   const hideFilterBar = hideFilters || filters.length === 0;
-  const queryFieldMarkup = hideQueryField ? null : /* @__PURE__ */ import_react214.default.createElement("div", {
-    className: styles73.Container
-  }, /* @__PURE__ */ import_react214.default.createElement(Box, {
+  const queryFieldMarkup = hideQueryField ? null : /* @__PURE__ */ import_react246.default.createElement("div", {
+    className: styles83.Container
+  }, /* @__PURE__ */ import_react246.default.createElement(Box, {
     padding: hideFilterBar ? "300" : "200"
-  }, /* @__PURE__ */ import_react214.default.createElement(InlineStack, {
+  }, /* @__PURE__ */ import_react246.default.createElement(InlineStack, {
     align: "start",
     blockAlign: "center",
     gap: {
       xs: "400",
       md: "300"
     }
-  }, /* @__PURE__ */ import_react214.default.createElement("div", {
-    className: styles73.SearchField,
+  }, /* @__PURE__ */ import_react246.default.createElement("div", {
+    className: styles83.SearchField,
     style: mountedState ? {
       ...defaultStyle,
       ...transitionStyles[mountedState]
     } : void 0
-  }, /* @__PURE__ */ import_react214.default.createElement(SearchField, {
+  }, /* @__PURE__ */ import_react246.default.createElement(SearchField, {
     onChange: onQueryChange,
     onFocus: onQueryFocus,
     onBlur: onQueryBlur,
@@ -20581,7 +23433,7 @@ function Filters({
     ...defaultFilterStyles,
     ...transitionFilterStyles[mountedState]
   } : void 0;
-  const filtersMarkup = hideFilterBar ? null : /* @__PURE__ */ import_react214.default.createElement(FiltersBar, {
+  const filtersMarkup = hideFilterBar ? null : /* @__PURE__ */ import_react246.default.createElement(FiltersBar, {
     filters,
     appliedFilters,
     onClearAll,
@@ -20592,14 +23444,14 @@ function Filters({
     closeOnChildOverlayClick,
     mountedStateStyles
   }, children);
-  return /* @__PURE__ */ import_react214.default.createElement("div", {
-    className: classNames(styles73.Filters, hideQueryField && styles73.hideQueryField)
+  return /* @__PURE__ */ import_react246.default.createElement("div", {
+    className: classNames(styles83.Filters, hideQueryField && styles83.hideQueryField)
   }, queryFieldMarkup, filtersMarkup);
 }
-var import_react214, TRANSITION_DURATION, TRANSITION_MARGIN, defaultStyle, transitionStyles, defaultFilterStyles, transitionFilterStyles;
+var import_react246, TRANSITION_DURATION, TRANSITION_MARGIN, defaultStyle, transitionStyles, defaultFilterStyles, transitionFilterStyles;
 var init_Filters = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Filters/Filters.js"() {
-    import_react214 = __toESM(require_react());
+    import_react246 = __toESM(require_react());
     init_css();
     init_Filters_scss();
     init_SearchField();
@@ -20659,40 +23511,11 @@ var init_Filters = __esm({
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Focus/Focus.js
-function isRef(ref) {
-  return ref.current !== void 0;
-}
-var import_react215, Focus;
-var init_Focus = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Focus/Focus.js"() {
-    import_react215 = __toESM(require_react());
-    init_focus();
-    Focus = /* @__PURE__ */ (0, import_react215.memo)(function Focus2({
-      children,
-      disabled,
-      root
-    }) {
-      (0, import_react215.useEffect)(() => {
-        if (disabled || !root) {
-          return;
-        }
-        const node = isRef(root) ? root.current : root;
-        if (!node || node.querySelector("[autofocus]")) {
-          return;
-        }
-        focusFirstFocusableNode(node, false);
-      }, [disabled, root]);
-      return /* @__PURE__ */ import_react215.default.createElement(import_react215.default.Fragment, null, children);
-    });
-  }
-});
-
 // node_modules/@shopify/polaris/build/esm/components/FooterHelp/FooterHelp.scss.js
-var styles76;
+var styles86;
 var init_FooterHelp_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/FooterHelp/FooterHelp.scss.js"() {
-    styles76 = {
+    styles86 = {
       "FooterHelp": "Polaris-FooterHelp",
       "Text": "Polaris-FooterHelp__Text"
     };
@@ -20703,1561 +23526,25 @@ var init_FooterHelp_scss = __esm({
 function FooterHelp({
   children
 }) {
-  return /* @__PURE__ */ import_react216.default.createElement("div", {
-    className: styles76.FooterHelp
-  }, /* @__PURE__ */ import_react216.default.createElement("div", {
-    className: styles76.Text
+  return /* @__PURE__ */ import_react247.default.createElement("div", {
+    className: styles86.FooterHelp
+  }, /* @__PURE__ */ import_react247.default.createElement("div", {
+    className: styles86.Text
   }, children));
 }
-var import_react216;
+var import_react247;
 var init_FooterHelp = __esm({
   "node_modules/@shopify/polaris/build/esm/components/FooterHelp/FooterHelp.js"() {
-    import_react216 = __toESM(require_react());
+    import_react247 = __toESM(require_react());
     init_FooterHelp_scss();
   }
 });
 
-// node_modules/@shopify/polaris/build/esm/components/Form/Form.js
-function Form({
-  acceptCharset,
-  action,
-  autoComplete,
-  children,
-  encType,
-  implicitSubmit = true,
-  method = "post",
-  name,
-  noValidate,
-  preventDefault: preventDefault2 = true,
-  target,
-  onSubmit
-}) {
-  const i18n = useI18n();
-  const handleSubmit = (0, import_react217.useCallback)((event) => {
-    if (!preventDefault2) {
-      return;
-    }
-    event.preventDefault();
-    onSubmit(event);
-  }, [onSubmit, preventDefault2]);
-  const autoCompleteInputs = normalizeAutoComplete(autoComplete);
-  const submitMarkup = implicitSubmit ? /* @__PURE__ */ import_react217.default.createElement(Text, {
-    as: "span",
-    visuallyHidden: true
-  }, /* @__PURE__ */ import_react217.default.createElement("button", {
-    type: "submit",
-    "aria-hidden": "true",
-    tabIndex: -1
-  }, i18n.translate("Polaris.Common.submit"))) : null;
-  return /* @__PURE__ */ import_react217.default.createElement("form", {
-    acceptCharset,
-    action,
-    autoComplete: autoCompleteInputs,
-    encType,
-    method,
-    name,
-    noValidate,
-    target,
-    onSubmit: handleSubmit
-  }, submitMarkup, children);
-}
-function normalizeAutoComplete(autoComplete) {
-  if (autoComplete == null) {
-    return autoComplete;
-  }
-  return autoComplete ? "on" : "off";
-}
-var import_react217;
-var init_Form = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Form/Form.js"() {
-    import_react217 = __toESM(require_react());
-    init_hooks2();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/set-root-property.js
-function setRootProperty(name, value, node) {
-  if (!document)
-    return;
-  const element = node || document.documentElement;
-  element.style.setProperty(name, value);
-}
-var init_set_root_property = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/set-root-property.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/Frame.scss.js
-var styles77;
-var init_Frame_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/Frame.scss.js"() {
-    styles77 = {
-      "Frame": "Polaris-Frame",
-      "Navigation": "Polaris-Frame__Navigation",
-      "hasTopBar": "Polaris-Frame--hasTopBar",
-      "Navigation-enter": "Polaris-Frame__Navigation--enter",
-      "Navigation-enterActive": "Polaris-Frame__Navigation--enterActive",
-      "Navigation-exit": "Polaris-Frame__Navigation--exit",
-      "Navigation-exitActive": "Polaris-Frame__Navigation--exitActive",
-      "NavigationDismiss": "Polaris-Frame__NavigationDismiss",
-      "Navigation-visible": "Polaris-Frame__Navigation--visible",
-      "TopBar": "Polaris-Frame__TopBar",
-      "ContextualSaveBar": "Polaris-Frame__ContextualSaveBar",
-      "Main": "Polaris-Frame__Main",
-      "hasNav": "Polaris-Frame--hasNav",
-      "Content": "Polaris-Frame__Content",
-      "hasSidebar": "Polaris-Frame--hasSidebar",
-      "GlobalRibbonContainer": "Polaris-Frame__GlobalRibbonContainer",
-      "LoadingBar": "Polaris-Frame__LoadingBar",
-      "Skip": "Polaris-Frame__Skip",
-      "focused": "Polaris-Frame--focused",
-      "pressed": "Polaris-Frame--pressed"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-is-mounted-ref.js
-function useIsMountedRef() {
-  const isMounted = (0, import_react218.useRef)(false);
-  (0, import_react218.useEffect)(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-  return isMounted;
-}
-var import_react218;
-var init_use_is_mounted_ref = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-is-mounted-ref.js"() {
-    import_react218 = __toESM(require_react());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.scss.js
-var styles78;
-var init_Loading_scss2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.scss.js"() {
-    styles78 = {
-      "Loading": "Polaris-Frame-Loading",
-      "Level": "Polaris-Frame-Loading__Level"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.js
-function Loading2() {
-  const i18n = useI18n();
-  const isMountedRef = useIsMountedRef();
-  const [progress, setProgress] = (0, import_react219.useState)(0);
-  const [animating, setAnimating] = (0, import_react219.useState)(false);
-  (0, import_react219.useEffect)(() => {
-    if (progress >= STUCK_THRESHOLD || animating) {
-      return;
-    }
-    requestAnimationFrame(() => {
-      if (!isMountedRef.current)
-        return;
-      const step = Math.max((STUCK_THRESHOLD - progress) / 10, 1);
-      setAnimating(true);
-      setProgress(progress + step);
-    });
-  }, [progress, animating, isMountedRef]);
-  const customStyles = {
-    transform: `scaleX(${Math.floor(progress) / 100})`
-  };
-  return /* @__PURE__ */ import_react219.default.createElement("div", {
-    className: styles78.Loading,
-    "aria-valuenow": progress,
-    "aria-valuemin": 0,
-    "aria-valuemax": 100,
-    role: "progressbar",
-    "aria-label": i18n.translate("Polaris.Loading.label")
-  }, /* @__PURE__ */ import_react219.default.createElement("div", {
-    className: styles78.Level,
-    style: customStyles,
-    onTransitionEnd: () => setAnimating(false)
-  }));
-}
-var import_react219, STUCK_THRESHOLD;
-var init_Loading2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Loading/Loading.js"() {
-    import_react219 = __toESM(require_react());
-    init_use_is_mounted_ref();
-    init_Loading_scss2();
-    init_hooks2();
-    STUCK_THRESHOLD = 99;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js
-var styles79;
-var init_CSSAnimation_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.scss.js"() {
-    styles79 = {
-      "startFade": "Polaris-Frame-CSSAnimation--startFade",
-      "endFade": "Polaris-Frame-CSSAnimation--endFade"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.js
-function CSSAnimation({
-  in: inProp,
-  className,
-  type,
-  children
-}) {
-  const [transitionStatus, setTransitionStatus] = (0, import_react220.useState)(inProp ? TransitionStatus2.Entering : TransitionStatus2.Exited);
-  const isMounted = (0, import_react220.useRef)(false);
-  const node = (0, import_react220.useRef)(null);
-  (0, import_react220.useEffect)(() => {
-    if (!isMounted.current)
-      return;
-    transitionStatus === TransitionStatus2.Entering && changeTransitionStatus(TransitionStatus2.Entered);
-  }, [transitionStatus]);
-  (0, import_react220.useEffect)(() => {
-    if (!isMounted.current)
-      return;
-    inProp && changeTransitionStatus(TransitionStatus2.Entering);
-    !inProp && changeTransitionStatus(TransitionStatus2.Exiting);
-  }, [inProp]);
-  (0, import_react220.useEffect)(() => {
-    isMounted.current = true;
-  }, []);
-  const wrapperClassName = classNames(className, styles79[variationName("start", type)], inProp && styles79[variationName("end", type)]);
-  const content = transitionStatus === TransitionStatus2.Exited && !inProp ? null : children;
-  return /* @__PURE__ */ import_react220.default.createElement("div", {
-    className: wrapperClassName,
-    ref: node,
-    onTransitionEnd: handleTransitionEnd
-  }, content);
-  function handleTransitionEnd() {
-    transitionStatus === TransitionStatus2.Exiting && changeTransitionStatus(TransitionStatus2.Exited);
-  }
-  function changeTransitionStatus(transitionStatus2) {
-    setTransitionStatus(transitionStatus2);
-    if (transitionStatus2 === TransitionStatus2.Entering)
-      node.current && node.current.getBoundingClientRect();
-  }
-}
-var import_react220, TransitionStatus2;
-var init_CSSAnimation = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/CSSAnimation/CSSAnimation.js"() {
-    import_react220 = __toESM(require_react());
-    init_css();
-    init_CSSAnimation_scss();
-    (function(TransitionStatus3) {
-      TransitionStatus3["Entering"] = "entering";
-      TransitionStatus3["Entered"] = "entered";
-      TransitionStatus3["Exiting"] = "exiting";
-      TransitionStatus3["Exited"] = "exited";
-    })(TransitionStatus2 || (TransitionStatus2 = {}));
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/pluck-deep.js
-function pluckDeep(obj, key) {
-  if (!obj) {
-    return null;
-  }
-  const keys = Object.keys(obj);
-  for (const currKey of keys) {
-    if (currKey === key) {
-      return obj[key];
-    }
-    if (isObject(obj[currKey])) {
-      const plucked = pluckDeep(obj[currKey], key);
-      if (plucked) {
-        return plucked;
-      }
-    }
-  }
-  return null;
-}
-var init_pluck_deep = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/pluck-deep.js"() {
-    init_is_object();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/get-width.js
-function getWidth(value = {}, defaultWidth = 0, key = "width") {
-  const width2 = typeof value === "number" ? value : pluckDeep(value, key);
-  return width2 ? `${width2}px` : `${defaultWidth}px`;
-}
-var init_get_width = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/get-width.js"() {
-    init_pluck_deep();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js
-var styles80;
-var init_ContextualSaveBar_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.scss.js"() {
-    styles80 = {
-      "ContextualSaveBar": "Polaris-Frame-ContextualSaveBar",
-      "LogoContainer": "Polaris-Frame-ContextualSaveBar__LogoContainer",
-      "ContextControl": "Polaris-Frame-ContextualSaveBar__ContextControl",
-      "Contents": "Polaris-Frame-ContextualSaveBar__Contents",
-      "fullWidth": "Polaris-Frame-ContextualSaveBar--fullWidth",
-      "MessageContainer": "Polaris-Frame-ContextualSaveBar__MessageContainer",
-      "ActionContainer": "Polaris-Frame-ContextualSaveBar__ActionContainer",
-      "Action": "Polaris-Frame-ContextualSaveBar__Action"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/Modal.scss.js
-var styles81;
-var init_Modal_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/Modal.scss.js"() {
-    styles81 = {
-      "Body": "Polaris-Modal__Body",
-      "IFrame": "Polaris-Modal__IFrame"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.scss.js
-var styles82;
-var init_Section_scss2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.scss.js"() {
-    styles82 = {
-      "Section": "Polaris-Modal-Section",
-      "titleHidden": "Polaris-Modal-Section--titleHidden"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.js
-function Section6({
-  children,
-  flush = false,
-  subdued = false,
-  titleHidden = false
-}) {
-  const className = classNames(styles82.Section, titleHidden && styles82.titleHidden);
-  return /* @__PURE__ */ import_react221.default.createElement("div", {
-    className
-  }, /* @__PURE__ */ import_react221.default.createElement(Box, Object.assign({
-    as: "section",
-    padding: flush ? "0" : "400"
-  }, titleHidden && {
-    paddingInlineEnd: "0"
-  }, subdued && {
-    background: "bg-surface-tertiary"
-  }), children));
-}
-var import_react221;
-var init_Section6 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Section/Section.js"() {
-    import_react221 = __toESM(require_react());
-    init_css();
-    init_Section_scss2();
-    init_Box();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.scss.js
-var styles83;
-var init_Dialog_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.scss.js"() {
-    styles83 = {
-      "Container": "Polaris-Modal-Dialog__Container",
-      "Dialog": "Polaris-Modal-Dialog",
-      "Modal": "Polaris-Modal-Dialog__Modal",
-      "limitHeight": "Polaris-Modal-Dialog--limitHeight",
-      "sizeSmall": "Polaris-Modal-Dialog--sizeSmall",
-      "sizeLarge": "Polaris-Modal-Dialog--sizeLarge",
-      "sizeFullScreen": "Polaris-Modal-Dialog--sizeFullScreen",
-      "animateFadeUp": "Polaris-Modal-Dialog--animateFadeUp",
-      "entering": "Polaris-Modal-Dialog--entering",
-      "exiting": "Polaris-Modal-Dialog--exiting",
-      "exited": "Polaris-Modal-Dialog--exited",
-      "entered": "Polaris-Modal-Dialog--entered"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/focus-manager/hooks.js
-function useFocusManager({
-  trapping
-}) {
-  const focusManager = (0, import_react222.useContext)(FocusManagerContext);
-  const id = (0, import_react222.useId)();
-  if (!focusManager) {
-    throw new MissingAppProviderError("No FocusManager was provided.");
-  }
-  const {
-    trapFocusList,
-    add: addFocusItem,
-    remove: removeFocusItem
-  } = focusManager;
-  const canSafelyFocus = trapFocusList[0] === id;
-  const value = (0, import_react222.useMemo)(() => ({
-    canSafelyFocus
-  }), [canSafelyFocus]);
-  (0, import_react222.useEffect)(() => {
-    if (!trapping)
-      return;
-    addFocusItem(id);
-    return () => {
-      removeFocusItem(id);
-    };
-  }, [addFocusItem, id, removeFocusItem, trapping]);
-  return value;
-}
-var import_react222;
-var init_hooks12 = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/focus-manager/hooks.js"() {
-    import_react222 = __toESM(require_react());
-    init_errors();
-    init_context8();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/TrapFocus/TrapFocus.js
-function TrapFocus({
-  trapping = true,
-  children
-}) {
-  const {
-    canSafelyFocus
-  } = useFocusManager({
-    trapping
-  });
-  const focusTrapWrapper = (0, import_react223.useRef)(null);
-  const [disableFocus, setDisableFocus] = (0, import_react223.useState)(true);
-  (0, import_react223.useEffect)(() => {
-    const disable = canSafelyFocus && !(focusTrapWrapper.current && focusTrapWrapper.current.contains(document.activeElement)) ? !trapping : true;
-    setDisableFocus(disable);
-  }, [canSafelyFocus, trapping]);
-  const handleFocusIn = (event) => {
-    const containerContentsHaveFocus = focusTrapWrapper.current && focusTrapWrapper.current.contains(document.activeElement);
-    if (trapping === false || !focusTrapWrapper.current || containerContentsHaveFocus || event.target instanceof Element && event.target.matches(`${portal.selector} *`)) {
-      return;
-    }
-    if (canSafelyFocus && event.target instanceof HTMLElement && focusTrapWrapper.current !== event.target && !focusTrapWrapper.current.contains(event.target)) {
-      focusFirstFocusableNode(focusTrapWrapper.current);
-    }
-  };
-  const handleTab = (event) => {
-    if (trapping === false || !focusTrapWrapper.current) {
-      return;
-    }
-    const firstFocusableNode = findFirstKeyboardFocusableNode(focusTrapWrapper.current);
-    const lastFocusableNode = findLastKeyboardFocusableNode(focusTrapWrapper.current);
-    if (event.target === lastFocusableNode && !event.shiftKey) {
-      event.preventDefault();
-      focusFirstKeyboardFocusableNode(focusTrapWrapper.current);
-    }
-    if (event.target === firstFocusableNode && event.shiftKey) {
-      event.preventDefault();
-      focusLastKeyboardFocusableNode(focusTrapWrapper.current);
-    }
-  };
-  return /* @__PURE__ */ import_react223.default.createElement(Focus, {
-    disabled: disableFocus,
-    root: focusTrapWrapper.current
-  }, /* @__PURE__ */ import_react223.default.createElement("div", {
-    ref: focusTrapWrapper
-  }, /* @__PURE__ */ import_react223.default.createElement(EventListener, {
-    event: "focusin",
-    handler: handleFocusIn
-  }), /* @__PURE__ */ import_react223.default.createElement(KeypressListener, {
-    keyCode: Key.Tab,
-    keyEvent: "keydown",
-    handler: handleTab
-  }), children));
-}
-var import_react223;
-var init_TrapFocus = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/TrapFocus/TrapFocus.js"() {
-    import_react223 = __toESM(require_react());
-    init_types();
-    init_focus();
-    init_shared();
-    init_hooks12();
-    init_Focus();
-    init_EventListener();
-    init_KeypressListener();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.js
-function Dialog({
-  instant,
-  labelledBy,
-  children,
-  limitHeight,
-  size: size2,
-  onClose,
-  onExited,
-  onEntered,
-  setClosing,
-  hasToasts,
-  ...props
-}) {
-  const theme = useTheme();
-  const containerNode = (0, import_react224.useRef)(null);
-  const frameContext = (0, import_react224.useContext)(FrameContext);
-  let toastMessages;
-  if (frameContext) {
-    toastMessages = frameContext.toastMessages;
-  }
-  const classes = classNames(styles83.Modal, size2 && styles83[variationName("size", size2)], limitHeight && styles83.limitHeight);
-  const TransitionChild = instant ? Transition_default : FadeUp;
-  (0, import_react224.useEffect)(() => {
-    containerNode.current && !containerNode.current.contains(document.activeElement) && focusFirstFocusableNode(containerNode.current);
-  }, []);
-  const handleKeyDown5 = () => {
-    if (setClosing) {
-      setClosing(true);
-    }
-  };
-  const handleKeyUp = () => {
-    if (setClosing) {
-      setClosing(false);
-    }
-    onClose();
-  };
-  const ariaLiveAnnouncements = /* @__PURE__ */ import_react224.default.createElement("div", {
-    "aria-live": "assertive"
-  }, toastMessages ? toastMessages.map((toastMessage) => /* @__PURE__ */ import_react224.default.createElement(Text, {
-    visuallyHidden: true,
-    as: "p",
-    key: toastMessage.id
-  }, toastMessage.content)) : null);
-  return /* @__PURE__ */ import_react224.default.createElement(TransitionChild, Object.assign({}, props, {
-    nodeRef: containerNode,
-    mountOnEnter: true,
-    unmountOnExit: true,
-    timeout: parseInt(theme.motion["motion-duration-200"], 10),
-    onEntered,
-    onExited
-  }), /* @__PURE__ */ import_react224.default.createElement("div", {
-    className: styles83.Container,
-    "data-polaris-layer": true,
-    "data-polaris-overlay": true,
-    ref: containerNode
-  }, /* @__PURE__ */ import_react224.default.createElement(TrapFocus, null, /* @__PURE__ */ import_react224.default.createElement("div", {
-    role: "dialog",
-    "aria-modal": true,
-    "aria-label": labelledBy,
-    "aria-labelledby": labelledBy,
-    tabIndex: -1,
-    className: styles83.Dialog
-  }, /* @__PURE__ */ import_react224.default.createElement("div", {
-    className: classes
-  }, /* @__PURE__ */ import_react224.default.createElement(KeypressListener, {
-    keyCode: Key.Escape,
-    keyEvent: "keydown",
-    handler: handleKeyDown5
-  }), /* @__PURE__ */ import_react224.default.createElement(KeypressListener, {
-    keyCode: Key.Escape,
-    handler: handleKeyUp
-  }), children), ariaLiveAnnouncements))));
-}
-function FadeUp({
-  children,
-  ...props
-}) {
-  return /* @__PURE__ */ import_react224.default.createElement(CSSTransition_default, Object.assign({}, props, {
-    classNames: fadeUpClasses
-  }), children);
-}
-var import_react224, fadeUpClasses;
-var init_Dialog = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Dialog/Dialog.js"() {
-    import_react224 = __toESM(require_react());
-    init_esm();
-    init_css();
-    init_focus();
-    init_types();
-    init_use_theme();
-    init_Dialog_scss();
-    init_context15();
-    init_TrapFocus();
-    init_Text();
-    init_KeypressListener();
-    fadeUpClasses = {
-      appear: classNames(styles83.animateFadeUp, styles83.entering),
-      appearActive: classNames(styles83.animateFadeUp, styles83.entered),
-      enter: classNames(styles83.animateFadeUp, styles83.entering),
-      enterActive: classNames(styles83.animateFadeUp, styles83.entered),
-      exit: classNames(styles83.animateFadeUp, styles83.exiting),
-      exitActive: classNames(styles83.animateFadeUp, styles83.exited)
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/CloseButton/CloseButton.js
-function CloseButton({
-  pressed,
-  onClick
-}) {
-  const i18n = useI18n();
-  return /* @__PURE__ */ import_react225.default.createElement(Button, {
-    variant: "tertiary",
-    pressed,
-    icon: SvgXIcon,
-    onClick,
-    accessibilityLabel: i18n.translate("Polaris.Common.close")
-  });
-}
-var import_react225;
-var init_CloseButton = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/CloseButton/CloseButton.js"() {
-    import_react225 = __toESM(require_react());
-    init_dist();
-    init_hooks2();
-    init_Button();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Header/Header.js
-function Header4({
-  id,
-  children,
-  closing,
-  titleHidden,
-  onClose
-}) {
-  const headerPaddingInline = "400";
-  const headerPaddingBlock = "400";
-  if (titleHidden || !children) {
-    return /* @__PURE__ */ import_react226.default.createElement(Box, {
-      position: "absolute",
-      insetInlineEnd: headerPaddingInline,
-      insetBlockStart: headerPaddingBlock,
-      zIndex: "1"
-    }, /* @__PURE__ */ import_react226.default.createElement(CloseButton, {
-      onClick: onClose
-    }));
-  }
-  return /* @__PURE__ */ import_react226.default.createElement(Box, {
-    paddingBlockStart: "400",
-    paddingBlockEnd: "400",
-    paddingInlineStart: headerPaddingInline,
-    paddingInlineEnd: headerPaddingInline,
-    borderBlockEndWidth: "025",
-    borderColor: "border",
-    background: "bg-surface-tertiary"
-  }, /* @__PURE__ */ import_react226.default.createElement(InlineGrid, {
-    columns: {
-      xs: "1fr auto"
-    },
-    gap: "400"
-  }, /* @__PURE__ */ import_react226.default.createElement(InlineStack, {
-    gap: "400",
-    blockAlign: "center"
-  }, /* @__PURE__ */ import_react226.default.createElement(Text, {
-    id,
-    as: "h2",
-    variant: "headingMd",
-    breakWord: true
-  }, children)), /* @__PURE__ */ import_react226.default.createElement(CloseButton, {
-    pressed: closing,
-    onClick: onClose
-  })));
-}
-var import_react226;
-var init_Header4 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Header/Header.js"() {
-    import_react226 = __toESM(require_react());
-    init_CloseButton();
-    init_InlineGrid();
-    init_Box();
-    init_InlineStack();
-    init_Text();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/components/Footer/Footer.js
-function Footer({
-  primaryAction,
-  secondaryActions,
-  children
-}) {
-  const primaryActionButton = primaryAction && buttonsFrom(primaryAction, {
-    variant: "primary"
-  }) || null;
-  const secondaryActionButtons = secondaryActions && buttonsFrom(secondaryActions) || null;
-  const actions = primaryActionButton || secondaryActionButtons ? /* @__PURE__ */ import_react227.default.createElement(InlineStack, {
-    gap: "200"
-  }, secondaryActionButtons, primaryActionButton) : null;
-  return /* @__PURE__ */ import_react227.default.createElement(InlineStack, {
-    gap: "400",
-    blockAlign: "center"
-  }, /* @__PURE__ */ import_react227.default.createElement(Box, {
-    borderColor: "border",
-    borderBlockStartWidth: "025",
-    padding: "400",
-    width: "100%"
-  }, /* @__PURE__ */ import_react227.default.createElement(InlineStack, {
-    gap: "400",
-    blockAlign: "center",
-    align: "space-between"
-  }, /* @__PURE__ */ import_react227.default.createElement(Box, null, children), actions)));
-}
-var import_react227;
-var init_Footer = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/components/Footer/Footer.js"() {
-    import_react227 = __toESM(require_react());
-    init_utils3();
-    init_InlineStack();
-    init_Box();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Modal/Modal.js
-function isRef2(ref) {
-  return Object.prototype.hasOwnProperty.call(ref, "current");
-}
-var import_react228, IFRAME_LOADING_HEIGHT, DEFAULT_IFRAME_CONTENT_HEIGHT, Modal;
-var init_Modal = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Modal/Modal.js"() {
-    import_react228 = __toESM(require_react());
-    init_esm();
-    init_focus();
-    init_within_content_context();
-    init_components();
-    init_Modal_scss();
-    init_Section6();
-    init_Dialog();
-    init_Header4();
-    init_Backdrop();
-    init_Footer();
-    init_hooks2();
-    init_Box();
-    init_Scrollable();
-    init_Portal();
-    init_InlineStack();
-    init_Spinner();
-    IFRAME_LOADING_HEIGHT = 200;
-    DEFAULT_IFRAME_CONTENT_HEIGHT = 400;
-    Modal = function Modal2({
-      children,
-      title,
-      titleHidden = false,
-      src,
-      iFrameName,
-      open,
-      instant,
-      sectioned,
-      loading,
-      size: size2,
-      limitHeight,
-      footer,
-      primaryAction,
-      secondaryActions,
-      onScrolledToBottom,
-      activator,
-      activatorWrapper = "div",
-      onClose,
-      onIFrameLoad,
-      onTransitionEnd,
-      noScroll
-    }) {
-      const [iframeHeight, setIframeHeight] = (0, import_react228.useState)(IFRAME_LOADING_HEIGHT);
-      const [closing, setClosing] = (0, import_react228.useState)(false);
-      const headerId = (0, import_react228.useId)();
-      const activatorRef = (0, import_react228.useRef)(null);
-      const i18n = useI18n();
-      const iframeTitle = i18n.translate("Polaris.Modal.iFrameTitle");
-      let dialog;
-      let backdrop;
-      const handleEntered = (0, import_react228.useCallback)(() => {
-        if (onTransitionEnd) {
-          onTransitionEnd();
-        }
-      }, [onTransitionEnd]);
-      const handleExited = (0, import_react228.useCallback)(() => {
-        setIframeHeight(IFRAME_LOADING_HEIGHT);
-        const activatorElement = activator && isRef2(activator) ? activator && activator.current : activatorRef.current;
-        if (activatorElement) {
-          requestAnimationFrame(() => focusFirstFocusableNode(activatorElement));
-        }
-      }, [activator]);
-      const handleIFrameLoad = (0, import_react228.useCallback)((evt) => {
-        const iframe = evt.target;
-        if (iframe && iframe.contentWindow) {
-          try {
-            setIframeHeight(iframe.contentWindow.document.body.scrollHeight);
-          } catch (_error) {
-            setIframeHeight(DEFAULT_IFRAME_CONTENT_HEIGHT);
-          }
-        }
-        if (onIFrameLoad != null) {
-          onIFrameLoad(evt);
-        }
-      }, [onIFrameLoad]);
-      if (open) {
-        const footerMarkup = !footer && !primaryAction && !secondaryActions ? null : /* @__PURE__ */ import_react228.default.createElement(Footer, {
-          primaryAction,
-          secondaryActions
-        }, footer);
-        const content = sectioned ? wrapWithComponent(children, Section6, {
-          titleHidden
-        }) : children;
-        const body = loading ? /* @__PURE__ */ import_react228.default.createElement(Box, {
-          padding: "400"
-        }, /* @__PURE__ */ import_react228.default.createElement(InlineStack, {
-          gap: "400",
-          align: "center",
-          blockAlign: "center"
-        }, /* @__PURE__ */ import_react228.default.createElement(Spinner, null))) : content;
-        const scrollContainerMarkup = noScroll ? /* @__PURE__ */ import_react228.default.createElement(Box, {
-          width: "100%",
-          overflowX: "hidden",
-          overflowY: "hidden"
-        }, body) : /* @__PURE__ */ import_react228.default.createElement(Scrollable, {
-          shadow: true,
-          className: styles81.Body,
-          onScrolledToBottom
-        }, body);
-        const bodyMarkup = src ? /* @__PURE__ */ import_react228.default.createElement("iframe", {
-          name: iFrameName,
-          title: iframeTitle,
-          src,
-          className: styles81.IFrame,
-          onLoad: handleIFrameLoad,
-          style: {
-            height: `${iframeHeight}px`
-          }
-        }) : scrollContainerMarkup;
-        dialog = /* @__PURE__ */ import_react228.default.createElement(Dialog, {
-          instant,
-          labelledBy: headerId,
-          onClose,
-          onEntered: handleEntered,
-          onExited: handleExited,
-          size: size2,
-          limitHeight,
-          setClosing
-        }, /* @__PURE__ */ import_react228.default.createElement(Header4, {
-          titleHidden,
-          id: headerId,
-          closing,
-          onClose
-        }, title), bodyMarkup, footerMarkup);
-        backdrop = /* @__PURE__ */ import_react228.default.createElement(Backdrop, {
-          setClosing,
-          onClick: onClose
-        });
-      }
-      const animated = !instant;
-      const activatorMarkup = activator && !isRef2(activator) ? /* @__PURE__ */ import_react228.default.createElement(Box, {
-        ref: activatorRef,
-        as: activatorWrapper
-      }, activator) : null;
-      return /* @__PURE__ */ import_react228.default.createElement(WithinContentContext.Provider, {
-        value: true
-      }, activatorMarkup, /* @__PURE__ */ import_react228.default.createElement(Portal, {
-        idPrefix: "modal"
-      }, /* @__PURE__ */ import_react228.default.createElement(TransitionGroup_default, {
-        appear: animated,
-        enter: animated,
-        exit: animated
-      }, dialog), backdrop));
-    };
-    Modal.Section = Section6;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js
-function DiscardConfirmationModal({
-  open,
-  onDiscard,
-  onCancel
-}) {
-  const i18n = useI18n();
-  return /* @__PURE__ */ import_react229.default.createElement(Modal, {
-    title: i18n.translate("Polaris.DiscardConfirmationModal.title"),
-    open,
-    onClose: onCancel,
-    primaryAction: {
-      content: i18n.translate("Polaris.DiscardConfirmationModal.primaryAction"),
-      destructive: true,
-      onAction: onDiscard
-    },
-    secondaryActions: [{
-      content: i18n.translate("Polaris.DiscardConfirmationModal.secondaryAction"),
-      onAction: onCancel
-    }],
-    sectioned: true
-  }, i18n.translate("Polaris.DiscardConfirmationModal.message"));
-}
-var import_react229;
-var init_DiscardConfirmationModal = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/components/DiscardConfirmationModal/DiscardConfirmationModal.js"() {
-    import_react229 = __toESM(require_react());
-    init_Modal();
-    init_hooks2();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.js
-function ContextualSaveBar3({
-  alignContentFlush,
-  message,
-  saveAction,
-  discardAction,
-  fullWidth,
-  contextControl,
-  secondaryMenu
-}) {
-  const i18n = useI18n();
-  const {
-    logo
-  } = useFrame();
-  const {
-    value: discardConfirmationModalVisible,
-    toggle: toggleDiscardConfirmationModal,
-    setFalse: closeDiscardConfirmationModal
-  } = useToggle(false);
-  const handleDiscardAction = (0, import_react230.useCallback)(() => {
-    if (discardAction && discardAction.onAction) {
-      discardAction.onAction();
-    }
-    closeDiscardConfirmationModal();
-  }, [closeDiscardConfirmationModal, discardAction]);
-  const discardActionContent = discardAction && discardAction.content ? discardAction.content : i18n.translate("Polaris.ContextualSaveBar.discard");
-  let discardActionHandler;
-  if (discardAction && discardAction.discardConfirmationModal) {
-    discardActionHandler = toggleDiscardConfirmationModal;
-  } else if (discardAction) {
-    discardActionHandler = discardAction.onAction;
-  }
-  const discardConfirmationModalMarkup = discardAction && discardAction.onAction && discardAction.discardConfirmationModal && /* @__PURE__ */ import_react230.default.createElement(DiscardConfirmationModal, {
-    open: discardConfirmationModalVisible,
-    onCancel: toggleDiscardConfirmationModal,
-    onDiscard: handleDiscardAction
-  });
-  const discardActionMarkup = discardAction && /* @__PURE__ */ import_react230.default.createElement(Button, {
-    variant: "tertiary",
-    size: "large",
-    url: discardAction.url,
-    onClick: discardActionHandler,
-    loading: discardAction.loading,
-    disabled: discardAction.disabled,
-    accessibilityLabel: discardAction.content
-  }, discardActionContent);
-  const saveActionContent = saveAction && saveAction.content ? saveAction.content : i18n.translate("Polaris.ContextualSaveBar.save");
-  const saveActionMarkup = saveAction && /* @__PURE__ */ import_react230.default.createElement(Button, {
-    variant: "primary",
-    tone: "success",
-    size: "large",
-    url: saveAction.url,
-    onClick: saveAction.onAction,
-    loading: saveAction.loading,
-    disabled: saveAction.disabled,
-    accessibilityLabel: saveAction.content
-  }, saveActionContent);
-  const width2 = getWidth(logo, 104);
-  const imageMarkup = logo && /* @__PURE__ */ import_react230.default.createElement(Image, {
-    style: {
-      width: width2
-    },
-    source: logo.contextualSaveBarSource || "",
-    alt: ""
-  });
-  const logoMarkup = alignContentFlush || contextControl ? null : /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: styles80.LogoContainer,
-    style: {
-      width: width2
-    }
-  }, imageMarkup);
-  const contextControlMarkup = contextControl ? /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: styles80.ContextControl
-  }, contextControl) : null;
-  const contentsClassName = classNames(styles80.Contents, fullWidth && styles80.fullWidth);
-  return /* @__PURE__ */ import_react230.default.createElement(import_react230.default.Fragment, null, /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: styles80.ContextualSaveBar
-  }, contextControlMarkup, logoMarkup, /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: contentsClassName
-  }, /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: styles80.MessageContainer
-  }, /* @__PURE__ */ import_react230.default.createElement(Icon, {
-    source: SvgAlertTriangleIcon
-  }), message && /* @__PURE__ */ import_react230.default.createElement(Text, {
-    as: "h2",
-    variant: "headingMd",
-    tone: "text-inverse",
-    truncate: true
-  }, message)), /* @__PURE__ */ import_react230.default.createElement("div", {
-    className: styles80.ActionContainer
-  }, /* @__PURE__ */ import_react230.default.createElement(LegacyStack, {
-    spacing: "tight",
-    wrap: false
-  }, secondaryMenu, discardActionMarkup, saveActionMarkup)))), discardConfirmationModalMarkup);
-}
-var import_react230;
-var init_ContextualSaveBar2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ContextualSaveBar/ContextualSaveBar.js"() {
-    import_react230 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_get_width();
-    init_use_toggle();
-    init_ContextualSaveBar_scss();
-    init_DiscardConfirmationModal();
-    init_hooks2();
-    init_hooks10();
-    init_Button();
-    init_Image();
-    init_Icon();
-    init_Text();
-    init_LegacyStack();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-deep-compare-ref.js
-function useDeepCompareRef(dependencies, comparator = import_react_fast_compare2.default) {
-  const dependencyList = (0, import_react231.useRef)(dependencies);
-  if (!comparator(dependencyList.current, dependencies)) {
-    dependencyList.current = dependencies;
-  }
-  return dependencyList.current;
-}
-var import_react231, import_react_fast_compare2;
-var init_use_deep_compare_ref = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-compare-ref.js"() {
-    import_react231 = __toESM(require_react());
-    import_react_fast_compare2 = __toESM(require_react_fast_compare());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-deep-effect.js
-function useDeepEffect(callback, dependencies, customCompare) {
-  (0, import_react232.useEffect)(callback, useDeepCompareRef(dependencies, customCompare));
-}
-var import_react232;
-var init_use_deep_effect = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-effect.js"() {
-    import_react232 = __toESM(require_react());
-    init_use_deep_compare_ref();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-deep-callback.js
-function useDeepCallback(callback, dependencies, customCompare) {
-  return (0, import_react233.useCallback)(callback, useDeepCompareRef(dependencies, customCompare));
-}
-var import_react233;
-var init_use_deep_callback = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-deep-callback.js"() {
-    import_react233 = __toESM(require_react());
-    init_use_deep_compare_ref();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.scss.js
-var styles84;
-var init_ToastManager_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.scss.js"() {
-    styles84 = {
-      "ToastManager": "Polaris-Frame-ToastManager",
-      "ToastWrapper": "Polaris-Frame-ToastManager__ToastWrapper",
-      "ToastWrapper-enter": "Polaris-Frame-ToastManager__ToastWrapper--enter",
-      "ToastWrapper-exit": "Polaris-Frame-ToastManager__ToastWrapper--exit",
-      "ToastWrapper-enter-done": "Polaris-Frame-ToastManager--toastWrapperEnterDone"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.scss.js
-var styles85;
-var init_Toast_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.scss.js"() {
-    styles85 = {
-      "Toast": "Polaris-Frame-Toast",
-      "Action": "Polaris-Frame-Toast__Action",
-      "error": "Polaris-Frame-Toast--error",
-      "CloseButton": "Polaris-Frame-Toast__CloseButton",
-      "LeadingIcon": "Polaris-Frame-Toast__LeadingIcon"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.js
-function Toast({
-  content,
-  onDismiss,
-  duration,
-  error,
-  action
-}) {
-  (0, import_react234.useEffect)(() => {
-    let timeoutDuration = duration || DEFAULT_TOAST_DURATION;
-    if (action && !duration) {
-      timeoutDuration = DEFAULT_TOAST_DURATION_WITH_ACTION;
-    } else if (action && duration && duration < DEFAULT_TOAST_DURATION_WITH_ACTION) {
-      console.log("Toast with action should persist for at least 10,000 milliseconds to give the merchant enough time to act on it.");
-    }
-    const timer = setTimeout(onDismiss, timeoutDuration);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [action, duration, onDismiss]);
-  const dismissMarkup = /* @__PURE__ */ import_react234.default.createElement("button", {
-    type: "button",
-    className: styles85.CloseButton,
-    onClick: onDismiss
-  }, /* @__PURE__ */ import_react234.default.createElement(Icon, {
-    source: SvgXSmallIcon,
-    tone: "inherit"
-  }));
-  const actionMarkup = action ? /* @__PURE__ */ import_react234.default.createElement("div", {
-    className: styles85.Action
-  }, /* @__PURE__ */ import_react234.default.createElement(Button, {
-    variant: "monochromePlain",
-    removeUnderline: true,
-    size: "slim",
-    onClick: action.onAction
-  }, action.content)) : null;
-  const leadingIconMarkup = error ? /* @__PURE__ */ import_react234.default.createElement("div", {
-    className: styles85.LeadingIcon
-  }, /* @__PURE__ */ import_react234.default.createElement(Icon, {
-    source: SvgAlertCircleIcon,
-    tone: "inherit"
-  })) : null;
-  const className = classNames(styles85.Toast, error && styles85.error);
-  return /* @__PURE__ */ import_react234.default.createElement("div", {
-    className,
-    "aria-live": "assertive"
-  }, /* @__PURE__ */ import_react234.default.createElement(KeypressListener, {
-    keyCode: Key.Escape,
-    handler: onDismiss
-  }), leadingIconMarkup, /* @__PURE__ */ import_react234.default.createElement(InlineStack, {
-    gap: "400",
-    blockAlign: "center"
-  }, /* @__PURE__ */ import_react234.default.createElement(Text, {
-    as: "span",
-    fontWeight: "medium"
-  }, content)), actionMarkup, dismissMarkup);
-}
-var import_react234, DEFAULT_TOAST_DURATION, DEFAULT_TOAST_DURATION_WITH_ACTION;
-var init_Toast = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/Toast/Toast.js"() {
-    import_react234 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_types();
-    init_Toast_scss();
-    init_Icon();
-    init_Button();
-    init_KeypressListener();
-    init_InlineStack();
-    init_Text();
-    DEFAULT_TOAST_DURATION = 5e3;
-    DEFAULT_TOAST_DURATION_WITH_ACTION = 1e4;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.js
-var import_react235, ToastManager, toastClasses;
-var init_ToastManager = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/components/ToastManager/ToastManager.js"() {
-    import_react235 = __toESM(require_react());
-    init_esm();
-    init_css();
-    init_use_deep_effect();
-    init_use_deep_callback();
-    init_ToastManager_scss();
-    init_Toast();
-    init_Portal();
-    init_EventListener();
-    ToastManager = /* @__PURE__ */ (0, import_react235.memo)(function ToastManager2({
-      toastMessages
-    }) {
-      const toastNodes = [];
-      const updateToasts = useDeepCallback(() => {
-        let targetInPos = 0;
-        toastMessages.forEach((_, index) => {
-          const currentToast = toastNodes[index];
-          if (!currentToast.current)
-            return;
-          targetInPos += currentToast.current.clientHeight;
-          currentToast.current.style.setProperty("--pc-toast-manager-translate-y-in", `-${targetInPos}px`);
-          currentToast.current.style.setProperty("--pc-toast-manager-translate-y-out", `${-targetInPos + 150}px`);
-        });
-      }, [toastMessages, toastNodes]);
-      useDeepEffect(() => {
-        updateToasts();
-      }, [toastMessages]);
-      const toastsMarkup = toastMessages.map((toast, index) => {
-        const toastNode = /* @__PURE__ */ (0, import_react235.createRef)();
-        toastNodes[index] = toastNode;
-        return /* @__PURE__ */ import_react235.default.createElement(CSSTransition_default, {
-          nodeRef: toastNodes[index],
-          key: toast.id,
-          timeout: {
-            enter: 0,
-            exit: 400
-          },
-          classNames: toastClasses
-        }, /* @__PURE__ */ import_react235.default.createElement("div", {
-          ref: toastNode
-        }, /* @__PURE__ */ import_react235.default.createElement(Toast, toast)));
-      });
-      return /* @__PURE__ */ import_react235.default.createElement(Portal, {
-        idPrefix: "toast"
-      }, /* @__PURE__ */ import_react235.default.createElement(EventListener, {
-        event: "resize",
-        handler: updateToasts
-      }), /* @__PURE__ */ import_react235.default.createElement("div", {
-        className: styles84.ToastManager,
-        "aria-live": "assertive"
-      }, /* @__PURE__ */ import_react235.default.createElement(TransitionGroup_default, {
-        component: null
-      }, toastsMarkup)));
-    });
-    toastClasses = {
-      enter: classNames(styles84.ToastWrapper, styles84["ToastWrapper-enter"]),
-      enterDone: classNames(styles84.ToastWrapper, styles84["ToastWrapper-enter-done"]),
-      exit: classNames(styles84.ToastWrapper, styles84["ToastWrapper-exit"])
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Frame/Frame.js
-function Frame(props) {
-  const i18n = useI18n();
-  const mediaQuery = useMediaQuery();
-  return /* @__PURE__ */ import_react236.default.createElement(FrameInner, Object.assign({}, props, {
-    i18n,
-    mediaQuery
-  }));
-}
-var import_react236, APP_FRAME_MAIN, APP_FRAME_NAV, APP_FRAME_TOP_BAR, APP_FRAME_LOADING_BAR, FrameInner, navTransitionClasses;
-var init_Frame = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Frame/Frame.js"() {
-    import_react236 = __toESM(require_react());
-    init_dist();
-    init_esm();
-    init_css();
-    init_shared();
-    init_set_root_property();
-    init_use_theme();
-    init_Frame_scss();
-    init_hooks5();
-    init_Loading2();
-    init_CSSAnimation();
-    init_ContextualSaveBar2();
-    init_ToastManager();
-    init_hooks2();
-    init_Backdrop();
-    init_context15();
-    init_EventListener();
-    init_TrapFocus();
-    init_Icon();
-    APP_FRAME_MAIN = "AppFrameMain";
-    APP_FRAME_NAV = "AppFrameNav";
-    APP_FRAME_TOP_BAR = "AppFrameTopBar";
-    APP_FRAME_LOADING_BAR = "AppFrameLoadingBar";
-    FrameInner = class extends import_react236.PureComponent {
-      constructor(...args) {
-        super(...args);
-        this.state = {
-          skipFocused: false,
-          globalRibbonHeight: 0,
-          loadingStack: 0,
-          toastMessages: [],
-          showContextualSaveBar: false
-        };
-        this.contextualSaveBar = null;
-        this.globalRibbonContainer = null;
-        this.navigationNode = /* @__PURE__ */ (0, import_react236.createRef)();
-        this.setGlobalRibbonHeight = () => {
-          const {
-            globalRibbonContainer
-          } = this;
-          if (globalRibbonContainer) {
-            this.setState({
-              globalRibbonHeight: globalRibbonContainer.offsetHeight
-            }, this.setGlobalRibbonRootProperty);
-          }
-        };
-        this.setOffset = () => {
-          const {
-            offset = "0px"
-          } = this.props;
-          setRootProperty("--pc-frame-offset", offset);
-        };
-        this.setGlobalRibbonRootProperty = () => {
-          const {
-            globalRibbonHeight
-          } = this.state;
-          setRootProperty("--pc-frame-global-ribbon-height", `${globalRibbonHeight}px`);
-        };
-        this.showToast = (toast) => {
-          this.setState(({
-            toastMessages
-          }) => {
-            const hasToastById = toastMessages.find(({
-              id
-            }) => id === toast.id) != null;
-            return {
-              toastMessages: hasToastById ? toastMessages : [...toastMessages, toast]
-            };
-          });
-        };
-        this.hideToast = ({
-          id
-        }) => {
-          this.setState(({
-            toastMessages
-          }) => {
-            return {
-              toastMessages: toastMessages.filter(({
-                id: toastId
-              }) => id !== toastId)
-            };
-          });
-        };
-        this.setContextualSaveBar = (props) => {
-          const {
-            showContextualSaveBar
-          } = this.state;
-          this.contextualSaveBar = {
-            ...props
-          };
-          if (showContextualSaveBar === true) {
-            this.forceUpdate();
-          } else {
-            this.setState({
-              showContextualSaveBar: true
-            });
-          }
-        };
-        this.removeContextualSaveBar = () => {
-          this.contextualSaveBar = null;
-          this.setState({
-            showContextualSaveBar: false
-          });
-        };
-        this.startLoading = () => {
-          this.setState(({
-            loadingStack
-          }) => ({
-            loadingStack: loadingStack + 1
-          }));
-        };
-        this.stopLoading = () => {
-          this.setState(({
-            loadingStack
-          }) => ({
-            loadingStack: Math.max(0, loadingStack - 1)
-          }));
-        };
-        this.handleResize = () => {
-          if (this.props.globalRibbon) {
-            this.setGlobalRibbonHeight();
-          }
-        };
-        this.handleFocus = () => {
-          this.setState({
-            skipFocused: true
-          });
-        };
-        this.handleBlur = () => {
-          this.setState({
-            skipFocused: false
-          });
-        };
-        this.handleClick = (event) => {
-          const {
-            skipToContentTarget
-          } = this.props;
-          if (skipToContentTarget && skipToContentTarget.current) {
-            skipToContentTarget.current.focus();
-            event?.preventDefault();
-          }
-        };
-        this.handleNavigationDismiss = () => {
-          const {
-            onNavigationDismiss
-          } = this.props;
-          if (onNavigationDismiss != null) {
-            onNavigationDismiss();
-          }
-        };
-        this.setGlobalRibbonContainer = (node) => {
-          this.globalRibbonContainer = node;
-        };
-        this.handleNavKeydown = (event) => {
-          const {
-            key
-          } = event;
-          const {
-            mediaQuery: {
-              isNavigationCollapsed
-            },
-            showMobileNavigation
-          } = this.props;
-          const mobileNavShowing = isNavigationCollapsed && showMobileNavigation;
-          if (mobileNavShowing && key === "Escape") {
-            this.handleNavigationDismiss();
-          }
-        };
-      }
-      componentDidMount() {
-        this.handleResize();
-        if (this.props.globalRibbon) {
-          return;
-        }
-        this.setGlobalRibbonRootProperty();
-        this.setOffset();
-      }
-      componentDidUpdate(prevProps) {
-        if (this.props.globalRibbon !== prevProps.globalRibbon) {
-          this.setGlobalRibbonHeight();
-        }
-        this.setOffset();
-      }
-      render() {
-        const {
-          skipFocused,
-          loadingStack,
-          toastMessages,
-          showContextualSaveBar
-        } = this.state;
-        const {
-          logo,
-          children,
-          navigation,
-          topBar,
-          globalRibbon,
-          showMobileNavigation = false,
-          skipToContentTarget,
-          i18n,
-          sidebar,
-          mediaQuery: {
-            isNavigationCollapsed
-          }
-        } = this.props;
-        const navClassName = classNames(styles77.Navigation, showMobileNavigation && styles77["Navigation-visible"]);
-        const mobileNavHidden = isNavigationCollapsed && !showMobileNavigation;
-        const mobileNavShowing = isNavigationCollapsed && showMobileNavigation;
-        const tabIndex = mobileNavShowing ? 0 : -1;
-        const mobileNavAttributes = {
-          ...mobileNavShowing && {
-            "aria-modal": true,
-            role: "dialog"
-          }
-        };
-        const navigationMarkup = navigation ? /* @__PURE__ */ import_react236.default.createElement(UseTheme, null, (theme) => /* @__PURE__ */ import_react236.default.createElement(TrapFocus, {
-          trapping: mobileNavShowing
-        }, /* @__PURE__ */ import_react236.default.createElement(CSSTransition_default, {
-          nodeRef: this.navigationNode,
-          appear: isNavigationCollapsed,
-          exit: isNavigationCollapsed,
-          in: showMobileNavigation,
-          timeout: parseInt(theme.motion["motion-duration-300"], 10),
-          classNames: navTransitionClasses
-        }, /* @__PURE__ */ import_react236.default.createElement("div", Object.assign({
-          key: "NavContent"
-        }, mobileNavAttributes, {
-          "aria-label": i18n.translate("Polaris.Frame.navigationLabel"),
-          ref: this.navigationNode,
-          className: navClassName,
-          onKeyDown: this.handleNavKeydown,
-          id: APP_FRAME_NAV,
-          hidden: mobileNavHidden
-        }), navigation, /* @__PURE__ */ import_react236.default.createElement("button", {
-          type: "button",
-          className: styles77.NavigationDismiss,
-          onClick: this.handleNavigationDismiss,
-          "aria-hidden": mobileNavHidden || !isNavigationCollapsed && !showMobileNavigation,
-          "aria-label": i18n.translate("Polaris.Frame.Navigation.closeMobileNavigationLabel"),
-          tabIndex
-        }, /* @__PURE__ */ import_react236.default.createElement(Icon, {
-          source: SvgXIcon
-        })))))) : null;
-        const loadingMarkup = loadingStack > 0 ? /* @__PURE__ */ import_react236.default.createElement("div", {
-          className: styles77.LoadingBar,
-          id: APP_FRAME_LOADING_BAR
-        }, /* @__PURE__ */ import_react236.default.createElement(Loading2, null)) : null;
-        const topBarMarkup = topBar ? /* @__PURE__ */ import_react236.default.createElement("div", Object.assign({
-          className: styles77.TopBar
-        }, layer.props, dataPolarisTopBar.props, {
-          id: APP_FRAME_TOP_BAR
-        }), topBar) : null;
-        const globalRibbonMarkup = globalRibbon ? /* @__PURE__ */ import_react236.default.createElement("div", {
-          className: styles77.GlobalRibbonContainer,
-          ref: this.setGlobalRibbonContainer
-        }, globalRibbon) : null;
-        const skipClassName = classNames(styles77.Skip, skipFocused && styles77.focused);
-        const skipTarget = skipToContentTarget?.current ? skipToContentTarget.current.id : APP_FRAME_MAIN;
-        const skipMarkup = /* @__PURE__ */ import_react236.default.createElement("div", {
-          className: skipClassName
-        }, /* @__PURE__ */ import_react236.default.createElement("a", {
-          href: `#${skipTarget}`,
-          onFocus: this.handleFocus,
-          onBlur: this.handleBlur,
-          onClick: this.handleClick
-        }, i18n.translate("Polaris.Frame.skipToContent")));
-        const navigationAttributes = navigation ? {
-          "data-has-navigation": true
-        } : {};
-        const frameClassName = classNames(styles77.Frame, navigation && styles77.hasNav, topBar && styles77.hasTopBar, sidebar && styles77.hasSidebar);
-        const contextualSaveBarMarkup = /* @__PURE__ */ import_react236.default.createElement(CSSAnimation, {
-          in: showContextualSaveBar,
-          className: styles77.ContextualSaveBar,
-          type: "fade"
-        }, /* @__PURE__ */ import_react236.default.createElement(ContextualSaveBar3, this.contextualSaveBar));
-        const navigationOverlayMarkup = showMobileNavigation && isNavigationCollapsed ? /* @__PURE__ */ import_react236.default.createElement(Backdrop, {
-          belowNavigation: true,
-          onClick: this.handleNavigationDismiss,
-          onTouchStart: this.handleNavigationDismiss
-        }) : null;
-        const context = {
-          logo,
-          showToast: this.showToast,
-          hideToast: this.hideToast,
-          toastMessages,
-          startLoading: this.startLoading,
-          stopLoading: this.stopLoading,
-          setContextualSaveBar: this.setContextualSaveBar,
-          removeContextualSaveBar: this.removeContextualSaveBar
-        };
-        return /* @__PURE__ */ import_react236.default.createElement(FrameContext.Provider, {
-          value: context
-        }, /* @__PURE__ */ import_react236.default.createElement("div", Object.assign({
-          className: frameClassName
-        }, layer.props, navigationAttributes), skipMarkup, topBarMarkup, navigationMarkup, contextualSaveBarMarkup, loadingMarkup, navigationOverlayMarkup, /* @__PURE__ */ import_react236.default.createElement("main", {
-          className: styles77.Main,
-          id: APP_FRAME_MAIN,
-          "data-has-global-ribbon": Boolean(globalRibbon)
-        }, /* @__PURE__ */ import_react236.default.createElement("div", {
-          className: styles77.Content
-        }, children)), /* @__PURE__ */ import_react236.default.createElement(ToastManager, {
-          toastMessages
-        }), globalRibbonMarkup, /* @__PURE__ */ import_react236.default.createElement(EventListener, {
-          event: "resize",
-          handler: this.handleResize
-        })));
-      }
-    };
-    navTransitionClasses = {
-      enter: classNames(styles77["Navigation-enter"]),
-      enterActive: classNames(styles77["Navigation-enterActive"]),
-      enterDone: classNames(styles77["Navigation-enterActive"]),
-      exit: classNames(styles77["Navigation-exit"]),
-      exitActive: classNames(styles77["Navigation-exitActive"])
-    };
-  }
-});
-
 // node_modules/@shopify/polaris/build/esm/components/FullscreenBar/FullscreenBar.scss.js
-var styles86;
+var styles87;
 var init_FullscreenBar_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/FullscreenBar/FullscreenBar.scss.js"() {
-    styles86 = {
+    styles87 = {
       "FullscreenBar": "Polaris-FullscreenBar",
       "BackAction": "Polaris-FullscreenBar__BackAction"
     };
@@ -22270,24 +23557,24 @@ function FullscreenBar({
   children
 }) {
   const i18n = useI18n();
-  const backButtonMarkup = /* @__PURE__ */ import_react237.default.createElement(Text, {
+  const backButtonMarkup = /* @__PURE__ */ import_react248.default.createElement(Text, {
     as: "span",
     variant: "bodyLg"
   }, i18n.translate("Polaris.FullscreenBar.back"));
-  return /* @__PURE__ */ import_react237.default.createElement("div", {
-    className: styles86.FullscreenBar
-  }, /* @__PURE__ */ import_react237.default.createElement("button", {
-    className: styles86.BackAction,
+  return /* @__PURE__ */ import_react248.default.createElement("div", {
+    className: styles87.FullscreenBar
+  }, /* @__PURE__ */ import_react248.default.createElement("button", {
+    className: styles87.BackAction,
     onClick: onAction,
     "aria-label": i18n.translate("Polaris.FullscreenBar.accessibilityLabel")
-  }, /* @__PURE__ */ import_react237.default.createElement(Icon, {
+  }, /* @__PURE__ */ import_react248.default.createElement(Icon, {
     source: SvgExitIcon
   }), backButtonMarkup), children);
 }
-var import_react237;
+var import_react248;
 var init_FullscreenBar = __esm({
   "node_modules/@shopify/polaris/build/esm/components/FullscreenBar/FullscreenBar.js"() {
-    import_react237 = __toESM(require_react());
+    import_react248 = __toESM(require_react());
     init_dist();
     init_FullscreenBar_scss();
     init_hooks2();
@@ -22297,20 +23584,20 @@ var init_FullscreenBar = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Grid/Grid.scss.js
-var styles87;
+var styles88;
 var init_Grid_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Grid/Grid.scss.js"() {
-    styles87 = {
+    styles88 = {
       "Grid": "Polaris-Grid"
     };
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/Grid/components/Cell/Cell.scss.js
-var styles88;
+var styles89;
 var init_Cell_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Grid/components/Cell/Cell.scss.js"() {
-    styles88 = {
+    styles89 = {
       "Cell": "Polaris-Grid-Cell",
       "Cell-1-column-xs": "Polaris-Grid-Cell--cell_1ColumnXs",
       "Cell-2-column-xs": "Polaris-Grid-Cell--cell_2ColumnXs",
@@ -22366,7 +23653,7 @@ function Cell2({
   row,
   children
 }) {
-  const className = classNames(styles88.Cell, columnSpan?.xs && styles88[`Cell-${columnSpan.xs}-column-xs`], columnSpan?.sm && styles88[`Cell-${columnSpan.sm}-column-sm`], columnSpan?.md && styles88[`Cell-${columnSpan.md}-column-md`], columnSpan?.lg && styles88[`Cell-${columnSpan.lg}-column-lg`], columnSpan?.xl && styles88[`Cell-${columnSpan.xl}-column-xl`]);
+  const className = classNames(styles89.Cell, columnSpan?.xs && styles89[`Cell-${columnSpan.xs}-column-xs`], columnSpan?.sm && styles89[`Cell-${columnSpan.sm}-column-sm`], columnSpan?.md && styles89[`Cell-${columnSpan.md}-column-md`], columnSpan?.lg && styles89[`Cell-${columnSpan.lg}-column-lg`], columnSpan?.xl && styles89[`Cell-${columnSpan.xl}-column-xl`]);
   const style = {
     gridArea,
     "--pc-column-xs": column?.xs,
@@ -22380,15 +23667,15 @@ function Cell2({
     "--pc-row-lg": row?.lg,
     "--pc-row-xl": row?.xl
   };
-  return /* @__PURE__ */ import_react238.default.createElement("div", {
+  return /* @__PURE__ */ import_react249.default.createElement("div", {
     className,
     style
   }, children);
 }
-var import_react238;
+var import_react249;
 var init_Cell2 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Grid/components/Cell/Cell.js"() {
-    import_react238 = __toESM(require_react());
+    import_react249 = __toESM(require_react());
     init_css();
     init_Cell_scss();
   }
@@ -22400,10 +23687,10 @@ function formatAreas(areas) {
     return;
   return `'${areas?.join(`' '`)}'`;
 }
-var import_react239, Grid;
+var import_react250, Grid;
 var init_Grid = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Grid/Grid.js"() {
-    import_react239 = __toESM(require_react());
+    import_react250 = __toESM(require_react());
     init_Grid_scss();
     init_Cell2();
     Grid = function Grid2({
@@ -22429,8 +23716,8 @@ var init_Grid = __esm({
         "--pc-grid-areas-lg": formatAreas(areas?.lg),
         "--pc-grid-areas-xl": formatAreas(areas?.xl)
       };
-      return /* @__PURE__ */ import_react239.default.createElement("div", {
-        className: styles87.Grid,
+      return /* @__PURE__ */ import_react250.default.createElement("div", {
+        className: styles88.Grid,
         style
       }, children);
     };
@@ -22451,10 +23738,10 @@ var init_types3 = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/IndexFilters/IndexFilters.scss.js
-var styles89;
+var styles90;
 var init_IndexFilters_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/IndexFilters.scss.js"() {
-    styles89 = {
+    styles90 = {
       "IndexFiltersWrapper": "Polaris-IndexFilters__IndexFiltersWrapper",
       "IndexFilters": "Polaris-IndexFilters",
       "IndexFiltersSticky": "Polaris-IndexFilters__IndexFiltersSticky",
@@ -22478,17 +23765,17 @@ function useIsSticky(mode, disabled, isFlushWhenSticky) {
     rootMargin: `${isFlushWhenSticky ? "0px" : "-56px"} 0px 0px 0px`,
     threshold: 0
   };
-  const [indexFilteringHeight, setIndexFiltersHeight] = (0, import_react240.useState)(0);
-  const [isSticky, setIsSticky] = (0, import_react240.useState)(false);
-  const measurerRef = (0, import_react240.useRef)(null);
-  const intersectionRef = (0, import_react240.useRef)(null);
+  const [indexFilteringHeight, setIndexFiltersHeight] = (0, import_react251.useState)(0);
+  const [isSticky, setIsSticky] = (0, import_react251.useState)(false);
+  const measurerRef = (0, import_react251.useRef)(null);
+  const intersectionRef = (0, import_react251.useRef)(null);
   const handleIntersect = (entries) => {
     entries.forEach((entry) => {
       setIsSticky(!entry.isIntersecting);
     });
   };
-  const observerRef = (0, import_react240.useRef)(hasIOSupport ? new IntersectionObserver(handleIntersect, options) : null);
-  (0, import_react240.useEffect)(() => {
+  const observerRef = (0, import_react251.useRef)(hasIOSupport ? new IntersectionObserver(handleIntersect, options) : null);
+  (0, import_react251.useEffect)(() => {
     function computeDimensions() {
       const node = measurerRef.current;
       if (!node) {
@@ -22507,7 +23794,7 @@ function useIsSticky(mode, disabled, isFlushWhenSticky) {
     window.addEventListener("resize", debouncedComputeDimensions);
     return () => window.removeEventListener("resize", debouncedComputeDimensions);
   }, [measurerRef, mode]);
-  (0, import_react240.useEffect)(() => {
+  (0, import_react251.useEffect)(() => {
     const observer = observerRef.current;
     if (!observer) {
       return;
@@ -22527,27 +23814,12 @@ function useIsSticky(mode, disabled, isFlushWhenSticky) {
     indexFilteringHeight
   };
 }
-var import_react240, DEBOUNCE_PERIOD;
+var import_react251, DEBOUNCE_PERIOD;
 var init_useIsSticky = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/hooks/useIsSticky/useIsSticky.js"() {
-    import_react240 = __toESM(require_react());
+    import_react251 = __toESM(require_react());
     init_debounce();
     DEBOUNCE_PERIOD = 250;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-is-touch-device.js
-function useIsTouchDevice() {
-  const [isTouchDevice, setIsTouchDevice] = (0, import_react241.useState)(false);
-  const handleTouchStart = (0, import_react241.useCallback)(() => setIsTouchDevice(true), []);
-  useEventListener("touchstart", handleTouchStart);
-  return isTouchDevice;
-}
-var import_react241;
-var init_use_is_touch_device = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-is-touch-device.js"() {
-    import_react241 = __toESM(require_react());
-    init_use_event_listener();
   }
 });
 
@@ -22559,11 +23831,11 @@ function UpdateButtons({
   disabled
 }) {
   const i18n = useI18n();
-  const [savedViewName, setSavedViewName] = (0, import_react242.useState)("");
-  const [savedViewModalOpen, setSavedViewModalOpen] = (0, import_react242.useState)(false);
-  const container = (0, import_react242.useRef)(null);
+  const [savedViewName, setSavedViewName] = (0, import_react252.useState)("");
+  const [savedViewModalOpen, setSavedViewModalOpen] = (0, import_react252.useState)(false);
+  const container = (0, import_react252.useRef)(null);
   const isTouchDevice = useIsTouchDevice();
-  (0, import_react242.useEffect)(() => {
+  (0, import_react252.useEffect)(() => {
     if (!container.current || isTouchDevice)
       return;
     if (savedViewModalOpen) {
@@ -22592,7 +23864,7 @@ function UpdateButtons({
     await primaryAction?.onAction(savedViewName);
     handleCloseModal();
   }
-  const buttonText = (0, import_react242.useMemo)(() => {
+  const buttonText = (0, import_react252.useMemo)(() => {
     switch (primaryAction?.type) {
       case "save":
         return i18n.translate("Polaris.IndexFilters.UpdateButtons.save");
@@ -22601,14 +23873,14 @@ function UpdateButtons({
         return i18n.translate("Polaris.IndexFilters.UpdateButtons.saveAs");
     }
   }, [primaryAction?.type, i18n]);
-  const saveButton = /* @__PURE__ */ import_react242.default.createElement(Button, {
+  const saveButton = /* @__PURE__ */ import_react252.default.createElement(Button, {
     size: "micro",
     onClick: handleClickSaveButton,
     disabled: primaryAction?.disabled || disabled
   }, buttonText);
   const hasSameNameError = viewNames.some((name) => name.trim().toLowerCase() === savedViewName.trim().toLowerCase());
-  const isPrimaryActionDisabled = hasSameNameError || !savedViewName || primaryAction?.loading || savedViewName.length > MAX_VIEW_NAME_LENGTH;
-  const cancelButtonMarkup = /* @__PURE__ */ import_react242.default.createElement(Button, {
+  const isPrimaryActionDisabled = hasSameNameError || !savedViewName || primaryAction?.loading || savedViewName.length > MAX_VIEW_NAME_LENGTH3;
+  const cancelButtonMarkup = /* @__PURE__ */ import_react252.default.createElement(Button, {
     variant: "tertiary",
     size: "micro",
     onClick: cancelAction.onAction,
@@ -22617,12 +23889,12 @@ function UpdateButtons({
   if (!primaryAction) {
     return cancelButtonMarkup;
   }
-  return /* @__PURE__ */ import_react242.default.createElement(InlineStack, {
+  return /* @__PURE__ */ import_react252.default.createElement(InlineStack, {
     align: "start",
     blockAlign: "center",
     gap: "100"
-  }, cancelButtonMarkup, primaryAction.type === "save-as" ? /* @__PURE__ */ import_react242.default.createElement(Modal, {
-    activator: /* @__PURE__ */ import_react242.default.createElement(InlineStack, null, saveButton),
+  }, cancelButtonMarkup, primaryAction.type === "save-as" ? /* @__PURE__ */ import_react252.default.createElement(Modal, {
+    activator: /* @__PURE__ */ import_react252.default.createElement(InlineStack, null, saveButton),
     open: savedViewModalOpen,
     title: i18n.translate("Polaris.IndexFilters.UpdateButtons.modal.title"),
     onClose: handleCloseModal,
@@ -22635,26 +23907,26 @@ function UpdateButtons({
       onAction: handleCloseModal,
       content: i18n.translate("Polaris.IndexFilters.UpdateButtons.modal.cancel")
     }]
-  }, /* @__PURE__ */ import_react242.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react242.default.createElement(Form, {
+  }, /* @__PURE__ */ import_react252.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react252.default.createElement(Form, {
     onSubmit: handlePrimaryAction
-  }, /* @__PURE__ */ import_react242.default.createElement(FormLayout, null, /* @__PURE__ */ import_react242.default.createElement("div", {
+  }, /* @__PURE__ */ import_react252.default.createElement(FormLayout, null, /* @__PURE__ */ import_react252.default.createElement("div", {
     ref: container
-  }, /* @__PURE__ */ import_react242.default.createElement(TextField, {
+  }, /* @__PURE__ */ import_react252.default.createElement(TextField, {
     label: i18n.translate("Polaris.IndexFilters.UpdateButtons.modal.label"),
     value: savedViewName,
     onChange: handleChange,
     autoComplete: "off",
-    maxLength: MAX_VIEW_NAME_LENGTH,
+    maxLength: MAX_VIEW_NAME_LENGTH3,
     showCharacterCount: true,
     error: hasSameNameError ? i18n.translate("Polaris.IndexFilters.UpdateButtons.modal.sameName", {
       name: savedViewName
     }) : void 0
   })))))) : saveButton);
 }
-var import_react242, MAX_VIEW_NAME_LENGTH;
+var import_react252, MAX_VIEW_NAME_LENGTH3;
 var init_UpdateButtons = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/UpdateButtons/UpdateButtons.js"() {
-    import_react242 = __toESM(require_react());
+    import_react252 = __toESM(require_react());
     init_focus();
     init_use_is_touch_device();
     init_hooks2();
@@ -22664,15 +23936,15 @@ var init_UpdateButtons = __esm({
     init_Form();
     init_FormLayout();
     init_TextField();
-    MAX_VIEW_NAME_LENGTH = 40;
+    MAX_VIEW_NAME_LENGTH3 = 40;
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/SortButton/components/DirectionButton/DirectionButton.scss.js
-var styles90;
+var styles91;
 var init_DirectionButton_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/SortButton/components/DirectionButton/DirectionButton.scss.js"() {
-    styles90 = {
+    styles91 = {
       "DirectionButton": "Polaris-SortButton-DirectionButton",
       "DirectionButton-active": "Polaris-SortButton-DirectionButton__DirectionButton--active",
       "Label": "Polaris-SortButton-DirectionButton__Label"
@@ -22688,24 +23960,24 @@ function DirectionButton({
   direction,
   value
 }) {
-  const classes = classNames(styles90.DirectionButton, active && styles90["DirectionButton-active"]);
+  const classes = classNames(styles91.DirectionButton, active && styles91["DirectionButton-active"]);
   function handleClick() {
     onClick([value]);
   }
-  return /* @__PURE__ */ import_react243.default.createElement(UnstyledButton, {
+  return /* @__PURE__ */ import_react253.default.createElement(UnstyledButton, {
     className: classes,
     onClick: handleClick
-  }, /* @__PURE__ */ import_react243.default.createElement(Icon, {
+  }, /* @__PURE__ */ import_react253.default.createElement(Icon, {
     source: direction === "asc" ? SvgArrowUpIcon : SvgArrowDownIcon,
     tone: "base"
-  }), /* @__PURE__ */ import_react243.default.createElement("span", {
-    className: styles90.Label
+  }), /* @__PURE__ */ import_react253.default.createElement("span", {
+    className: styles91.Label
   }, children));
 }
-var import_react243;
+var import_react253;
 var init_DirectionButton = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/SortButton/components/DirectionButton/DirectionButton.js"() {
-    import_react243 = __toESM(require_react());
+    import_react253 = __toESM(require_react());
     init_dist();
     init_css();
     init_DirectionButton_scss();
@@ -22724,7 +23996,7 @@ function SortButton({
   onChangeDirection
 }) {
   const i18n = useI18n();
-  const [active, setActive] = (0, import_react244.useState)(false);
+  const [active, setActive] = (0, import_react254.useState)(false);
   const [selectedValueKey, selectedDirection] = selected[0].split(" ");
   function handleClick() {
     setActive((pastActive) => !pastActive);
@@ -22748,7 +24020,7 @@ function SortButton({
       onChange(sel);
     }
   }
-  const choiceListChoices = (0, import_react244.useMemo)(() => {
+  const choiceListChoices = (0, import_react254.useMemo)(() => {
     const choiceCategories = choices.reduce((acc, curr) => {
       const alreadyExists = acc.some((option) => option.label === curr.label);
       const [, currentValueDirection] = curr.value.split(" ");
@@ -22772,25 +24044,25 @@ function SortButton({
     const [currentKey] = choice.value.split(" ");
     return currentKey === selectedValueKey;
   });
-  const sortButton = /* @__PURE__ */ import_react244.default.createElement(Tooltip, {
+  const sortButton = /* @__PURE__ */ import_react254.default.createElement(Tooltip, {
     content: i18n.translate("Polaris.IndexFilters.SortButton.tooltip"),
     preferredPosition: "above",
     hoverDelay: 400
-  }, /* @__PURE__ */ import_react244.default.createElement(Button, {
+  }, /* @__PURE__ */ import_react254.default.createElement(Button, {
     size: "slim",
     icon: SvgSortIcon,
     onClick: handleClick,
     disabled,
     accessibilityLabel: i18n.translate("Polaris.IndexFilters.SortButton.ariaLabel")
   }));
-  return /* @__PURE__ */ import_react244.default.createElement(Popover2, {
+  return /* @__PURE__ */ import_react254.default.createElement(Popover2, {
     active: active && !disabled,
     activator: sortButton,
     autofocusTarget: "first-node",
     onClose: handleClose,
     preferredAlignment: "right",
     fluidContent: true
-  }, /* @__PURE__ */ import_react244.default.createElement(Box, {
+  }, /* @__PURE__ */ import_react254.default.createElement(Box, {
     minWidth: "148px",
     paddingInlineStart: "300",
     paddingInlineEnd: "300",
@@ -22798,32 +24070,32 @@ function SortButton({
     paddingBlockEnd: "200",
     borderBlockEndWidth: "025",
     borderColor: "border-secondary"
-  }, /* @__PURE__ */ import_react244.default.createElement(ChoiceList, {
+  }, /* @__PURE__ */ import_react254.default.createElement(ChoiceList, {
     title: i18n.translate("Polaris.IndexFilters.SortButton.title"),
     choices: choiceListChoices,
     selected,
     onChange: handleChangeChoiceList
-  })), /* @__PURE__ */ import_react244.default.createElement(Box, {
+  })), /* @__PURE__ */ import_react254.default.createElement(Box, {
     paddingInlineStart: "150",
     paddingInlineEnd: "150",
     paddingBlockStart: "200",
     paddingBlockEnd: "200"
-  }, /* @__PURE__ */ import_react244.default.createElement(DirectionButton, {
+  }, /* @__PURE__ */ import_react254.default.createElement(DirectionButton, {
     direction: "asc",
     active: selectedDirection === SortButtonDirection.Asc,
     onClick: handleChangeDirection,
     value: selectedChoices?.[0]?.value
-  }, selectedChoices?.[0]?.directionLabel), /* @__PURE__ */ import_react244.default.createElement(DirectionButton, {
+  }, selectedChoices?.[0]?.directionLabel), /* @__PURE__ */ import_react254.default.createElement(DirectionButton, {
     direction: "desc",
     active: selectedDirection === SortButtonDirection.Desc,
     onClick: handleChangeDirection,
     value: selectedChoices?.[1]?.value
   }, selectedChoices?.[1]?.directionLabel)));
 }
-var import_react244, SortButtonDirection;
+var import_react254, SortButtonDirection;
 var init_SortButton = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/SortButton/SortButton.js"() {
-    import_react244 = __toESM(require_react());
+    import_react254 = __toESM(require_react());
     init_dist();
     init_ChoiceList();
     init_DirectionButton();
@@ -22840,1299 +24112,27 @@ var init_SortButton = __esm({
 });
 
 // node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/Container/Container.scss.js
-var styles91;
+var styles92;
 var init_Container_scss = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/Container/Container.scss.js"() {
-    styles91 = {
+    styles92 = {
       "Container": "Polaris-IndexFilters-Container"
     };
   }
 });
 
 // node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/Container/Container.js
-var import_react245, Container;
+var import_react255, Container;
 var init_Container = __esm({
   "node_modules/@shopify/polaris/build/esm/components/IndexFilters/components/Container/Container.js"() {
-    import_react245 = __toESM(require_react());
+    import_react255 = __toESM(require_react());
     init_Container_scss();
     Container = ({
       children
     }) => {
-      return /* @__PURE__ */ import_react245.default.createElement("div", {
-        className: styles91.Container
-      }, children);
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/utilities/use-previous.js
-function usePrevious(value) {
-  const ref = (0, import_react246.useRef)();
-  (0, import_react246.useEffect)(() => {
-    ref.current = value;
-  }, [value]);
-  return ref.current;
-}
-var import_react246;
-var init_use_previous = __esm({
-  "node_modules/@shopify/polaris/build/esm/utilities/use-previous.js"() {
-    import_react246 = __toESM(require_react());
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/utilities.js
-function getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth, tabWidths, containerWidth) {
-  const sumTabWidths = tabWidths.reduce((sum, width2) => sum + width2, 0);
-  const arrayOfTabIndices = tabs.map((_, index) => {
-    return index;
-  });
-  const visibleTabs = [];
-  const hiddenTabs = [];
-  if (containerWidth > sumTabWidths) {
-    visibleTabs.push(...arrayOfTabIndices);
-  } else {
-    visibleTabs.push(selected);
-    let tabListWidth = tabWidths[selected];
-    arrayOfTabIndices.forEach((currentTabIndex) => {
-      if (currentTabIndex !== selected) {
-        const currentTabWidth = tabWidths[currentTabIndex];
-        if (tabListWidth + currentTabWidth >= containerWidth - disclosureWidth) {
-          hiddenTabs.push(currentTabIndex);
-          return;
-        }
-        visibleTabs.push(currentTabIndex);
-        tabListWidth += currentTabWidth;
-      }
-    });
-  }
-  return {
-    visibleTabs,
-    hiddenTabs
-  };
-}
-var init_utilities7 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/utilities.js"() {
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.scss.js
-var styles92;
-var init_Tabs_scss = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.scss.js"() {
-    styles92 = {
-      "Outer": "Polaris-Tabs__Outer",
-      "Wrapper": "Polaris-Tabs__Wrapper",
-      "WrapperWithNewButton": "Polaris-Tabs__WrapperWithNewButton",
-      "ButtonWrapper": "Polaris-Tabs__ButtonWrapper",
-      "Tabs": "Polaris-Tabs",
-      "Tab": "Polaris-Tabs__Tab",
-      "Tab-active": "Polaris-Tabs__Tab--active",
-      "Tab-hasActions": "Polaris-Tabs__Tab--hasActions",
-      "Tab-iconOnly": "Polaris-Tabs__Tab--iconOnly",
-      "fillSpace": "Polaris-Tabs--fillSpace",
-      "TabContainer": "Polaris-Tabs__TabContainer",
-      "fitted": "Polaris-Tabs--fitted",
-      "titleWithIcon": "Polaris-Tabs--titleWithIcon",
-      "List": "Polaris-Tabs__List",
-      "Item": "Polaris-Tabs__Item",
-      "DisclosureTab": "Polaris-Tabs__DisclosureTab",
-      "DisclosureTab-visible": "Polaris-Tabs__DisclosureTab--visible",
-      "DisclosureActivator": "Polaris-Tabs__DisclosureActivator",
-      "TabsMeasurer": "Polaris-Tabs__TabsMeasurer",
-      "NewTab": "Polaris-Tabs__NewTab",
-      "ActionListWrap": "Polaris-Tabs__ActionListWrap",
-      "Panel": "Polaris-Tabs__Panel",
-      "Panel-hidden": "Polaris-Tabs__Panel--hidden"
-    };
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/DuplicateModal/DuplicateModal.js
-function DuplicateModal({
-  open,
-  isModalLoading,
-  name,
-  onClose,
-  onClickPrimaryAction,
-  onClickSecondaryAction,
-  helpText,
-  viewNames
-}) {
-  const i18n = useI18n();
-  const [value, setValue] = (0, import_react247.useState)(name);
-  const container = (0, import_react247.useRef)(null);
-  const hasSameNameError = viewNames?.some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
-  const isPrimaryActionDisabled = isModalLoading || hasSameNameError || !value || value.length > MAX_VIEW_NAME_LENGTH2;
-  (0, import_react247.useEffect)(() => {
-    if (!container.current)
-      return;
-    if (open) {
-      focusFirstFocusableNode(container.current);
-    }
-  }, [open]);
-  (0, import_react247.useEffect)(() => {
-    if (open) {
-      setValue(name.slice(0, MAX_VIEW_NAME_LENGTH2));
-    }
-  }, [name, open]);
-  const handleChange = (0, import_react247.useCallback)((newValue) => {
-    setValue(newValue);
-  }, []);
-  async function handlePrimaryAction() {
-    if (isPrimaryActionDisabled) {
-      return;
-    }
-    await onClickPrimaryAction(value);
-    setValue("");
-    onClose();
-  }
-  function handleSecondaryAction() {
-    onClickSecondaryAction?.();
-    setValue(name);
-    onClose();
-  }
-  return /* @__PURE__ */ import_react247.default.createElement(Modal, {
-    open,
-    onClose,
-    title: i18n.translate("Polaris.Tabs.DuplicateModal.title"),
-    primaryAction: {
-      content: i18n.translate("Polaris.Tabs.DuplicateModal.create"),
-      onAction: handlePrimaryAction,
-      disabled: isPrimaryActionDisabled
-    },
-    secondaryActions: [{
-      content: i18n.translate("Polaris.Tabs.DuplicateModal.cancel"),
-      onAction: handleSecondaryAction
-    }],
-    instant: true
-  }, /* @__PURE__ */ import_react247.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react247.default.createElement(Form, {
-    onSubmit: handlePrimaryAction
-  }, /* @__PURE__ */ import_react247.default.createElement(FormLayout, null, /* @__PURE__ */ import_react247.default.createElement("div", {
-    ref: container
-  }, /* @__PURE__ */ import_react247.default.createElement(TextField, {
-    label: i18n.translate("Polaris.Tabs.DuplicateModal.label"),
-    value,
-    onChange: handleChange,
-    autoComplete: "off",
-    helpText,
-    maxLength: MAX_VIEW_NAME_LENGTH2,
-    showCharacterCount: true,
-    error: hasSameNameError ? i18n.translate("Polaris.Tabs.DuplicateModal.errors.sameName", {
-      name: value
-    }) : void 0
-  }))))));
-}
-var import_react247, MAX_VIEW_NAME_LENGTH2;
-var init_DuplicateModal = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/DuplicateModal/DuplicateModal.js"() {
-    import_react247 = __toESM(require_react());
-    init_focus();
-    init_hooks2();
-    init_Modal();
-    init_Form();
-    init_FormLayout();
-    init_TextField();
-    MAX_VIEW_NAME_LENGTH2 = 40;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/RenameModal/RenameModal.js
-function RenameModal({
-  open,
-  isModalLoading,
-  name,
-  onClose,
-  onClickPrimaryAction,
-  onClickSecondaryAction,
-  helpText,
-  viewNames
-}) {
-  const i18n = useI18n();
-  const [value, setValue] = (0, import_react248.useState)(name);
-  const container = (0, import_react248.useRef)(null);
-  const hasSameNameError = viewNames?.filter((viewName) => viewName !== name).some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
-  const isPrimaryActionDisabled = isModalLoading || hasSameNameError || value === name || !value;
-  (0, import_react248.useEffect)(() => {
-    if (!container.current)
-      return;
-    if (open) {
-      focusFirstFocusableNode(container.current);
-    }
-  }, [open]);
-  (0, import_react248.useEffect)(() => {
-    if (open) {
-      setValue(name);
-    }
-  }, [name, open]);
-  const handleChange = (0, import_react248.useCallback)((newValue) => {
-    setValue(newValue);
-  }, []);
-  async function handlePrimaryAction() {
-    if (isPrimaryActionDisabled) {
-      return;
-    }
-    await onClickPrimaryAction(value);
-    setValue("");
-    onClose();
-  }
-  function handleSecondaryAction() {
-    onClickSecondaryAction?.();
-    setValue(name);
-    onClose();
-  }
-  return /* @__PURE__ */ import_react248.default.createElement(Modal, {
-    open,
-    onClose,
-    title: i18n.translate("Polaris.Tabs.RenameModal.title"),
-    primaryAction: {
-      content: i18n.translate("Polaris.Tabs.RenameModal.create"),
-      onAction: handlePrimaryAction,
-      disabled: isPrimaryActionDisabled
-    },
-    secondaryActions: [{
-      content: i18n.translate("Polaris.Tabs.RenameModal.cancel"),
-      onAction: handleSecondaryAction
-    }],
-    instant: true
-  }, /* @__PURE__ */ import_react248.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react248.default.createElement(Form, {
-    onSubmit: handlePrimaryAction
-  }, /* @__PURE__ */ import_react248.default.createElement(FormLayout, null, /* @__PURE__ */ import_react248.default.createElement("div", {
-    ref: container
-  }, /* @__PURE__ */ import_react248.default.createElement(TextField, {
-    label: i18n.translate("Polaris.Tabs.RenameModal.label"),
-    value,
-    onChange: handleChange,
-    autoComplete: "off",
-    helpText,
-    maxLength: 40,
-    showCharacterCount: true,
-    error: hasSameNameError ? i18n.translate("Polaris.Tabs.RenameModal.errors.sameName", {
-      name: value
-    }) : void 0
-  }))))));
-}
-var import_react248;
-var init_RenameModal = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/components/RenameModal/RenameModal.js"() {
-    import_react248 = __toESM(require_react());
-    init_focus();
-    init_Form();
-    init_FormLayout();
-    init_hooks2();
-    init_Modal();
-    init_TextField();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/Tab.js
-function focusPanelID(panelID) {
-  const panel = document.getElementById(panelID);
-  if (panel) {
-    panel.focus({
-      preventScroll: true
-    });
-  }
-}
-function mergeRefs(refs) {
-  return (node) => {
-    for (const ref of refs) {
-      if (ref != null) {
-        ref.current = node;
-      }
-    }
-  };
-}
-var import_react249, Tab;
-var init_Tab = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Tab/Tab.js"() {
-    import_react249 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_focus();
-    init_breakpoints2();
-    init_Tabs_scss();
-    init_DuplicateModal();
-    init_RenameModal();
-    init_hooks2();
-    init_Icon();
-    init_Modal();
-    init_Popover();
-    init_ActionList();
-    init_InlineStack();
-    init_Text();
-    init_UnstyledLink();
-    init_UnstyledButton();
-    init_Badge();
-    Tab = /* @__PURE__ */ (0, import_react249.forwardRef)(({
-      content,
-      accessibilityLabel,
-      badge,
-      id,
-      panelID,
-      url,
-      onAction,
-      actions,
-      disabled,
-      isModalLoading,
-      icon,
-      siblingTabHasFocus,
-      measuring,
-      focused,
-      selected,
-      onToggleModal,
-      onTogglePopover,
-      viewNames,
-      tabIndexOverride,
-      onFocus
-    }, ref) => {
-      const i18n = useI18n();
-      const [popoverActive, setPopoverActive] = (0, import_react249.useState)(false);
-      const [activeModalType, setActiveModalType] = (0, import_react249.useState)(null);
-      const {
-        mdDown
-      } = useBreakpoints();
-      const wasSelected = (0, import_react249.useRef)(selected);
-      const panelFocused = (0, import_react249.useRef)(false);
-      const node = (0, import_react249.useRef)(null);
-      (0, import_react249.useEffect)(() => {
-        onTogglePopover(popoverActive);
-      }, [popoverActive, onTogglePopover]);
-      (0, import_react249.useEffect)(() => {
-        onToggleModal(Boolean(activeModalType));
-      }, [activeModalType, onToggleModal]);
-      (0, import_react249.useEffect)(() => {
-        return () => {
-          onToggleModal(false);
-          onTogglePopover(false);
-        };
-      }, [onToggleModal, onTogglePopover]);
-      (0, import_react249.useEffect)(() => {
-        if (measuring) {
-          return;
-        }
-        const itemHadFocus = focused || document.activeElement && document.activeElement.id === id;
-        if (itemHadFocus && selected && panelID != null && !panelFocused.current) {
-          focusPanelID(panelID);
-          panelFocused.current = true;
-        }
-        if (selected && !wasSelected.current && panelID != null) {
-          focusPanelID(panelID);
-        } else if (focused && node.current != null && activeModalType == null && !disabled) {
-          focusFirstFocusableNode(node.current);
-        }
-        wasSelected.current = selected;
-      }, [focused, id, content, measuring, panelID, selected, activeModalType, disabled]);
-      let tabIndex;
-      if (selected && !siblingTabHasFocus && !measuring) {
-        tabIndex = 0;
-      } else if (focused && !measuring) {
-        tabIndex = 0;
-      } else {
-        tabIndex = -1;
-      }
-      if (tabIndexOverride != null) {
-        tabIndex = tabIndexOverride;
-      }
-      const renameAction = actions?.find((action) => action.type === "rename");
-      const duplicateAction = actions?.find((action) => action.type === "duplicate");
-      const deleteAction = actions?.find((action) => action.type === "delete");
-      const togglePopoverActive = (0, import_react249.useCallback)(() => {
-        if (!actions?.length) {
-          return;
-        }
-        setPopoverActive((popoverActive2) => !popoverActive2);
-      }, [actions]);
-      const handleClick = (0, import_react249.useCallback)(() => {
-        if (disabled) {
-          return;
-        }
-        if (selected) {
-          togglePopoverActive();
-        } else {
-          onAction?.();
-        }
-      }, [selected, onAction, togglePopoverActive, disabled]);
-      const handleModalOpen = (type) => {
-        setActiveModalType(type);
-      };
-      const handleModalClose = () => {
-        setActiveModalType(null);
-      };
-      const handleSaveRenameModal = (0, import_react249.useCallback)(async (value) => {
-        await renameAction?.onPrimaryAction?.(value);
-        setTimeout(() => {
-          if (node.current) {
-            focusFirstFocusableNode(node.current);
-          }
-        }, 250);
-      }, [renameAction]);
-      const handleConfirmDeleteView = (0, import_react249.useCallback)(async () => {
-        await deleteAction?.onPrimaryAction?.(content);
-        handleModalClose();
-      }, [deleteAction, content]);
-      const handleSaveDuplicateModal = (0, import_react249.useCallback)(async (duplicateName) => {
-        await duplicateAction?.onPrimaryAction?.(duplicateName);
-      }, [duplicateAction]);
-      const actionContent = {
-        rename: {
-          icon: SvgInfoIcon,
-          content: i18n.translate("Polaris.Tabs.Tab.rename")
-        },
-        duplicate: {
-          icon: SvgDuplicateIcon,
-          content: i18n.translate("Polaris.Tabs.Tab.duplicate")
-        },
-        edit: {
-          icon: SvgEditIcon,
-          content: i18n.translate("Polaris.Tabs.Tab.edit")
-        },
-        "edit-columns": {
-          icon: SvgLayoutColumns3Icon,
-          content: i18n.translate("Polaris.Tabs.Tab.editColumns")
-        },
-        delete: {
-          icon: SvgDeleteIcon,
-          content: i18n.translate("Polaris.Tabs.Tab.delete"),
-          destructive: true
-        }
-      };
-      const formattedActions = actions?.map(({
-        type,
-        onAction: onAction2,
-        onPrimaryAction,
-        ...additionalOptions
-      }) => {
-        const isModalActivator = !type.includes("edit");
-        return {
-          ...actionContent[type],
-          ...additionalOptions,
-          onAction: () => {
-            onAction2?.(content);
-            togglePopoverActive();
-            if (isModalActivator) {
-              handleModalOpen(type);
-            }
-          }
-        };
-      });
-      const handleKeyDown5 = (0, import_react249.useCallback)((event) => {
-        if (event.key === " ") {
-          event.preventDefault();
-          handleClick();
-        }
-      }, [handleClick]);
-      const tabContainerClassNames = classNames(styles92.TabContainer, selected && styles92.Underline);
-      const urlIfNotDisabledOrSelected = disabled || selected ? void 0 : url;
-      const BaseComponent = urlIfNotDisabledOrSelected ? UnstyledLink : UnstyledButton;
-      const tabClassName = classNames(styles92.Tab, icon && styles92["Tab-iconOnly"], popoverActive && styles92["Tab-popoverActive"], selected && styles92["Tab-active"], selected && actions?.length && styles92["Tab-hasActions"]);
-      const badgeMarkup = badge ? /* @__PURE__ */ import_react249.default.createElement(Badge, {
-        tone: selected ? void 0 : "new"
-      }, badge) : null;
-      const disclosureMarkup = selected && actions?.length ? /* @__PURE__ */ import_react249.default.createElement("div", {
-        className: classNames(styles92.IconWrap)
-      }, /* @__PURE__ */ import_react249.default.createElement(Icon, {
-        source: SvgChevronDownIcon
-      })) : null;
-      const activator = /* @__PURE__ */ import_react249.default.createElement(BaseComponent, {
-        id,
-        className: tabClassName,
-        tabIndex,
-        "aria-selected": selected,
-        "aria-controls": panelID,
-        "aria-label": accessibilityLabel,
-        role: tabIndexOverride == null ? "tab" : void 0,
-        disabled,
-        url: urlIfNotDisabledOrSelected,
-        onFocus,
-        onMouseUp: handleMouseUpByBlurring,
-        onClick: handleClick,
-        onKeyDown: handleKeyDown5
-      }, /* @__PURE__ */ import_react249.default.createElement(InlineStack, {
-        gap: "200",
-        align: "center",
-        blockAlign: "center",
-        wrap: false
-      }, /* @__PURE__ */ import_react249.default.createElement(Text, {
-        as: "span",
-        variant: mdDown ? "bodyLg" : "bodySm",
-        fontWeight: "medium"
-      }, icon ?? content), badgeMarkup), disclosureMarkup);
-      const isPlainButton = !selected || !actions?.length;
-      const renameModal = renameAction ? /* @__PURE__ */ import_react249.default.createElement(RenameModal, {
-        name: content,
-        open: activeModalType === "rename",
-        onClose: handleModalClose,
-        onClickPrimaryAction: handleSaveRenameModal,
-        isModalLoading,
-        viewNames
-      }) : null;
-      const duplicateModal = duplicateAction ? /* @__PURE__ */ import_react249.default.createElement(DuplicateModal, {
-        open: activeModalType === "duplicate",
-        name: i18n.translate("Polaris.Tabs.Tab.copy", {
-          name: content
-        }),
-        onClose: handleModalClose,
-        onClickPrimaryAction: handleSaveDuplicateModal,
-        isModalLoading,
-        viewNames: viewNames || []
-      }) : null;
-      const deleteModal = deleteAction ? /* @__PURE__ */ import_react249.default.createElement(Modal, {
-        open: activeModalType === "delete",
-        onClose: handleModalClose,
-        primaryAction: {
-          content: i18n.translate("Polaris.Tabs.Tab.deleteModal.delete"),
-          onAction: handleConfirmDeleteView,
-          destructive: true,
-          disabled: isModalLoading
-        },
-        secondaryActions: [{
-          content: i18n.translate("Polaris.Tabs.Tab.deleteModal.cancel"),
-          onAction: handleModalClose
-        }],
-        title: i18n.translate("Polaris.Tabs.Tab.deleteModal.title"),
-        instant: true
-      }, /* @__PURE__ */ import_react249.default.createElement(Modal.Section, null, i18n.translate("Polaris.Tabs.Tab.deleteModal.description", {
-        viewName: content
-      }))) : null;
-      const markup = isPlainButton || disabled ? activator : /* @__PURE__ */ import_react249.default.createElement(import_react249.default.Fragment, null, /* @__PURE__ */ import_react249.default.createElement(Popover2, {
-        active: popoverActive,
-        activator,
-        autofocusTarget: "first-node",
-        onClose: togglePopoverActive
-      }, /* @__PURE__ */ import_react249.default.createElement("div", {
-        className: styles92.ActionListWrap
-      }, /* @__PURE__ */ import_react249.default.createElement(ActionList, {
-        actionRole: "menuitem",
-        items: formattedActions
-      }))), renameModal, duplicateModal, deleteModal);
-      if (icon) {
-        return markup;
-      }
-      return /* @__PURE__ */ import_react249.default.createElement("li", {
-        className: tabContainerClassNames,
-        ref: mergeRefs([node, ref]),
-        role: "presentation"
-      }, markup);
-    });
-    Tab.displayName = "Tab";
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/TabMeasurer/TabMeasurer.js
-function noop11() {
-}
-var import_react250, TabMeasurer;
-var init_TabMeasurer = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/TabMeasurer/TabMeasurer.js"() {
-    import_react250 = __toESM(require_react());
-    init_css();
-    init_use_component_did_mount();
-    init_use_event_listener();
-    init_Tabs_scss();
-    init_Tab();
-    TabMeasurer = /* @__PURE__ */ (0, import_react250.memo)(function TabMeasurer2({
-      selected,
-      tabs,
-      activator,
-      tabToFocus,
-      siblingTabHasFocus,
-      handleMeasurement: handleMeasurementProp
-    }) {
-      const containerNode = (0, import_react250.useRef)(null);
-      const animationFrame = (0, import_react250.useRef)(null);
-      const handleMeasurement = (0, import_react250.useCallback)(() => {
-        if (animationFrame.current) {
-          cancelAnimationFrame(animationFrame.current);
-        }
-        animationFrame.current = requestAnimationFrame(() => {
-          if (!containerNode.current) {
-            return;
-          }
-          const containerWidth = containerNode.current.offsetWidth - 20 - 28;
-          const hiddenTabNodes = containerNode.current.children;
-          const hiddenTabNodesArray = Array.from(hiddenTabNodes);
-          const hiddenTabWidths = hiddenTabNodesArray.map((node) => {
-            const buttonWidth = Math.ceil(node.getBoundingClientRect().width);
-            return buttonWidth + 4;
-          });
-          const disclosureWidth = hiddenTabWidths.pop() || 0;
-          handleMeasurementProp({
-            containerWidth,
-            disclosureWidth,
-            hiddenTabWidths
-          });
-        });
-      }, [handleMeasurementProp]);
-      (0, import_react250.useEffect)(() => {
-        handleMeasurement();
-      }, [handleMeasurement, tabs]);
-      useComponentDidMount(() => {
-        if (true) {
-          setTimeout(handleMeasurement, 0);
-        }
-      });
-      const tabsMarkup = tabs.map((tab, index) => {
-        return /* @__PURE__ */ import_react250.default.createElement(Tab, {
-          measuring: true,
-          key: `$${tab.id}Hidden`,
-          id: `${tab.id}Measurer`,
-          siblingTabHasFocus,
-          focused: index === tabToFocus,
-          selected: index === selected,
-          url: tab.url,
-          content: tab.content,
-          onTogglePopover: noop11,
-          onToggleModal: noop11
-        });
-      });
-      const classname = classNames(styles92.Tabs, styles92.TabsMeasurer);
-      useEventListener("resize", handleMeasurement);
-      return /* @__PURE__ */ import_react250.default.createElement("div", {
-        className: classname,
-        ref: containerNode
-      }, tabsMarkup, activator);
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Panel/Panel.js
-function Panel({
-  hidden,
-  id,
-  tabID,
-  children
-}) {
-  const className = classNames(styles92.Panel, hidden && styles92["Panel-hidden"]);
-  return /* @__PURE__ */ import_react251.default.createElement("div", {
-    className,
-    id,
-    role: "tabpanel",
-    "aria-labelledby": tabID,
-    tabIndex: -1
-  }, children);
-}
-var import_react251;
-var init_Panel = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Panel/Panel.js"() {
-    import_react251 = __toESM(require_react());
-    init_css();
-    init_Tabs_scss();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/Item/Item.js
-function noop12() {
-}
-var import_react252, Item7;
-var init_Item7 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/Item/Item.js"() {
-    import_react252 = __toESM(require_react());
-    init_css();
-    init_Tabs_scss();
-    init_UnstyledLink();
-    Item7 = /* @__PURE__ */ (0, import_react252.memo)(function Item8({
-      id,
-      focused,
-      children,
-      url,
-      accessibilityLabel,
-      onClick = noop12
-    }) {
-      const focusedNode = (0, import_react252.useRef)(null);
-      (0, import_react252.useEffect)(() => {
-        if (focusedNode.current && focusedNode.current instanceof HTMLElement && focused) {
-          focusedNode.current.focus();
-        }
-      }, [focusedNode, focused]);
-      const classname = classNames(styles92.Item);
-      const sharedProps = {
-        id,
-        ref: focusedNode,
-        onClick,
-        className: classname,
-        "aria-selected": false,
-        "aria-label": accessibilityLabel
-      };
-      const markup = url ? /* @__PURE__ */ import_react252.default.createElement(UnstyledLink, Object.assign({}, sharedProps, {
-        url
-      }), children) : /* @__PURE__ */ import_react252.default.createElement("button", Object.assign({}, sharedProps, {
-        ref: focusedNode,
-        type: "button"
-      }), children);
-      return /* @__PURE__ */ import_react252.default.createElement("li", null, markup);
-    });
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/List/List.js
-function List3({
-  focusIndex,
-  disclosureTabs,
-  onClick = noop13,
-  onKeyPress = noop13
-}) {
-  const tabs = disclosureTabs.map(({
-    id,
-    content,
-    ...tabProps
-  }, index) => {
-    return /* @__PURE__ */ import_react253.default.createElement(Item7, Object.assign({
-      key: id
-    }, tabProps, {
-      id,
-      focused: index === focusIndex,
-      onClick: onClick.bind(null, id)
-    }), content);
-  });
-  return /* @__PURE__ */ import_react253.default.createElement("ul", {
-    className: styles92.List,
-    onKeyDown: handleKeyDown2,
-    onKeyUp: onKeyPress
-  }, tabs);
-}
-function noop13() {
-}
-function handleKeyDown2(event) {
-  const {
-    key
-  } = event;
-  if (key === "ArrowLeft" || key === "ArrowRight") {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-}
-var import_react253;
-var init_List2 = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/List/List.js"() {
-    import_react253 = __toESM(require_react());
-    init_Tabs_scss();
-    init_Item7();
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/components/CreateViewModal/CreateViewModal.js
-function CreateViewModal({
-  activator,
-  open,
-  onClose,
-  onClickPrimaryAction,
-  onClickSecondaryAction,
-  viewNames
-}) {
-  const i18n = useI18n();
-  const [value, setValue] = (0, import_react254.useState)("");
-  const [loading, setLoading] = (0, import_react254.useState)(false);
-  const container = (0, import_react254.useRef)(null);
-  const isTouchDevice = useIsTouchDevice();
-  const hasSameNameError = viewNames.some((viewName) => viewName.trim().toLowerCase() === value.trim().toLowerCase());
-  const isPrimaryActionDisabled = !value || hasSameNameError || loading || value.length > MAX_VIEW_NAME_LENGTH3;
-  (0, import_react254.useEffect)(() => {
-    if (!container.current || isTouchDevice)
-      return;
-    if (open) {
-      focusFirstFocusableNode(container.current);
-      const timeout2 = setTimeout(() => {
-        if (!container.current)
-          return;
-        focusFirstFocusableNode(container.current);
-      }, 50);
-      return () => clearTimeout(timeout2);
-    }
-  }, [open, isTouchDevice]);
-  const handleChange = (0, import_react254.useCallback)((newValue) => {
-    setValue(newValue);
-  }, []);
-  async function handlePrimaryAction() {
-    if (hasSameNameError || isPrimaryActionDisabled) {
-      return;
-    }
-    setLoading(true);
-    await onClickPrimaryAction(value);
-    setLoading(false);
-    setValue("");
-    onClose();
-  }
-  function handleSecondaryAction() {
-    onClickSecondaryAction?.();
-    setValue("");
-    onClose();
-  }
-  return /* @__PURE__ */ import_react254.default.createElement(Modal, {
-    activator,
-    open,
-    onClose,
-    title: i18n.translate("Polaris.Tabs.CreateViewModal.title"),
-    primaryAction: {
-      content: i18n.translate("Polaris.Tabs.CreateViewModal.create"),
-      onAction: handlePrimaryAction,
-      disabled: isPrimaryActionDisabled
-    },
-    secondaryActions: [{
-      content: i18n.translate("Polaris.Tabs.CreateViewModal.cancel"),
-      onAction: handleSecondaryAction
-    }]
-  }, /* @__PURE__ */ import_react254.default.createElement(Modal.Section, null, /* @__PURE__ */ import_react254.default.createElement(Form, {
-    onSubmit: handlePrimaryAction
-  }, /* @__PURE__ */ import_react254.default.createElement(FormLayout, null, /* @__PURE__ */ import_react254.default.createElement("div", {
-    ref: container
-  }, /* @__PURE__ */ import_react254.default.createElement(TextField, {
-    label: i18n.translate("Polaris.Tabs.CreateViewModal.label"),
-    value,
-    onChange: handleChange,
-    autoComplete: "off",
-    maxLength: MAX_VIEW_NAME_LENGTH3,
-    showCharacterCount: true,
-    error: hasSameNameError ? i18n.translate("Polaris.Tabs.CreateViewModal.errors.sameName", {
-      name: value
-    }) : void 0
-  }))))));
-}
-var import_react254, MAX_VIEW_NAME_LENGTH3;
-var init_CreateViewModal = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/components/CreateViewModal/CreateViewModal.js"() {
-    import_react254 = __toESM(require_react());
-    init_use_is_touch_device();
-    init_focus();
-    init_hooks2();
-    init_Modal();
-    init_Form();
-    init_FormLayout();
-    init_TextField();
-    MAX_VIEW_NAME_LENGTH3 = 40;
-  }
-});
-
-// node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.js
-var import_react255, CREATE_NEW_VIEW_ID, Tabs;
-var init_Tabs = __esm({
-  "node_modules/@shopify/polaris/build/esm/components/Tabs/Tabs.js"() {
-    import_react255 = __toESM(require_react());
-    init_dist();
-    init_css();
-    init_breakpoints2();
-    init_use_previous();
-    init_utilities7();
-    init_Tabs_scss();
-    init_Tab();
-    init_TabMeasurer();
-    init_Panel();
-    init_List2();
-    init_CreateViewModal();
-    init_hooks2();
-    init_Text();
-    init_Icon();
-    init_UnstyledButton();
-    init_Box();
-    init_Popover();
-    init_Tooltip();
-    CREATE_NEW_VIEW_ID = "create-new-view";
-    Tabs = ({
-      tabs,
-      children,
-      selected,
-      newViewAccessibilityLabel,
-      canCreateNewView,
-      disabled,
-      onCreateNewView,
-      onSelect,
-      fitted,
-      disclosureText
-    }) => {
-      const i18n = useI18n();
-      const {
-        mdDown
-      } = useBreakpoints();
-      const scrollRef = (0, import_react255.useRef)(null);
-      const wrapRef = (0, import_react255.useRef)(null);
-      const selectedTabRef = (0, import_react255.useRef)(null);
-      const [state, setState] = (0, import_react255.useReducer)((data, partialData) => {
-        return {
-          ...data,
-          ...partialData
-        };
-      }, {
-        disclosureWidth: 0,
-        containerWidth: Infinity,
-        tabWidths: [],
-        visibleTabs: [],
-        hiddenTabs: [],
-        showDisclosure: false,
-        tabToFocus: -1,
-        isNewViewModalActive: false,
-        modalSubmitted: false,
-        isTabsFocused: false,
-        isTabPopoverOpen: false,
-        isTabModalOpen: false
-      });
-      const {
-        tabToFocus,
-        visibleTabs,
-        hiddenTabs,
-        showDisclosure,
-        isNewViewModalActive,
-        modalSubmitted,
-        disclosureWidth,
-        tabWidths,
-        containerWidth,
-        isTabsFocused,
-        isTabModalOpen,
-        isTabPopoverOpen
-      } = state;
-      const prevModalOpen = usePrevious(isTabModalOpen);
-      const prevPopoverOpen = usePrevious(isTabPopoverOpen);
-      (0, import_react255.useEffect)(() => {
-        const hasModalClosed = prevModalOpen && !isTabModalOpen;
-        const hasPopoverClosed = prevPopoverOpen && !isTabPopoverOpen;
-        if (hasModalClosed) {
-          setState({
-            isTabsFocused: true,
-            tabToFocus: selected
-          });
-        } else if (hasPopoverClosed && !isTabModalOpen) {
-          setState({
-            isTabsFocused: true,
-            tabToFocus: selected
-          });
-        }
-      }, [prevPopoverOpen, isTabPopoverOpen, prevModalOpen, isTabModalOpen, selected, tabToFocus]);
-      const handleTogglePopover = (0, import_react255.useCallback)((isOpen) => setState({
-        isTabPopoverOpen: isOpen
-      }), []);
-      const handleToggleModal = (0, import_react255.useCallback)((isOpen) => setState({
-        isTabModalOpen: isOpen
-      }), []);
-      const handleCloseNewViewModal = () => {
-        setState({
-          isNewViewModalActive: false
-        });
-      };
-      const handleSaveNewViewModal = async (value) => {
-        if (!onCreateNewView) {
-          return false;
-        }
-        const hasExecuted = await onCreateNewView?.(value);
-        if (hasExecuted) {
-          setState({
-            modalSubmitted: true
-          });
-        }
-        return hasExecuted;
-      };
-      const handleClickNewTab = () => {
-        setState({
-          isNewViewModalActive: true
-        });
-      };
-      const handleTabClick = (0, import_react255.useCallback)((id) => {
-        const tab = tabs.find((aTab) => aTab.id === id);
-        if (tab == null) {
-          return null;
-        }
-        const selectedIndex = tabs.indexOf(tab);
-        onSelect?.(selectedIndex);
-      }, [tabs, onSelect]);
-      const renderTabMarkup = (0, import_react255.useCallback)((tab, index) => {
-        const handleClick = () => {
-          handleTabClick(tab.id);
-          tab.onAction?.();
-        };
-        const viewNames2 = tabs.map(({
-          content
-        }) => content);
-        const tabPanelID = tab.panelID || `${tab.id}-panel`;
-        return /* @__PURE__ */ import_react255.default.createElement(Tab, Object.assign({}, tab, {
-          key: `${index}-${tab.id}`,
-          id: tab.id,
-          panelID: children ? tabPanelID : void 0,
-          disabled: disabled || tab.disabled,
-          siblingTabHasFocus: tabToFocus > -1,
-          focused: index === tabToFocus,
-          selected: index === selected,
-          onAction: handleClick,
-          accessibilityLabel: tab.accessibilityLabel,
-          url: tab.url,
-          content: tab.content,
-          onToggleModal: handleToggleModal,
-          onTogglePopover: handleTogglePopover,
-          viewNames: viewNames2,
-          ref: index === selected ? selectedTabRef : null
-        }));
-      }, [disabled, handleTabClick, tabs, children, selected, tabToFocus, handleToggleModal, handleTogglePopover]);
-      const handleFocus = (0, import_react255.useCallback)((event) => {
-        const target = event.target;
-        const isItem = target.classList.contains(styles92.Item);
-        const isInNaturalDOMOrder = target.closest(`[data-tabs-focus-catchment]`) || isItem;
-        const isDisclosureActivator = target.classList.contains(styles92.DisclosureActivator);
-        if (isDisclosureActivator || !isInNaturalDOMOrder) {
-          return;
-        }
-        setState({
-          isTabsFocused: true
-        });
-      }, []);
-      const handleBlur = (0, import_react255.useCallback)((event) => {
-        const target = event.target;
-        const relatedTarget = event.relatedTarget;
-        const isInNaturalDOMOrder = relatedTarget?.closest?.(`.${styles92.Tabs}`);
-        const targetIsATab = target?.classList?.contains?.(styles92.Tab);
-        const focusReceiverIsAnItem = relatedTarget?.classList.contains(styles92.Item);
-        if (!relatedTarget && !isTabModalOpen && !targetIsATab && !focusReceiverIsAnItem) {
-          setState({
-            tabToFocus: -1
-          });
-          return;
-        }
-        if (!isInNaturalDOMOrder && !isTabModalOpen && !targetIsATab && !focusReceiverIsAnItem) {
-          setState({
-            tabToFocus: -1
-          });
-          return;
-        }
-        setState({
-          isTabsFocused: false
-        });
-      }, [isTabModalOpen]);
-      const handleKeyDown5 = (event) => {
-        if (isTabPopoverOpen || isTabModalOpen || isNewViewModalActive) {
-          return;
-        }
-        const {
-          key
-        } = event;
-        if (key === "ArrowLeft" || key === "ArrowRight") {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-      };
-      (0, import_react255.useEffect)(() => {
-        const {
-          visibleTabs: visibleTabs2,
-          hiddenTabs: hiddenTabs2
-        } = getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth, tabWidths, containerWidth);
-        setState({
-          visibleTabs: visibleTabs2,
-          hiddenTabs: hiddenTabs2
-        });
-      }, [containerWidth, disclosureWidth, tabs, selected, tabWidths, setState]);
-      const moveToSelectedTab = (0, import_react255.useCallback)(() => {
-        const activeButton = selectedTabRef.current?.querySelector(`.${styles92["Tab-active"]}`);
-        if (activeButton) {
-          moveToActiveTab(activeButton.offsetLeft);
-        }
-      }, []);
-      (0, import_react255.useEffect)(() => {
-        if (mdDown) {
-          moveToSelectedTab();
-        }
-      }, [moveToSelectedTab, selected, mdDown]);
-      (0, import_react255.useEffect)(() => {
-        if (isTabsFocused && !showDisclosure) {
-          const tabToFocus2 = selected;
-          setState({
-            tabToFocus: tabToFocus2
-          });
-        }
-      }, [isTabsFocused, selected, setState, showDisclosure]);
-      const handleKeyPress = (event) => {
-        const {
-          showDisclosure: showDisclosure2,
-          visibleTabs: visibleTabs2,
-          hiddenTabs: hiddenTabs2,
-          tabToFocus: tabToFocus2,
-          isNewViewModalActive: isNewViewModalActive2
-        } = state;
-        if (isTabModalOpen || isTabPopoverOpen || isNewViewModalActive2) {
-          return;
-        }
-        const key = event.key;
-        const tabsArrayInOrder = showDisclosure2 || mdDown ? visibleTabs2.concat(hiddenTabs2) : [...visibleTabs2];
-        let newFocus = tabsArrayInOrder.indexOf(tabToFocus2);
-        if (key === "ArrowRight") {
-          newFocus += 1;
-          if (newFocus === tabsArrayInOrder.length) {
-            newFocus = 0;
-          }
-        }
-        if (key === "ArrowLeft") {
-          if (newFocus === -1 || newFocus === 0) {
-            newFocus = tabsArrayInOrder.length - 1;
-          } else {
-            newFocus -= 1;
-          }
-        }
-        const buttonToFocus = tabsArrayInOrder[newFocus];
-        if (buttonToFocus != null) {
-          setState({
-            tabToFocus: buttonToFocus
-          });
-        }
-      };
-      const handleDisclosureActivatorClick = () => {
-        setState({
-          showDisclosure: !showDisclosure,
-          tabToFocus: hiddenTabs[0]
-        });
-      };
-      const handleClose = () => {
-        setState({
-          showDisclosure: false
-        });
-      };
-      const handleMeasurement = (0, import_react255.useCallback)((measurements) => {
-        const {
-          hiddenTabWidths: tabWidths2,
-          containerWidth: containerWidth2,
-          disclosureWidth: disclosureWidth2
-        } = measurements;
-        const {
-          visibleTabs: visibleTabs2,
-          hiddenTabs: hiddenTabs2
-        } = getVisibleAndHiddenTabIndices(tabs, selected, disclosureWidth2, tabWidths2, containerWidth2);
-        setState({
-          visibleTabs: visibleTabs2,
-          hiddenTabs: hiddenTabs2,
-          disclosureWidth: disclosureWidth2,
-          containerWidth: containerWidth2,
-          tabWidths: tabWidths2
-        });
-      }, [tabs, selected, setState]);
-      const handleListTabClick = (id) => {
-        handleTabClick(id);
-        handleClose();
-        setState({
-          isTabsFocused: true
-        });
-      };
-      const moveToActiveTab = (offsetLeft) => {
-        setTimeout(() => {
-          if (scrollRef.current && typeof scrollRef.current.scroll === "function") {
-            const scrollRefOffset = wrapRef?.current?.offsetLeft || 0;
-            scrollRef?.current?.scroll({
-              left: offsetLeft - scrollRefOffset
-            });
-          }
-        }, 0);
-      };
-      const createViewA11yLabel = newViewAccessibilityLabel || i18n.translate("Polaris.Tabs.newViewAccessibilityLabel");
-      const tabsToShow = mdDown ? [...visibleTabs, ...hiddenTabs] : visibleTabs;
-      const tabsMarkup = tabsToShow.sort((tabA, tabB) => tabA - tabB).filter((tabIndex) => tabs[tabIndex]).map((tabIndex) => renderTabMarkup(tabs[tabIndex], tabIndex));
-      const disclosureActivatorVisible = visibleTabs.length < tabs.length && !mdDown;
-      const classname = classNames(styles92.Tabs, fitted && styles92.fitted, disclosureActivatorVisible && styles92.fillSpace);
-      const wrapperClassNames = classNames(styles92.Wrapper, canCreateNewView && styles92.WrapperWithNewButton);
-      const disclosureTabClassName = classNames(styles92.DisclosureTab, disclosureActivatorVisible && styles92["DisclosureTab-visible"]);
-      const disclosureButtonClassName = classNames(styles92.DisclosureActivator);
-      const disclosureButtonContent = /* @__PURE__ */ import_react255.default.createElement(import_react255.default.Fragment, null, /* @__PURE__ */ import_react255.default.createElement(Text, {
-        as: "span",
-        variant: "bodySm",
-        fontWeight: "medium"
-      }, disclosureText ?? i18n.translate("Polaris.Tabs.toggleTabsLabel")), /* @__PURE__ */ import_react255.default.createElement("div", {
-        className: classNames(styles92.IconWrap, disclosureActivatorVisible && showDisclosure && styles92["IconWrap-open"])
-      }, /* @__PURE__ */ import_react255.default.createElement(Icon, {
-        source: SvgChevronDownIcon,
-        tone: "subdued"
-      })));
-      const disclosureButton = /* @__PURE__ */ import_react255.default.createElement(UnstyledButton, {
-        type: "button",
-        className: disclosureButtonClassName,
-        onClick: handleDisclosureActivatorClick,
-        "aria-label": disclosureText ?? i18n.translate("Polaris.Tabs.toggleTabsLabel"),
-        disabled
-      }, disclosureButtonContent);
-      const activator = disclosureButton;
-      const disclosureTabs = hiddenTabs.map((tabIndex) => tabs[tabIndex]);
-      const viewNames = tabs.map(({
-        content
-      }) => content);
-      const tabMeasurer = /* @__PURE__ */ import_react255.default.createElement(TabMeasurer, {
-        tabToFocus,
-        activator,
-        selected,
-        tabs,
-        siblingTabHasFocus: tabToFocus > -1,
-        handleMeasurement
-      });
-      const newTab = /* @__PURE__ */ import_react255.default.createElement(Tab, {
-        id: CREATE_NEW_VIEW_ID,
-        content: createViewA11yLabel,
-        actions: [],
-        onAction: handleClickNewTab,
-        onFocus: () => {
-          if (modalSubmitted) {
-            setState({
-              tabToFocus: selected,
-              modalSubmitted: false
-            });
-          }
-        },
-        icon: /* @__PURE__ */ import_react255.default.createElement(Icon, {
-          source: SvgPlusIcon,
-          accessibilityLabel: createViewA11yLabel
-        }),
-        disabled,
-        onTogglePopover: handleTogglePopover,
-        onToggleModal: handleToggleModal,
-        tabIndexOverride: 0
-      });
-      const panelMarkup = children ? tabs.map((_tab, index) => {
-        return selected === index ? /* @__PURE__ */ import_react255.default.createElement(Panel, {
-          id: tabs[index].panelID || `${tabs[index].id}-panel`,
-          tabID: tabs[index].id,
-          key: tabs[index].id
-        }, children) : /* @__PURE__ */ import_react255.default.createElement(Panel, {
-          id: tabs[index].panelID || `${tabs[index].id}-panel`,
-          tabID: tabs[index].id,
-          key: tabs[index].id,
-          hidden: true
-        });
-      }) : null;
       return /* @__PURE__ */ import_react255.default.createElement("div", {
-        className: styles92.Outer
-      }, /* @__PURE__ */ import_react255.default.createElement(Box, {
-        padding: {
-          md: "200"
-        }
-      }, tabMeasurer, /* @__PURE__ */ import_react255.default.createElement("div", {
-        className: wrapperClassNames,
-        ref: scrollRef
-      }, /* @__PURE__ */ import_react255.default.createElement("div", {
-        className: styles92.ButtonWrapper,
-        ref: wrapRef
-      }, /* @__PURE__ */ import_react255.default.createElement("ul", {
-        role: tabsMarkup.length > 0 ? "tablist" : void 0,
-        className: classname,
-        onFocus: handleFocus,
-        onBlur: handleBlur,
-        onKeyDown: handleKeyDown5,
-        onKeyUp: handleKeyPress,
-        "data-tabs-focus-catchment": true
-      }, tabsMarkup, mdDown || tabsToShow.length === 0 ? null : /* @__PURE__ */ import_react255.default.createElement("li", {
-        className: disclosureTabClassName,
-        role: "presentation"
-      }, /* @__PURE__ */ import_react255.default.createElement(Popover2, {
-        preferredPosition: "below",
-        preferredAlignment: "left",
-        activator,
-        active: disclosureActivatorVisible && showDisclosure,
-        onClose: handleClose,
-        autofocusTarget: "first-node"
-      }, /* @__PURE__ */ import_react255.default.createElement(List3, {
-        focusIndex: hiddenTabs.indexOf(tabToFocus),
-        disclosureTabs,
-        onClick: handleListTabClick,
-        onKeyPress: handleKeyPress
-      })))), canCreateNewView && tabsToShow.length > 0 ? /* @__PURE__ */ import_react255.default.createElement("div", {
-        className: styles92.NewTab
-      }, /* @__PURE__ */ import_react255.default.createElement(CreateViewModal, {
-        open: isNewViewModalActive,
-        onClose: handleCloseNewViewModal,
-        onClickPrimaryAction: handleSaveNewViewModal,
-        viewNames,
-        activator: disabled ? newTab : /* @__PURE__ */ import_react255.default.createElement("div", null, /* @__PURE__ */ import_react255.default.createElement(Tooltip, {
-          content: i18n.translate("Polaris.Tabs.newViewTooltip"),
-          preferredPosition: "above",
-          hoverDelay: 400
-        }, newTab))
-      })) : null))), panelMarkup);
+        className: styles92.Container
+      }, children);
     };
   }
 });
@@ -24398,14 +24398,14 @@ function IndexFilters({
     beginEdit(IndexFiltersMode.Filtering);
   }
   return /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: styles89.IndexFiltersWrapper,
+    className: styles90.IndexFiltersWrapper,
     style: {
       height: indexFilteringHeight
     }
   }, /* @__PURE__ */ import_react258.default.createElement("div", {
     ref: intersectionRef
   }), /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: classNames(styles89.IndexFilters, isSticky && styles89.IndexFiltersSticky, isSticky && isFlushWhenSticky && styles89.IndexFiltersStickyFlush),
+    className: classNames(styles90.IndexFilters, isSticky && styles90.IndexFiltersSticky, isSticky && isFlushWhenSticky && styles90.IndexFiltersStickyFlush),
     ref: measurerRef
   }, /* @__PURE__ */ import_react258.default.createElement(Transition_default, {
     nodeRef: defaultRef,
@@ -24422,9 +24422,9 @@ function IndexFilters({
     },
     wrap: false
   }, /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: classNames(styles89.TabsWrapper, mdDown && styles89.SmallScreenTabsWrapper, isLoading && styles89.TabsWrapperLoading)
+    className: classNames(styles90.TabsWrapper, mdDown && styles90.SmallScreenTabsWrapper, isLoading && styles90.TabsWrapperLoading)
   }, /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: styles89.TabsInner,
+    className: styles90.TabsInner,
     style: {
       ...defaultStyle2,
       ...transitionStyles2[state]
@@ -24437,11 +24437,11 @@ function IndexFilters({
     canCreateNewView,
     onCreateNewView
   })), isLoading && mdDown && /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: styles89.TabsLoading
+    className: styles90.TabsLoading
   }, /* @__PURE__ */ import_react258.default.createElement(Spinner, {
     size: "small"
   }))), /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: styles89.ActionWrap
+    className: styles90.ActionWrap
   }, isLoading && !mdDown && /* @__PURE__ */ import_react258.default.createElement(Spinner, {
     size: "small"
   }), mode === IndexFiltersMode.Default ? /* @__PURE__ */ import_react258.default.createElement(import_react258.default.Fragment, null, hideFilters && hideQueryField ? null : /* @__PURE__ */ import_react258.default.createElement(SearchFilterButton, {
@@ -24482,7 +24482,7 @@ function IndexFilters({
     borderlessQueryField: true,
     closeOnChildOverlayClick
   }, /* @__PURE__ */ import_react258.default.createElement("div", {
-    className: styles89.ButtonWrap
+    className: styles90.ButtonWrap
   }, /* @__PURE__ */ import_react258.default.createElement(InlineStack, {
     gap: "200",
     align: "start",
@@ -26554,7 +26554,7 @@ var init_Sheet = __esm({
     init_shared();
     init_use_theme();
     init_Sheet_scss();
-    init_hooks5();
+    init_hooks7();
     init_Portal();
     init_TrapFocus();
     init_KeypressListener();
@@ -26603,7 +26603,7 @@ var init_LegacyFilters = __esm({
     init_Tag();
     init_Sheet();
     init_hooks2();
-    init_hooks5();
+    init_hooks7();
     init_ScrollLock();
     init_Badge();
     init_Text();
@@ -27675,7 +27675,7 @@ var import_react287, Loading3;
 var init_Loading3 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Loading/Loading.js"() {
     import_react287 = __toESM(require_react());
-    init_hooks10();
+    init_hooks8();
     Loading3 = /* @__PURE__ */ (0, import_react287.memo)(function Loading4() {
       const {
         startLoading,
@@ -28255,7 +28255,7 @@ var init_Item10 = __esm({
     init_types5();
     init_SecondaryNavigation();
     init_hooks2();
-    init_hooks5();
+    init_hooks7();
     init_Indicator();
     init_Icon();
     init_Badge();
@@ -28401,7 +28401,7 @@ var init_Section7 = __esm({
     init_use_toggle();
     init_Navigation_scss();
     init_Item10();
-    init_hooks5();
+    init_hooks7();
     init_Icon();
     init_Tooltip();
     init_Text();
@@ -28420,7 +28420,7 @@ var init_Navigation2 = __esm({
     init_context20();
     init_Navigation_scss();
     init_Section7();
-    init_hooks10();
+    init_hooks8();
     init_UnstyledLink();
     init_Image();
     init_Scrollable();
@@ -28899,7 +28899,7 @@ var init_PolarisTestProvider = __esm({
     init_PortalsManager();
     init_FocusManager();
     init_EphemeralPresenceManager();
-    init_context15();
+    init_context11();
     defaultMediaQuery = {
       isNavigationCollapsed: false
     };
@@ -31141,7 +31141,7 @@ var init_Toast2 = __esm({
   "node_modules/@shopify/polaris/build/esm/components/Toast/Toast.js"() {
     import_react312 = __toESM(require_react());
     init_use_deep_effect();
-    init_hooks10();
+    init_hooks8();
     Toast2 = /* @__PURE__ */ (0, import_react312.memo)(function Toast3(props) {
       const id = (0, import_react312.useId)();
       const {
@@ -31653,7 +31653,7 @@ var init_TopBar = __esm({
     init_SearchField2();
     init_UserMenu();
     init_hooks2();
-    init_hooks10();
+    init_hooks8();
     init_Icon();
     init_UnstyledLink();
     init_Image();
@@ -31946,7 +31946,7 @@ var init_VideoThumbnail = __esm({
     init_duration();
     init_VideoThumbnail_scss();
     init_hooks2();
-    init_hooks5();
+    init_hooks7();
     init_LegacyStack();
     init_Icon();
     init_Text();
@@ -32005,7 +32005,7 @@ __export(esm_exports, {
   ColorPicker: () => ColorPicker,
   Combobox: () => Combobox,
   Connected: () => Connected,
-  ContextualSaveBar: () => ContextualSaveBar,
+  ContextualSaveBar: () => ContextualSaveBar2,
   DATA_ATTRIBUTE: () => DATA_ATTRIBUTE,
   DEFAULT_LOCALE: () => DEFAULT_LOCALE,
   DEFAULT_TOAST_DURATION: () => DEFAULT_TOAST_DURATION,
@@ -32051,7 +32051,7 @@ __export(esm_exports, {
   LegacyStack: () => LegacyStack,
   LegacyTabs: () => LegacyTabs,
   Link: () => Link,
-  List: () => List,
+  List: () => List2,
   Listbox: () => Listbox,
   Loading: () => Loading3,
   MediaCard: () => MediaCard,
@@ -32166,7 +32166,7 @@ var init_esm2 = __esm({
     init_InlineGrid();
     init_Combobox();
     init_Connected();
-    init_ContextualSaveBar();
+    init_ContextualSaveBar2();
     init_DataTable();
     init_DatePicker();
     init_DescriptionList();
@@ -32205,7 +32205,7 @@ var init_esm2 = __esm({
     init_LegacyStack();
     init_LegacyTabs();
     init_Link();
-    init_List();
+    init_List2();
     init_Listbox();
     init_Loading3();
     init_MediaCard();
@@ -32256,8 +32256,8 @@ var init_esm2 = __esm({
     init_UnstyledLink();
     init_BlockStack();
     init_VideoThumbnail();
-    init_hooks10();
-    init_context15();
+    init_hooks8();
+    init_context11();
     init_context3();
     init_hooks14();
     init_types4();
@@ -32274,10 +32274,15 @@ export {
   InlineStack,
   BlockStack,
   TextField,
+  LegacyCard,
+  InlineGrid,
   FormLayout,
+  Modal,
+  Frame,
+  Tabs,
   Layout,
   Link,
-  List,
+  List2 as List,
   Page,
   esm_exports,
   init_esm2 as init_esm
@@ -32301,4 +32306,4 @@ object-assign/index.js:
   @license MIT
   *)
 */
-//# sourceMappingURL=/build/_shared/chunk-K5V56T6F.js.map
+//# sourceMappingURL=/build/_shared/chunk-7SM5YFS4.js.map
